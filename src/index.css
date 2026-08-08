@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700;900&family=Inter:wght@400;600;700;900&family=Outfit:wght@400;600;700;800;900&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,900&display=swap');
+
+:root {
+  --color-brand-red: #ff004d;
+  --font-inter: "Inter", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+  --font-serif: "Crimson Pro", serif;
+  --bg-body: #ffffff;
+  --max-width: 480px;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+#root {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #ffffff;
+  box-shadow: 0 0 50px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Global Typography Overrides */
+h1, h2, h3, h4, h5, h6, button, .font-premium {
+  font-family: var(--font-outfit);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.font-condensed {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.font-serif-official {
+  font-family: var(--font-serif);
+}
+
+/* Premium Component Styling */
+.game-card-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.btn-primary-red {
+    background-color: var(--color-brand-red);
+    color: white;
+    font-weight: 900;
+    border-radius: 12px;
+    padding: 12px 20px;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+.btn-primary-red:active {
+    transform: scale(0.96);
+}
+
+/* ---------------------------------------------------------
+   OFFICIAL RESULT TABLE STYLES (Matching Reference Image)
+   --------------------------------------------------------- */
+.official-result-card {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.official-result-card table {
+    width: 100%;
+    border: 1.5px solid #ff0000;
+}
+
+.official-result-card td {
+    padding: 10px 15px;
+    border: 1px solid #ff0000;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.official-result-card td:first-child {
+    width: 35%;
+}
+
+.result-circle {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    margin-right: 8px;
+    font-family: var(--font-inter);
+}
+
+.result-list-container {
+    padding: 20px;
+    background: #ffffff;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
