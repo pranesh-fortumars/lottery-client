@@ -27,6 +27,17 @@ const secondaryConfig = {
   measurementId: "G-KMCWVS30BJ"
 };
 
+// TERTIARY Database Configuration (sms-lottery)
+const tertiaryConfig = {
+  apiKey: "AIzaSyDOHfgXmU9yOSdwUKJg5pxWuR6Lxgy3H78",
+  authDomain: "sms-lottery.firebaseapp.com",
+  projectId: "sms-lottery",
+  storageBucket: "sms-lottery.firebasestorage.app",
+  messagingSenderId: "598435140364",
+  appId: "1:598435140364:web:ae1c9208a6e3e88a40af29",
+  measurementId: "G-JW8YDL52PD"
+};
+
 // Initialize Primary App (Default)
 const app = !getApps().length ? initializeApp(primaryConfig) : getApp();
 const auth = getAuth(app);
@@ -44,4 +55,13 @@ const secondaryApp = initializeApp(secondaryConfig, "secondary");
 const secondaryDb = getFirestore(secondaryApp);
 const secondaryAuth = getAuth(secondaryApp);
 
-export { app, auth, db, rtdb, analytics, secondaryApp, secondaryDb, secondaryAuth };
+// Initialize Tertiary App
+const tertiaryApp = initializeApp(tertiaryConfig, "tertiary");
+const tertiaryDb = getFirestore(tertiaryApp);
+const tertiaryAuth = getAuth(tertiaryApp);
+
+export { 
+  app, auth, db, rtdb, analytics, 
+  secondaryApp, secondaryDb, secondaryAuth,
+  tertiaryApp, tertiaryDb, tertiaryAuth 
+};

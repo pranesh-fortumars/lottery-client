@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { AlertTriangle, DatabaseZap } from 'lucide-react';
-import { db, secondaryDb } from '../../firebase';
+import { db, secondaryDb, tertiaryDb } from '../../firebase';
 import { collection, getDocs, writeBatch, doc } from 'firebase/firestore';
 
 const AdminMigration = () => {
   const [logs, setLogs] = useState([]);
   const [migrating, setMigrating] = useState(false);
+  const [sourceDbId, setSourceDbId] = useState('secondary');
   const terminalEndRef = useRef(null);
 
   const collectionsToMigrate = [
@@ -29,10 +30,15 @@ const AdminMigration = () => {
     setLogs([]);
     addLog("Starting migration process...", "success");
 
+    const sourceDb = sourceDbId === 'tertiary' ? tertiaryDb : secondaryDb;
+    const sourceName = sourceDbId === 'tertiary' ? 'sms-lottery' : 'lottery-application-136';
+
+    addLog(`Source Database selected: ${sourceName}`, "info");
+
     try {
       for (const colName of collectionsToMigrate) {
         addLog(`Reading collection: ${colName}...`, "success");
-        const snap = await getDocs(collection(secondaryDb, colName));
+        const snap = await getDocs(collection(sourceDb, colName));
         
         addLog(`Found ${snap.size} documents in ${colName}. Starting copy...`, "success");
         
@@ -79,36 +85,48 @@ const AdminMigration = () => {
         <div>
           <h3 className="text-red-700 font-bold text-sm">Warning: Live Migration Engine</h3>
           <p className="text-red-700 text-xs mt-1 leading-relaxed">
-            This tool performs a one-way historical data copy from the Primary Database (`lottery-application-136`) to the Backup Database (`sms-lottery`). It executes heavy batch writes. Do not refresh the page while migration is running.
+            This tool performs a one-way historical data copy from the selected source database to your Primary Database. It executes heavy batch writes. Do not refresh the page while migration is running.
           </p>
         </div>
       </div>
 
       {/* Control Panel */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <div>
             <h2 className="text-xl font-black text-[#0f172a] tracking-tight">Execute Migration</h2>
             <p className="text-gray-500 text-sm">Target: {collectionsToMigrate.length} Collections</p>
           </div>
           
-          <button 
-            onClick={handleMigration}
-            disabled={migrating}
-            className={`px-5 py-3 rounded-xl font-black text-white flex items-center gap-2 transition-all ${migrating ? 'bg-[#94a3b8] cursor-not-allowed' : 'bg-[#e11d48] hover:bg-[#be123c] active:scale-95'}`}
-          >
-            {migrating ? (
-              <>
-                <div className="w-5 h-5 border-[3px] border-white/30 border-t-white rounded-full animate-spin"></div>
-                Syncing...
-              </>
-            ) : (
-              <>
-                <DatabaseZap size={20} />
-                Start Full Migration
-              </>
-            )}
-          </button>
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 w-full md:w-auto">
+            <select 
+              value={sourceDbId}
+              onChange={(e) => setSourceDbId(e.target.value)}
+              disabled={migrating}
+              className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold text-gray-700 outline-none focus:border-red-500 disabled:opacity-50"
+            >
+              <option value="secondary">Source: lottery-application-136</option>
+              <option value="tertiary">Source: sms-lottery</option>
+            </select>
+
+            <button 
+              onClick={handleMigration}
+              disabled={migrating}
+              className={`px-5 py-3 rounded-xl font-black text-white flex items-center gap-2 transition-all ${migrating ? 'bg-[#94a3b8] cursor-not-allowed' : 'bg-[#e11d48] hover:bg-[#be123c] active:scale-95'}`}
+            >
+              {migrating ? (
+                <>
+                  <div className="w-5 h-5 border-[3px] border-white/30 border-t-white rounded-full animate-spin"></div>
+                  Syncing...
+                </>
+              ) : (
+                <>
+                  <DatabaseZap size={20} />
+                  Start Full Migration
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Progress Bar (Indeterminate when migrating) */}
