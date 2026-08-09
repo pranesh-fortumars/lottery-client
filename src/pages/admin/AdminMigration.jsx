@@ -91,19 +91,19 @@ const AdminMigration = () => {
       </div>
 
       {/* Control Panel */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6">
+        <div className="flex flex-col gap-4 mb-6">
           <div>
             <h2 className="text-xl font-black text-[#0f172a] tracking-tight">Execute Migration</h2>
             <p className="text-gray-500 text-sm">Target: {collectionsToMigrate.length} Collections</p>
           </div>
           
-          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 w-full md:w-auto">
+          <div className="flex flex-col gap-3 w-full">
             <select 
               value={sourceDbId}
               onChange={(e) => setSourceDbId(e.target.value)}
               disabled={migrating}
-              className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-bold text-gray-700 outline-none focus:border-red-500 disabled:opacity-50"
+              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm font-bold text-gray-700 outline-none focus:border-red-500 disabled:opacity-50"
             >
               <option value="secondary">Source: lottery-application-136</option>
               <option value="tertiary">Source: sms-lottery</option>
@@ -112,7 +112,7 @@ const AdminMigration = () => {
             <button 
               onClick={handleMigration}
               disabled={migrating}
-              className={`px-5 py-3 rounded-xl font-black text-white flex items-center gap-2 transition-all ${migrating ? 'bg-[#94a3b8] cursor-not-allowed' : 'bg-[#e11d48] hover:bg-[#be123c] active:scale-95'}`}
+              className={`w-full px-5 py-3 rounded-xl font-black text-white flex justify-center items-center gap-2 transition-all ${migrating ? 'bg-[#94a3b8] cursor-not-allowed' : 'bg-[#e11d48] hover:bg-[#be123c] active:scale-95'}`}
             >
               {migrating ? (
                 <>
