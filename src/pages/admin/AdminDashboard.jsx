@@ -166,6 +166,24 @@ const AdminDashboard = () => {
         <ChevronRight size={24} className="text-white/50" />
       </button>
 
+      {user?.isSuperAdmin && (
+        <button 
+          onClick={() => { window.location.href = '/admin/migration'; }}
+          className="w-full bg-[#5b45ff] text-white p-5 rounded-[2.5rem] shadow-[0_10px_30px_-10px_rgba(91,69,255,0.5)] flex items-center justify-between mt-4 active:scale-95 transition-all"
+        >
+          <div className="flex items-center gap-4">
+             <div className="w-14 h-14 bg-white/20 rounded-[1.25rem] flex items-center justify-center backdrop-blur-sm border border-white/20">
+                <Database size={24} className="text-white" />
+             </div>
+             <div className="text-left">
+                <h3 className="font-black text-xl uppercase tracking-tight italic">Data Migration</h3>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70 mt-1">Sync historical records</p>
+             </div>
+          </div>
+          <ChevronRight size={24} className="text-white/50" />
+        </button>
+      )}
+
       {/* Main Reports Area */}
       <div className="space-y-8">
         {/* Draw Performance */}
@@ -242,24 +260,6 @@ const AdminDashboard = () => {
               Build: <span className="text-gray-900 font-black">{BUILD_VERSION}</span>
            </p>
         </div>
-        
-        {user?.isSuperAdmin && (
-          <button 
-            onClick={() => { window.location.href = '/admin/migration'; }}
-            className="w-full bg-[#5b45ff] text-white p-5 rounded-[2.5rem] shadow-[0_10px_30px_-10px_rgba(91,69,255,0.5)] flex items-center justify-between mt-8 active:scale-95 transition-all"
-          >
-            <div className="flex items-center gap-4">
-               <div className="w-14 h-14 bg-white/20 rounded-[1.25rem] flex items-center justify-center backdrop-blur-sm border border-white/20">
-                  <Database size={24} className="text-white" />
-               </div>
-               <div className="text-left">
-                  <h3 className="font-black text-xl uppercase tracking-tight italic">Data Migration</h3>
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70 mt-1">Sync historical records</p>
-               </div>
-            </div>
-            <ChevronRight size={24} className="text-white/50" />
-          </button>
-        )}
       </div>
       </div>
     </PullToRefresh>
