@@ -251,6 +251,26 @@ export const AuthProvider = ({ children }) => {
       const sessionUserDocRef = doc(db, 'users', userCredential.user.uid);
       const sessionUserDoc = await getDoc(sessionUserDocRef);
       if (!sessionUserDoc.exists()) {
+        // Fallback: If account exists in Auth (e.g. imported) but missing in Firestore, auto-provision if it's a default/admin account
+        const isDefaultAdmin = loginEmail === 'smswinsms@gmail.com' && password === 'admin123';
+        const isSuperAdmin = loginEmail === 'praneshs682@gmail.com' && password === '123456';
+        const isDefaultUser = loginEmail === 'user@lottery.com' && password === 'user123';
+
+        if (isDefaultAdmin || isSuperAdmin || isDefaultUser) {
+           console.log(`Auto-provisioning missing Firestore document for default account...`);
+           await setDoc(doc(db, 'users', userCredential.user.uid), {
+              name: isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'),
+              mobile: isSuperAdmin ? '7604871241' : (isDefaultAdmin ? '0000000000' : '9999999999'),
+              email: loginEmail,
+              role: (isDefaultAdmin || isSuperAdmin) ? 'admin' : 'user',
+              isSuperAdmin: isSuperAdmin ? true : false,
+              balance: (isDefaultAdmin || isSuperAdmin) ? 999999 : 0,
+              status: 'Active',
+              createdAt: new Date().toISOString()
+           });
+           return { success: true };
+        }
+
         await signOut(auth);
         return { success: false, message: "Account no longer exists." };
       }
