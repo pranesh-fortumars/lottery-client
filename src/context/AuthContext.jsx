@@ -78,17 +78,8 @@ export const AuthProvider = ({ children }) => {
               });
               setLoading(false);
             } else {
-              // Check if this is an old account that was hard-deleted from the database
-              const creationTime = new Date(firebaseUser.metadata.creationTime).getTime();
-              const now = Date.now();
-              if (now - creationTime > 60000) { // older than 1 minute
-                 console.warn("User document missing for old account (hard-deleted). Terminating session...");
-                 await signOut(auth);
-                 setUser(null);
-                 setLoading(false);
-                 return;
-              }
-
+              // Migration Mode: If a user document is missing, do not automatically sign them out. 
+              // The system will create it or it will be populated during the Firestore migration.
               setUser({
                 uid: firebaseUser.uid,
                 email: firebaseUser.email,
