@@ -8,6 +8,7 @@ import { getDatabase } from "firebase/database";
 const primaryConfig = {
   apiKey: "AIzaSyABQ-O6Bfbm8dE2z5zZhSl5--nFefSrzQ4",
   authDomain: "studio-5255428477-b76d2.firebaseapp.com",
+  databaseURL: "https://studio-5255428477-b76d2-default-rtdb.firebaseio.com",
   projectId: "studio-5255428477-b76d2",
   storageBucket: "studio-5255428477-b76d2.firebasestorage.app",
   messagingSenderId: "460063714650",
