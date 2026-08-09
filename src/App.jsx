@@ -34,6 +34,7 @@ import AdminReports from './pages/admin/AdminReports';
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminApprovals from './pages/admin/AdminApprovals';
 import AdminWithdrawals from './pages/admin/AdminWithdrawals';
+import AdminMigration from './pages/admin/AdminMigration';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { PaymentProvider } from './context/PaymentContext';
@@ -124,6 +125,7 @@ const AnimatedRoutes = () => {
           <Route path="/admin/settings" element={<ProtectedRoute role="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/approvals" element={<ProtectedRoute role="admin"><AdminLayout><AdminApprovals /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/withdrawals" element={<ProtectedRoute role="admin"><AdminLayout><AdminWithdrawals /></AdminLayout></ProtectedRoute>} />
+          <Route path="/admin/migration" element={<ProtectedRoute role="admin"><AdminLayout><AdminMigration /></AdminLayout></ProtectedRoute>} />
           
           <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

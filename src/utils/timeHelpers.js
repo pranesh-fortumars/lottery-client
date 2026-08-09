@@ -10,10 +10,16 @@ let serverTimeOffset = 0;
  */
 export const initTimeSync = () => {
   if (!rtdb) return;
-  const offsetRef = ref(rtdb, '.info/serverTimeOffset');
-  onValue(offsetRef, (snap) => {
-    serverTimeOffset = snap.val() || 0;
-  });
+  try {
+    const offsetRef = ref(rtdb, '.info/serverTimeOffset');
+    onValue(offsetRef, (snap) => {
+      serverTimeOffset = snap.val() || 0;
+    }, (error) => {
+      console.warn("RTDB time sync error (database might not be created):", error.message);
+    });
+  } catch (err) {
+    console.warn("Failed to initialize time sync:", err.message);
+  }
 };
 
 /**

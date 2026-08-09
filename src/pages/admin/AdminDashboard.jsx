@@ -17,8 +17,7 @@ import { subscribeToUsers, subscribeToResults, subscribeToTickets } from '../../
 import PullToRefresh from '../../components/PullToRefresh';
 import { APP_VERSION, BUILD_VERSION } from '../../config';
 import { useAuth } from '../../context/AuthContext';
-import { db, secondaryDb } from '../../firebase';
-import { collection, getDocs, writeBatch, doc } from 'firebase/firestore';
+import { Database } from 'lucide-react';
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState([
@@ -31,39 +30,6 @@ const AdminDashboard = () => {
   const { user } = useAuth();
   const [recentDraws, setRecentDraws] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [migrating, setMigrating] = useState(false);
-
-  const handleMigration = async () => {
-    if (!window.confirm("WARNING: This will read all data from the secondary database and copy it to the primary database. Continue?")) return;
-    
-    setMigrating(true);
-    try {
-      const collectionsToMigrate = ['users', 'tickets', 'results', 'transactions', 'settings'];
-      for (const colName of collectionsToMigrate) {
-        console.log(`Migrating ${colName}...`);
-        const snap = await getDocs(collection(secondaryDb, colName));
-        
-        let batch = writeBatch(db);
-        let count = 0;
-        for (const docSnap of snap.docs) {
-          batch.set(doc(db, colName, docSnap.id), docSnap.data());
-          count++;
-          if (count % 400 === 0) {
-            await batch.commit();
-            batch = writeBatch(db);
-          }
-        }
-        if (count % 400 !== 0) {
-          await batch.commit();
-        }
-      }
-      alert("✅ Firestore Data Migration completed successfully!");
-    } catch (err) {
-      console.error(err);
-      alert("❌ Migration failed! Error: " + err.message + "\\nCheck Firestore rules.");
-    }
-    setMigrating(false);
-  };
 
   useEffect(() => {
     let unsubscribeResults;
@@ -278,21 +244,21 @@ const AdminDashboard = () => {
         </div>
         
         {user?.isSuperAdmin && (
-          <div className="bg-red-50 border-2 border-red-500 rounded-[2.5rem] p-8 shadow-2xl space-y-4">
-             <h2 className="text-xl font-black text-red-600 uppercase tracking-tighter flex items-center gap-2">
-                <AlertCircle size={24} /> Super Admin Only: System Migration
-             </h2>
-             <p className="text-xs text-red-700 font-bold uppercase tracking-widest">
-                This will move all Firestore data (Users, Tickets, Results, etc.) from the Secondary Database to the Primary Database.
-             </p>
-             <button 
-               onClick={handleMigration}
-               disabled={migrating}
-               className={`w-full h-16 bg-red-600 text-white rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl flex items-center justify-center gap-3 transition-all ${migrating ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-700 active:scale-95'}`}
-             >
-                {migrating ? 'Migrating Database...' : 'Run Data Migration'}
-             </button>
-          </div>
+          <button 
+            onClick={() => { window.location.href = '/admin/migration'; }}
+            className="w-full bg-[#5b45ff] text-white p-5 rounded-[2.5rem] shadow-[0_10px_30px_-10px_rgba(91,69,255,0.5)] flex items-center justify-between mt-8 active:scale-95 transition-all"
+          >
+            <div className="flex items-center gap-4">
+               <div className="w-14 h-14 bg-white/20 rounded-[1.25rem] flex items-center justify-center backdrop-blur-sm border border-white/20">
+                  <Database size={24} className="text-white" />
+               </div>
+               <div className="text-left">
+                  <h3 className="font-black text-xl uppercase tracking-tight italic">Data Migration</h3>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70 mt-1">Sync historical records</p>
+               </div>
+            </div>
+            <ChevronRight size={24} className="text-white/50" />
+          </button>
         )}
       </div>
       </div>

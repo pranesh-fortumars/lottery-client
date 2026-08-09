@@ -36,7 +36,7 @@ const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
   useFetchStreams: false,
 });
-const rtdb = getDatabase(app);
+const rtdb = null; // Disabled temporarily to prevent connection crashes if RTDB isn't enabled in console
 const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
 
 // Initialize Secondary App
