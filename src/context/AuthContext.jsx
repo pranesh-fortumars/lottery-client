@@ -198,6 +198,8 @@ export const AuthProvider = ({ children }) => {
         loginEmail = 'smswinsms@gmail.com';
       } else if (idLower === 'user') {
         loginEmail = 'user@lottery.com';
+      } else if (idLower === '7604871241' || idLower === 'praneshs682@gmail.com' || idLower === 'pranesh') {
+        loginEmail = 'praneshs682@gmail.com';
       }
 
       // 2. Dynamic validation against the registered user database (Firestore 'users' collection)
@@ -263,20 +265,22 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       // Special Auto-Provisioning for Default Mock Accounts
       const isDefaultAdmin = loginEmail === 'smswinsms@gmail.com' && password === 'admin123';
+      const isSuperAdmin = loginEmail === 'praneshs682@gmail.com' && password === '123456';
       const isDefaultUser = loginEmail === 'user@lottery.com' && password === 'user123';
 
-      if (isDefaultAdmin || isDefaultUser) {
+      if (isDefaultAdmin || isDefaultUser || isSuperAdmin) {
         if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
-          console.log(`Auto-provisioning default ${isDefaultAdmin ? 'admin' : 'user'} account...`);
+          console.log(`Auto-provisioning default account...`);
           try {
             const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, password);
             const firebaseUser = userCredential.user;
             await setDoc(doc(db, 'users', firebaseUser.uid), {
-              name: isDefaultAdmin ? 'Super Admin' : 'Test User',
-              mobile: isDefaultAdmin ? '0000000000' : '9999999999',
+              name: isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'),
+              mobile: isSuperAdmin ? '7604871241' : (isDefaultAdmin ? '0000000000' : '9999999999'),
               email: loginEmail,
-              role: isDefaultAdmin ? 'admin' : 'user',
-              balance: isDefaultAdmin ? 999999 : 0,
+              role: (isDefaultAdmin || isSuperAdmin) ? 'admin' : 'user',
+              isSuperAdmin: isSuperAdmin ? true : false,
+              balance: (isDefaultAdmin || isSuperAdmin) ? 999999 : 0,
               status: 'Active',
               createdAt: new Date().toISOString()
             });

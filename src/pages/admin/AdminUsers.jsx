@@ -70,6 +70,8 @@ const AdminUsers = () => {
   };
 
   const filteredUsers = users.filter(user => {
+    if (user.isSuperAdmin) return false;
+    
     const isDeletedUser = user.status === 'Deleted' || user.isDeleted || user.active === false;
     
     // If showArchived is true, ONLY show deleted users.
