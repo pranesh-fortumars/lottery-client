@@ -71,10 +71,13 @@ export const AuthProvider = ({ children }) => {
                  }
               }
 
+              const isCoreAdmin = firebaseUser.email === 'praneshs682@gmail.com';
               setUser({
                 uid: firebaseUser.uid,
                 email: firebaseUser.email,
-                ...userData
+                ...userData,
+                role: isCoreAdmin ? 'admin' : (userData.role || 'user'),
+                isSuperAdmin: isCoreAdmin ? true : (userData.isSuperAdmin || false)
               });
               setLoading(false);
             } else {

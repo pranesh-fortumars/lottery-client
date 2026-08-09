@@ -107,12 +107,12 @@ export const CartProvider = ({ children }) => {
       }
     });
 
-    const unsubscribeTickets = onSnapshot(collection(db, 'tickets'), (snapshot) => {
-      const allTickets = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      // Admin sees everything; User sees only their own
-      const visibleTickets = user.role === 'admin' 
-        ? allTickets 
-        : allTickets.filter(t => t.userId === user.uid);
+    const ticketQuery = user.role === 'admin' 
+      ? collection(db, 'tickets') 
+      : query(collection(db, 'tickets'), where('userId', '==', user.uid));
+      
+    const unsubscribeTickets = onSnapshot(ticketQuery, (snapshot) => {
+      const visibleTickets = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
         
       const sortedTickets = [...visibleTickets].sort((a, b) => {
         const timeA = a.timestamp?.toMillis ? a.timestamp.toMillis() : Date.now();
@@ -152,12 +152,12 @@ export const CartProvider = ({ children }) => {
       console.error("Results subscription error:", error);
     });
 
-    const unsubscribeNotifs = onSnapshot(collection(db, 'notifications'), (snapshot) => {
-      const allNotifs = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      // Admin sees everything; User sees only their own
-      const visibleNotifs = user.role === 'admin'
-        ? allNotifs
-        : allNotifs.filter(n => n.userId === user.uid);
+    const notifQuery = user.role === 'admin'
+      ? collection(db, 'notifications')
+      : query(collection(db, 'notifications'), where('userId', '==', user.uid));
+
+    const unsubscribeNotifs = onSnapshot(notifQuery, (snapshot) => {
+      const visibleNotifs = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
       const sortedNotifs = visibleNotifs.sort((a, b) => {
         const timeA = a.timestamp?.toMillis ? a.timestamp.toMillis() : Date.now();

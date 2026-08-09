@@ -61,7 +61,11 @@ const ProtectedRoute = ({ children, role }) => {
   
   if (loading) return <FullPageLoader />;
   if (!user) return <Navigate to="/login" replace />;
-  if (role && user.role !== role) return <Navigate to="/home" replace />;
+  
+  if (role && user.role !== role) {
+    if (user.role === 'admin') return <Navigate to="/admin" replace />;
+    return <Navigate to="/home" replace />;
+  }
   
   return children;
 };
