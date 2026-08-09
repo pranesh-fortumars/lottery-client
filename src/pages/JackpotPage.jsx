@@ -75,7 +75,7 @@ const JackpotPage = () => {
       footerAction={jackpotFooter}
     >
       <div className="bg-[#f9f9f9]">
-        <div className="bg-[#fce4ec] py-3 px-4 shadow-sm border-b border-white/50 text-center mb-4">
+        <div className="bg-[#eff6ff] py-3 px-4 shadow-sm border-b border-white/50 text-center mb-4">
            <p className="text-white bg-[#ff1c74] inline-block px-5 py-2 rounded-full text-[10px] font-black tracking-wide uppercase">
              Jackpot lot purchase open till 5 mins before draw
            </p>
@@ -83,10 +83,10 @@ const JackpotPage = () => {
 
         <div className="p-4">
           <div className="flex gap-4 mb-8">
-             <button onClick={() => navigate('/rules')} className="flex-1 bg-[#ff004d] text-white py-3 rounded-xl flex items-center justify-center gap-2 font-black shadow-lg uppercase tracking-tight">
+             <button onClick={() => navigate('/rules')} className="flex-1 bg-[#4f46e5] text-white py-3 rounded-xl flex items-center justify-center gap-2 font-black shadow-lg uppercase tracking-tight">
                 <Gavel size={20} /> Rules
              </button>
-             <button onClick={() => navigate('/results')} className="flex-1 bg-[#ff004d] text-white py-3 rounded-xl flex items-center justify-center gap-2 font-black shadow-lg uppercase tracking-tight">
+             <button onClick={() => navigate('/results')} className="flex-1 bg-[#4f46e5] text-white py-3 rounded-xl flex items-center justify-center gap-2 font-black shadow-lg uppercase tracking-tight">
                 <ScrollText size={20} /> Results
              </button>
           </div>
@@ -98,7 +98,7 @@ const JackpotPage = () => {
                 onClick={() => slot.status === 'active' && setActiveSlot(slot.time)}
                 className={`border-[2px] rounded-2xl p-2.5 text-center transition-all cursor-pointer h-[70px] flex flex-col justify-center ${
                   slot.status === 'active' 
-                    ? (activeSlot === slot.time ? 'border-[#ff004d] bg-[#fff0f5] shadow-lg ring-2 ring-[#ff004d]/10' : 'border-[#ff004d] bg-white shadow-sm hover:shadow-md') 
+                    ? (activeSlot === slot.time ? 'border-[#4f46e5] bg-[#fff0f5] shadow-lg ring-2 ring-[#4f46e5]/10' : 'border-[#4f46e5] bg-white shadow-sm hover:shadow-md') 
                     : 'border-gray-200 bg-gray-100 opacity-50 grayscale'
                 }`}
               >

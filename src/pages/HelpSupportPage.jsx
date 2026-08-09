@@ -42,7 +42,7 @@ const HelpSupportPage = () => {
     <PageWrapper title="HELP & SUPPORT" showNav={false}>
       <div className="bg-[#f8f9fa] min-h-screen pb-24">
         {/* Header */}
-        <div className="bg-[#ff0033] h-[70px] flex items-center px-4 text-white shadow-md relative z-10">
+        <div className="bg-[#2563eb] h-[70px] flex items-center px-4 text-white shadow-md relative z-10">
           <button onClick={() => navigate('/settings')} className="p-2 -ml-2 active:scale-95 transition-all">
             <ChevronLeft size={28} />
           </button>
@@ -51,7 +51,7 @@ const HelpSupportPage = () => {
 
         <div className="p-4 space-y-4 max-w-lg mx-auto mt-4">
           <div className="flex flex-col items-center py-6 text-center">
-             <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center text-[#ff0033] mb-4 shadow-inner border-4 border-white">
+             <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center text-[#2563eb] mb-4 shadow-inner border-4 border-white">
                 <HelpCircle size={36} />
              </div>
              <h2 className="text-2xl font-black font-condensed tracking-tighter uppercase italic text-gray-900">How can we help?</h2>
@@ -69,7 +69,7 @@ const HelpSupportPage = () => {
               onClick={opt.action}
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-[#ff0033] group-hover:bg-[#ff0033] group-hover:text-white transition-colors border border-gray-100 shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white transition-colors border border-gray-100 shadow-sm">
                   {opt.icon}
                 </div>
                 <div>
@@ -77,7 +77,7 @@ const HelpSupportPage = () => {
                   <p className="text-[10px] font-medium text-gray-400 mt-0.5">{opt.desc}</p>
                 </div>
               </div>
-              <ChevronRight size={20} className="text-gray-300 group-hover:text-[#ff0033] transition-colors" />
+              <ChevronRight size={20} className="text-gray-300 group-hover:text-[#2563eb] transition-colors" />
             </div>
           ))}
 

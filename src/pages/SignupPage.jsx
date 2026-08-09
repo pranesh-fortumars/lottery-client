@@ -55,21 +55,21 @@ const SignupPage = () => {
 
   return (
     <PageWrapper title="MEMBER REGISTRATION" showNav={false}>
-      <div className="bg-white min-h-screen p-4 flex flex-col items-center pt-10">
+      <div className="bg-slate-50 min-h-screen p-6 flex flex-col items-center pt-10">
         {error && (
-          <div className="w-full bg-red-50 text-red-500 p-3 rounded-xl mb-4 flex items-center gap-2 text-xs font-bold border border-red-100">
-            <AlertCircle size={14} /> {error}
+          <div className="w-full bg-red-50 text-red-600 p-4 rounded-2xl mb-4 flex items-center gap-3 text-xs font-bold border border-red-100">
+            <AlertCircle size={16} /> {error}
           </div>
         )}
 
-        <form onSubmit={handleSignup} className="w-full space-y-4">
+        <form onSubmit={handleSignup} className="w-full space-y-5 max-w-md mx-auto">
           {/* Name Input */}
-          <div className="flex border border-gray-200 rounded-2xl overflow-hidden h-14 bg-gray-50/50 shadow-sm focus-within:border-red-200 transition-all">
-            <div className="bg-gray-100/50 px-5 flex items-center justify-center border-r border-gray-100 text-gray-400">
+          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
                <User size={18} />
             </div>
             <input 
-              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-gray-700 bg-transparent placeholder:text-gray-300" 
+              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-slate-800 bg-transparent placeholder:text-slate-300" 
               placeholder="Enter your name" 
               type="text"
               required
@@ -79,12 +79,12 @@ const SignupPage = () => {
           </div>
 
           {/* Email Input (Optional/Recommended) */}
-          <div className="flex border border-gray-200 rounded-2xl overflow-hidden h-14 bg-gray-50/50 shadow-sm focus-within:border-red-200 transition-all">
-            <div className="bg-gray-100/50 px-5 flex items-center justify-center border-r border-gray-100 text-gray-400">
-               <Mail className="text-gray-400" size={18} />
+          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
+               <Mail className="text-slate-400" size={18} />
             </div>
             <input 
-              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-gray-700 bg-transparent placeholder:text-gray-300" 
+              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-slate-800 bg-transparent placeholder:text-slate-300" 
               placeholder="Email Address (For Secure Recovery)" 
               type="email"
               value={formData.email}
@@ -93,12 +93,12 @@ const SignupPage = () => {
           </div>
 
           {/* Mobile Number Input */}
-          <div className="flex border border-gray-200 rounded-2xl overflow-hidden h-14 bg-gray-50/50 shadow-sm focus-within:border-red-200 transition-all">
-            <div className="bg-gray-100/50 px-4 flex items-center justify-center border-r border-gray-100 text-gray-400 font-black text-[10px] uppercase tracking-widest">
+          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+            <div className="bg-slate-50 px-4 flex items-center justify-center border-r border-slate-100 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
               +91
             </div>
             <input 
-              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-gray-700 bg-transparent placeholder:text-gray-300" 
+              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-slate-800 bg-transparent placeholder:text-slate-300" 
               placeholder="Mobile Number" 
               type="tel"
               inputMode="numeric"
@@ -110,12 +110,12 @@ const SignupPage = () => {
           </div>
 
           {/* Password Input */}
-          <div className="flex border border-gray-200 rounded-2xl overflow-hidden h-14 bg-gray-50/50 shadow-sm focus-within:border-red-200 transition-all">
-            <div className="bg-gray-100/50 px-5 flex items-center justify-center border-r border-gray-100 text-gray-400">
+          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
                <Lock size={18} />
             </div>
             <input 
-              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-gray-700 bg-transparent placeholder:text-gray-300" 
+              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-slate-800 bg-transparent placeholder:text-slate-300" 
               placeholder="Create Password" 
               type="password"
               required
@@ -126,12 +126,12 @@ const SignupPage = () => {
 
           {/* Referral Code Input */}
           <div className="space-y-2">
-            <div className="flex border border-gray-200 rounded-2xl overflow-hidden h-14 bg-gray-50/50 shadow-sm focus-within:border-red-200 transition-all">
-              <div className="bg-gray-100/50 px-5 flex items-center justify-center border-r border-gray-100 text-gray-400">
+            <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+              <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
                 <Users size={18} />
               </div>
               <input 
-                className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-gray-700 bg-transparent placeholder:text-gray-300" 
+                className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-slate-800 bg-transparent placeholder:text-slate-300" 
                 placeholder="Referral code (Optional)" 
                 type="text"
                 value={formData.referral}
@@ -141,7 +141,7 @@ const SignupPage = () => {
             {formData.referral.toUpperCase() === COMMON_REFERRAL_CODE && (
               <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-xl border border-emerald-100 animate-pulse">
                 <Gift size={14} className="text-emerald-500" />
-                <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Referral Active: ₹50 BONUS UNLOCKED!</p>
+                <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Referral Active: ₹50 BONUS UNLOCKED!</p>
               </div>
             )}
           </div>
@@ -149,21 +149,21 @@ const SignupPage = () => {
           <div className="pt-6 space-y-4">
             <button 
               disabled={loading}
-              className="w-full bg-[#ff0000] text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50" 
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50" 
               type="submit"
             >
                {loading ? "Registering..." : "Create Account"} <ChevronRight size={16} />
             </button>
             <div className="flex gap-4">
               <button 
-                className="flex-1 bg-white border border-gray-100 text-gray-400 py-3 rounded-2xl font-black text-[9px] uppercase tracking-widest hover:border-[#ff0000] hover:text-[#ff0000] transition-all" 
+                className="flex-1 bg-white border border-slate-200 text-slate-500 py-3 rounded-xl font-bold text-[10px] uppercase tracking-wider hover:border-blue-600 hover:text-blue-600 transition-all shadow-sm" 
                 type="button"
                 onClick={() => navigate('/login')}
               >
                 Login
               </button>
               <button 
-                className="flex-[2] bg-white border border-gray-100 text-gray-400 py-3 rounded-2xl font-black text-[9px] uppercase tracking-widest hover:border-[#ff0000] hover:text-[#ff0000] transition-all" 
+                className="flex-[2] bg-white border border-slate-200 text-slate-500 py-3 rounded-xl font-bold text-[10px] uppercase tracking-wider hover:border-blue-600 hover:text-blue-600 transition-all shadow-sm" 
                 type="button"
                 onClick={() => navigate('/reset-password')}
               >

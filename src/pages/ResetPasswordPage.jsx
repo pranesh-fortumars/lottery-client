@@ -139,22 +139,22 @@ const ResetPasswordPage = () => {
 
   return (
     <PageWrapper title="RECOVER ACCESS" showNav={false}>
-      <div className="bg-white min-h-screen p-6 flex flex-col pt-10">
+      <div className="bg-slate-50 min-h-screen p-6 flex flex-col pt-10">
         <button
           onClick={() => navigate('/login')}
-          className="flex items-center gap-2 text-gray-400 hover:text-[#ff0033] font-black text-[10px] uppercase tracking-widest transition-all mb-10 active:scale-95"
+          className="flex items-center gap-2 text-slate-500 hover:text-blue-600 font-bold text-[10px] uppercase tracking-widest transition-all mb-10 active:scale-95"
         >
           <ChevronLeft size={16} /> Return to Login
         </button>
 
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center text-[#ff0033] shadow-sm">
+            <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 shadow-sm border border-blue-100">
               <ShieldCheck size={24} />
             </div>
-            <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tighter italic leading-none">Security Center</h2>
+            <h2 className="text-3xl font-bold text-slate-800 uppercase tracking-tight leading-none">Security Center</h2>
           </div>
-          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] leading-relaxed">
+          <p className="text-[10px] font-medium text-slate-500 uppercase tracking-widest leading-relaxed">
             {method === 'mobile' ? (
               <>
                 {step === 1 && "Enter your registered mobile number to receive a verification code."}
@@ -168,16 +168,16 @@ const ResetPasswordPage = () => {
         </div>
 
         {step === 1 && !success && (
-          <div className="flex gap-2 p-1 bg-gray-50 rounded-2xl mb-8 border border-gray-100">
+          <div className="flex gap-2 p-1 bg-white rounded-2xl mb-8 border border-slate-200 shadow-sm">
             <button
               onClick={() => { setMethod('mobile'); setError(''); }}
-              className={`flex-1 py-3 rounded-xl font-black text-[9px] uppercase tracking-widest transition-all ${method === 'mobile' ? 'bg-white text-[#ff0033] shadow-sm border border-red-50' : 'text-gray-400'}`}
+              className={`flex-1 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${method === 'mobile' ? 'bg-slate-50 text-blue-600 shadow-sm border border-slate-100' : 'text-slate-400 hover:bg-slate-50'}`}
             >
               Mobile OTP
             </button>
             <button
               onClick={() => { setMethod('email'); setError(''); }}
-              className={`flex-1 py-3 rounded-xl font-black text-[9px] uppercase tracking-widest transition-all ${method === 'email' ? 'bg-white text-[#ff0033] shadow-sm border border-red-50' : 'text-gray-400'}`}
+              className={`flex-1 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${method === 'email' ? 'bg-slate-50 text-blue-600 shadow-sm border border-slate-100' : 'text-slate-400 hover:bg-slate-50'}`}
             >
               Email Link
             </button>
@@ -185,7 +185,7 @@ const ResetPasswordPage = () => {
         )}
 
         {error && (
-          <div className="w-full bg-red-50 border border-red-100 text-red-600 p-4 rounded-2xl mb-8 flex items-center gap-3 text-xs font-bold italic">
+          <div className="w-full bg-red-50 border border-red-100 text-red-600 p-4 rounded-2xl mb-8 flex items-center gap-3 text-xs font-bold">
             <AlertCircle size={18} className="shrink-0" /> {error}
           </div>
         )}
@@ -202,14 +202,14 @@ const ResetPasswordPage = () => {
               {step === 1 && (
                 <form onSubmit={method === 'mobile' ? handleVerifyMobile : handleEmailReset} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">{method === 'mobile' ? 'Mobile Number' : 'Email Account'}</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">{method === 'mobile' ? 'Mobile Number' : 'Email Account'}</label>
                     <div className="relative group">
                       {method === 'mobile' ? (
                         <>
-                          <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 font-black text-[10px] pr-4 border-r border-gray-100">+91</div>
+                          <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-[10px] pr-4 border-r border-slate-200">+91</div>
                           <input
                             required
-                            className="w-full h-16 bg-gray-50 border border-gray-100 rounded-[1.5rem] pl-20 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#ff0033]/20 transition-all text-sm shadow-sm"
+                            className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-20 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
                             placeholder="10 Digit Number"
                             type="tel"
                             inputMode="numeric"
@@ -221,10 +221,10 @@ const ResetPasswordPage = () => {
                         </>
                       ) : (
                         <>
-                          <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#ff0033] transition-colors" size={20} />
+                          <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
                           <input
                             required
-                            className="w-full h-16 bg-gray-50 border border-gray-100 rounded-[1.5rem] pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#ff0033]/20 transition-all text-sm shadow-sm"
+                            className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-16 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
                             placeholder="Mobile or Registered Email"
                             type="text"
                             value={identifier}
@@ -236,11 +236,11 @@ const ResetPasswordPage = () => {
                   </div>
                   <button
                     disabled={loading}
-                    className="w-full h-16 bg-gray-950 text-white rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+                    className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
                     type="submit"
                   >
                     {loading ? "SEARCHING..." : (method === 'mobile' ? "DISPATCH OTP" : "SEND RESET LINK")}
-                    {method === 'mobile' ? <ArrowRight size={18} className="text-[#ff0033]" /> : <Send size={18} className="text-[#ff0033]" />}
+                    {method === 'mobile' ? <ArrowRight size={18} className="text-white" /> : <Send size={18} className="text-white" />}
                   </button>
                 </form>
               )}
@@ -248,12 +248,12 @@ const ResetPasswordPage = () => {
               {step === 2 && (
                 <form onSubmit={handleVerifyOTP} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">Verification Code</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Verification Code</label>
                     <div className="relative group">
-                      <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#ff0033] transition-colors" size={20} />
+                      <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
                       <input
                         required
-                        className="w-full h-16 bg-gray-50 border border-gray-100 rounded-[1.5rem] pl-16 pr-6 outline-none font-black text-gray-800 focus:bg-white focus:border-[#ff0033]/20 transition-all text-xl tracking-[0.5em] text-center shadow-sm"
+                        className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-16 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-xl tracking-[0.5em] text-center shadow-sm"
                         placeholder="······"
                         type="text"
                         inputMode="numeric"
@@ -263,14 +263,14 @@ const ResetPasswordPage = () => {
                         onChange={(e) => setOtp(e.target.value)}
                       />
                     </div>
-                    <p className="text-[8px] font-bold text-gray-400 uppercase text-center mt-2">Hint: Use 123456 for demonstration</p>
+                    <p className="text-[9px] font-medium text-slate-400 uppercase tracking-widest text-center mt-2">Hint: Use 123456 for demonstration</p>
                   </div>
                   <button
                     disabled={loading}
-                    className="w-full h-16 bg-gray-950 text-white rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+                    className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
                     type="submit"
                   >
-                    {loading ? "VERIFYING..." : "CONFIRM CODE"} <ShieldCheck size={18} className="text-[#ff0033]" />
+                    {loading ? "VERIFYING..." : "CONFIRM CODE"} <ShieldCheck size={18} className="text-white" />
                   </button>
                 </form>
               )}
@@ -278,12 +278,12 @@ const ResetPasswordPage = () => {
               {step === 3 && (
                 <form onSubmit={handleFinalReset} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">New Secure Password</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">New Secure Password</label>
                     <div className="relative group">
-                      <Key className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#ff0033] transition-colors" size={20} />
+                      <Key className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
                       <input
                         required
-                        className="w-full h-16 bg-gray-50 border border-gray-100 rounded-[1.5rem] pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#ff0033]/20 transition-all text-sm shadow-sm"
+                        className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-16 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
                         placeholder="Minimum 6 characters"
                         type="password"
                         value={newPassword}
@@ -293,10 +293,10 @@ const ResetPasswordPage = () => {
                   </div>
                   <button
                     disabled={loading}
-                    className="w-full h-16 bg-gray-950 text-white rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+                    className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50"
                     type="submit"
                   >
-                    {loading ? "UPDATING..." : "UPDATE CREDENTIALS"} <Save size={18} className="text-[#ff0033]" />
+                    {loading ? "UPDATING..." : "UPDATE CREDENTIALS"} <Save size={18} className="text-white" />
                   </button>
                 </form>
               )}
@@ -305,23 +305,23 @@ const ResetPasswordPage = () => {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-emerald-50 border border-emerald-100 rounded-[2rem] p-10 text-center space-y-6"
+              className="bg-emerald-50 border border-emerald-100 rounded-3xl p-10 text-center space-y-6 shadow-sm"
             >
-              <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center text-white mx-auto shadow-lg shadow-emerald-200">
+              <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center text-white mx-auto shadow-sm">
                 <CheckCircle2 size={40} />
               </div>
               <div>
-                <h3 className="text-xl font-black text-gray-900 uppercase tracking-tighter italic">{method === 'email' ? 'Link Dispatched' : 'Identity Recovered'}</h3>
+                <h3 className="text-xl font-bold text-emerald-900 uppercase tracking-tight">{method === 'email' ? 'Link Dispatched' : 'Identity Recovered'}</h3>
                 <p className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest mt-2">
                   {method === 'email' ? 'Check your email inbox for the reset link.' : 'Your password has been reset successfully.'}
                 </p>
               </div>
-              <p className="text-[10px] text-gray-500 font-bold leading-relaxed px-4">
+              <p className="text-[10px] text-emerald-600 font-medium leading-relaxed px-4">
                 Please login with your new credentials to access your dashboard.
               </p>
               <button
                 onClick={() => navigate('/login')}
-                className="w-full h-14 bg-gray-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-lg active:scale-95 transition-all"
+                className="w-full h-14 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all"
               >
                 Access Account Now
               </button>
@@ -330,8 +330,8 @@ const ResetPasswordPage = () => {
         </AnimatePresence>
 
         <SupportSection />
-        <div className="mt-auto py-10 opacity-30 text-center">
-          <p className="text-[9px] font-black uppercase tracking-[0.3em] text-gray-400 italic">SMS Lottery Secretariat Authority • 2026</p>
+        <div className="mt-auto py-10 opacity-40 text-center">
+          <p className="text-[9px] font-medium uppercase tracking-wider text-slate-400">SMS Lottery Secretariat Authority • 2026</p>
         </div>
       </div>
     </PageWrapper>

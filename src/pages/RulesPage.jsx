@@ -31,7 +31,7 @@ const RulesPage = () => {
   return (
     <PageWrapper title="SMS LOTTERY RULES" showNav={true} showHeader={false}>
       {/* Custom Header to match image exactly */}
-      <div className="bg-[#f42464] h-[60px] flex items-center justify-between px-4 text-white shrink-0">
+      <div className="bg-[#6366f1] h-[60px] flex items-center justify-between px-4 text-white shrink-0">
         <div className="flex items-center gap-2">
           <button onClick={() => navigate('/home')}>
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">

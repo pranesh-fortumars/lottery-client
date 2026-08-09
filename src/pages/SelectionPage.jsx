@@ -56,11 +56,11 @@ const SelectionPage = () => {
     <button 
       onClick={() => navigate('/cart')}
       disabled={closed}
-      className={`w-full text-white py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-xl shadow-[0_15px_30px_-5px_rgba(255,0,85,0.4)] relative active:scale-95 transition-all ${closed ? 'bg-gray-400' : 'bg-[#ff0055]'}`}
+      className={`w-full text-white py-4 rounded-xl flex items-center justify-center gap-3 font-bold text-lg shadow-sm relative transition-all ${closed ? 'bg-slate-400' : 'bg-blue-600 hover:bg-blue-700 active:scale-95'}`}
     >
-      <ShoppingCart size={24} fill="white" /> {closed ? (globalLock ? 'SALES CLOSED' : 'EXPIRED') : 'PAY NOW'}
+      <ShoppingCart size={22} fill="white" /> {closed ? (globalLock ? 'SALES CLOSED' : 'EXPIRED') : 'PAY NOW'}
       {cart.length > 0 && !closed && (
-         <span className="absolute -top-3 -right-3 bg-black text-white w-8 h-8 rounded-full text-[12px] flex items-center justify-center border-[3px] border-white font-black shadow-lg">{cart.length}</span>
+         <span className="absolute -top-2 -right-2 bg-indigo-600 text-white w-7 h-7 rounded-full text-xs flex items-center justify-center font-bold shadow-sm">{cart.length}</span>
       )}
     </button>
   );
@@ -72,31 +72,31 @@ const SelectionPage = () => {
       showBack={true}
       footerAction={footerBtn}
     >
-      <div className="bg-[#f9f9f9]">
+      <div className="bg-slate-50 min-h-screen pb-24">
         {/* Draw Status Banner */}
-        <div className={`py-4 px-6 flex justify-between items-center shadow-lg border-b border-white/10 ${closed ? 'bg-black' : 'bg-gradient-to-r from-[#ff004d] to-[#ff4d6a]'}`}>
+        <div className={`py-4 px-6 flex justify-between items-center shadow-sm border-b border-white/10 ${closed ? 'bg-slate-800' : 'bg-gradient-to-r from-blue-600 to-indigo-600'}`}>
            <div>
-              <p className="text-white text-[9px] font-black uppercase tracking-[0.2em] opacity-80">{marketName} DRAW</p>
-              <h2 className="text-white text-xl font-black font-condensed italic">{drawTime}</h2>
+              <p className="text-white/80 text-[10px] font-bold uppercase tracking-widest">{marketName} DRAW</p>
+              <h2 className="text-white text-xl font-bold">{drawTime}</h2>
            </div>
            <div className="text-right">
-              <span className={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-white shadow-inner ${closed ? (globalLock ? 'text-red-600' : 'text-black') : 'text-[#ff004d]'}`}>
+              <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white shadow-sm ${closed ? 'text-slate-600' : 'text-blue-600'}`}>
                 {closed ? (globalLock ? 'SALES CLOSED' : 'EXPIRED') : 'OPEN'}
               </span>
            </div>
         </div>
 
-        <div className="p-4 space-y-4">
+        <div className="p-4 space-y-5">
           <div className="flex gap-3">
-             <button onClick={() => navigate('/rules')} className="flex-1 bg-white border-2 border-gray-100 text-gray-900 py-2.5 rounded-xl flex items-center justify-center gap-2 font-black shadow-sm uppercase tracking-tight text-[10px] hover:border-[#ff004d] transition-all">
-                <Gavel size={16} className="text-[#ff004d]" /> Rules
+             <button onClick={() => navigate('/rules')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-blue-500 hover:text-blue-600 transition-all">
+                <Gavel size={16} /> Rules
              </button>
-             <button onClick={() => navigate('/results')} className="flex-1 bg-white border-2 border-gray-100 text-gray-900 py-2.5 rounded-xl flex items-center justify-center gap-2 font-black shadow-sm uppercase tracking-tight text-[10px] hover:border-[#ff004d] transition-all">
-                <ScrollText size={16} className="text-[#ff004d]" /> History
+             <button onClick={() => navigate('/results')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-blue-500 hover:text-blue-600 transition-all">
+                <ScrollText size={16} /> History
              </button>
           </div>
 
-          <div className={`${closed ? 'opacity-40 grayscale pointer-events-none blur-[0.5px]' : ''} space-y-6`}>
+          <div className={`${closed ? 'opacity-50 grayscale pointer-events-none' : ''} space-y-6`}>
             {/* Single Digit Matrix */}
             <BettingCard 
                 title="Single Digit" 
@@ -128,11 +128,10 @@ const SelectionPage = () => {
             {/* Triple Digit - ABC (Split by Tier) */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 ml-2">
-                 <div className="w-4 h-4 bg-[#ff004d]/10 rounded-md flex items-center justify-center">
-                    <img src="https://img.icons8.com/fluency/48/000000/3-dots.png" alt="3D" className="w-2.5 h-2.5" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
-                    <div style={{display: 'none'}} className="w-1 h-1 bg-[#ff004d] rounded-full"></div>
+                 <div className="w-5 h-5 bg-blue-100 rounded-md flex items-center justify-center border border-blue-200">
+                    <span className="text-blue-600 font-bold text-[10px]">3D</span>
                  </div>
-                 <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-widest">3D Pricing Categories</h4>
+                 <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">3D Pricing Categories</h4>
               </div>
               {abcTiers.map((tier, idx) => (
                 <BettingCard 
@@ -149,13 +148,12 @@ const SelectionPage = () => {
             </div>
 
             {/* 4D - XABC (Split by Tier) */}
-            <div className="space-y-4 pt-4 border-t border-gray-100">
+            <div className="space-y-4 pt-4 border-t border-slate-200">
               <div className="flex items-center gap-2 ml-2">
-                 <div className="w-4 h-4 bg-black/10 rounded-md flex items-center justify-center">
-                    <img src="https://img.icons8.com/fluency/48/000000/number-4.png" alt="4D" className="w-2.5 h-2.5" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
-                    <div style={{display: 'none'}} className="w-1 h-1 bg-black rounded-full"></div>
+                 <div className="w-5 h-5 bg-slate-200 rounded-md flex items-center justify-center border border-slate-300">
+                    <span className="text-slate-700 font-bold text-[10px]">4D</span>
                  </div>
-                 <h4 className="text-[9px] font-black text-gray-400 uppercase tracking-widest">4D Pricing Categories</h4>
+                 <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">4D Pricing Categories</h4>
               </div>
               {xabcTiers.map((tier, idx) => (
                 <BettingCard 
@@ -173,12 +171,12 @@ const SelectionPage = () => {
           </div>
           
           {closed && (
-            <div className="bg-red-50 p-6 rounded-3xl border border-red-100 text-center space-y-2">
-                <Lock className="mx-auto text-red-500 mb-2" size={32} />
-                <p className="text-red-600 font-black uppercase text-xs tracking-widest">
+            <div className="bg-slate-100 p-6 rounded-2xl border border-slate-200 text-center space-y-2">
+                <Lock className="mx-auto text-slate-400 mb-2" size={28} />
+                <p className="text-slate-700 font-bold uppercase text-xs tracking-wider">
                   {globalLock ? 'GLOBAL SALES CLOSED' : (earlyClosure ? 'EARLY MARKET CLOSURE' : 'BOOKING FINISHED')}
                 </p>
-                <p className="text-gray-400 text-[10px] font-bold">
+                <p className="text-slate-500 text-[11px] font-medium leading-relaxed">
                   {globalLock 
                     ? 'Ticket booking is currently closed for today across all markets by the administrator.'
                     : (earlyClosure 

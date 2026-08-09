@@ -106,27 +106,27 @@ const UserTransactions = () => {
       case 'approved':
       case 'success':
         return (
-          <span className="flex items-center gap-1 bg-emerald-50 text-emerald-600 border border-emerald-200 px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-widest shadow-sm">
+          <span className="flex items-center gap-1 bg-emerald-50 text-emerald-600 border border-emerald-200 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm">
             <CheckCircle2 size={12} /> Approved
           </span>
         );
       case 'rejected':
       case 'error':
         return (
-          <span className="flex items-center gap-1 bg-red-50 text-red-600 border border-red-200 px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-widest shadow-sm">
+          <span className="flex items-center gap-1 bg-red-50 text-red-600 border border-red-200 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm">
             <XCircle size={12} /> Rejected
           </span>
         );
       case 'cancelled':
         return (
-          <span className="flex items-center gap-1 bg-gray-100 text-gray-500 border border-gray-200 px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-widest shadow-sm">
-            <Ban size={12} /> Cancelled by User
+          <span className="flex items-center gap-1 bg-slate-100 text-slate-500 border border-slate-200 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm">
+            <Ban size={12} /> Cancelled
           </span>
         );
       default:
         return (
-          <span className="flex items-center gap-1 bg-amber-50 text-amber-600 border border-amber-200 px-2.5 py-1 rounded-xl text-[9px] font-black uppercase tracking-widest shadow-sm animate-pulse">
-            <Clock size={12} /> Pending Verification
+          <span className="flex items-center gap-1 bg-amber-50 text-amber-600 border border-amber-200 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm animate-pulse">
+            <Clock size={12} /> Pending
           </span>
         );
     }
@@ -135,7 +135,7 @@ const UserTransactions = () => {
   const getCategoryIcon = (category, type) => {
     if (category === 'withdrawal') {
       return (
-        <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center shadow-sm shrink-0 border border-purple-100">
+        <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center shadow-sm shrink-0 border border-indigo-100">
           <ArrowUpRight size={22} />
         </div>
       );
@@ -156,24 +156,24 @@ const UserTransactions = () => {
 
   return (
     <PageWrapper title="TRANSACTION HISTORY" showBack={true}>
-      <div className="bg-white min-h-screen p-4 flex flex-col items-center pb-24">
+      <div className="bg-slate-50 min-h-screen p-4 flex flex-col items-center pb-24">
         {/* Header Overview Card */}
-        <div className="w-full max-w-sm bg-gradient-to-br from-gray-900 to-black rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden mb-6 group">
-          <div className="absolute top-0 right-0 p-6 opacity-10 bg-white rounded-bl-[2.5rem] group-hover:scale-110 transition-transform">
+        <div className="w-full max-w-sm bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl p-8 text-white shadow-sm relative overflow-hidden mb-6 group">
+          <div className="absolute top-0 right-0 p-6 opacity-10 bg-white rounded-bl-3xl group-hover:scale-110 transition-transform">
             <Wallet size={48} />
           </div>
-          <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Financial Ledger</p>
-          <h3 className="text-2xl font-black italic tracking-tighter uppercase font-condensed">Activity Statement</h3>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-blue-100 mb-1">Financial Ledger</p>
+          <h3 className="text-2xl font-bold tracking-tight uppercase">Activity Statement</h3>
           
-          <div className="mt-6 pt-4 border-t border-white/10 flex justify-between items-center">
+          <div className="mt-6 pt-4 border-t border-white/20 flex justify-between items-center">
             <div>
-              <p className="text-[8px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Total Records</p>
-              <p className="text-sm font-black text-white italic">{allActivities.length} Transactions</p>
+              <p className="text-[9px] font-bold uppercase tracking-widest text-blue-100 mb-1">Total Records</p>
+              <p className="text-sm font-bold text-white">{allActivities.length} Transactions</p>
             </div>
             <div className="text-right">
-              <p className="text-[8px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Sync Status</p>
-              <p className="text-[10px] font-bold text-emerald-400 flex items-center gap-1">
-                <RefreshCw size={10} className="animate-spin" /> Real-Time Active
+              <p className="text-[9px] font-bold uppercase tracking-widest text-blue-100 mb-1">Sync Status</p>
+              <p className="text-[10px] font-bold text-emerald-200 flex items-center gap-1 bg-white/10 px-2 py-0.5 rounded backdrop-blur-sm">
+                <RefreshCw size={10} className="animate-spin" /> Real-Time
               </p>
             </div>
           </div>
@@ -190,10 +190,10 @@ const UserTransactions = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest shrink-0 transition-all ${
+              className={`px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-wider shrink-0 transition-all ${
                 activeTab === tab.id
-                  ? 'bg-[#ff0033] text-white shadow-lg shadow-red-500/20 scale-105'
-                  : 'bg-gray-50 text-gray-400 border border-gray-100 hover:bg-gray-100'
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'
               }`}
             >
               {tab.label}
@@ -204,14 +204,14 @@ const UserTransactions = () => {
         {/* Transactions List */}
         <div className="w-full max-w-sm space-y-4">
           {loading ? (
-            <div className="p-12 text-center text-gray-400 font-bold uppercase tracking-widest text-[10px]">
+            <div className="p-12 text-center text-slate-400 font-bold uppercase tracking-widest text-[10px]">
               Loading Financial Records...
             </div>
           ) : filteredActivities.length === 0 ? (
-            <div className="bg-gray-50 rounded-[2.5rem] p-12 text-center border border-gray-100 shadow-inner">
-              <Filter className="mx-auto text-gray-300 mb-4" size={40} />
-              <p className="text-xs font-black uppercase tracking-widest text-gray-400 italic mb-1">No Records Found</p>
-              <p className="text-[10px] font-bold text-gray-400 max-w-[200px] mx-auto leading-relaxed">
+            <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 shadow-sm">
+              <Filter className="mx-auto text-slate-300 mb-4" size={40} />
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">No Records Found</p>
+              <p className="text-[10px] font-medium text-slate-400 max-w-[200px] mx-auto leading-relaxed">
                 No financial transactions match the selected filter category.
               </p>
             </div>
@@ -224,70 +224,70 @@ const UserTransactions = () => {
               return (
                 <div 
                   key={item.id} 
-                  className="bg-white rounded-[2rem] p-5 border border-gray-100 shadow-lg hover:shadow-xl transition-all flex flex-col gap-4 group"
+                  className="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4 group"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
                       {getCategoryIcon(item.category, item.type)}
                       <div>
-                        <p className="text-sm font-black text-gray-900 uppercase tracking-tight italic leading-none mb-1">
+                        <p className="text-sm font-bold text-slate-800 uppercase tracking-tight leading-none mb-1">
                           {item.category === 'withdrawal' ? 'Payout Withdrawal' : item.category === 'purchase' ? 'Ticket Purchase' : 'Wallet Top-Up'}
                         </p>
-                        <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
+                        <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
                           <Clock size={10} /> {dateStr} • {timeStr}
                         </p>
                       </div>
                     </div>
 
                     <div className="text-right">
-                      <p className={`text-lg font-black italic tracking-tighter ${item.category === 'withdrawal' || item.category === 'purchase' ? 'text-gray-900' : 'text-emerald-600'}`}>
+                      <p className={`text-lg font-bold tracking-tight ${item.category === 'withdrawal' || item.category === 'purchase' ? 'text-slate-800' : 'text-emerald-600'}`}>
                         {item.category === 'withdrawal' || item.category === 'purchase' ? '-' : '+'}₹{parseFloat(item.amount).toLocaleString()}
                       </p>
-                      <div className="mt-1">{getStatusBadge(item.status)}</div>
+                      <div className="mt-1 flex justify-end">{getStatusBadge(item.status)}</div>
                     </div>
                   </div>
 
                   {/* Additional Details Box */}
-                  <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2 text-[10px]">
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2 text-[10px]">
                     {item.transactionId && (
-                      <div className="flex justify-between items-center border-b border-gray-100 pb-1.5">
-                        <span className="font-black text-gray-400 uppercase tracking-widest">Transaction ID / UTR</span>
-                        <span className="font-bold text-gray-800 select-all">{item.transactionId}</span>
+                      <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+                        <span className="font-bold text-slate-500 uppercase tracking-widest">Transaction ID / UTR</span>
+                        <span className="font-bold text-slate-800 select-all">{item.transactionId}</span>
                       </div>
                     )}
                     {item.upiId && (
-                      <div className="flex justify-between items-center border-b border-gray-100 pb-1.5">
-                        <span className="font-black text-gray-400 uppercase tracking-widest">Target UPI ID</span>
-                        <span className="font-bold text-purple-600 select-all">{item.upiId}</span>
+                      <div className="flex justify-between items-center border-b border-slate-200 pb-2 pt-1">
+                        <span className="font-bold text-slate-500 uppercase tracking-widest">Target UPI ID</span>
+                        <span className="font-bold text-indigo-600 select-all">{item.upiId}</span>
                       </div>
                     )}
                     {item.userEnteredAmount !== undefined && item.userEnteredAmount !== null && item.userEnteredAmount > 0 && (
-                      <div className="flex justify-between items-center border-b border-gray-100 pb-1.5">
-                        <span className="font-black text-gray-400 uppercase tracking-widest">User Paid Amount</span>
+                      <div className="flex justify-between items-center border-b border-slate-200 pb-2 pt-1">
+                        <span className="font-bold text-slate-500 uppercase tracking-widest">User Paid Amount</span>
                         <span className="font-bold text-emerald-600">₹{item.userEnteredAmount}</span>
                       </div>
                     )}
                     {item.paymentType && (
-                      <div className="flex justify-between items-center border-b border-gray-100 pb-1.5">
-                        <span className="font-black text-gray-400 uppercase tracking-widest">Payment Method</span>
-                        <span className="font-bold text-gray-800">{item.paymentType}</span>
+                      <div className="flex justify-between items-center border-b border-slate-200 pb-2 pt-1">
+                        <span className="font-bold text-slate-500 uppercase tracking-widest">Payment Method</span>
+                        <span className="font-bold text-slate-800">{item.paymentType}</span>
                       </div>
                     )}
                     {item.rejectionReason && (
-                      <div className="flex justify-between items-center bg-red-50 p-2 rounded-xl border border-red-100 mt-1">
-                        <span className="font-black text-red-500 uppercase tracking-widest">Reason</span>
-                        <span className="font-bold text-red-700 italic">{item.rejectionReason}</span>
+                      <div className="flex justify-between items-center bg-red-50 p-3 rounded-xl border border-red-100 mt-2">
+                        <span className="font-bold text-red-500 uppercase tracking-widest">Reason</span>
+                        <span className="font-bold text-red-700">{item.rejectionReason}</span>
                       </div>
                     )}
-                    <div className="flex justify-between items-center pt-0.5">
-                      <span className="font-black text-gray-400 uppercase tracking-widest">Record ID</span>
-                      <span className="font-bold text-gray-400">{item.id.slice(0, 10)}</span>
+                    <div className="flex justify-between items-center pt-1">
+                      <span className="font-bold text-slate-400 uppercase tracking-widest">Record ID</span>
+                      <span className="font-medium text-slate-400">{item.id.slice(0, 10)}</span>
                     </div>
                     {item.category === 'withdrawal' && item.status === 'pending' && (
-                      <div className="pt-2">
+                      <div className="pt-3">
                         <button 
                           onClick={() => handleCancelWithdrawal(item)}
-                          className="w-full bg-white border-2 border-red-100 text-red-500 hover:bg-red-50 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all shadow-sm active:scale-95 flex items-center justify-center gap-2"
+                          className="w-full bg-white border border-slate-200 hover:border-red-200 text-slate-500 hover:text-red-500 hover:bg-red-50 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-colors shadow-sm active:scale-95 flex items-center justify-center gap-2"
                         >
                           <Ban size={14} /> Cancel Request
                         </button>
@@ -302,8 +302,8 @@ const UserTransactions = () => {
 
         <SupportSection />
 
-        <div className="mt-10 text-center opacity-30">
-          <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.4em] italic leading-tight">
+        <div className="mt-10 text-center opacity-40">
+          <p className="text-[9px] font-medium text-slate-400 uppercase tracking-wider leading-tight">
             SMS Lottery Financial Transparency Gateway v4.2
           </p>
         </div>

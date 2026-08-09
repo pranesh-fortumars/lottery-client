@@ -5,7 +5,7 @@ import { useCart } from '../../context/CartContext';
 const SettingRow = ({ label, desc, children }) => (
   <div className="flex flex-col justify-between items-start py-6 gap-4 first:pt-4 last:pb-4 border-b border-gray-50 last:border-none group">
     <div className="space-y-1">
-       <h4 className="text-base font-black text-gray-800 tracking-tight uppercase italic group-hover:text-[#f42464] transition-colors">{label}</h4>
+       <h4 className="text-base font-black text-gray-800 tracking-tight uppercase italic group-hover:text-[#6366f1] transition-colors">{label}</h4>
        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-relaxed italic">{desc}</p>
     </div>
     <div className="w-full shrink-0">
@@ -27,7 +27,7 @@ const InputField = ({ label, value, onChange }) => (
         const val = e.target.value.replace(/[^0-9.]/g, '');
         onChange(val);
       }}
-      className="w-full min-w-0 bg-gray-50 border border-gray-200 rounded-xl px-2 py-2.5 font-black text-gray-900 text-sm outline-none focus:bg-white focus:border-[#ff004d] transition-all shadow-inner text-center"
+      className="w-full min-w-0 bg-gray-50 border border-gray-200 rounded-xl px-2 py-2.5 font-black text-gray-900 text-sm outline-none focus:bg-white focus:border-[#4f46e5] transition-all shadow-inner text-center"
     />
   </div>
 );
@@ -136,7 +136,7 @@ const AdminPrizeSettings = () => {
       <div className="flex bg-gray-100 p-1.5 rounded-2xl shadow-inner border border-gray-200 mb-8 w-full max-w-sm mx-auto">
         <button 
           onClick={() => setActiveBrand('DEAR')}
-          className={`flex-1 py-3 text-[11px] font-black uppercase tracking-widest rounded-xl transition-all ${activeBrand === 'DEAR' ? 'bg-[#ff004d] text-white shadow-lg shadow-red-500/20' : 'text-gray-500 hover:text-gray-900'}`}
+          className={`flex-1 py-3 text-[11px] font-black uppercase tracking-widest rounded-xl transition-all ${activeBrand === 'DEAR' ? 'bg-[#4f46e5] text-white shadow-lg shadow-red-500/20' : 'text-gray-500 hover:text-gray-900'}`}
         >
           Dear Lottery
         </button>
@@ -151,7 +151,7 @@ const AdminPrizeSettings = () => {
       <div className="flex justify-between items-end border-b border-gray-100 pb-4">
          <div>
             <h3 className="text-xl font-black uppercase italic tracking-tighter text-gray-900 leading-none">
-              <span className={activeBrand === 'DEAR' ? 'text-[#ff004d]' : 'text-[#00d084]'}>{activeBrand}</span> Configurations
+              <span className={activeBrand === 'DEAR' ? 'text-[#4f46e5]' : 'text-[#00d084]'}>{activeBrand}</span> Configurations
             </h3>
             <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1">Manage ticket prices & payouts</p>
          </div>
@@ -182,8 +182,8 @@ const AdminPrizeSettings = () => {
       {/* 3D CONFIG */}
       <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-md">
          <div className="flex justify-between items-center mb-6">
-            <h4 className="text-lg font-black italic tracking-tighter flex items-center gap-2"><Settings2 size={18} className="text-[#ff004d]" /> 3D Lottery Tiers</h4>
-            <button onClick={() => handleAddTier('3D')} className="bg-gray-900 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 active:scale-95 transition-all shadow-lg hover:bg-[#ff004d]">
+            <h4 className="text-lg font-black italic tracking-tighter flex items-center gap-2"><Settings2 size={18} className="text-[#4f46e5]" /> 3D Lottery Tiers</h4>
+            <button onClick={() => handleAddTier('3D')} className="bg-gray-900 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 active:scale-95 transition-all shadow-lg hover:bg-[#4f46e5]">
                <Plus size={14} /> Add Tier
             </button>
          </div>
@@ -222,8 +222,8 @@ const AdminPrizeSettings = () => {
       {/* 4D CONFIG */}
       <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-md">
          <div className="flex justify-between items-center mb-6">
-            <h4 className="text-lg font-black italic tracking-tighter flex items-center gap-2"><Settings2 size={18} className="text-[#ff004d]" /> 4D Lottery Tiers</h4>
-            <button onClick={() => handleAddTier('4D')} className="bg-gray-900 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 active:scale-95 transition-all shadow-lg hover:bg-[#ff004d]">
+            <h4 className="text-lg font-black italic tracking-tighter flex items-center gap-2"><Settings2 size={18} className="text-[#4f46e5]" /> 4D Lottery Tiers</h4>
+            <button onClick={() => handleAddTier('4D')} className="bg-gray-900 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 active:scale-95 transition-all shadow-lg hover:bg-[#4f46e5]">
                <Plus size={14} /> Add Tier
             </button>
          </div>
@@ -263,13 +263,13 @@ const AdminPrizeSettings = () => {
       {/* Save Action */}
       <div className="mt-8 bg-gray-900 p-6 rounded-3xl border border-gray-800 shadow-2xl flex flex-col sm:flex-row justify-between items-center gap-4">
          <div className="text-center sm:text-left">
-            <p className="text-sm font-black text-[#ff004d] uppercase tracking-tight">Warning</p>
+            <p className="text-sm font-black text-[#4f46e5] uppercase tracking-tight">Warning</p>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Changes apply instantly to live tickets</p>
          </div>
          <button 
            onClick={handleSave}
            disabled={isSaving}
-           className="w-full sm:w-auto bg-[#ff004d] text-white px-10 py-4 rounded-2xl text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-3 active:scale-95 transition-all shadow-[0_10px_20px_-5px_rgba(255,0,77,0.4)] disabled:opacity-50"
+           className="w-full sm:w-auto bg-[#4f46e5] text-white px-10 py-4 rounded-2xl text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-3 active:scale-95 transition-all shadow-[0_10px_20px_-5px_rgba(255,0,77,0.4)] disabled:opacity-50"
          >
            {isSaving ? 'Synchronizing...' : 'Save All Configurations'} <Save size={18} />
          </button>

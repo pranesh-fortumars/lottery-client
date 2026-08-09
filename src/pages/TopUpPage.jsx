@@ -58,22 +58,22 @@ const TopUpPage = () => {
 
   return (
     <PageWrapper title="WALLET TOP UP" showBack={true}>
-      <div className="bg-white min-h-screen p-4 flex flex-col items-center pb-20">
+      <div className="bg-slate-50 min-h-screen p-4 flex flex-col items-center pb-20">
         {/* Wallet Overview */}
-        <div className="w-full max-w-sm bg-gradient-to-br from-[#ff0033] to-[#ff4d6a] rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden mb-8 group">
-           <div className="absolute top-0 right-0 p-6 opacity-10 bg-white rounded-bl-[2.5rem] group-hover:scale-110 transition-transform">
+        <div className="w-full max-w-sm bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl p-8 text-white shadow-sm relative overflow-hidden mb-8 group">
+           <div className="absolute top-0 right-0 p-6 opacity-10 bg-white rounded-bl-3xl group-hover:scale-110 transition-transform">
               <Wallet size={48} />
            </div>
-           <p className="text-[10px] font-black uppercase tracking-widest text-white/70 mb-2">Available Balance</p>
-           <h3 className="text-4xl font-black italic tracking-tighter">₹ {user?.balance?.toLocaleString() || '0.00'}</h3>
+           <p className="text-[10px] font-bold uppercase tracking-widest text-blue-100 mb-2">Available Balance</p>
+           <h3 className="text-4xl font-bold tracking-tight">₹ {user?.balance?.toLocaleString() || '0.00'}</h3>
            
-           <div className="mt-8 flex gap-4 pt-6 border-t border-white/10">
-              <div className="flex-1 opacity-60">
-                 <p className="text-[8px] font-black uppercase tracking-widest leading-none mb-1">Vault Status</p>
-                 <p className="text-[10px] font-bold italic uppercase tracking-tighter shadow-sm border border-white/10 rounded px-2 py-0.5 inline-block text-emerald-300">Active & Secured</p>
+           <div className="mt-8 flex gap-4 pt-6 border-t border-white/20">
+              <div className="flex-1">
+                 <p className="text-[9px] font-bold uppercase tracking-widest leading-none mb-2 text-blue-100">Vault Status</p>
+                 <p className="text-[10px] font-bold uppercase tracking-wider bg-white/10 rounded px-2.5 py-1 inline-block text-emerald-200 backdrop-blur-sm">Active & Secured</p>
               </div>
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center border border-white/10 shadow-inner">
-                 <ShieldCheck size={20} />
+              <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 backdrop-blur-sm">
+                 <ShieldCheck size={20} className="text-emerald-200" />
               </div>
            </div>
         </div>
@@ -81,8 +81,8 @@ const TopUpPage = () => {
         {/* Amount Selection */}
         <div className="w-full max-w-sm space-y-4">
            <div className="flex items-center gap-3 ml-2 mb-2">
-              <CreditCard className="text-[#ff0033]" size={18} />
-              <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select Recharge Amount</h4>
+              <CreditCard className="text-blue-600" size={18} />
+              <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Select Recharge Amount</h4>
            </div>
            
            <div className="grid grid-cols-3 gap-3">
@@ -90,10 +90,10 @@ const TopUpPage = () => {
                 <button 
                   key={i}
                   onClick={() => setAmount(a)}
-                  className={`py-3 rounded-[1.2rem] font-black text-xs border-[1.5px] transition-all shadow-sm ${
+                  className={`py-3.5 rounded-xl font-bold text-xs border transition-all shadow-sm ${
                     amount === a 
-                      ? 'bg-[#ff0033] text-white border-[#ff0033] shadow-lg scale-105 active:scale-100' 
-                      : 'bg-white text-gray-400 border-gray-100 hover:border-gray-300'
+                      ? 'bg-blue-600 text-white border-blue-600' 
+                      : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
                   }`}
                 >
                    ₹ {Math.floor(parseFloat(a))}
@@ -102,44 +102,44 @@ const TopUpPage = () => {
            </div>
 
            <div className="relative mt-8 group">
-              <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#ff0033] transition-colors font-black text-xl italic">₹</div>
+              <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors font-bold text-xl">₹</div>
               <input 
                 type="text" 
                 inputMode="decimal"
                 pattern="[0-9]*"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full h-16 bg-gray-50 border-[1.5px] border-gray-100 rounded-[1.5rem] pl-14 pr-6 font-black text-gray-900 text-lg outline-none focus:bg-white focus:border-[#ff0033]/30 transition-all shadow-inner placeholder:text-gray-200" 
+                className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-14 pr-6 font-bold text-slate-800 text-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm placeholder:text-slate-300" 
                 placeholder="Custom Amount"
               />
            </div>
 
-            <div className="space-y-3 mt-10">
+            <div className="space-y-4 mt-8">
               <button 
                 onClick={() => setShowPayment(true)}
-                className="w-full h-16 bg-[#ff0033] text-white py-4 rounded-[1.5rem] font-black tracking-widest text-xs uppercase shadow-xl shadow-red-500/10 active:scale-95 transition-all flex items-center justify-center gap-2"
+                className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold tracking-wider text-sm uppercase shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2"
               >
                 Proceed to Pay <ChevronRight size={18} />
               </button>
               
-              <div className="flex gap-4">
+              <div className="flex gap-3">
                  <button 
                   onClick={() => setShowPayment(true)}
-                  className="flex-1 bg-white border border-gray-100 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm active:bg-red-50 transition-colors"
+                  className="flex-1 bg-white border border-slate-200 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm hover:border-blue-200 active:bg-blue-50 transition-colors"
                 >
-                    <QrCode size={18} className="text-[#ff0033]" />
-                    <span className="text-[8px] font-black text-gray-800 uppercase tracking-widest">Active UPI QR</span>
+                    <QrCode size={18} className="text-blue-600" />
+                    <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Active UPI QR</span>
                  </button>
-                 <div className="flex-1 bg-gray-50 border border-gray-100 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm opacity-50">
-                    <Landmark size={18} className="text-gray-400" />
-                    <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Bank Transfer</span>
+                 <div className="flex-1 bg-slate-100 border border-slate-200 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm opacity-60">
+                    <Landmark size={18} className="text-slate-400" />
+                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Bank Transfer</span>
                  </div>
               </div>
               
               {activePayment && (
-                <div className="mt-6 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                  <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1 text-center">Currently Active Payment ID</p>
-                  <p className="text-sm font-black text-gray-800 text-center italic">{activePayment.upiId}</p>
+                <div className="mt-6 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1 text-center">Currently Active Payment ID</p>
+                  <p className="text-sm font-bold text-slate-700 text-center">{activePayment.upiId}</p>
                 </div>
               )}
            </div>
@@ -147,8 +147,8 @@ const TopUpPage = () => {
 
         <SupportSection />
 
-        <div className="mt-12 text-center opacity-30">
-           <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.4em] italic leading-tight">Secured by SMS Lottery Payments Authority Gateway v2.4</p>
+        <div className="mt-12 text-center opacity-40">
+           <p className="text-[9px] font-medium text-slate-400 uppercase tracking-wider leading-tight">Secured by SMS Lottery Payments Authority Gateway v2.4</p>
         </div>
       </div>
 

@@ -43,38 +43,38 @@ export const Header = ({ title, showBack = false }) => {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-[#ff0033] to-[#ff4d6a] text-white flex flex-col z-[1000] shadow-lg w-full shrink-0 border-b border-white/10 overflow-hidden">
+      <header className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white flex flex-col z-[1000] shadow-md w-full shrink-0 border-b border-white/10 overflow-hidden">
         <div className="flex items-center justify-between px-4" style={{ height: '70px' }}>
           <div className="flex items-center gap-3">
             {showBack ? (
               <button 
                 onClick={() => navigate(-1)} 
-                className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/10 shadow-inner hover:bg-white/30 transition-all active:scale-95"
+                className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all active:scale-95"
               >
                 <ChevronLeft size={24} />
               </button>
             ) : (
-              <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/10 shadow-inner">
+              <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20">
                  <img src="https://img.icons8.com/color/48/000000/treasure-chest.png" alt="Logo" className="w-7 h-7" />
               </div>
             )}
-            <h1 className="text-lg font-condensed font-black tracking-tighter uppercase italic leading-none">{displayTitle}</h1>
+            <h1 className="text-lg font-outfit font-bold tracking-tight uppercase leading-none">{displayTitle}</h1>
           </div>
           <div className="flex items-center gap-2">
             {user && (
               <button 
                 onClick={handleOpenNotifs}
-                className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition-all border border-white/5 relative"
+                className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all border border-white/10 relative"
               >
                 <Bell size={22} strokeWidth={2.5} />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-black text-white text-[8px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#ff0033] animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-blue-900 animate-pulse">
                     {unreadCount}
                   </span>
                 )}
               </button>
             )}
-            <NavLink to="/profile" className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition-all border border-white/5 pointer-events-auto">
+            <NavLink to="/profile" className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all border border-white/10 pointer-events-auto">
               <User size={22} strokeWidth={2.5} />
             </NavLink>
           </div>
@@ -87,10 +87,10 @@ export const Header = ({ title, showBack = false }) => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="bg-black text-[9px] font-black uppercase text-yellow-400 py-2 border-t border-white/10 overflow-hidden whitespace-nowrap"
+              className="bg-indigo-950/80 text-[10px] font-bold uppercase text-blue-200 py-2 border-t border-white/10 overflow-hidden whitespace-nowrap"
             >
               <div className="animate-marquee inline-block px-4">
-                <span className="text-white px-2 py-0.5 bg-red-600 rounded mr-4">LATEST NEWS</span>
+                <span className="text-white px-2 py-0.5 bg-blue-600 rounded mr-4 font-bold text-[9px]">LATEST NEWS</span>
                 {hoveringNews} • {hoveringNews} • {hoveringNews} • 
               </div>
             </motion.div>
@@ -100,10 +100,10 @@ export const Header = ({ title, showBack = false }) => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="bg-black text-[9px] font-black uppercase text-yellow-400 py-2 border-t border-white/10 overflow-hidden whitespace-nowrap"
+              className="bg-indigo-950/80 text-[10px] font-bold uppercase text-blue-200 py-2 border-t border-white/10 overflow-hidden whitespace-nowrap"
             >
               <div className="animate-marquee inline-block px-4">
-                <span className="text-white px-2 py-0.5 bg-red-600 rounded mr-4">BREAKING NEWS</span>
+                <span className="text-white px-2 py-0.5 bg-blue-600 rounded mr-4 font-bold text-[9px]">BREAKING NEWS</span>
                 {lastAnnouncement.message} • {lastAnnouncement.ticker} • CHECK RESULTS TAB FOR DETAILS • 
               </div>
             </motion.div>
@@ -120,36 +120,36 @@ export const Header = ({ title, showBack = false }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowNotifs(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[2000]"
+              className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[2000]"
             />
             <motion.div 
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-white z-[2001] shadow-2xl flex flex-col"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-slate-50 z-[2001] shadow-2xl flex flex-col"
             >
-              <div className="bg-[#ff0033] p-6 text-white shrink-0">
+              <div className="bg-blue-900 p-6 text-white shrink-0">
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center gap-2">
                     <Bell size={24} fill="white" />
-                    <h2 className="text-xl font-black uppercase tracking-tighter italic">Notifications</h2>
+                    <h2 className="text-xl font-bold uppercase tracking-tight">Notifications</h2>
                   </div>
-                  <button onClick={() => setShowNotifs(false)} className="bg-black/20 p-2 rounded-xl hover:bg-black/40 transition-all">
+                  <button onClick={() => setShowNotifs(false)} className="bg-white/10 p-2 rounded-xl hover:bg-white/20 transition-all">
                     <X size={20} />
                   </button>
                 </div>
                 <div className="flex justify-between items-center">
-                  <p className="text-[10px] font-black uppercase tracking-widest opacity-60">{unreadCount} New Alerts</p>
-                  <button onClick={markAllRead} className="text-[10px] font-black uppercase tracking-widest hover:underline">Mark all as read</button>
+                  <p className="text-xs font-medium opacity-80">{unreadCount} New Alerts</p>
+                  <button onClick={markAllRead} className="text-[10px] font-bold uppercase tracking-wider hover:underline text-blue-200">Mark all as read</button>
                 </div>
               </div>
 
-              <div className="flex-grow overflow-y-auto p-4 space-y-4 scrollbar-hide">
+              <div className="flex-grow overflow-y-auto p-4 space-y-3 scrollbar-hide">
                 {notifications.length === 0 && adminAlerts.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-full opacity-20 space-y-4">
-                    <Bell size={64} />
-                    <p className="font-black uppercase tracking-widest text-xs">No notifications yet</p>
+                  <div className="flex flex-col items-center justify-center h-full opacity-40 space-y-4 text-slate-500">
+                    <Bell size={48} strokeWidth={1.5} />
+                    <p className="font-medium text-sm">No notifications yet</p>
                   </div>
                 ) : (
                   <>
@@ -161,55 +161,50 @@ export const Header = ({ title, showBack = false }) => {
                           setShowNotifs(false);
                           navigate(a.source === 'withdrawal' ? '/admin/withdrawals' : '/admin/approvals');
                         }}
-                        className="p-4 rounded-2xl border bg-white border-orange-100 shadow-md ring-1 ring-orange-50 cursor-pointer hover:bg-orange-50 transition-all relative overflow-hidden"
+                        className="p-4 rounded-xl border bg-white border-amber-200 shadow-sm cursor-pointer hover:bg-amber-50 transition-all flex gap-3 items-start"
                       >
-                         <div className="flex gap-3">
-                           <div className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-orange-500/20 shadow-lg">
-                             {a.source === 'withdrawal' ? <Wallet size={18} /> : <ShoppingCart size={18} />}
-                           </div>
-                           <div className="flex-grow pr-4">
-                              <h4 className="text-[11px] font-black text-gray-900 uppercase tracking-tight mb-1 flex items-center gap-2">
-                                 {a.title} 
-                                 <span className="bg-orange-100 text-orange-600 text-[7px] px-1.5 py-0.5 rounded-full">ACTION REQUIRED</span>
-                              </h4>
-                              <p className="text-[10px] font-medium text-gray-500 leading-relaxed">{a.message}</p>
-                              <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest mt-2 block">
-                                 {a.timestamp?.toDate ? a.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'JUST NOW'}
-                              </span>
-                           </div>
+                         <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-amber-100 text-amber-700">
+                           {a.source === 'withdrawal' ? <Wallet size={18} /> : <ShoppingCart size={18} />}
                          </div>
-                         <div className="absolute top-4 right-4 w-2 h-2 bg-orange-500 rounded-full animate-ping"></div>
+                         <div className="flex-grow">
+                            <h4 className="text-[13px] font-bold text-slate-800 mb-1 flex items-center justify-between">
+                               {a.title} 
+                               <span className="bg-amber-100 text-amber-700 text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">ACTION</span>
+                            </h4>
+                            <p className="text-[11px] font-medium text-slate-500 leading-relaxed">{a.message}</p>
+                            <span className="text-[9px] font-bold text-slate-400 mt-2 block">
+                               {a.timestamp?.toDate ? a.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'JUST NOW'}
+                            </span>
+                         </div>
                       </div>
                     ))}
 
                     {/* Standard User Notifications */}
                     {notifications.map((n) => (
-                      <div key={n.id} className={`p-4 rounded-2xl border transition-all relative overflow-hidden group ${n.read ? 'bg-gray-50 border-gray-100' : 'bg-white border-red-100 shadow-md ring-1 ring-red-50'}`}>
-                        <div className="flex gap-3">
-                          <div className={`w-10 h-10 rounded-xl shrink-0 flex items-center justify-center ${
-                            n.type === 'win' ? 'bg-emerald-500 text-white shadow-emerald-500/20 shadow-lg' :
-                            n.type === 'result' ? 'bg-amber-500 text-white shadow-amber-500/20 shadow-lg' :
-                            'bg-red-50 text-red-500'
-                          }`}>
-                            {n.type === 'win' ? <Trophy size={18} /> : 
-                             n.type === 'result' ? <Megaphone size={18} /> : 
-                             <Info size={18} />}
-                          </div>
-                          <div className="flex-grow pr-4">
-                            <h4 className="text-[11px] font-black text-gray-900 uppercase tracking-tight mb-1">{n.title}</h4>
-                            <p className="text-[10px] font-medium text-gray-500 leading-relaxed">{n.message}</p>
-                            <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest mt-2 block">{n.time}</span>
-                          </div>
+                      <div key={n.id} className={`p-4 rounded-xl border transition-all flex gap-3 items-start ${n.read ? 'bg-slate-50 border-slate-100' : 'bg-white border-blue-100 shadow-sm'}`}>
+                        <div className={`w-10 h-10 rounded-lg shrink-0 flex items-center justify-center ${
+                          n.type === 'win' ? 'bg-emerald-100 text-emerald-700' :
+                          n.type === 'result' ? 'bg-indigo-100 text-indigo-700' :
+                          'bg-blue-100 text-blue-700'
+                        }`}>
+                          {n.type === 'win' ? <Trophy size={18} /> : 
+                           n.type === 'result' ? <Megaphone size={18} /> : 
+                           <Info size={18} />}
                         </div>
-                        {!n.read && <div className="absolute top-4 right-4 w-2 h-2 bg-[#ff0033] rounded-full shadow-[0_0_5px_#ff0033]"></div>}
+                        <div className="flex-grow pr-2">
+                          <h4 className="text-[13px] font-bold text-slate-800 mb-0.5">{n.title}</h4>
+                          <p className="text-[11px] font-medium text-slate-500 leading-relaxed">{n.message}</p>
+                          <span className="text-[9px] font-bold text-slate-400 mt-2 block">{n.time}</span>
+                        </div>
+                        {!n.read && <div className="w-2 h-2 shrink-0 bg-blue-500 rounded-full mt-2"></div>}
                       </div>
                     ))}
                   </>
                 )}
               </div>
 
-              <div className="p-4 border-t border-gray-100 shrink-0">
-                 <button onClick={() => setShowNotifs(false)} className="w-full py-3 bg-gray-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-xl active:scale-95 transition-all">Close Panel</button>
+              <div className="p-4 border-t border-slate-200 shrink-0 bg-white">
+                 <button onClick={() => setShowNotifs(false)} className="w-full py-3 bg-slate-800 text-white rounded-xl font-bold text-[12px] uppercase tracking-wide hover:bg-slate-700 transition-colors">Close Panel</button>
               </div>
             </motion.div>
           </>
@@ -243,32 +238,34 @@ export const BottomNav = () => {
   const links = isAdmin ? adminLinks : userLinks;
 
   return (
-    <div className="w-full shadow-[0_-8px_30px_rgba(255,0,51,0.2)] rounded-t-[2.5rem] bg-[#ff0033] overflow-hidden pointer-events-auto shrink-0">
-      <div className="bg-black/10 text-white/80 py-2 text-center font-black text-[8px] tracking-[0.2em] border-b border-white/5 uppercase">
-        {isAdmin ? '🛡️ Admin Command Center' : `💎 ${appSettings.brandName} Network`}
+    <div className="w-full bg-white border-t border-slate-200 pointer-events-auto shrink-0 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 relative">
+      <div className="bg-slate-50 text-slate-500 py-1.5 text-center font-bold text-[9px] tracking-widest border-b border-slate-200 uppercase">
+        {isAdmin ? 'Admin Dashboard' : appSettings.brandName}
       </div>
       
-      <nav className="flex justify-around items-center py-5 px-4 bg-[#ff0033]">
+      <nav className="flex justify-around items-center py-3 px-2 bg-white pb-safe">
         {links.map((link, idx) => (
           <NavLink 
             key={idx}
             to={link.to} 
             end={link.to === '/admin'}
-            className={({ isActive }) => `transition-all duration-300 flex flex-col items-center gap-1 ${
+            className={({ isActive }) => `flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${
               isActive 
-                ? 'text-white scale-110 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]' 
-                : 'text-white/40 hover:text-white/60'
+                ? 'text-blue-600' 
+                : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
             }`}
           >
             {({ isActive }) => (
               <>
-                <link.icon size={26} strokeWidth={2.5} />
-                <div className={`w-1 h-1 rounded-full bg-white transition-all duration-300 ${isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}></div>
+                <link.icon size={22} strokeWidth={isActive ? 2.5 : 2} />
+                <div className={`w-1 h-1 rounded-full bg-blue-600 transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}></div>
               </>
             )}
           </NavLink>
         ))}
       </nav>
+      {/* Safe area spacing for iOS home indicator */}
+      <div className="h-safe-bottom bg-white w-full"></div>
     </div>
   );
 };
@@ -281,63 +278,48 @@ export const SupportSection = () => {
     { 
       icon: <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WA" className="w-7 h-7" />, 
       label: 'WhatsApp', 
-      color: 'bg-[#E8F5E9]', 
+      color: 'bg-emerald-50', 
       link: `https://wa.me/${supportNumber}` 
     },
     { 
       icon: <img src="https://img.icons8.com/color/48/telegram-app.png" alt="TG" className="w-7 h-7" />, 
       label: 'Telegram', 
-      color: 'bg-[#E3F2FD]', 
+      color: 'bg-blue-50', 
       link: `https://t.me/+${supportNumber}` 
     }
   ];
 
   return (
-    <div className="mt-4 px-6 pb-6">
-      <div className="bg-white/70 backdrop-blur-md rounded-3xl p-4 border border-gray-100/50 shadow-sm overflow-hidden relative group">
+    <div className="mt-4 px-4 pb-6">
+      <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
          <div className="flex flex-col gap-3">
-             <div className="flex items-center justify-between px-1">
-               <div className="flex items-center gap-3">
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] italic">Need Support?</p>
-                  <div className="flex gap-2 items-center">
-                     <a 
-                       href={supportLinks[0].link} 
-                       target="_blank"
-                       rel="noopener noreferrer" 
-                       className="hover:scale-110 active:scale-95 transition-all"
-                     >
-                        <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WA" className="w-3.5 h-3.5" />
-                     </a>
-                     <a 
-                       href={supportLinks[1].link} 
-                       target="_blank"
-                       rel="noopener noreferrer" 
-                       className="hover:scale-110 active:scale-95 transition-all"
-                     >
-                        <img src="https://img.icons8.com/color/48/telegram-app.png" alt="TG" className="w-3.5 h-3.5" />
-                     </a>
-                  </div>
+             <div className="flex items-center justify-between">
+               <div className="flex items-center gap-2">
+                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Need Support?</p>
                </div>
-               <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+               <span className="flex items-center gap-1.5 text-[9px] font-bold text-emerald-600 uppercase bg-emerald-50 px-2 py-0.5 rounded">
+                  <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                  Online
+               </span>
             </div>
             
-             <div className="grid grid-cols-2 gap-2 mt-2">
+             <div className="grid grid-cols-2 gap-3 mt-1">
                {supportLinks.map((item, idx) => (
                  <a
                    key={idx}
                    href={item.link}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="flex flex-col items-center justify-center p-3 rounded-2xl border border-gray-100 transition-all group/item hover:bg-white hover:shadow-md hover:-translate-y-0.5"
+                   className="flex flex-col items-center justify-center p-3 rounded-xl border border-slate-100 bg-slate-50 transition-colors hover:bg-slate-100"
                  >
-                   <div className={`w-12 h-12 ${item.color} rounded-2xl flex items-center justify-center mb-2 group-hover/item:scale-110 transition-transform`}>
+                   <div className={`w-10 h-10 ${item.color} rounded-lg flex items-center justify-center mb-2`}>
                      {item.icon}
                    </div>
-                   <p className="text-[10px] font-black text-gray-700 uppercase tracking-tight">{item.label}</p>
+                   <p className="text-[11px] font-bold text-slate-700">{item.label}</p>
                  </a>
                ))}
              </div>
-             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center mt-2 italic">
+             <p className="text-[10px] font-medium text-slate-400 text-center mt-2">
                Official: {displayMobile}
              </p>
          </div>
@@ -359,32 +341,35 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
   }, [appSettings.brandName]);
   
   const isAuthPage = window.location.pathname === '/login' || window.location.pathname === '/signup';
+  const isAdminView = window.location.pathname.startsWith('/admin');
 
   if (loading) return null;
 
   if (appSettings.maintenanceMode && user?.role !== 'admin' && !isAuthPage) {
     return (
-      <div className="flex flex-col h-screen w-full bg-white items-center justify-center p-10 text-center space-y-6">
-        <div className="w-24 h-24 bg-red-50 rounded-full flex items-center justify-center animate-pulse">
-           <ShieldAlert size={48} className="text-red-600" />
+      <div className="flex flex-col h-screen w-full bg-slate-50 items-center justify-center p-10 text-center space-y-6">
+        <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center">
+           <ShieldAlert size={40} className="text-blue-600" />
         </div>
-        <h1 className="text-2xl font-black uppercase tracking-tighter italic">System Maintenance</h1>
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest leading-relaxed">
+        <h1 className="text-2xl font-bold text-slate-800">System Maintenance</h1>
+        <p className="text-sm font-medium text-slate-500 leading-relaxed max-w-sm">
           {appSettings.brandName} is currently undergoing scheduled system synchronization. We will be back shortly.
         </p>
-        {/* Allow admins to reach login even during maintenance */}
         <button 
           onClick={() => navigate('/login')}
-          className="text-[10px] font-black uppercase text-gray-300 hover:text-red-600 transition-colors"
+          className="text-[11px] font-bold text-slate-400 hover:text-blue-600 transition-colors pt-10"
         >
-          Admin Login Bypass
+          Admin Access
         </button>
       </div>
     );
   }
 
+  // Determine layout width based on route
+  const containerMaxWidth = isAdminView ? "max-w-6xl" : "max-w-md";
+
   return (
-    <div className="flex flex-col h-screen w-full bg-[#f9f9f9] relative max-w-[480px] mx-auto shadow-2xl overflow-hidden border-x border-gray-100">
+    <div className={`flex flex-col h-screen w-full bg-slate-50 relative ${containerMaxWidth} mx-auto shadow-xl overflow-hidden border-x border-slate-200`}>
       {showHeader && <Header title={title || appSettings.brandName} showBack={showBack} />}
       
       <motion.main 
@@ -392,7 +377,7 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
-        className="flex-grow bg-[#f9f9f9] overflow-y-auto scrollbar-hide pb-10"
+        className="flex-grow bg-slate-50 overflow-y-auto scrollbar-hide pb-6"
       >
         <PullToRefresh onRefresh={refreshTickets}>
           {children}
@@ -400,7 +385,7 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
       </motion.main>
       
       {/* Footer Area: Actions above BottomNav */}
-      <div className="shrink-0 w-full bg-transparent pointer-events-none z-50">
+      <div className="shrink-0 w-full bg-transparent pointer-events-none z-40">
          {footerAction && (
            <div className="px-4 pb-4 pointer-events-auto">
              {footerAction}

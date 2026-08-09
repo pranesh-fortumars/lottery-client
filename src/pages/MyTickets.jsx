@@ -93,8 +93,8 @@ const MyTickets = () => {
         
         {/* --- DYNAMIC FILTER BAR --- */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 flex items-center justify-between gap-2 max-w-4xl mx-auto">
-           <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl flex-grow max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#ff0000]/10 border border-gray-100">
-              <Calendar size={14} className="text-[#ff0000]" />
+           <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl flex-grow max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#1d4ed8]/10 border border-gray-100">
+              <Calendar size={14} className="text-[#1d4ed8]" />
               <div className="flex flex-col">
                  <span className="text-[6px] font-black text-gray-400 uppercase tracking-widest leading-none mb-0.5">Filter Date</span>
                  <input 
@@ -111,7 +111,7 @@ const MyTickets = () => {
            <div className="flex gap-2 items-center">
               <div className="hidden sm:flex flex-col items-end mr-2">
                  <p className="text-[7px] font-black text-gray-300 uppercase tracking-widest leading-none italic">Results Found</p>
-                 <p className="text-[14px] font-black font-condensed italic text-[#ff0000] leading-none">{resultCount}</p>
+                 <p className="text-[14px] font-black font-condensed italic text-[#1d4ed8] leading-none">{resultCount}</p>
               </div>
               <button 
                onClick={() => setShowAll(!showAll)}
@@ -137,7 +137,7 @@ const MyTickets = () => {
              </div>
              <div className="space-y-1">
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300 italic">No matches for {showAll ? 'all history' : filterDate}</p>
-                <button onClick={() => setShowAll(true)} className="text-[8px] font-black text-[#ff0000] uppercase tracking-widest underline decoration-2 underline-offset-4">View All Records</button>
+                <button onClick={() => setShowAll(true)} className="text-[8px] font-black text-[#1d4ed8] uppercase tracking-widest underline decoration-2 underline-offset-4">View All Records</button>
              </div>
           </div>
         ) : (
@@ -148,12 +148,12 @@ const MyTickets = () => {
                 <p className="text-[8px] font-black uppercase tracking-widest text-gray-400">Records: {resultCount}</p>
              </div>
             {transactionGroups.map((group) => (
-               <div key={group.id} className="bg-white rounded-3xl shadow-2xl border-2 border-[#ff0000] overflow-hidden">
+               <div key={group.id} className="bg-white rounded-3xl shadow-2xl border-2 border-[#1d4ed8] overflow-hidden">
                   
                   {/* --- TRANSACTION PARENT HEADER --- */}
                   <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                      <div>
-                        <p className="text-[8px] font-black text-[#ff0000] uppercase tracking-[0.3em] italic">Transaction Instance</p>
+                        <p className="text-[8px] font-black text-[#1d4ed8] uppercase tracking-[0.3em] italic">Transaction Instance</p>
                         <h4 className="text-[12px] font-black font-condensed italic text-gray-900">ID: {group.id}</h4>
                      </div>
                      <div className="text-right">
@@ -176,7 +176,7 @@ const MyTickets = () => {
                                     {getBrandBySlot(slotGroup.slot)} LOTTERY <span className="mx-1 text-gray-300">|</span> {slotGroup.slot}
                                  </h3>
                                  <div className="flex items-center gap-2 mt-0.5">
-                                    <span className="text-[7px] font-black uppercase tracking-widest text-[#ff0000] animate-pulse italic">Result Declared</span>
+                                    <span className="text-[7px] font-black uppercase tracking-widest text-[#1d4ed8] animate-pulse italic">Result Declared</span>
                                     <div className="w-0.5 h-0.5 bg-gray-300 rounded-full"></div>
                                     <span className="text-[7px] font-bold text-gray-300 uppercase tracking-widest italic">Archived</span>
                                  </div>
@@ -188,7 +188,7 @@ const MyTickets = () => {
                               <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest italic">Result:</p>
                               <div className="flex gap-1">
                                  {slotGroup.declaredNum.split('').map((n, ni) => (
-                                    <div key={ni} className="w-7 h-9 bg-white border-2 border-[#ff0000] rounded-lg flex items-center justify-center text-gray-950 font-black text-sm font-condensed italic">
+                                    <div key={ni} className="w-7 h-9 bg-white border-2 border-[#1d4ed8] rounded-lg flex items-center justify-center text-gray-950 font-black text-sm font-condensed italic">
                                        {n}
                                     </div>
                                  ))}
@@ -201,12 +201,12 @@ const MyTickets = () => {
                         <div className="overflow-x-auto scrollbar-hide">
                            <table className="w-full text-center border-collapse table-fixed min-w-[320px]">
                               <thead>
-                                 <tr className="bg-gray-50/30 border-y-2 border-[#ff0000]">
-                                    <th className="w-[10%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TYP</th>
-                                    <th className="w-[14%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">BRD</th>
-                                    <th className="w-[30%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">NUMBER</th>
-                                    <th className="w-[8%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">Q</th>
-                                    <th className="w-[15%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TIER</th>
+                                 <tr className="bg-gray-50/30 border-y-2 border-[#1d4ed8]">
+                                    <th className="w-[10%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TYP</th>
+                                    <th className="w-[14%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">BRD</th>
+                                    <th className="w-[30%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">NUMBER</th>
+                                    <th className="w-[8%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">Q</th>
+                                    <th className="w-[15%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TIER</th>
                                     <th className="w-[23%] py-1.5 text-[7px] font-black uppercase text-gray-950 font-condensed italic">PRIZE</th>
                                  </tr>
                               </thead>
@@ -215,22 +215,22 @@ const MyTickets = () => {
                                     const isWin = t.status === 'Won';
                                     return (
                                        <tr key={tIdx} className={`group ${isWin ? 'bg-emerald-50/20' : ''}`}>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[8px] font-black text-gray-950 uppercase italic tracking-tighter leading-none text-center">
+                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[8px] font-black text-gray-950 uppercase italic tracking-tighter leading-none text-center">
                                              {t.type}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[11px] font-black font-condensed italic text-gray-950 leading-none text-center">
+                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[11px] font-black font-condensed italic text-gray-950 leading-none text-center">
                                              {t.pos}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-base font-black font-condensed italic text-gray-950 tracking-normal leading-none text-center">
+                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-base font-black font-condensed italic text-gray-950 tracking-normal leading-none text-center">
                                              {t.num}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[11px] font-black font-condensed italic text-[#ff0000] leading-none text-center">
+                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[11px] font-black font-condensed italic text-[#1d4ed8] leading-none text-center">
                                              {t.qty}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[7px] font-bold text-gray-500 italic leading-none text-center">
+                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[7px] font-bold text-gray-500 italic leading-none text-center">
                                              {t.price}
                                           </td>
-                                          <td className="py-1.5 px-0.5 border-b-2 border-[#ff0000] text-right align-middle">
+                                          <td className="py-1.5 px-0.5 border-b-2 border-[#1d4ed8] text-right align-middle">
                                              <div className="flex flex-col items-end justify-center leading-none">
                                                 {isWin ? (
                                                    <p className="text-[11px] font-black text-emerald-600 font-condensed italic">₹{String(t.prize || "0").replace(/[^\d]/g, '')}</p>
@@ -249,7 +249,7 @@ const MyTickets = () => {
                   ))}
 
                   {/* --- COMPACT TRANSACTION FOOTER --- */}
-                  <div className="bg-gray-950 p-4 text-white border-t-4 border-[#ff0000]">
+                  <div className="bg-gray-950 p-4 text-white border-t-4 border-[#1d4ed8]">
                      <div className="flex justify-between items-end">
                         <div className="text-left">
                            <div className="flex items-center gap-2 mb-2 opacity-30">
@@ -292,7 +292,7 @@ const MyTickets = () => {
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
            <button 
             onClick={() => navigate('/home')}
-            className="bg-[#ff0000] text-white px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl shadow-red-500/40 active:scale-95 transition-all flex items-center gap-3 border-4 border-white/20"
+            className="bg-[#1d4ed8] text-white px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl shadow-red-500/40 active:scale-95 transition-all flex items-center gap-3 border-4 border-white/20"
            >
               <Zap size={16} /> NEW DRAW SESSION
            </button>

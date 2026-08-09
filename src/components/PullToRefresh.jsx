@@ -80,7 +80,7 @@ const PullToRefresh = ({ onRefresh, children }) => {
           style={{ transform: `scale(${isRefreshing ? 1 : Math.max(pullProgress, 0.5)})`, opacity: pullProgress > 0 || isRefreshing ? 1 : 0 }}
         >
           <RefreshCw 
-            className={`text-[#ff004d] ${isRefreshing ? 'animate-spin' : ''}`} 
+            className={`text-blue-600 ${isRefreshing ? 'animate-spin' : ''}`} 
             size={22} 
             style={{ transform: `rotate(${pullProgress * 180}deg)` }}
           />

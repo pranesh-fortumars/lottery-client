@@ -289,7 +289,7 @@ const AdminUserDetails = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#f8f9fa]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#f42464]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#6366f1]"></div>
       </div>
     );
   }
@@ -299,17 +299,17 @@ const AdminUserDetails = () => {
     <PullToRefresh onRefresh={handleRefresh}>
       <div className="space-y-6 p-4 pb-24 relative min-h-screen bg-[#f8f9fa]">
       {/* Navigation & Header */}
-      <div className="border-[1.5px] border-[#ff004d] rounded-[2.5rem] p-8 bg-white shadow-2xl relative overflow-hidden group">
-         <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff004d]/5 rounded-full blur-3xl"></div>
+      <div className="border-[1.5px] border-[#4f46e5] rounded-[2.5rem] p-8 bg-white shadow-2xl relative overflow-hidden group">
+         <div className="absolute top-0 right-0 w-32 h-32 bg-[#4f46e5]/5 rounded-full blur-3xl"></div>
          <button 
            onClick={() => navigate('/admin/users')}
-           className="flex items-center gap-2 text-gray-400 font-black text-[10px] uppercase tracking-widest hover:text-[#f42464] mb-6 transition-colors"
+           className="flex items-center gap-2 text-gray-400 font-black text-[10px] uppercase tracking-widest hover:text-[#6366f1] mb-6 transition-colors"
          >
            <ArrowLeft size={16} /> Back to Directory
          </button>
          
          <div className="flex gap-4 items-center">
-            <div className="w-20 h-20 rounded-[2rem] bg-gray-50 flex items-center justify-center text-[#f42464] font-black text-3xl border border-white shadow-lg transform group-hover:-rotate-6 transition-transform relative">
+            <div className="w-20 h-20 rounded-[2rem] bg-gray-50 flex items-center justify-center text-[#6366f1] font-black text-3xl border border-white shadow-lg transform group-hover:-rotate-6 transition-transform relative">
                {user.name?.charAt(0) || 'U'}
                <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center">
                   <ShieldCheck size={14} className="text-white" />
@@ -317,7 +317,7 @@ const AdminUserDetails = () => {
             </div>
             <div className="flex-grow">
                <h2 className="text-2xl font-black text-gray-900 font-condensed uppercase tracking-tighter italic leading-none">{user.name || 'Anonymous'}</h2>
-               <p className="text-[#ff004d] font-black text-[10px] uppercase tracking-widest leading-none mt-1">Player Rank: Lottery Elite</p>
+               <p className="text-[#4f46e5] font-black text-[10px] uppercase tracking-widest leading-none mt-1">Player Rank: Lottery Elite</p>
                <div className="mt-3 flex gap-2">
                  <span className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest border border-emerald-100 flex items-center gap-1">
                     <Zap size={10} fill="currentColor" /> {user.status || 'Active'}
@@ -345,7 +345,7 @@ const AdminUserDetails = () => {
         </button>
         <button 
           onClick={() => setActiveTab('tickets')}
-          className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeTab === 'tickets' ? 'bg-[#ff0000] text-white shadow-lg shadow-red-200' : 'text-gray-400 hover:bg-gray-50'}`}
+          className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeTab === 'tickets' ? 'bg-[#1d4ed8] text-white shadow-lg shadow-red-200' : 'text-gray-400 hover:bg-gray-50'}`}
         >
           My Tickets
         </button>
@@ -355,11 +355,11 @@ const AdminUserDetails = () => {
         <>
           {/* Wallet Dashboard */}
       <div className="bg-gray-950 rounded-[2.5rem] p-6 md:p-10 text-white shadow-2xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-6 opacity-10 bg-[#ff004d] rounded-bl-[2.5rem] group-hover:scale-110 transition-transform">
+          <div className="absolute top-0 right-0 p-6 opacity-10 bg-[#4f46e5] rounded-bl-[2.5rem] group-hover:scale-110 transition-transform">
              <Wallet size={48} />
           </div>
           
-          <p className="text-[10px] font-black uppercase tracking-widest text-[#ff004d] mb-4">Total Authority Balance</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-[#4f46e5] mb-4">Total Authority Balance</p>
           <div className="flex items-baseline gap-2">
              <span className="text-4xl font-black italic tracking-tighter">₹ {(user.balance || 0).toLocaleString()}</span>
           </div>
@@ -401,7 +401,7 @@ const AdminUserDetails = () => {
       {/* Credentials & Details */}
       <div className="bg-white rounded-[2.5rem] p-5 md:p-10 shadow-xl border border-gray-100 space-y-8">
          <div className="flex items-center gap-3 border-b border-gray-50 pb-6">
-            <ShieldCheck className="text-[#f42464]" size={22} />
+            <ShieldCheck className="text-[#6366f1]" size={22} />
             <h3 className="text-xl font-black font-condensed uppercase tracking-tighter text-gray-800 italic leading-none">Identity Check</h3>
          </div>
          
@@ -455,7 +455,7 @@ const AdminUserDetails = () => {
             </AnimatePresence>
 
             <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-               <Landmark className="text-[#f42464]" size={20} />
+               <Landmark className="text-[#6366f1]" size={20} />
                <h4 className="text-sm font-black uppercase tracking-tight text-gray-800 italic font-condensed">Banking & Payout Credentials</h4>
             </div>
             
@@ -506,7 +506,7 @@ const AdminUserDetails = () => {
                   <div key={act.id} className="flex items-center justify-between p-5 bg-white border border-gray-50 rounded-[1.5rem] shadow-sm active:scale-[0.98] transition-all">
                      <div className="flex items-center gap-4">
                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center border-2 border-white shadow-sm transition-transform ${
-                           act.type === 'Purchase' ? 'bg-[#fce4ec] text-[#f42464]' :
+                           act.type === 'Purchase' ? 'bg-[#eff6ff] text-[#6366f1]' :
                            act.type === 'Win' ? 'bg-emerald-50 text-emerald-600' :
                            'bg-blue-50 text-blue-600'
                         }`}>
@@ -538,7 +538,7 @@ const AdminUserDetails = () => {
               className={`flex-1 py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest active:scale-95 shadow-xl transition-all flex items-center justify-center gap-2 ${
                 user.status === 'Blocked' 
                   ? 'bg-emerald-500 text-white shadow-emerald-500/10' 
-                  : 'bg-white border-2 border-[#ff004d]/20 text-[#ff004d] shadow-red-500/5'
+                  : 'bg-white border-2 border-[#4f46e5]/20 text-[#4f46e5] shadow-red-500/5'
               }`}
             >
               {user.status === 'Blocked' ? 'Unrestrict Entity' : 'Restrict Entity'}
@@ -547,7 +547,7 @@ const AdminUserDetails = () => {
               onClick={() => setShowEditModal(true)}
               className="flex-1 bg-gray-900 text-white py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest active:scale-95 shadow-xl shadow-black/10 transition-all flex items-center justify-center gap-2"
             >
-               Edit Profile <Edit size={16} className="text-[#f42464]" />
+               Edit Profile <Edit size={16} className="text-[#6366f1]" />
             </button>
          </div>
          
@@ -570,8 +570,8 @@ const AdminUserDetails = () => {
         <div className="space-y-6">
            {/* TICKET HISTORY UI */}
            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 flex flex-col sm:flex-row items-center justify-between gap-3 max-w-4xl mx-auto">
-              <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl w-full sm:max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#ff0000]/10 border border-gray-100">
-                 <Calendar size={14} className="text-[#ff0000]" />
+              <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl w-full sm:max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#1d4ed8]/10 border border-gray-100">
+                 <Calendar size={14} className="text-[#1d4ed8]" />
                  <div className="flex flex-col w-full">
                     <span className="text-[6px] font-black text-gray-400 uppercase tracking-widest leading-none mb-0.5">Filter Date</span>
                     <input 
@@ -588,7 +588,7 @@ const AdminUserDetails = () => {
               <div className="flex gap-2 items-center w-full sm:w-auto justify-end">
                  <div className="hidden sm:flex flex-col items-end mr-2">
                     <p className="text-[7px] font-black text-gray-300 uppercase tracking-widest leading-none italic">Results Found</p>
-                    <p className="text-[14px] font-black font-condensed italic text-[#ff0000] leading-none">{resultCount}</p>
+                    <p className="text-[14px] font-black font-condensed italic text-[#1d4ed8] leading-none">{resultCount}</p>
                  </div>
                  <button 
                   onClick={() => setShowAll(!showAll)}
@@ -607,7 +607,7 @@ const AdminUserDetails = () => {
                 </div>
                 <div className="space-y-1">
                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300 italic">No matches for {showAll ? 'all history' : filterDate}</p>
-                   <button onClick={() => setShowAll(true)} className="text-[8px] font-black text-[#ff0000] uppercase tracking-widest underline decoration-2 underline-offset-4">View All Records</button>
+                   <button onClick={() => setShowAll(true)} className="text-[8px] font-black text-[#1d4ed8] uppercase tracking-widest underline decoration-2 underline-offset-4">View All Records</button>
                 </div>
              </div>
            ) : (
@@ -618,10 +618,10 @@ const AdminUserDetails = () => {
                </div>
                
                {transactionGroups.map((group) => (
-                  <div key={group.id} className="bg-white rounded-3xl shadow-xl border-2 border-[#ff0000] overflow-hidden">
+                  <div key={group.id} className="bg-white rounded-3xl shadow-xl border-2 border-[#1d4ed8] overflow-hidden">
                      <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                         <div>
-                           <p className="text-[8px] font-black text-[#ff0000] uppercase tracking-[0.3em] italic">Transaction Instance</p>
+                           <p className="text-[8px] font-black text-[#1d4ed8] uppercase tracking-[0.3em] italic">Transaction Instance</p>
                            <h4 className="text-[12px] font-black font-condensed italic text-gray-900">ID: {group.id}</h4>
                         </div>
                         <div className="text-right">
@@ -658,12 +658,12 @@ const AdminUserDetails = () => {
                            <div className="overflow-x-auto scrollbar-hide">
                               <table className="w-full text-center border-collapse table-fixed min-w-[320px]">
                                  <thead>
-                                    <tr className="bg-gray-50/30 border-y-2 border-[#ff0000]">
-                                       <th className="w-[10%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TYP</th>
-                                       <th className="w-[14%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">BRD</th>
-                                       <th className="w-[30%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">NUMBER</th>
-                                       <th className="w-[8%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">Q</th>
-                                       <th className="w-[15%] py-1.5 border-r-2 border-[#ff0000] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TIER</th>
+                                    <tr className="bg-gray-50/30 border-y-2 border-[#1d4ed8]">
+                                       <th className="w-[10%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TYP</th>
+                                       <th className="w-[14%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">BRD</th>
+                                       <th className="w-[30%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">NUMBER</th>
+                                       <th className="w-[8%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">Q</th>
+                                       <th className="w-[15%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TIER</th>
                                        <th className="w-[23%] py-1.5 text-[7px] font-black uppercase text-gray-950 font-condensed italic">PRIZE</th>
                                     </tr>
                                  </thead>
@@ -672,22 +672,22 @@ const AdminUserDetails = () => {
                                        const isWin = t.status === 'Won';
                                        return (
                                           <tr key={tIdx} className={`group ${isWin ? 'bg-emerald-50/30' : ''}`}>
-                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[8px] font-black text-gray-950 uppercase italic tracking-tighter leading-none text-center">
+                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[8px] font-black text-gray-950 uppercase italic tracking-tighter leading-none text-center">
                                                 {t.type}
                                              </td>
-                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[11px] font-black font-condensed italic text-gray-950 leading-none text-center">
+                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[11px] font-black font-condensed italic text-gray-950 leading-none text-center">
                                                 {t.pos}
                                              </td>
-                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-base font-black font-condensed italic text-gray-950 tracking-normal leading-none text-center">
+                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-base font-black font-condensed italic text-gray-950 tracking-normal leading-none text-center">
                                                 {t.num}
                                              </td>
-                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[11px] font-black font-condensed italic text-[#ff0000] leading-none text-center">
+                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[11px] font-black font-condensed italic text-[#1d4ed8] leading-none text-center">
                                                 {t.qty}
                                              </td>
-                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#ff0000] text-[7px] font-bold text-gray-500 italic leading-none text-center">
+                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[7px] font-bold text-gray-500 italic leading-none text-center">
                                                 {t.price}
                                              </td>
-                                             <td className="py-1.5 px-0.5 border-b-2 border-[#ff0000] text-right align-middle">
+                                             <td className="py-1.5 px-0.5 border-b-2 border-[#1d4ed8] text-right align-middle">
                                                 <div className="flex flex-col items-end justify-center leading-none">
                                                    {isWin ? (
                                                       <p className="text-[11px] font-black text-emerald-600 font-condensed italic">₹{String(t.prize || "0").replace(/[^\d]/g, '')}</p>
@@ -706,7 +706,7 @@ const AdminUserDetails = () => {
                      ))}
 
                      {/* --- COMPACT TRANSACTION FOOTER --- */}
-                     <div className="bg-gray-950 p-4 text-white border-t-4 border-[#ff0000]">
+                     <div className="bg-gray-950 p-4 text-white border-t-4 border-[#1d4ed8]">
                         <div className="flex justify-between items-end">
                            <div className="text-left">
                               <div className="flex items-center gap-2 mb-2 opacity-30">
@@ -748,7 +748,7 @@ const AdminUserDetails = () => {
               <div className="flex justify-between items-start border-b border-gray-50 pb-8">
                 <div>
                    <div className="flex items-center gap-3 mb-2">
-                       <Edit className="text-[#f42464]" size={24} />
+                       <Edit className="text-[#6366f1]" size={24} />
                        <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tighter italic leading-none">Modify Profile</h2>
                    </div>
                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Updating global identity records</p>
@@ -774,7 +774,7 @@ const AdminUserDetails = () => {
                   <div key={field.key} className="space-y-1.5">
                     <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">{field.label}</label>
                     <div className="relative group/field">
-                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-[#f42464] transition-colors" size={18} />
+                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-[#6366f1] transition-colors" size={18} />
                       <input 
                         required
                         type={field.type} 
@@ -782,7 +782,7 @@ const AdminUserDetails = () => {
                         pattern={field.pattern}
                         value={editData[field.key]}
                         onChange={e => setEditData({...editData, [field.key]: e.target.value})}
-                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#f42464]/20 transition-all text-xs"
+                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#6366f1]/20 transition-all text-xs"
                       />
                     </div>
                   </div>

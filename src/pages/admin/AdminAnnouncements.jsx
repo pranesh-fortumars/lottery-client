@@ -218,7 +218,7 @@ const AdminAnnouncements = () => {
       
       // Header
       doc.setFontSize(22);
-      doc.setTextColor(255, 0, 77); // #ff004d
+      doc.setTextColor(255, 0, 77); // #4f46e5
       doc.text('LOTTERY OFFICIAL REPORT', 14, 22);
       
       doc.setFontSize(10);
@@ -281,7 +281,7 @@ const AdminAnnouncements = () => {
           { id: 'analysis', label: 'Monitor', icon: TrendingUp },
           { id: 'history', label: 'History', icon: History }
         ].map(tab => (
-          <button key={tab.id} onClick={() => { setActiveTab(tab.id); setShowDetailSlot(null); }} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-[#ff0000] text-white shadow-lg shadow-red-500/20' : 'text-gray-400 hover:bg-gray-50'}`}>
+          <button key={tab.id} onClick={() => { setActiveTab(tab.id); setShowDetailSlot(null); }} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-[#1d4ed8] text-white shadow-lg shadow-red-500/20' : 'text-gray-400 hover:bg-gray-50'}`}>
             <tab.icon size={16} /> {tab.label}
           </button>
         ))}
@@ -291,8 +291,8 @@ const AdminAnnouncements = () => {
         <div className="space-y-6">
           {workflowStep === 'root' && (
             <div className="grid grid-cols-2 gap-4 animate-in zoom-in-95 h-[300px]">
-               <button onClick={() => setWorkflowStep('market')} className="bg-white rounded-[2.5rem] shadow-2xl border-2 border-transparent hover:border-[#ff0000] flex flex-col items-center justify-center space-y-4 group">
-                  <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-[#ff0000] group-hover:scale-110 shadow-lg shadow-red-500/10"><Trophy size={32} /></div>
+               <button onClick={() => setWorkflowStep('market')} className="bg-white rounded-[2.5rem] shadow-2xl border-2 border-transparent hover:border-[#1d4ed8] flex flex-col items-center justify-center space-y-4 group">
+                  <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-[#1d4ed8] group-hover:scale-110 shadow-lg shadow-red-500/10"><Trophy size={32} /></div>
                   <p className="text-xl font-black font-condensed tracking-tighter uppercase italic">Result</p>
                </button>
                <button onClick={() => setWorkflowStep('scheme')} className="bg-white rounded-[2.5rem] shadow-2xl border-2 border-transparent hover:border-blue-500 flex flex-col items-center justify-center space-y-4 group">
@@ -413,7 +413,7 @@ const AdminAnnouncements = () => {
                </div>
                <div className="grid grid-cols-2 gap-4">
                   {['DEAR', 'KERALA'].map(m => (
-                    <button key={m} onClick={() => { setMarketSelection(m); setWorkflowStep('slot'); }} className="p-8 rounded-[1.5rem] bg-gray-50 border border-gray-100 hover:border-[#ff0000] transition-all text-center">
+                    <button key={m} onClick={() => { setMarketSelection(m); setWorkflowStep('slot'); }} className="p-8 rounded-[1.5rem] bg-gray-50 border border-gray-100 hover:border-[#1d4ed8] transition-all text-center">
                        <p className="text-xl font-black font-condensed italic">{m}</p>
                     </button>
                   ))}
@@ -469,7 +469,7 @@ const AdminAnnouncements = () => {
           )}
           {workflowStep === 'declare' && (
             <div className="animate-in slide-in-from-bottom-6 duration-500 space-y-6">
-               <div className="bg-gray-900 rounded-3xl p-6 text-white flex justify-between items-center border-l-[10px] border-[#ff0000]">
+               <div className="bg-gray-900 rounded-3xl p-6 text-white flex justify-between items-center border-l-[10px] border-[#1d4ed8]">
                   <div className="flex items-center gap-4">
                      <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-red-500"><Zap size={24} /></div>
                      <div><p className="text-[9px] font-black uppercase opacity-60 tracking-[.2em]">{marketSelection}</p><h2 className="text-2xl font-black font-condensed italic">{selectedSlot}</h2></div>
@@ -494,7 +494,7 @@ const AdminAnnouncements = () => {
                         {['X', 'A', 'B', 'C'].map(col => (
                         <div key={col} className="space-y-2 text-center">
                             <label className="text-[9px] font-black uppercase text-gray-400">{col === 'X' ? 'X / D' : col}</label>
-                            <input type="text" inputMode="numeric" pattern="[0-9]*" value={resultDigits[col]} onChange={(e) => handleDigitChange(col, e.target.value)} className="w-full h-20 bg-gray-50 border-2 border-gray-100 rounded-2xl text-center text-4xl font-black focus:border-[#ff0000] outline-none" />
+                            <input type="text" inputMode="numeric" pattern="[0-9]*" value={resultDigits[col]} onChange={(e) => handleDigitChange(col, e.target.value)} className="w-full h-20 bg-gray-50 border-2 border-gray-100 rounded-2xl text-center text-4xl font-black focus:border-[#1d4ed8] outline-none" />
                         </div>
                         ))}
                     </div>
@@ -505,7 +505,7 @@ const AdminAnnouncements = () => {
                         <p className="text-[9px] font-bold text-gray-400">The current prize scheme will be applied automatically based on the digits entered above.</p>
                     </div>
 
-                    <button onClick={handleDeclareResult} className="w-full bg-[#ff0000] text-white py-5 rounded-[1.5rem] font-black text-sm uppercase tracking-widest shadow-2xl active:scale-95 transition-all">DECLARE RESULT & PAYOUT</button>
+                    <button onClick={handleDeclareResult} className="w-full bg-[#1d4ed8] text-white py-5 rounded-[1.5rem] font-black text-sm uppercase tracking-widest shadow-2xl active:scale-95 transition-all">DECLARE RESULT & PAYOUT</button>
                </div>
             </div>
           )}
@@ -580,7 +580,7 @@ const AdminAnnouncements = () => {
                                         </div>
                                      </div>
                                      <div className="text-right">
-                                        <p className="text-[9px] font-black text-[#ff0000] uppercase italic mb-0.5">COLLECTION</p>
+                                        <p className="text-[9px] font-black text-[#1d4ed8] uppercase italic mb-0.5">COLLECTION</p>
                                         <p className="text-2xl font-black font-condensed italic text-gray-950 leading-none">₹ {data?.totalValue?.toLocaleString() || 0}</p>
                                      </div>
                                   </div>
@@ -594,7 +594,7 @@ const AdminAnnouncements = () => {
                                         <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Boards</p>
                                         <span className="text-lg font-black font-condensed italic text-gray-900">Active</span>
                                      </div>
-                                     <div className="bg-gray-950 p-3.5 rounded-2xl flex flex-col items-center justify-center group-hover:bg-[#ff0000] transition-colors">
+                                     <div className="bg-gray-950 p-3.5 rounded-2xl flex flex-col items-center justify-center group-hover:bg-[#1d4ed8] transition-colors">
                                         <p className="text-[7px] font-black text-white/30 uppercase tracking-widest mb-0.5">Status</p>
                                         <div className="text-white font-black text-[9px] uppercase tracking-widest">{data?.ready ? 'STAGED' : 'INTAKE'}</div>
                                      </div>
@@ -714,12 +714,12 @@ const AdminAnnouncements = () => {
                      </div>
                      
                      <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse border-2 border-[#ff0000]">
+                        <table className="w-full text-left border-collapse border-2 border-[#1d4ed8]">
                            <thead className="bg-gray-100">
                               <tr>
-                                 <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#ff0000] w-24">Rank</th>
-                                 <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#ff0000]"># Combination</th>
-                                 <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#ff0000] w-32">Volume</th>
+                                 <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#1d4ed8] w-24">Rank</th>
+                                 <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#1d4ed8]"># Combination</th>
+                                 <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#1d4ed8] w-32">Volume</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -732,7 +732,7 @@ const AdminAnnouncements = () => {
                                  if (sortedCombos.length === 0) {
                                    return (
                                      <tr>
-                                       <td colSpan="3" className="px-6 py-12 text-center text-gray-300 italic text-[11px] font-black uppercase tracking-widest border-2 border-[#ff0000]">
+                                       <td colSpan="3" className="px-6 py-12 text-center text-gray-300 italic text-[11px] font-black uppercase tracking-widest border-2 border-[#1d4ed8]">
                                          No high-frequency data available for this {monitorType} {monitorTier !== 'ALL' ? `Tier (₹${monitorTier})` : ''} slot yet
                                        </td>
                                      </tr>
@@ -742,17 +742,17 @@ const AdminAnnouncements = () => {
                                  return sortedCombos.map(([num, count], index) => {
                                    return (
                                      <tr key={num} className="group hover:bg-red-50/10 transition-all">
-                                       <td className="px-6 py-4 border-2 border-[#ff0000]">
+                                       <td className="px-6 py-4 border-2 border-[#1d4ed8]">
                                          <span className="w-8 h-8 rounded-lg bg-gray-950 text-white flex items-center justify-center font-black italic shadow-md">#{index + 1}</span>
                                        </td>
-                                       <td className="px-6 py-4 border-2 border-[#ff0000]">
+                                       <td className="px-6 py-4 border-2 border-[#1d4ed8]">
                                          <div className="flex gap-2">
                                            {num.split('').map((d, i) => (
                                              <span key={i} className="w-10 h-10 rounded-xl bg-white border-2 border-gray-100 flex items-center justify-center font-black text-xl italic text-gray-900 shadow-sm group-hover:border-red-600 transition-all">{d}</span>
                                            ))}
                                          </div>
                                        </td>
-                                       <td className="px-6 py-4 border-2 border-[#ff0000]">
+                                       <td className="px-6 py-4 border-2 border-[#1d4ed8]">
                                          <div className="flex flex-col">
                                            <span className="text-sm font-black font-condensed italic text-red-600 tabular-nums">{count}</span>
                                            <span className="text-[7px] font-black text-gray-400 uppercase tracking-widest">Tickets Purchased</span>
@@ -791,14 +791,14 @@ const AdminAnnouncements = () => {
                    </div>
 
                    <div className="overflow-x-auto">
-                      <table className="w-full text-left border-collapse border-2 border-[#ff0000]">
+                      <table className="w-full text-left border-collapse border-2 border-[#1d4ed8]">
                          <thead className="bg-gray-100">
                             <tr>
-                               <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#ff0000] w-1/2"># Combination</th>
-                               <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest text-center border-2 border-[#ff0000] w-1/2">Tickets Sold</th>
+                               <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#1d4ed8] w-1/2"># Combination</th>
+                               <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest text-center border-2 border-[#1d4ed8] w-1/2">Tickets Sold</th>
                             </tr>
                          </thead>
-                         <tbody className="divide-y-2 divide-[#ff0000]">
+                         <tbody className="divide-y-2 divide-[#1d4ed8]">
                             {getNumberRange().map(num => {
                                const boardData = dynamicAnalyticFeed[showDetailSlot]?.dataStore?.[monitorType]?.[monitorBoard];
                                const count = boardData ? (boardData[num] || 0) : 0;
@@ -806,7 +806,7 @@ const AdminAnnouncements = () => {
 
                                return (
                                  <tr key={num} className={`group transition-all ${count > 0 ? 'bg-red-50/20' : 'bg-white hover:bg-gray-50'}`}>
-                                    <td className="px-6 py-4 border-2 border-[#ff0000]">
+                                    <td className="px-6 py-4 border-2 border-[#1d4ed8]">
                                        <div className="flex items-center gap-4">
                                           <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-black text-lg font-condensed italic transition-all ${count > 0 ? 'bg-red-600 text-white shadow-md' : 'bg-gray-50 text-gray-500 border border-gray-200'}`}>
                                              {num}
@@ -819,7 +819,7 @@ const AdminAnnouncements = () => {
                                           )}
                                        </div>
                                     </td>
-                                    <td className="px-6 py-4 border-2 border-[#ff0000]">
+                                    <td className="px-6 py-4 border-2 border-[#1d4ed8]">
                                        <div className="flex flex-col items-center">
                                           <div className="flex items-baseline gap-1">
                                              <span className={`text-2xl font-black font-condensed italic tabular-nums leading-none ${count > 0 ? 'text-gray-950' : 'text-gray-400'}`}>
@@ -856,7 +856,7 @@ const AdminAnnouncements = () => {
               </div>
               
               <div className="flex flex-col">
-                 <p className="text-[8px] font-black uppercase tracking-[0.3em] text-[#ff0000] mb-0.5 italic">Record Archive</p>
+                 <p className="text-[8px] font-black uppercase tracking-[0.3em] text-[#1d4ed8] mb-0.5 italic">Record Archive</p>
                  <input 
                    type="date" 
                    value={historyDate} 
@@ -867,7 +867,7 @@ const AdminAnnouncements = () => {
               
               <button 
                 onClick={exportToPDF} 
-                className="bg-[#ff0000] text-white px-6 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 active:scale-[0.98] transition-all whitespace-nowrap"
+                className="bg-[#1d4ed8] text-white px-6 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 active:scale-[0.98] transition-all whitespace-nowrap"
               >
                 <Download size={16} /> Export Report
               </button>

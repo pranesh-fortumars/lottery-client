@@ -19,15 +19,15 @@ const UserSettings = () => {
 
   return (
     <PageWrapper title="SETTINGS" showBack={true}>
-      <div className="bg-white min-h-screen p-4 flex flex-col items-center">
+      <div className="bg-slate-50 min-h-screen p-4 flex flex-col items-center">
         {/* Profile Card Summary */}
-        <div className="w-full max-w-sm bg-gray-50 rounded-[2.5rem] p-6 mb-8 border border-gray-100 shadow-inner flex items-center gap-4">
-           <div className="w-16 h-16 bg-[#ff0033] rounded-2xl flex items-center justify-center text-white text-2xl font-black italic shadow-lg">
+        <div className="w-full max-w-sm bg-white rounded-3xl p-6 mb-8 border border-slate-200 shadow-sm flex items-center gap-4">
+           <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-sm">
               {user?.name?.charAt(0).toUpperCase() || 'U'}
            </div>
            <div>
-              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Authenticated Account</p>
-              <p className="text-sm font-black text-gray-900 truncate">{user?.name || 'Authorized User'}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Authenticated Account</p>
+              <p className="text-sm font-bold text-slate-800 truncate">{user?.name || 'Authorized User'}</p>
            </div>
         </div>
 
@@ -37,31 +37,31 @@ const UserSettings = () => {
             <button 
               key={idx}
               onClick={group.onClick}
-              className="w-full bg-white border border-gray-100 p-5 rounded-[1.5rem] flex items-center gap-4 hover:bg-gray-50 active:scale-95 transition-all group shadow-sm"
+              className="w-full bg-white border border-slate-200 p-5 rounded-2xl flex items-center gap-4 hover:border-blue-200 active:scale-95 transition-all group shadow-sm"
             >
-              <div className="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-gray-400 group-hover:text-[#ff0033] group-hover:bg-red-50 transition-colors shadow-inner">
+              <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors border border-slate-100">
                  {group.icon}
               </div>
               <div className="text-left flex-1 min-w-0">
-                 <p className="text-xs font-black text-gray-900 uppercase tracking-tight">{group.label}</p>
-                 <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest truncate">{group.desc}</p>
+                 <p className="text-xs font-bold text-slate-800 uppercase tracking-tight">{group.label}</p>
+                 <p className="text-[9px] font-medium text-slate-500 uppercase tracking-widest truncate">{group.desc}</p>
               </div>
-              <ChevronRight size={16} className="text-gray-300 group-hover:text-[#ff0033] transition-colors" />
+              <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-600 transition-colors" />
             </button>
           ))}
         </div>
 
         <button 
           onClick={logout}
-          className="w-full max-w-sm mt-12 h-14 bg-gray-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2 hover:bg-[#ff0033] mb-10"
+          className="w-full max-w-sm mt-12 h-14 bg-slate-800 hover:bg-red-600 text-white rounded-xl font-bold text-[10px] uppercase tracking-[0.3em] shadow-sm active:scale-95 transition-colors flex items-center justify-center gap-2 mb-10"
         >
           Terminate Session
         </button>
 
-        <div className="mt-auto mb-6 mx-6 p-4 text-center border border-[#ff0033]/20 bg-[#ff0033]/5 rounded-2xl shadow-sm space-y-1">
-           <p className="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em] italic leading-tight">
-              App Version: <span className="text-gray-900 font-black">{APP_VERSION}</span><br/>
-              Build: <span className="text-gray-900 font-black">{BUILD_VERSION}</span>
+        <div className="mt-auto mb-6 mx-6 p-4 text-center border border-slate-200 bg-white rounded-xl shadow-sm space-y-1">
+           <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider leading-tight">
+              App Version: <span className="text-slate-800 font-bold">{APP_VERSION}</span><br/>
+              Build: <span className="text-slate-800 font-bold">{BUILD_VERSION}</span>
            </p>
         </div>
       </div>

@@ -20,32 +20,31 @@ const BalanceWarningModal = ({ isOpen, onClose, cartTotal, currentBalance, onRec
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="absolute inset-0 bg-black/80 backdrop-blur-md"
+          className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
         />
         <motion.div 
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          className="relative w-full max-w-sm bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border-2 border-red-500/20"
+          className="relative w-full max-w-sm bg-white rounded-3xl overflow-hidden shadow-xl"
         >
-          <div className="bg-[#ff0033] p-8 text-white text-center relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/30">
+          <div className="bg-blue-600 p-8 text-white text-center relative overflow-hidden">
+             <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <AlertCircle size={32} />
              </div>
-             <h3 className="text-2xl font-black uppercase italic tracking-tighter">Insufficient Balance</h3>
-             <p className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Refill required to continue</p>
+             <h3 className="text-xl font-bold uppercase tracking-tight">Insufficient Balance</h3>
+             <p className="text-blue-100 text-[10px] font-bold uppercase tracking-widest mt-1">Refill required to continue</p>
           </div>
 
-          <div className="p-8 space-y-6">
-             <div className="flex justify-between items-center p-4 bg-gray-50 rounded-2xl border border-gray-100">
+          <div className="p-6 space-y-6">
+             <div className="flex justify-between items-center p-4 bg-slate-50 rounded-2xl border border-slate-100">
                 <div>
-                   <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Your Balance</p>
-                   <p className="text-lg font-black text-gray-800">₹{currentBalance.toFixed(2)}</p>
+                   <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Your Balance</p>
+                   <p className="text-lg font-bold text-slate-800">₹{currentBalance.toFixed(2)}</p>
                 </div>
                 <div className="text-right">
-                   <p className="text-[8px] font-black text-red-400 uppercase tracking-widest leading-none mb-1">Shortfall</p>
-                   <p className="text-lg font-black text-red-600">₹{(cartTotal - currentBalance).toFixed(2)}</p>
+                   <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Shortfall</p>
+                   <p className="text-lg font-bold text-blue-600">₹{(cartTotal - currentBalance).toFixed(2)}</p>
                 </div>
              </div>
 
@@ -54,38 +53,38 @@ const BalanceWarningModal = ({ isOpen, onClose, cartTotal, currentBalance, onRec
                    <div className="w-6 h-6 bg-emerald-50 rounded-full flex items-center justify-center shrink-0 mt-0.5 border border-emerald-100">
                       <Wallet size={12} className="text-emerald-600" />
                    </div>
-                   <p className="text-[10px] text-gray-500 font-bold leading-relaxed">
-                      Only <span className="text-gray-900">Winning Prizes</span> earned from lottery results are eligible for direct withdrawal to your bank.
+                   <p className="text-[10px] text-slate-500 font-medium leading-relaxed">
+                      Only <span className="text-slate-900 font-bold">Winning Prizes</span> earned from lottery results are eligible for direct withdrawal to your bank.
+                   </p>
+                </div>
+                <div className="flex gap-3 items-start">
+                   <div className="w-6 h-6 bg-indigo-50 rounded-full flex items-center justify-center shrink-0 mt-0.5 border border-indigo-100">
+                      <CreditCard size={12} className="text-indigo-600" />
+                   </div>
+                   <p className="text-[10px] text-slate-500 font-medium leading-relaxed">
+                      Deposited balance and Referral bonus are primarily intended for <span className="text-slate-900 font-bold">Ticket Purchases</span> only.
                    </p>
                 </div>
                 <div className="flex gap-3 items-start">
                    <div className="w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center shrink-0 mt-0.5 border border-blue-100">
-                      <CreditCard size={12} className="text-blue-600" />
+                      <Info size={12} className="text-blue-600" />
                    </div>
-                   <p className="text-[10px] text-gray-500 font-bold leading-relaxed">
-                      Deposited balance and Referral bonus are primarily intended for <span className="text-gray-900">Ticket Purchases</span> only.
-                   </p>
-                </div>
-                <div className="flex gap-3 items-start">
-                   <div className="w-6 h-6 bg-[#ff0033]/5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border border-[#ff0033]/10">
-                      <Info size={12} className="text-[#ff0033]" />
-                   </div>
-                   <p className="text-[10px] text-gray-500 font-bold leading-relaxed">
+                   <p className="text-[10px] text-slate-500 font-medium leading-relaxed">
                       Please recharge your wallet to complete this purchase. All deposits are manually verified by admins.
                    </p>
                 </div>
              </div>
 
-             <div className="pt-4 space-y-3">
+             <div className="pt-2 space-y-3">
                 <button 
                   onClick={onRecharge}
-                  className="w-full bg-[#ff0033] text-white py-5 rounded-[1.5rem] font-black text-xs uppercase tracking-widest shadow-xl shadow-red-500/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm active:scale-95 transition-colors hover:bg-blue-700 flex items-center justify-center gap-2"
                 >
                    Recharge Wallet <ChevronRight size={16} />
                 </button>
                 <button 
                   onClick={onClose}
-                  className="w-full bg-gray-100 text-gray-400 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition-all"
+                  className="w-full bg-slate-100 text-slate-500 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest active:scale-95 transition-colors hover:bg-slate-200"
                 >
                    Cancel Purchase
                 </button>
@@ -160,14 +159,14 @@ const CartPage = () => {
       <button 
         onClick={handlePay}
         disabled={isProcessing || cart.length === 0 || anyClosed}
-        className={`flex-1 text-white py-4 rounded-2xl flex items-center justify-center gap-2 font-black text-sm shadow-[0_15px_30px_-5px_rgba(255,0,85,0.4)] active:scale-95 transition-all disabled:opacity-50 border-b-4 border-black/10 ${anyClosed ? 'bg-gray-400' : 'bg-[#ff0033]'}`}
+        className={`flex-1 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm shadow-sm active:scale-95 transition-all disabled:opacity-50 ${anyClosed ? 'bg-slate-400' : 'bg-blue-600 hover:bg-blue-700'}`}
       >
         <ShoppingCart size={20} fill="white" /> {isProcessing ? 'Waiting...' : (anyClosed ? 'Slot Expired' : (isFullBonus ? 'Pay with Bonus' : 'Confirm Pay'))}
       </button>
       
       <button 
         onClick={clearCart}
-        className="px-6 bg-gray-900 text-white rounded-2xl flex items-center justify-center gap-2 font-black text-sm shadow-xl active:scale-95 transition-all border-b-4 border-black/10"
+        className="px-5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm active:scale-95 transition-colors"
       >
         <Trash2 size={20} />
       </button>
@@ -176,109 +175,111 @@ const CartPage = () => {
 
   return (
     <PageWrapper title="SHOPPING CART" footerAction={cartFooter}>
-      <div className="bg-white flex flex-col items-center">
+      <div className="bg-slate-50 flex flex-col items-center min-h-screen pb-24">
         {/* Header Bar */}
-        <div className="w-full max-w-sm bg-[#ff0033] text-white py-3 mt-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg mb-8 shadow-[#ff0033]/20">
-           <ShoppingCart size={24} fill="white" />
-           <span className="text-xl font-black uppercase tracking-tight font-serif">Your Cart</span>
+        <div className="w-full max-w-sm bg-blue-600 text-white py-4 mt-4 rounded-xl flex items-center justify-center gap-2 shadow-sm mb-6">
+           <ShoppingCart size={20} fill="white" />
+           <span className="text-lg font-bold uppercase tracking-wider">Your Cart</span>
         </div>
 
         {/* Slot Closure Warning */}
         {anyClosed && (
-          <div className="w-full max-w-sm bg-red-50 border border-red-200 p-4 rounded-2xl mb-6 flex flex-col items-center text-center gap-2">
-            <ShoppingCart className="text-red-600 animate-bounce" size={24} />
-            <p className="text-[10px] font-black text-red-600 uppercase tracking-widest">
+          <div className="w-full max-w-sm bg-red-50 border border-red-200 p-5 rounded-2xl mb-6 flex flex-col items-center text-center gap-2">
+            <AlertCircle className="text-red-500" size={24} />
+            <p className="text-[11px] font-bold text-red-600 uppercase tracking-widest">
               Action Required: Slots Expired
             </p>
-            <p className="text-[8px] font-bold text-gray-500 leading-relaxed uppercase">
+            <p className="text-[10px] font-medium text-red-500 leading-relaxed">
               Some items in your cart belong to draws that are now closed. Please remove these items to proceed.
             </p>
-            <div className="flex flex-wrap gap-1 justify-center mt-1">
+            <div className="flex flex-wrap gap-1.5 justify-center mt-2">
                {closedItems.map((it, idx) => (
-                 <span key={idx} className="bg-red-600 text-white text-[7px] px-2 py-0.5 rounded-full font-black">{it.draw}</span>
+                 <span key={idx} className="bg-red-500 text-white text-[9px] px-2.5 py-1 rounded-md font-bold">{it.draw}</span>
                ))}
             </div>
           </div>
         )}
 
         {/* Cart Table */}
-        <div className="w-full max-w-sm mb-8 overflow-hidden px-1">
-          <table className="w-full border-collapse border border-red-600 text-left text-sm font-serif">
-            <tbody>
-              <tr className="border border-red-600">
-                <td colSpan={4} className="p-2 border-r border-red-600 font-bold">Name: {user?.name || 'Guest'}</td>
-                <td colSpan={2} className="p-2 text-right font-bold italic">Date: {currentDate}</td>
-              </tr>
-              
-              {/* Row 2: Headers */}
-              <tr className="border border-red-600 bg-gray-50/50">
-                <td className="p-2 border-r border-red-600 font-bold">Lot Details</td>
-                <td className="p-2 border-r border-red-600 font-bold text-center">Number</td>
-                <td className="p-2 border-r border-red-600 font-bold text-center">Unit</td>
-                <td className="p-2 border-r border-red-600 font-bold text-center">₹</td>
-                <td className="p-2 border-r border-red-600 font-bold text-right">Amount ₹</td>
-                <td className="p-2 font-bold text-center w-8"></td>
-              </tr>
-
-              {/* Data Rows */}
-              {cart.map((item) => (
-                <tr key={item.id} className="border border-red-600 relative group">
-                  <td className="p-2 border-r border-red-600">
-                    <div className="flex flex-col">
-                      <span className="font-bold text-[10px] leading-tight uppercase">{item.title}</span>
-                      {item.board && <span className="text-[8px] text-red-500 font-black">Board: {item.board}</span>}
-                    </div>
-                  </td>
-                  <td className="p-2 border-r border-red-600 text-center font-black">{item.num}</td>
-                  <td className="p-2 border-r border-red-600 text-center">{item.qty}</td>
-                  <td className="p-2 border-r border-red-600 text-center">{item.price}</td>
-                  <td className="p-2 border-r border-red-600 text-right font-black">{(item.price * item.qty).toFixed(2)}</td>
-                  <td className="p-1 text-center align-middle">
-                    <button 
-                      onClick={() => removeFromCart(item.id)} 
-                      className="p-1.5 text-red-500 hover:text-white hover:bg-red-600 rounded-lg transition-colors mx-auto flex items-center justify-center active:scale-90"
-                      title="Remove Ticket"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </td>
+        <div className="w-full max-w-sm mb-8 px-1">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <table className="w-full text-left text-xs">
+              <tbody>
+                <tr className="border-b border-slate-200 bg-slate-50/50">
+                  <td colSpan={4} className="p-3 font-bold text-slate-700">Name: {user?.name || 'Guest'}</td>
+                  <td colSpan={2} className="p-3 text-right font-medium text-slate-500">{currentDate}</td>
                 </tr>
-              ))}
-
-              {cart.length === 0 && (
-                <tr className="border border-red-600">
-                  <td colSpan={6} className="p-10 text-center text-gray-300 italic">No tickets in cart</td>
+                
+                {/* Row 2: Headers */}
+                <tr className="border-b border-slate-200 bg-slate-100/50 text-[10px] uppercase tracking-wider text-slate-500 font-bold">
+                  <td className="p-3">Lot Details</td>
+                  <td className="p-3 text-center">Num</td>
+                  <td className="p-3 text-center">Qty</td>
+                  <td className="p-3 text-center">₹</td>
+                  <td className="p-3 text-right">Amt ₹</td>
+                  <td className="p-3 w-8"></td>
                 </tr>
-              )}
 
-              {/* Total Amount Row */}
-              <tr className="border border-red-600 bg-gray-50 font-black">
-                <td colSpan={4} className="p-2 border-r border-red-600 text-center uppercase tracking-widest text-[10px]">Grand Total:</td>
-                <td className="p-2 border-r border-red-600 text-right text-lg">{cartTotal.toFixed(2)}</td>
-                <td className="p-2 bg-white"></td>
-              </tr>
-            </tbody>
-          </table>
+                {/* Data Rows */}
+                {cart.map((item) => (
+                  <tr key={item.id} className="border-b border-slate-100 last:border-b-0 relative group hover:bg-slate-50/50 transition-colors">
+                    <td className="p-3">
+                      <div className="flex flex-col">
+                        <span className="font-bold text-slate-800 text-[11px] uppercase">{item.title}</span>
+                        {item.board && <span className="text-[9px] text-slate-500 font-medium mt-0.5">Board: {item.board}</span>}
+                      </div>
+                    </td>
+                    <td className="p-3 text-center font-bold text-slate-800">{item.num}</td>
+                    <td className="p-3 text-center text-slate-600">{item.qty}</td>
+                    <td className="p-3 text-center text-slate-600">{item.price}</td>
+                    <td className="p-3 text-right font-bold text-blue-600">{(item.price * item.qty).toFixed(2)}</td>
+                    <td className="p-2 text-center align-middle">
+                      <button 
+                        onClick={() => removeFromCart(item.id)} 
+                        className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mx-auto flex items-center justify-center"
+                        title="Remove Ticket"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+
+                {cart.length === 0 && (
+                  <tr>
+                    <td colSpan={6} className="p-12 text-center text-slate-400 font-medium">No tickets in cart</td>
+                  </tr>
+                )}
+
+                {/* Total Amount Row */}
+                <tr className="bg-slate-50 border-t border-slate-200">
+                  <td colSpan={4} className="p-4 text-right uppercase tracking-widest text-[10px] font-bold text-slate-500">Grand Total:</td>
+                  <td className="p-4 text-right text-lg font-bold text-slate-800">{cartTotal.toFixed(2)}</td>
+                  <td className="p-4 bg-slate-50"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           
-          <div className="border-x border-b border-red-600 p-2 bg-white mb-4">
-             <p className="text-[10px] font-bold text-gray-800 leading-tight italic">
-               ** Some items are removed automatically if draw time expires.
+          <div className="p-3 mb-6">
+             <p className="text-[10px] font-medium text-slate-500 text-center">
+               * Items for closed draws are removed automatically at checkout.
              </p>
           </div>
 
           {/* Wallet Balance Info */}
-          <div className="bg-gradient-to-r from-red-50 to-white border-2 border-red-600/20 rounded-2xl p-4 flex items-center justify-between mb-6 shadow-sm">
+          <div className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between mb-6 shadow-sm">
              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#ff0033] rounded-xl flex items-center justify-center shadow-lg">
-                   <Wallet size={18} className="text-white" />
+                <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100">
+                   <Wallet size={18} className="text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Usable Wallet Balance</p>
-                  <p className="text-xs font-black text-gray-800 italic uppercase">₹{totalUsableBalance.toFixed(2)}</p>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Usable Balance</p>
+                  <p className="text-sm font-bold text-slate-800 uppercase">₹{totalUsableBalance.toFixed(2)}</p>
                 </div>
              </div>
              <div className="flex flex-col items-end">
-                <span className={`text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-tighter ${totalUsableBalance >= cartTotal ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'}`}>
+                <span className={`text-[9px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider ${totalUsableBalance >= cartTotal ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>
                   {totalUsableBalance >= cartTotal ? 'Sufficient' : 'Low Balance'}
                 </span>
              </div>
@@ -287,7 +288,7 @@ const CartPage = () => {
 
         <button 
           onClick={() => navigate('/home')} 
-          className="mt-6 mb-10 flex items-center gap-2 text-gray-400 font-black text-[10px] uppercase tracking-widest hover:text-red-500 transition-colors"
+          className="mb-10 flex items-center gap-2 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:text-blue-600 transition-colors bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200"
         >
           <ChevronLeft size={14} /> Add more tickets
         </button>

@@ -88,14 +88,14 @@ const ProfilePage = () => {
     <PageWrapper title="MY PROFILE" showNav={true}>
       <div className="bg-white min-h-screen">
         {/* Profile Header Card */}
-        <div className="p-10 bg-gradient-to-br from-[#ff0033] to-[#ff4d6a] relative overflow-hidden group">
+        <div className="p-10 bg-gradient-to-br from-[#2563eb] to-[#ff4d6a] relative overflow-hidden group">
            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:scale-125 transition-transform"></div>
            <div className="flex flex-col items-center relative z-10">
               <div className="w-24 h-24 bg-white p-1 rounded-[2.5rem] shadow-2xl mb-4 group relative transform group-hover:-rotate-3 transition-transform">
-                 <div className="w-full h-full bg-gray-50 rounded-[2.5rem] flex items-center justify-center border border-gray-100 italic font-black text-3xl text-[#ff0033] shadow-inner">
+                 <div className="w-full h-full bg-gray-50 rounded-[2.5rem] flex items-center justify-center border border-gray-100 italic font-black text-3xl text-[#2563eb] shadow-inner">
                     {user?.name?.charAt(0) || 'P'}
                  </div>
-                 <div className="absolute bottom-1 right-1 bg-white p-1.5 rounded-full shadow-lg border border-[#ff0033]/20">
+                 <div className="absolute bottom-1 right-1 bg-white p-1.5 rounded-full shadow-lg border border-[#2563eb]/20">
                     <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
                  </div>
               </div>
@@ -122,7 +122,7 @@ const ProfilePage = () => {
                  {/* Top: Total Balance */}
                  <div className="p-8 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between group cursor-pointer active:bg-gray-100 transition-all" onClick={() => navigate('/topup')}>
                     <div className="flex items-center gap-5">
-                       <div className="w-14 h-14 bg-[#ff0033] text-white rounded-[1.4rem] flex items-center justify-center shadow-lg shadow-red-500/20 group-hover:rotate-6 transition-transform">
+                       <div className="w-14 h-14 bg-[#2563eb] text-white rounded-[1.4rem] flex items-center justify-center shadow-lg shadow-red-500/20 group-hover:rotate-6 transition-transform">
                           <Wallet size={28} />
                        </div>
                        <div>
@@ -130,7 +130,7 @@ const ProfilePage = () => {
                           <p className="text-3xl font-black text-gray-900 italic tracking-tighter">₹ {user?.balance?.toLocaleString() || '0.00'}</p>
                        </div>
                     </div>
-                    <ChevronRight size={24} className="text-gray-200 group-hover:text-[#ff0033] transition-all" />
+                    <ChevronRight size={24} className="text-gray-200 group-hover:text-[#2563eb] transition-all" />
                  </div>
 
                   {/* Bottom Split: Deposited vs Winnings vs Bonus */}
@@ -162,12 +162,12 @@ const ProfilePage = () => {
                <div className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-xl relative overflow-hidden group">
                   <div className="flex items-center justify-between mb-6 border-b border-gray-50 pb-4">
                      <div className="flex items-center gap-3">
-                        <CreditCard className="text-[#ff0033]" size={24} />
+                        <CreditCard className="text-[#2563eb]" size={24} />
                         <h3 className="text-lg font-black font-condensed uppercase tracking-tighter italic text-gray-900">Payout & Banking Info</h3>
                      </div>
                      <button 
                        onClick={() => navigate('/settings/personal-info')}
-                       className="text-[10px] font-black text-[#ff0033] uppercase tracking-widest hover:underline flex items-center gap-1"
+                       className="text-[10px] font-black text-[#2563eb] uppercase tracking-widest hover:underline flex items-center gap-1"
                      >
                         Edit <Edit2 size={12} />
                      </button>
@@ -207,19 +207,19 @@ const ProfilePage = () => {
           {!isAdmin && (
             <div className="p-6">
                <div className="bg-gray-950 rounded-[2.5rem] p-8 text-white relative overflow-hidden group shadow-xl">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff0033]/20 rounded-full blur-3xl group-hover:bg-[#ff0033]/40 transition-colors"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#2563eb]/20 rounded-full blur-3xl group-hover:bg-[#2563eb]/40 transition-colors"></div>
                   <div className="relative z-10">
                      <div className="flex items-center gap-3 mb-4">
-                        <Gift className="text-[#ff0033]" size={24} />
+                        <Gift className="text-[#2563eb]" size={24} />
                         <h3 className="text-xl font-black font-condensed uppercase tracking-tighter italic italic">Refer & Get ₹50</h3>
                      </div>
                      <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-relaxed mb-6">
-                        Share the link below. When your friends register with code <span className="text-white">LOTTERY777</span>, they get <span className="text-[#ff0033]">₹50 BONUS CHIPS</span> instantly!
+                        Share the link below. When your friends register with code <span className="text-white">LOTTERY777</span>, they get <span className="text-[#2563eb]">₹50 BONUS CHIPS</span> instantly!
                      </p>
                      
-                     <div className="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/10 group-hover:border-[#ff0033]/30 transition-all">
+                     <div className="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/10 group-hover:border-[#2563eb]/30 transition-all">
                         <div className="flex-grow overflow-hidden">
-                           <p className="text-[8px] font-black text-[#ff0033] uppercase tracking-widest mb-1">Your Referral Link</p>
+                           <p className="text-[8px] font-black text-[#2563eb] uppercase tracking-widest mb-1">Your Referral Link</p>
                            <p className="text-[10px] font-bold tracking-tight text-gray-400 truncate">{getReferralLink()}</p>
                         </div>
                         <div className="flex gap-2">
@@ -242,7 +242,7 @@ const ProfilePage = () => {
                                  alert('Referral link copied!');
                                }
                              }}
-                             className="bg-[#ff0033] p-3 rounded-xl text-white shadow-lg shadow-[#ff0033]/20 active:scale-95 transition-all shrink-0"
+                             className="bg-[#2563eb] p-3 rounded-xl text-white shadow-lg shadow-[#2563eb]/20 active:scale-95 transition-all shrink-0"
                              title="Share Link"
                            >
                               <Share2 size={18} />
@@ -284,7 +284,7 @@ const ProfilePage = () => {
                  </div>
                  <span className="font-black text-gray-800 uppercase tracking-tight text-sm italic">{item.label}</span>
               </div>
-              <ChevronRight size={20} className="text-gray-200 group-hover:text-[#ff0033] transition-colors" />
+              <ChevronRight size={20} className="text-gray-200 group-hover:text-[#2563eb] transition-colors" />
             </div>
           ))}
 
@@ -295,7 +295,7 @@ const ProfilePage = () => {
             className="flex items-center justify-between p-5 bg-gray-950 text-white rounded-[2rem] border border-gray-900 mt-10 active:scale-95 transition-all cursor-pointer shadow-xl shadow-black/10"
           >
             <div className="flex items-center gap-5">
-               <div className="text-[#ff0033] bg-white/10 p-3 rounded-2xl shadow-sm border border-white/5">
+               <div className="text-[#2563eb] bg-white/10 p-3 rounded-2xl shadow-sm border border-white/5">
                   <LogOut size={20} />
                </div>
                <span className="font-black uppercase tracking-widest text-[11px] italic">Logout Securely</span>
@@ -329,11 +329,11 @@ const ProfilePage = () => {
 
         {!isAdmin && <SupportSection />}
 
-        <div className="p-6 mx-6 mb-6 text-center border border-[#ff0033]/20 bg-[#ff0033]/5 rounded-2xl space-y-2 shadow-sm">
+        <div className="p-6 mx-6 mb-6 text-center border border-[#2563eb]/20 bg-[#2563eb]/5 rounded-2xl space-y-2 shadow-sm">
            {user?.createdAt && (
               <p className="text-[11px] text-gray-800 font-black uppercase tracking-widest flex items-center justify-center gap-2">
                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                 Account Created: <span className="text-[#ff0033]">{user.createdAt?.toDate ? user.createdAt.toDate().toLocaleString('en-IN') : new Date(user.createdAt).toLocaleString('en-IN')}</span>
+                 Account Created: <span className="text-[#2563eb]">{user.createdAt?.toDate ? user.createdAt.toDate().toLocaleString('en-IN') : new Date(user.createdAt).toLocaleString('en-IN')}</span>
               </p>
            )}
            <div className="w-16 h-[1px] bg-gray-200 mx-auto my-2"></div>
@@ -365,7 +365,7 @@ const ProfilePage = () => {
               <div className="flex justify-between items-start border-b border-gray-50 pb-8">
                 <div>
                    <div className="flex items-center gap-3 mb-2">
-                       <ShieldCheck className="text-[#ff0033]" size={24} />
+                       <ShieldCheck className="text-[#2563eb]" size={24} />
                        <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tighter italic leading-none">Authority Records</h2>
                    </div>
                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Modifying high-privilege credentials</p>
@@ -386,7 +386,7 @@ const ProfilePage = () => {
                   <div key={field.key} className="space-y-1.5">
                     <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">{field.label}</label>
                     <div className="relative group/field">
-                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-[#ff0033] transition-colors" size={18} />
+                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-[#2563eb] transition-colors" size={18} />
                       <input 
                         required
                         type={field.type} 
@@ -394,7 +394,7 @@ const ProfilePage = () => {
                         pattern={field.pattern}
                         value={editData[field.key]}
                         onChange={e => setEditData({...editData, [field.key]: e.target.value})}
-                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#ff0033]/20 transition-all text-xs"
+                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#2563eb]/20 transition-all text-xs"
                       />
                     </div>
                   </div>
@@ -420,7 +420,7 @@ const ProfilePage = () => {
                   disabled={updating}
                   className="w-full h-16 bg-gray-900 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl shadow-black/20 flex items-center justify-center gap-3 mt-6 active:scale-95 transition-all disabled:opacity-50"
                 >
-                   {updating ? 'SYNCING...' : 'Authorize Changes'} <Save size={18} className="text-[#ff0033]" />
+                   {updating ? 'SYNCING...' : 'Authorize Changes'} <Save size={18} className="text-[#2563eb]" />
                 </button>
               </form>
             </motion.div>
