@@ -22,6 +22,7 @@ import MyTickets from './pages/MyTickets';
 import TopUpPage from './pages/TopUpPage';
 import WithdrawPage from './pages/WithdrawPage';
 import UserTransactions from './pages/UserTransactions';
+import UserGuide from './pages/UserGuide';
 
 import PageWrapper from './components/PageWrapper';
 import AdminLayout from './components/AdminLayout';
@@ -112,6 +113,7 @@ const AnimatedRoutes = () => {
           <Route path="/settings/notifications" element={<ProtectedRoute role="user"><NotificationsPage /></ProtectedRoute>} />
           <Route path="/settings/privacy" element={<ProtectedRoute role="user"><PrivacySecurityPage /></ProtectedRoute>} />
           <Route path="/settings/help" element={<ProtectedRoute role="user"><HelpSupportPage /></ProtectedRoute>} />
+          <Route path="/settings/guide" element={<ProtectedRoute role="user"><UserGuide /></ProtectedRoute>} />
 
           <Route path="/select/:gameId" element={<ProtectedRoute role="user"><SelectionPage /></ProtectedRoute>} />
           <Route path="/jackpot" element={<ProtectedRoute role="user"><JackpotPage /></ProtectedRoute>} />

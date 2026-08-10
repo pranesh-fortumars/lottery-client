@@ -1,6 +1,6 @@
 import React from 'react';
 import PageWrapper from '../components/PageWrapper';
-import { HelpCircle, Mail, MessageCircle, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
+import { HelpCircle, Mail, MessageCircle, FileText, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
@@ -31,10 +31,10 @@ const HelpSupportPage = () => {
       action: () => window.location.href = 'mailto:smswinsms@gmail.com' 
     },
     { 
-      icon: <FileText size={20} />, 
-      label: 'FAQs', 
-      desc: 'Frequently asked questions', 
-      action: () => alert('FAQs are currently being updated.') 
+      icon: <BookOpen size={20} />, 
+      label: 'How To Play', 
+      desc: 'Complete User Guide & Manual', 
+      action: () => navigate('/settings/guide') 
     },
   ];
 
