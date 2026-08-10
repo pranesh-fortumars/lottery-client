@@ -365,8 +365,8 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
     );
   }
 
-  // Determine layout width based on route
-  const containerMaxWidth = isAdminView ? "max-w-6xl" : "max-w-md";
+  // Determine layout width globally (force mobile view for all pages)
+  const containerMaxWidth = "max-w-md";
 
   return (
     <div className={`flex flex-col h-screen w-full bg-slate-50 relative ${containerMaxWidth} mx-auto shadow-xl overflow-hidden border-x border-slate-200`}>
