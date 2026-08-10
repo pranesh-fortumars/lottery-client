@@ -120,24 +120,27 @@ const AdminDashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-3 mt-6">
         {stats.map((stat, idx) => (
-          <div key={idx} className="bg-white p-5 rounded-[2rem] shadow-lg border border-gray-100 group active:scale-95 transition-all flex flex-col justify-between">
-            <div className={`w-12 h-12 rounded-2xl ${stat.bg} flex items-center justify-center mb-4 shadow-sm group-hover:rotate-6 transition-transform`}>
-              <stat.icon size={20} className="text-[#6366f1]" />
-            </div>
-            <div>
-               <h3 className="text-gray-400 text-[9px] font-black uppercase tracking-widest mb-1">{stat.label}</h3>
-               <p className="text-xl md:text-2xl font-black text-gray-800 tracking-tight italic">{stat.value}</p>
-               <div className={`mt-2 text-[8px] font-black uppercase ${stat.change.startsWith('+') ? 'text-emerald-500' : 'text-red-500'}`}>
-                  {stat.change} vs Yesterday
+          <div key={idx} className="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col justify-between">
+            <div className="flex items-center gap-2 mb-3">
+               <div className={`w-10 h-10 ${stat.bg} rounded-2xl flex items-center justify-center shrink-0 shadow-inner`}>
+                  <stat.icon size={18} className="text-[#6366f1]" />
                </div>
+               <div>
+                  <h3 className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest leading-tight">{stat.label.split(' ')[0]}<br/>{stat.label.split(' ').slice(1).join(' ')}</h3>
+               </div>
+            </div>
+            
+            <div className="mt-1">
+               <p className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tighter italic">{stat.value}</p>
+               <p className={`text-[9px] sm:text-[10px] font-black uppercase tracking-widest mt-1 ${stat.change.startsWith('+') ? 'text-emerald-500' : 'text-red-500'}`}>{stat.change} VS YESTERDAY</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-1 gap-4 mt-4">
          <button 
            onClick={() => { window.location.href = '/admin/approvals'; }}
            className="w-full bg-[#2563eb] text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(37,99,235,0.5)] flex items-center justify-between active:scale-95 transition-all h-full"
