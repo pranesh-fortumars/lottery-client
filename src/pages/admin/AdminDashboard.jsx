@@ -11,7 +11,8 @@ import {
   Target,
   Zap,
   Landmark,
-  AlertCircle
+  AlertCircle,
+  BookOpen
 } from 'lucide-react';
 import { subscribeToUsers, subscribeToResults, subscribeToTickets } from '../../services/firebaseService';
 import PullToRefresh from '../../components/PullToRefresh';
@@ -136,7 +137,7 @@ const AdminDashboard = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
          <button 
            onClick={() => { window.location.href = '/admin/approvals'; }}
            className="w-full bg-[#2563eb] text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(37,99,235,0.5)] flex items-center justify-between active:scale-95 transition-all h-full"
@@ -146,8 +147,8 @@ const AdminDashboard = () => {
                  <span className="font-black text-white italic text-xl">₹</span>
               </div>
               <div className="text-left">
-                 <h3 className="font-black text-lg md:text-base uppercase tracking-tight leading-none italic">Manage Payments</h3>
-                 <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Review pending topups & payments</p>
+                 <h3 className="font-black text-lg md:text-base uppercase tracking-tight leading-none italic">Payments</h3>
+                 <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Review topups</p>
               </div>
            </div>
            <ChevronRight size={24} className="text-white/50 shrink-0" />
@@ -162,8 +163,24 @@ const AdminDashboard = () => {
                  <Landmark size={24} className="text-white" />
               </div>
               <div className="text-left">
-                 <h3 className="font-black text-lg md:text-base uppercase tracking-tight leading-none italic">Withdrawal Requests</h3>
-                 <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Process payout requests from users</p>
+                 <h3 className="font-black text-lg md:text-base uppercase tracking-tight leading-none italic">Withdrawals</h3>
+                 <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Process payouts</p>
+              </div>
+           </div>
+           <ChevronRight size={24} className="text-white/50 shrink-0" />
+         </button>
+
+         <button 
+           onClick={() => { window.location.href = '/admin/guide'; }}
+           className="w-full bg-slate-800 text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(30,41,59,0.5)] flex items-center justify-between active:scale-95 transition-all h-full"
+         >
+           <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm shrink-0">
+                 <BookOpen size={24} className="text-white" />
+              </div>
+              <div className="text-left">
+                 <h3 className="font-black text-lg md:text-base uppercase tracking-tight leading-none italic">System Guide</h3>
+                 <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Read the manual</p>
               </div>
            </div>
            <ChevronRight size={24} className="text-white/50 shrink-0" />
@@ -172,15 +189,15 @@ const AdminDashboard = () => {
          {user?.isSuperAdmin && (
            <button 
              onClick={() => { window.location.href = '/admin/migration'; }}
-             className="w-full bg-[#5b45ff] text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(91,69,255,0.5)] flex items-center justify-between active:scale-95 transition-all md:col-span-2 lg:col-span-1 h-full"
+             className="w-full bg-[#5b45ff] text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(91,69,255,0.5)] flex items-center justify-between active:scale-95 transition-all h-full"
            >
              <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 shrink-0">
                    <Database size={24} className="text-white" />
                 </div>
                 <div className="text-left">
-                   <h3 className="font-black text-lg md:text-base uppercase tracking-tight italic">Data Migration</h3>
-                   <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Sync historical records</p>
+                   <h3 className="font-black text-lg md:text-base uppercase tracking-tight italic">Migration</h3>
+                   <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Sync old data</p>
                 </div>
              </div>
              <ChevronRight size={24} className="text-white/50 shrink-0" />
