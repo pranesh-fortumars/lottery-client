@@ -169,15 +169,15 @@ const AdminMigration = () => {
         )}
 
         {/* Terminal Window */}
-        <div className="bg-slate-900 rounded-xl p-4 h-[400px] overflow-y-auto font-mono text-sm shadow-inner relative">
+        <div className="bg-slate-900 rounded-xl p-4 h-[400px] overflow-auto font-mono text-sm shadow-inner relative">
           {logs.length === 0 ? (
             <p className="text-slate-500">Awaiting execution command...</p>
           ) : (
-            <div className="space-y-2">
+            <div className="space-y-2 min-w-max">
               {logs.map((log, i) => (
                 <div key={i} className="flex gap-2">
                   <span className="text-slate-500 shrink-0">[{log.time}]</span>
-                  <span className={`${log.type === 'success' ? 'text-emerald-400' : log.type === 'error' ? 'text-red-400' : 'text-blue-400'} break-all whitespace-pre-wrap leading-relaxed`}>
+                  <span className={`${log.type === 'success' ? 'text-emerald-400' : log.type === 'error' ? 'text-red-400' : 'text-blue-400'} whitespace-nowrap leading-relaxed`}>
                     {log.text}
                   </span>
                 </div>
