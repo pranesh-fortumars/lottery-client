@@ -119,70 +119,74 @@ const AdminDashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, idx) => (
-          <div key={idx} className="bg-white p-5 rounded-[2rem] shadow-lg border border-gray-100 group active:scale-95 transition-all">
+          <div key={idx} className="bg-white p-5 rounded-[2rem] shadow-lg border border-gray-100 group active:scale-95 transition-all flex flex-col justify-between">
             <div className={`w-12 h-12 rounded-2xl ${stat.bg} flex items-center justify-center mb-4 shadow-sm group-hover:rotate-6 transition-transform`}>
               <stat.icon size={20} className="text-[#6366f1]" />
             </div>
-            <h3 className="text-gray-400 text-[9px] font-black uppercase tracking-widest mb-1">{stat.label}</h3>
-            <p className="text-lg font-black text-gray-800 tracking-tight italic">{stat.value}</p>
-            <div className={`mt-2 text-[8px] font-black uppercase ${stat.change.startsWith('+') ? 'text-emerald-500' : 'text-red-500'}`}>
-               {stat.change} vs Yesterday
+            <div>
+               <h3 className="text-gray-400 text-[9px] font-black uppercase tracking-widest mb-1">{stat.label}</h3>
+               <p className="text-xl md:text-2xl font-black text-gray-800 tracking-tight italic">{stat.value}</p>
+               <div className={`mt-2 text-[8px] font-black uppercase ${stat.change.startsWith('+') ? 'text-emerald-500' : 'text-red-500'}`}>
+                  {stat.change} vs Yesterday
+               </div>
             </div>
           </div>
         ))}
       </div>
 
-      <button 
-        onClick={() => { window.location.href = '/admin/approvals'; }}
-        className="w-full bg-[#2563eb] text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(255,0,51,0.5)] flex items-center justify-between mt-4 active:scale-95 transition-all"
-      >
-        <div className="flex items-center gap-4">
-           <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-              <span className="font-black text-white italic text-xl">₹</span>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+         <button 
+           onClick={() => { window.location.href = '/admin/approvals'; }}
+           className="w-full bg-[#2563eb] text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(37,99,235,0.5)] flex items-center justify-between active:scale-95 transition-all h-full"
+         >
+           <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm shrink-0">
+                 <span className="font-black text-white italic text-xl">₹</span>
+              </div>
+              <div className="text-left">
+                 <h3 className="font-black text-lg md:text-base uppercase tracking-tight leading-none italic">Manage Payments</h3>
+                 <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Review pending topups & payments</p>
+              </div>
            </div>
-           <div className="text-left">
-              <h3 className="font-black text-lg uppercase tracking-tight leading-none italic">Manage Payments</h3>
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70 mt-1">Review pending topups & payments</p>
-           </div>
-        </div>
-        <ChevronRight size={24} className="text-white/50" />
-      </button>
+           <ChevronRight size={24} className="text-white/50 shrink-0" />
+         </button>
 
-      <button 
-        onClick={() => { window.location.href = '/admin/withdrawals'; }}
-        className="w-full bg-emerald-600 text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(5,150,105,0.5)] flex items-center justify-between mt-4 active:scale-95 transition-all"
-      >
-        <div className="flex items-center gap-4">
-           <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-              <Landmark size={24} className="text-white" />
+         <button 
+           onClick={() => { window.location.href = '/admin/withdrawals'; }}
+           className="w-full bg-emerald-600 text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(5,150,105,0.5)] flex items-center justify-between active:scale-95 transition-all h-full"
+         >
+           <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm shrink-0">
+                 <Landmark size={24} className="text-white" />
+              </div>
+              <div className="text-left">
+                 <h3 className="font-black text-lg md:text-base uppercase tracking-tight leading-none italic">Withdrawal Requests</h3>
+                 <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Process payout requests from users</p>
+              </div>
            </div>
-           <div className="text-left">
-              <h3 className="font-black text-lg uppercase tracking-tight leading-none italic">Withdrawal Requests</h3>
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70 mt-1">Process payout requests from users</p>
-           </div>
-        </div>
-        <ChevronRight size={24} className="text-white/50" />
-      </button>
+           <ChevronRight size={24} className="text-white/50 shrink-0" />
+         </button>
 
-      {user?.isSuperAdmin && (
-        <button 
-          onClick={() => { window.location.href = '/admin/migration'; }}
-          className="w-full bg-[#5b45ff] text-white p-5 rounded-[2.5rem] shadow-[0_10px_30px_-10px_rgba(91,69,255,0.5)] flex items-center justify-between mt-4 active:scale-95 transition-all"
-        >
-          <div className="flex items-center gap-4">
-             <div className="w-14 h-14 bg-white/20 rounded-[1.25rem] flex items-center justify-center backdrop-blur-sm border border-white/20">
-                <Database size={24} className="text-white" />
+         {user?.isSuperAdmin && (
+           <button 
+             onClick={() => { window.location.href = '/admin/migration'; }}
+             className="w-full bg-[#5b45ff] text-white p-5 rounded-3xl shadow-[0_10px_30px_-10px_rgba(91,69,255,0.5)] flex items-center justify-between active:scale-95 transition-all md:col-span-2 lg:col-span-1 h-full"
+           >
+             <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 shrink-0">
+                   <Database size={24} className="text-white" />
+                </div>
+                <div className="text-left">
+                   <h3 className="font-black text-lg md:text-base uppercase tracking-tight italic">Data Migration</h3>
+                   <p className="text-[10px] md:text-[9px] font-black uppercase tracking-[0.2em] text-white/70 mt-1 line-clamp-1">Sync historical records</p>
+                </div>
              </div>
-             <div className="text-left">
-                <h3 className="font-black text-xl uppercase tracking-tight italic">Data Migration</h3>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/70 mt-1">Sync historical records</p>
-             </div>
-          </div>
-          <ChevronRight size={24} className="text-white/50" />
-        </button>
-      )}
+             <ChevronRight size={24} className="text-white/50 shrink-0" />
+           </button>
+         )}
+      </div>
 
       {/* Main Reports Area */}
       <div className="space-y-8">
