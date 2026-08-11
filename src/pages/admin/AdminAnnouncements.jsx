@@ -519,21 +519,21 @@ const AdminAnnouncements = () => {
                  {/* Compact Intelligence Header */}
                  <div className="bg-white rounded-[2rem] p-6 shadow-xl border border-red-50 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-red-50/50 rounded-full blur-3xl -mr-24 -mt-16"></div>
-                    <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-6">
-                       <div className="flex items-center gap-5 w-full lg:w-auto">
-                          <div className="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-500/10 shrink-0"><BarChart3 size={28} /></div>
+                    <div className="relative z-10 flex flex-row flex-wrap justify-between items-center gap-4">
+                       <div className="flex items-center gap-3 shrink-0">
+                          <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-500/10 shrink-0"><BarChart3 size={24} /></div>
                           <div>
-                             <h3 className="font-black text-2xl font-condensed italic uppercase tracking-tighter leading-none whitespace-nowrap">Market Intel</h3>
-                             <div className="flex items-center gap-2 mt-2 bg-emerald-50 px-3 py-1 rounded-lg w-fit">
-                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
-                                <span className="text-[9px] font-black text-emerald-600 uppercase tracking-widest">Live Terminal</span>
+                             <h3 className="font-black text-xl font-condensed italic uppercase tracking-tighter leading-none whitespace-nowrap">Market Intel</h3>
+                             <div className="flex items-center gap-2 mt-1 bg-emerald-50 px-2 py-0.5 rounded-lg w-fit">
+                                <div className="w-1 h-1 bg-emerald-500 rounded-full animate-pulse"></div>
+                                <span className="text-[8px] font-black text-emerald-600 uppercase tracking-widest">Live Terminal</span>
                              </div>
                           </div>
                        </div>
                        
-                       <div className="flex flex-col sm:flex-row items-center gap-6 w-full lg:w-auto justify-end">
+                       <div className="flex flex-row flex-wrap items-center gap-4 justify-end w-full sm:w-auto mt-2 sm:mt-0">
                           {/* Date Filter Integration */}
-                          <div className="flex items-center gap-3 bg-gray-50 p-3 px-5 rounded-2xl border border-gray-100 w-full sm:w-auto shadow-sm">
+                          <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl border border-gray-100 shadow-sm shrink-0">
                              <Calendar size={18} className="text-red-500 shrink-0" />
                              <div className="flex flex-col">
                                 <label className="text-[7px] font-black uppercase text-gray-400 tracking-[0.2em] mb-0.5">Filter Date</label>
@@ -848,30 +848,26 @@ const AdminAnnouncements = () => {
       )}
 
       {activeTab === 'history' && (
-        <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto">
-           {/* Date Filter Implementation - Refined Grid Layout */}
-           <div className="bg-white rounded-[2rem] p-4 shadow-xl border border-gray-100 grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-center gap-4">
-              <div className="w-12 h-12 bg-gray-950 rounded-xl flex items-center justify-center text-white shrink-0">
-                 <Calendar size={22} />
-              </div>
-              
-              <div className="flex flex-col">
-                 <p className="text-[8px] font-black uppercase tracking-[0.3em] text-[#1d4ed8] mb-0.5 italic">Record Archive</p>
-                 <input 
-                   type="date" 
-                   value={historyDate} 
-                   onChange={(e) => setHistoryDate(e.target.value)} 
-                   className="bg-transparent font-black text-lg outline-none cursor-pointer text-gray-950 p-0 border-none w-full min-w-[150px]" 
-                 />
-              </div>
-              
-              <button 
-                onClick={exportToPDF} 
-                className="bg-[#1d4ed8] text-white px-6 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-red-500/20 active:scale-[0.98] transition-all whitespace-nowrap"
-              >
-                <Download size={16} /> Export Report
-              </button>
-           </div>
+        <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500 mx-auto pb-20">
+            {/* Record Archive Header */}
+            <div className="bg-white rounded-[2rem] p-4 shadow-xl border border-gray-100 flex flex-row flex-wrap justify-between items-center gap-4 sticky top-2 z-[90]">
+               <div className="flex items-center gap-3 shrink-0">
+                  <div className="w-12 h-12 bg-gray-950 rounded-2xl flex items-center justify-center text-white shadow-lg shrink-0"><Calendar size={20} /></div>
+                  <div className="flex flex-col">
+                     <p className="text-[8px] font-black uppercase tracking-[0.2em] text-blue-600 mb-0.5 italic">Record Archive</p>
+                     <input 
+                       type="date" 
+                       value={historyDate} 
+                       onChange={(e) => setHistoryDate(e.target.value)} 
+                       className="bg-transparent border-none font-black font-condensed text-xl outline-none cursor-pointer text-gray-950 p-0" 
+                     />
+                  </div>
+               </div>
+               
+               <button onClick={exportToPDF} className="w-full sm:w-auto flex-1 bg-[#1d4ed8] text-white px-4 py-3 rounded-xl font-black text-[9px] uppercase tracking-widest shadow-lg hover:shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2 shrink-0">
+                  <Download size={14} /> Export Report
+               </button>
+            </div>
 
            <div className="space-y-4 pb-20">
               {filteredHistory.length > 0 ? filteredHistory.map((res, i) => (
