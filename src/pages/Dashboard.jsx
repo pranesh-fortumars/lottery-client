@@ -139,43 +139,60 @@ const Dashboard = () => {
 
       {/* Games Grid */}
       <div className="grid grid-cols-2 gap-4 px-4 pb-10">
-        {games.map((game, idx) => (
-          <div 
-            key={idx} 
-            className={`game-card-gradient p-4 rounded-2xl relative overflow-hidden h-[160px] shadow-sm transition-all ${
-              game.closed ? 'opacity-60 grayscale scale-[0.98]' : 'cursor-pointer hover:shadow-md'
-            }`}
-            onClick={() => !game.closed && navigate(`/select/${game.id}`)}
-          >
-            <div className="relative z-10 flex flex-col justify-between h-full">
-              <div className="text-white">
-                <p className="text-[10px] font-bold opacity-80 leading-tight uppercase tracking-widest mb-2">Booking Time</p>
-                {game.closed ? (
-                  <div className="h-10 flex items-center">
-                    <span className="bg-slate-800 text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-slate-600">CLOSED</span>
-                  </div>
-                ) : (
-                  <CountdownTimer drawTime={game.time} brand={game.name} appSettings={appSettings} />
-                )}
-              </div>
-              
-              <div className="flex justify-between items-end mt-3 border-t border-white/10 pt-2">
-                <span className="text-white text-[13px] font-bold">{game.time}</span>
-                {game.type === 'dear' ? (
-                  <div className="flex flex-col items-end leading-[0.8]">
-                    <span className="text-blue-200 font-bold text-[16px] tracking-tight">DEAR</span>
-                    <span className="text-white text-[8px] font-bold tracking-[0.2em] opacity-80">LOTTERY</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                     <div className="w-6 h-6 bg-emerald-400 rounded-md flex items-center justify-center font-bold text-[10px] text-emerald-950">K</div>
-                     <span className="text-emerald-400 text-[9px] font-bold leading-none uppercase">Kerala<br/>Lottery</span>
-                  </div>
-                )}
+        {games.map((game, idx) => {
+          let gradientClass = 'bg-gradient-to-br from-blue-500 to-blue-700';
+          if (game.type.includes('dear')) gradientClass = 'bg-gradient-to-br from-rose-500 to-rose-700 shadow-rose-500/30';
+          else if (game.type.includes('kerala')) gradientClass = 'bg-gradient-to-br from-emerald-500 to-emerald-700 shadow-emerald-500/30';
+          else if (game.type.includes('dubai')) gradientClass = 'bg-gradient-to-br from-purple-500 to-purple-700 shadow-purple-500/30';
+
+          return (
+            <div 
+              key={idx} 
+              className={`${gradientClass} p-4 rounded-2xl relative overflow-hidden h-[160px] shadow-lg transition-all ${
+                game.closed ? 'opacity-60 grayscale scale-[0.98]' : 'cursor-pointer hover:shadow-xl hover:scale-[1.02]'
+              }`}
+              onClick={() => !game.closed && navigate(`/select/${game.id}`)}
+            >
+              <div className="relative z-10 flex flex-col justify-between h-full">
+                <div className="text-white">
+                  <p className="text-[10px] font-bold opacity-90 leading-tight uppercase tracking-widest mb-2">Booking Time</p>
+                  {game.closed ? (
+                    <div className="h-10 flex items-center">
+                      <span className="bg-slate-900/50 text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border border-white/20">CLOSED</span>
+                    </div>
+                  ) : (
+                    <CountdownTimer drawTime={game.time} brand={game.name} appSettings={appSettings} />
+                  )}
+                </div>
+                
+                <div className="flex justify-between items-end mt-3 border-t border-white/20 pt-2">
+                  <span className="text-white text-[13px] font-black">{game.time}</span>
+                  {game.type.includes('dear') ? (
+                    <div className="flex flex-col items-end leading-[0.8]">
+                      <span className="text-rose-100 font-black text-[16px] tracking-tight">DEAR</span>
+                      <span className="text-white text-[8px] font-black tracking-[0.2em] opacity-90">LOTTERY</span>
+                    </div>
+                  ) : game.type.includes('kerala') ? (
+                    <div className="flex flex-col items-end leading-[0.8]">
+                       <span className="text-emerald-100 font-black text-[15px] tracking-tight">KERALA</span>
+                       <span className="text-white text-[8px] font-black tracking-[0.2em] opacity-90">LOTTERY</span>
+                    </div>
+                  ) : game.type.includes('dubai') ? (
+                    <div className="flex flex-col items-end leading-[0.8]">
+                       <span className="text-purple-100 font-black text-[16px] tracking-tight">DUBAI</span>
+                       <span className="text-white text-[8px] font-black tracking-[0.2em] opacity-90">LOTTERY</span>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-end leading-[0.8]">
+                       <span className="text-blue-100 font-black text-[16px] tracking-tight">{game.name.split(' ')[0]}</span>
+                       <span className="text-white text-[8px] font-black tracking-[0.2em] opacity-90">LOTTERY</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Jackpot Section */}

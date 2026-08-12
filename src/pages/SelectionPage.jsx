@@ -65,6 +65,14 @@ const SelectionPage = () => {
     </button>
   );
 
+  const getBannerGradient = () => {
+    const type = marketName.toLowerCase();
+    if (type.includes('dear')) return 'bg-gradient-to-r from-rose-500 to-rose-700';
+    if (type.includes('kerala')) return 'bg-gradient-to-r from-emerald-500 to-emerald-700';
+    if (type.includes('dubai')) return 'bg-gradient-to-r from-purple-500 to-purple-700';
+    return 'bg-gradient-to-r from-blue-500 to-blue-700';
+  };
+
   return (
     <PageWrapper 
       title={getGameName()} 
@@ -74,13 +82,13 @@ const SelectionPage = () => {
     >
       <div className="bg-slate-50 min-h-screen pb-24">
         {/* Draw Status Banner */}
-        <div className={`py-4 px-6 flex justify-between items-center shadow-sm border-b border-white/10 ${closed ? 'bg-slate-800' : 'bg-gradient-to-r from-primary to-primary-dark'}`}>
+        <div className={`py-4 px-6 flex justify-between items-center shadow-lg border-b border-white/10 ${closed ? 'bg-slate-800' : getBannerGradient()}`}>
            <div>
-              <p className="text-white/80 text-[10px] font-bold uppercase tracking-widest">{marketName} DRAW</p>
-              <h2 className="text-white text-xl font-bold">{drawTime}</h2>
+              <p className="text-white/80 text-[10px] font-black uppercase tracking-widest">{marketName} DRAW</p>
+              <h2 className="text-white text-xl font-black">{drawTime}</h2>
            </div>
            <div className="text-right">
-              <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white shadow-sm ${closed ? 'text-slate-600' : 'text-primary'}`}>
+              <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-white shadow-sm ${closed ? 'text-slate-600' : 'text-gray-900'}`}>
                 {closed ? (globalLock ? 'SALES CLOSED' : 'EXPIRED') : 'OPEN'}
               </span>
            </div>
