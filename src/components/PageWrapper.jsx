@@ -43,7 +43,7 @@ export const Header = ({ title, showBack = false }) => {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white flex flex-col z-[1000] shadow-md w-full shrink-0 border-b border-white/10 overflow-hidden">
+      <header className="bg-gradient-to-r from-primary-dark to-primary text-white flex flex-col z-[1000] shadow-md w-full shrink-0 border-b border-white/10 overflow-hidden">
         <div className="flex items-center justify-between px-4" style={{ height: '70px' }}>
           <div className="flex items-center gap-3">
             {showBack ? (
@@ -68,7 +68,7 @@ export const Header = ({ title, showBack = false }) => {
               >
                 <Bell size={22} strokeWidth={2.5} />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-blue-900 animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-primary text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-primary-dark animate-pulse">
                     {unreadCount}
                   </span>
                 )}
@@ -90,7 +90,7 @@ export const Header = ({ title, showBack = false }) => {
               className="bg-indigo-950/80 text-[10px] font-bold uppercase text-blue-200 py-2 border-t border-white/10 overflow-hidden whitespace-nowrap"
             >
               <div className="animate-marquee inline-block px-4">
-                <span className="text-white px-2 py-0.5 bg-blue-600 rounded mr-4 font-bold text-[9px]">LATEST NEWS</span>
+                <span className="text-white px-2 py-0.5 bg-primary rounded mr-4 font-bold text-[9px]">LATEST NEWS</span>
                 {hoveringNews} • {hoveringNews} • {hoveringNews} • 
               </div>
             </motion.div>
@@ -103,7 +103,7 @@ export const Header = ({ title, showBack = false }) => {
               className="bg-indigo-950/80 text-[10px] font-bold uppercase text-blue-200 py-2 border-t border-white/10 overflow-hidden whitespace-nowrap"
             >
               <div className="animate-marquee inline-block px-4">
-                <span className="text-white px-2 py-0.5 bg-blue-600 rounded mr-4 font-bold text-[9px]">BREAKING NEWS</span>
+                <span className="text-white px-2 py-0.5 bg-primary rounded mr-4 font-bold text-[9px]">BREAKING NEWS</span>
                 {lastAnnouncement.message} • {lastAnnouncement.ticker} • CHECK RESULTS TAB FOR DETAILS • 
               </div>
             </motion.div>
@@ -129,7 +129,7 @@ export const Header = ({ title, showBack = false }) => {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-slate-50 z-[2001] shadow-2xl flex flex-col"
             >
-              <div className="bg-blue-900 p-6 text-white shrink-0">
+              <div className="bg-primary-dark p-6 text-white shrink-0">
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center gap-2">
                     <Bell size={24} fill="white" />
@@ -185,7 +185,7 @@ export const Header = ({ title, showBack = false }) => {
                         <div className={`w-10 h-10 rounded-lg shrink-0 flex items-center justify-center ${
                           n.type === 'win' ? 'bg-emerald-100 text-emerald-700' :
                           n.type === 'result' ? 'bg-indigo-100 text-indigo-700' :
-                          'bg-blue-100 text-blue-700'
+                          'bg-primary-light text-primary-dark'
                         }`}>
                           {n.type === 'win' ? <Trophy size={18} /> : 
                            n.type === 'result' ? <Megaphone size={18} /> : 
@@ -196,7 +196,7 @@ export const Header = ({ title, showBack = false }) => {
                           <p className="text-[11px] font-medium text-slate-500 leading-relaxed">{n.message}</p>
                           <span className="text-[9px] font-bold text-slate-400 mt-2 block">{n.time}</span>
                         </div>
-                        {!n.read && <div className="w-2 h-2 shrink-0 bg-blue-500 rounded-full mt-2"></div>}
+                        {!n.read && <div className="w-2 h-2 shrink-0 bg-primary rounded-full mt-2"></div>}
                       </div>
                     ))}
                   </>
@@ -251,14 +251,14 @@ export const BottomNav = () => {
             end={link.to === '/admin'}
             className={({ isActive }) => `flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${
               isActive 
-                ? 'text-blue-600' 
+                ? 'text-primary' 
                 : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
             }`}
           >
             {({ isActive }) => (
               <>
                 <link.icon size={22} strokeWidth={isActive ? 2.5 : 2} />
-                <div className={`w-1 h-1 rounded-full bg-blue-600 transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}></div>
+                <div className={`w-1 h-1 rounded-full bg-primary transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}></div>
               </>
             )}
           </NavLink>
@@ -348,8 +348,8 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
   if (appSettings.maintenanceMode && user?.role !== 'admin' && !isAuthPage) {
     return (
       <div className="flex flex-col h-screen w-full bg-slate-50 items-center justify-center p-10 text-center space-y-6">
-        <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center">
-           <ShieldAlert size={40} className="text-blue-600" />
+        <div className="w-20 h-20 bg-primary-light rounded-full flex items-center justify-center">
+           <ShieldAlert size={40} className="text-primary" />
         </div>
         <h1 className="text-2xl font-bold text-slate-800">System Maintenance</h1>
         <p className="text-sm font-medium text-slate-500 leading-relaxed max-w-sm">
@@ -357,7 +357,7 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
         </p>
         <button 
           onClick={() => navigate('/login')}
-          className="text-[11px] font-bold text-slate-400 hover:text-blue-600 transition-colors pt-10"
+          className="text-[11px] font-bold text-slate-400 hover:text-primary transition-colors pt-10"
         >
           Admin Access
         </button>

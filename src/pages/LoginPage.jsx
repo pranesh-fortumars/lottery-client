@@ -39,7 +39,7 @@ const LoginPage = () => {
         
         <form className="w-full space-y-5 pt-10 max-w-md mx-auto" onSubmit={handleLogin}>
           {/* ID Input Group */}
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
             <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
               ID
             </div>
@@ -54,7 +54,7 @@ const LoginPage = () => {
           </div>
 
           {/* Password Input Group */}
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
+          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
             <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100">
                <Lock size={16} className="text-slate-400" />
             </div>
@@ -71,7 +71,7 @@ const LoginPage = () => {
           <div className="pt-6 space-y-4">
             <button 
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50" 
+              className="w-full bg-primary hover:bg-primary-hover text-white py-4 rounded-xl font-bold text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50" 
               type="submit"
             >
                {loading ? "Verifying..." : "Confirm Identity"} <LogIn size={16} />
@@ -79,14 +79,14 @@ const LoginPage = () => {
             
             <div className="flex gap-4">
               <button 
-                className="flex-1 bg-white border border-slate-200 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-blue-600 hover:text-blue-600 transition-all shadow-sm" 
+                className="flex-1 bg-white border border-slate-200 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-primary hover:text-primary transition-all shadow-sm" 
                 type="button"
                 onClick={() => navigate('/signup')}
               >
                 New Account
               </button>
               <button 
-                className="flex-[2] bg-white border border-slate-200 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-blue-600 hover:text-blue-600 transition-all shadow-sm" 
+                className="flex-[2] bg-white border border-slate-200 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-primary hover:text-primary transition-all shadow-sm" 
                 type="button"
                 onClick={() => navigate('/reset-password')}
               >

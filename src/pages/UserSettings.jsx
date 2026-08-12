@@ -2,11 +2,13 @@ import React from 'react';
 import PageWrapper from '../components/PageWrapper';
 import { Bell, Lock, Shield, User, ChevronRight, HelpCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 import { APP_VERSION, BUILD_VERSION } from '../config';
 
 const UserSettings = () => {
   const { user, logout } = useAuth();
+  const { theme, changeTheme, themes } = useTheme();
   const navigate = useNavigate();
 
   const settingsGroups = [
@@ -32,28 +34,46 @@ const UserSettings = () => {
         </div>
 
         {/* Settings Groups */}
-        <div className="w-full max-w-sm space-y-3">
+        <div className="w-full max-w-sm space-y-3 mb-6">
           {settingsGroups.map((group, idx) => (
             <button 
               key={idx}
               onClick={group.onClick}
-              className="w-full bg-white border border-slate-200 p-5 rounded-2xl flex items-center gap-4 hover:border-blue-200 active:scale-95 transition-all group shadow-sm"
+              className="w-full bg-white border border-slate-200 p-5 rounded-2xl flex items-center gap-4 hover:border-primary/50 active:scale-95 transition-all group shadow-sm"
             >
-              <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors border border-slate-100">
+              <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:bg-primary/5 transition-colors border border-slate-100">
                  {group.icon}
               </div>
               <div className="text-left flex-1 min-w-0">
                  <p className="text-xs font-bold text-slate-800 uppercase tracking-tight">{group.label}</p>
                  <p className="text-[9px] font-medium text-slate-500 uppercase tracking-widest truncate">{group.desc}</p>
               </div>
-              <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-600 transition-colors" />
+              <ChevronRight size={16} className="text-slate-300 group-hover:text-primary transition-colors" />
             </button>
           ))}
         </div>
 
+        {/* Theme Selector */}
+        <div className="w-full max-w-sm bg-white rounded-3xl p-6 mb-8 border border-slate-200 shadow-sm">
+           <p className="text-xs font-bold text-slate-800 uppercase tracking-tight mb-4">Application Theme</p>
+           <div className="flex flex-wrap gap-4">
+              {themes.map((t) => (
+                 <button
+                   key={t.id}
+                   onClick={() => changeTheme(t.id)}
+                   className={`w-12 h-12 rounded-full border-[3px] transition-all flex items-center justify-center ${theme === t.id ? 'border-gray-800 scale-110 shadow-lg' : 'border-transparent hover:scale-105'}`}
+                   style={{ backgroundColor: t.color }}
+                   title={t.name}
+                 >
+                    {theme === t.id && <div className="w-2 h-2 bg-white rounded-full"></div>}
+                 </button>
+              ))}
+           </div>
+        </div>
+
         <button 
           onClick={logout}
-          className="w-full max-w-sm mt-12 h-14 bg-slate-800 hover:bg-red-600 text-white rounded-xl font-bold text-[10px] uppercase tracking-[0.3em] shadow-sm active:scale-95 transition-colors flex items-center justify-center gap-2 mb-10"
+          className="w-full max-w-sm h-14 bg-slate-800 hover:bg-red-600 text-white rounded-xl font-bold text-[10px] uppercase tracking-[0.3em] shadow-sm active:scale-95 transition-colors flex items-center justify-center gap-2 mb-10"
         >
           Terminate Session
         </button>

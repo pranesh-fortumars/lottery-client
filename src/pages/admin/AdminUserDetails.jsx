@@ -289,7 +289,7 @@ const AdminUserDetails = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#f8f9fa]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#6366f1]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-hover"></div>
       </div>
     );
   }
@@ -299,17 +299,17 @@ const AdminUserDetails = () => {
     <PullToRefresh onRefresh={handleRefresh}>
       <div className="space-y-6 p-4 pb-24 relative min-h-screen bg-[#f8f9fa]">
       {/* Navigation & Header */}
-      <div className="border-[1.5px] border-[#4f46e5] rounded-[2.5rem] p-8 bg-white shadow-2xl relative overflow-hidden group">
-         <div className="absolute top-0 right-0 w-32 h-32 bg-[#4f46e5]/5 rounded-full blur-3xl"></div>
+      <div className="border-[1.5px] border-primary rounded-[2.5rem] p-8 bg-white shadow-2xl relative overflow-hidden group">
+         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
          <button 
            onClick={() => navigate('/admin/users')}
-           className="flex items-center gap-2 text-gray-400 font-black text-[10px] uppercase tracking-widest hover:text-[#6366f1] mb-6 transition-colors"
+           className="flex items-center gap-2 text-gray-400 font-black text-[10px] uppercase tracking-widest hover:text-primary-hover mb-6 transition-colors"
          >
            <ArrowLeft size={16} /> Back to Directory
          </button>
          
          <div className="flex gap-4 items-center">
-            <div className="w-20 h-20 rounded-[2rem] bg-gray-50 flex items-center justify-center text-[#6366f1] font-black text-3xl border border-white shadow-lg transform group-hover:-rotate-6 transition-transform relative">
+            <div className="w-20 h-20 rounded-[2rem] bg-gray-50 flex items-center justify-center text-primary-hover font-black text-3xl border border-white shadow-lg transform group-hover:-rotate-6 transition-transform relative">
                {user.name?.charAt(0) || 'U'}
                <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center">
                   <ShieldCheck size={14} className="text-white" />
@@ -317,7 +317,7 @@ const AdminUserDetails = () => {
             </div>
             <div className="flex-grow">
                <h2 className="text-2xl font-black text-gray-900 font-condensed uppercase tracking-tighter italic leading-none">{user.name || 'Anonymous'}</h2>
-               <p className="text-[#4f46e5] font-black text-[10px] uppercase tracking-widest leading-none mt-1">Player Rank: Lottery Elite</p>
+               <p className="text-primary font-black text-[10px] uppercase tracking-widest leading-none mt-1">Player Rank: Lottery Elite</p>
                <div className="mt-3 flex gap-2">
                  <span className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest border border-emerald-100 flex items-center gap-1">
                     <Zap size={10} fill="currentColor" /> {user.status || 'Active'}
@@ -355,11 +355,11 @@ const AdminUserDetails = () => {
         <>
           {/* Wallet Dashboard */}
       <div className="bg-gray-950 rounded-[2.5rem] p-6 md:p-10 text-white shadow-2xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-6 opacity-10 bg-[#4f46e5] rounded-bl-[2.5rem] group-hover:scale-110 transition-transform">
+          <div className="absolute top-0 right-0 p-6 opacity-10 bg-primary rounded-bl-[2.5rem] group-hover:scale-110 transition-transform">
              <Wallet size={48} />
           </div>
           
-          <p className="text-[10px] font-black uppercase tracking-widest text-[#4f46e5] mb-4">Total Authority Balance</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-primary mb-4">Total Authority Balance</p>
           <div className="flex items-baseline gap-2">
              <span className="text-4xl font-black italic tracking-tighter">₹ {(user.balance || 0).toLocaleString()}</span>
           </div>
@@ -401,7 +401,7 @@ const AdminUserDetails = () => {
       {/* Credentials & Details */}
       <div className="bg-white rounded-[2.5rem] p-5 md:p-10 shadow-xl border border-gray-100 space-y-8">
          <div className="flex items-center gap-3 border-b border-gray-50 pb-6">
-            <ShieldCheck className="text-[#6366f1]" size={22} />
+            <ShieldCheck className="text-primary-hover" size={22} />
             <h3 className="text-xl font-black font-condensed uppercase tracking-tighter text-gray-800 italic leading-none">Identity Check</h3>
          </div>
          
@@ -455,7 +455,7 @@ const AdminUserDetails = () => {
             </AnimatePresence>
 
             <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-               <Landmark className="text-[#6366f1]" size={20} />
+               <Landmark className="text-primary-hover" size={20} />
                <h4 className="text-sm font-black uppercase tracking-tight text-gray-800 italic font-condensed">Banking & Payout Credentials</h4>
             </div>
             
@@ -506,7 +506,7 @@ const AdminUserDetails = () => {
                   <div key={act.id} className="flex items-center justify-between p-5 bg-white border border-gray-50 rounded-[1.5rem] shadow-sm active:scale-[0.98] transition-all">
                      <div className="flex items-center gap-4">
                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center border-2 border-white shadow-sm transition-transform ${
-                           act.type === 'Purchase' ? 'bg-[#eff6ff] text-[#6366f1]' :
+                           act.type === 'Purchase' ? 'bg-[#eff6ff] text-primary-hover' :
                            act.type === 'Win' ? 'bg-emerald-50 text-emerald-600' :
                            'bg-blue-50 text-blue-600'
                         }`}>
@@ -538,7 +538,7 @@ const AdminUserDetails = () => {
               className={`flex-1 py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest active:scale-95 shadow-xl transition-all flex items-center justify-center gap-2 ${
                 user.status === 'Blocked' 
                   ? 'bg-emerald-500 text-white shadow-emerald-500/10' 
-                  : 'bg-white border-2 border-[#4f46e5]/20 text-[#4f46e5] shadow-red-500/5'
+                  : 'bg-white border-2 border-primary/20 text-primary shadow-red-500/5'
               }`}
             >
               {user.status === 'Blocked' ? 'Unrestrict Entity' : 'Restrict Entity'}
@@ -547,7 +547,7 @@ const AdminUserDetails = () => {
               onClick={() => setShowEditModal(true)}
               className="flex-1 bg-gray-900 text-white py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest active:scale-95 shadow-xl shadow-black/10 transition-all flex items-center justify-center gap-2"
             >
-               Edit Profile <Edit size={16} className="text-[#6366f1]" />
+               Edit Profile <Edit size={16} className="text-primary-hover" />
             </button>
          </div>
          
@@ -748,7 +748,7 @@ const AdminUserDetails = () => {
               <div className="flex justify-between items-start border-b border-gray-50 pb-8">
                 <div>
                    <div className="flex items-center gap-3 mb-2">
-                       <Edit className="text-[#6366f1]" size={24} />
+                       <Edit className="text-primary-hover" size={24} />
                        <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tighter italic leading-none">Modify Profile</h2>
                    </div>
                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Updating global identity records</p>
@@ -774,7 +774,7 @@ const AdminUserDetails = () => {
                   <div key={field.key} className="space-y-1.5">
                     <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">{field.label}</label>
                     <div className="relative group/field">
-                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-[#6366f1] transition-colors" size={18} />
+                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-primary-hover transition-colors" size={18} />
                       <input 
                         required
                         type={field.type} 
@@ -782,7 +782,7 @@ const AdminUserDetails = () => {
                         pattern={field.pattern}
                         value={editData[field.key]}
                         onChange={e => setEditData({...editData, [field.key]: e.target.value})}
-                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#6366f1]/20 transition-all text-xs"
+                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-primary-hover/20 transition-all text-xs"
                       />
                     </div>
                   </div>

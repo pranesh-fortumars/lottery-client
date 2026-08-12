@@ -56,7 +56,7 @@ const SelectionPage = () => {
     <button 
       onClick={() => navigate('/cart')}
       disabled={closed}
-      className={`w-full text-white py-4 rounded-xl flex items-center justify-center gap-3 font-bold text-lg shadow-sm relative transition-all ${closed ? 'bg-slate-400' : 'bg-blue-600 hover:bg-blue-700 active:scale-95'}`}
+      className={`w-full text-white py-4 rounded-xl flex items-center justify-center gap-3 font-bold text-lg shadow-sm relative transition-all ${closed ? 'bg-slate-400' : 'bg-primary hover:bg-primary-hover active:scale-95'}`}
     >
       <ShoppingCart size={22} fill="white" /> {closed ? (globalLock ? 'SALES CLOSED' : 'EXPIRED') : 'PAY NOW'}
       {cart.length > 0 && !closed && (
@@ -74,13 +74,13 @@ const SelectionPage = () => {
     >
       <div className="bg-slate-50 min-h-screen pb-24">
         {/* Draw Status Banner */}
-        <div className={`py-4 px-6 flex justify-between items-center shadow-sm border-b border-white/10 ${closed ? 'bg-slate-800' : 'bg-gradient-to-r from-blue-600 to-indigo-600'}`}>
+        <div className={`py-4 px-6 flex justify-between items-center shadow-sm border-b border-white/10 ${closed ? 'bg-slate-800' : 'bg-gradient-to-r from-primary to-primary-dark'}`}>
            <div>
               <p className="text-white/80 text-[10px] font-bold uppercase tracking-widest">{marketName} DRAW</p>
               <h2 className="text-white text-xl font-bold">{drawTime}</h2>
            </div>
            <div className="text-right">
-              <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white shadow-sm ${closed ? 'text-slate-600' : 'text-blue-600'}`}>
+              <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white shadow-sm ${closed ? 'text-slate-600' : 'text-primary'}`}>
                 {closed ? (globalLock ? 'SALES CLOSED' : 'EXPIRED') : 'OPEN'}
               </span>
            </div>
@@ -88,10 +88,10 @@ const SelectionPage = () => {
 
         <div className="p-4 space-y-5">
           <div className="flex gap-3">
-             <button onClick={() => navigate('/rules')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-blue-500 hover:text-blue-600 transition-all">
+             <button onClick={() => navigate('/rules')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-primary-hover hover:text-primary transition-all">
                 <Gavel size={16} /> Rules
              </button>
-             <button onClick={() => navigate('/results')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-blue-500 hover:text-blue-600 transition-all">
+             <button onClick={() => navigate('/results')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-primary-hover hover:text-primary transition-all">
                 <ScrollText size={16} /> History
              </button>
           </div>
@@ -128,8 +128,8 @@ const SelectionPage = () => {
             {/* Triple Digit - ABC (Split by Tier) */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 ml-2">
-                 <div className="w-5 h-5 bg-blue-100 rounded-md flex items-center justify-center border border-blue-200">
-                    <span className="text-blue-600 font-bold text-[10px]">3D</span>
+                 <div className="w-5 h-5 bg-primary-light rounded-md flex items-center justify-center border border-primary-light">
+                    <span className="text-primary font-bold text-[10px]">3D</span>
                  </div>
                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">3D Pricing Categories</h4>
               </div>

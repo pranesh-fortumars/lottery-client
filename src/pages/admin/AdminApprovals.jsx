@@ -131,15 +131,15 @@ const AdminApprovals = () => {
   return (
     <div className="p-4 space-y-6 pb-24">
       {/* Header Banner */}
-      <div className="border-[1.5px] border-[#4f46e5] rounded-[2.5rem] p-6 bg-white shadow-2xl relative overflow-hidden group">
-         <div className="absolute top-0 right-0 w-32 h-32 bg-[#4f46e5]/5 rounded-full blur-3xl"></div>
+      <div className="border-[1.5px] border-primary rounded-[2.5rem] p-6 bg-white shadow-2xl relative overflow-hidden group">
+         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
          <div className="flex gap-4 items-center mb-6">
-            <div className="w-14 h-14 bg-red-50 text-[#4f46e5] rounded-2xl flex items-center justify-center shadow-sm shrink-0">
+            <div className="w-14 h-14 bg-red-50 text-primary rounded-2xl flex items-center justify-center shadow-sm shrink-0">
                <ShieldAlert size={28} />
             </div>
             <div className="flex-grow">
                <h2 className="text-2xl font-black text-gray-900 font-condensed uppercase tracking-tighter italic">Manage Payments</h2>
-               <p className="text-[#4f46e5] font-black text-[10px] uppercase tracking-widest leading-none mt-1">Real-Time Verification & Audit</p>
+               <p className="text-primary font-black text-[10px] uppercase tracking-widest leading-none mt-1">Real-Time Verification & Audit</p>
             </div>
          </div>
          
@@ -158,12 +158,12 @@ const AdminApprovals = () => {
           onClick={() => setActiveTab('pending')}
           className={`flex-1 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
             activeTab === 'pending'
-              ? 'bg-[#4f46e5] text-white shadow-lg shadow-red-500/20 scale-[1.02]'
+              ? 'bg-primary text-white shadow-lg shadow-red-500/20 scale-[1.02]'
               : 'text-gray-500 hover:text-gray-900'
           }`}
         >
           Pending Verification
-          <span className={`px-2 py-0.5 rounded-full text-[9px] ${activeTab === 'pending' ? 'bg-white text-[#4f46e5]' : 'bg-gray-200 text-gray-600'}`}>
+          <span className={`px-2 py-0.5 rounded-full text-[9px] ${activeTab === 'pending' ? 'bg-white text-primary' : 'bg-gray-200 text-gray-600'}`}>
             {pendingTxs.length}
           </span>
         </button>
@@ -171,12 +171,12 @@ const AdminApprovals = () => {
           onClick={() => setActiveTab('history')}
           className={`flex-1 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${
             activeTab === 'history'
-              ? 'bg-[#4f46e5] text-white shadow-lg shadow-red-500/20 scale-[1.02]'
+              ? 'bg-primary text-white shadow-lg shadow-red-500/20 scale-[1.02]'
               : 'text-gray-500 hover:text-gray-900'
           }`}
         >
           Transaction History
-          <span className={`px-2 py-0.5 rounded-full text-[9px] ${activeTab === 'history' ? 'bg-white text-[#4f46e5]' : 'bg-gray-200 text-gray-600'}`}>
+          <span className={`px-2 py-0.5 rounded-full text-[9px] ${activeTab === 'history' ? 'bg-white text-primary' : 'bg-gray-200 text-gray-600'}`}>
             {historyTxs.length}
           </span>
         </button>
@@ -210,7 +210,7 @@ const AdminApprovals = () => {
                       <p className="text-[8px] text-gray-300 font-bold uppercase tracking-widest mt-0.5">ID: {tx.userId.slice(0, 8)}</p>
                    </div>
                    <div className="text-right">
-                      <p className="text-2xl font-black text-[#2563eb] tracking-tighter italic">₹{tx.amount}</p>
+                      <p className="text-2xl font-black text-primary tracking-tighter italic">₹{tx.amount}</p>
                       {tx.userEnteredAmount !== undefined && tx.userEnteredAmount !== null && (
                          <p className="text-[9px] font-black text-emerald-600 uppercase tracking-widest mt-1">
                             User Paid: ₹{tx.userEnteredAmount}

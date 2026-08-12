@@ -113,16 +113,16 @@ const Dashboard = () => {
             className="bg-white border border-blue-200 p-4 rounded-2xl flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer shadow-sm"
           >
             <div className="flex items-center gap-4 relative z-10">
-              <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100 group-hover:bg-blue-100 transition-colors">
-                <QrCode className="text-blue-600" size={20} />
+              <div className="w-10 h-10 bg-primary-light rounded-xl flex items-center justify-center border border-primary-light group-hover:opacity-80 transition-opacity">
+                <QrCode className="text-primary" size={20} />
               </div>
               <div>
                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Active Payment ID</p>
                 <p className="text-sm font-bold text-slate-800 uppercase">{activePayment.upiId}</p>
-                <p className="text-[9px] font-bold text-blue-600 uppercase tracking-wider mt-0.5">{activePayment.bankName}</p>
+                <p className="text-[9px] font-bold text-primary uppercase tracking-wider mt-0.5">{activePayment.bankName}</p>
               </div>
             </div>
-            <div className="w-8 h-8 bg-blue-600 text-white rounded-lg shadow-sm flex items-center justify-center group-hover:bg-blue-700 transition-colors">
+            <div className="w-8 h-8 bg-primary text-white rounded-lg shadow-sm flex items-center justify-center group-hover:bg-primary-hover transition-colors">
               <CheckCircle2 size={16} />
             </div>
           </div>
@@ -131,8 +131,8 @@ const Dashboard = () => {
 
       {/* 3 & 4 Digits Game Title */}
       <div className="px-5 py-6 flex items-center gap-3">
-        <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100">
-           <Diamond className="text-blue-600 fill-blue-100" size={20} />
+        <div className="w-10 h-10 bg-primary-light rounded-xl flex items-center justify-center border border-primary-light/50">
+           <Diamond className="text-primary fill-primary/20" size={20} />
         </div>
         <h2 className="text-xl font-bold text-slate-800 uppercase tracking-tight">3 & 4 Digits Game</h2>
       </div>
@@ -203,13 +203,13 @@ const Dashboard = () => {
 
           <div className="flex gap-4 px-4 pb-20 pt-6">
             <button 
-              className="bg-indigo-600 text-white py-3.5 px-6 rounded-xl font-bold text-sm shadow-sm hover:bg-indigo-700 active:scale-95 flex-1 uppercase tracking-wider transition-colors"
+              className="bg-primary-dark text-white py-3.5 px-6 rounded-xl font-bold text-sm shadow-sm hover:opacity-90 active:scale-95 flex-1 uppercase tracking-wider transition-opacity"
               onClick={() => navigate('/jackpot')}
             >
               Wins Wins
             </button>
             <button 
-              className="bg-blue-600 text-white py-3.5 px-6 rounded-xl font-bold text-sm shadow-sm hover:bg-blue-700 active:scale-95 flex-1 uppercase tracking-wider transition-colors"
+              className="bg-primary text-white py-3.5 px-6 rounded-xl font-bold text-sm shadow-sm hover:bg-primary-hover active:scale-95 flex-1 uppercase tracking-wider transition-colors"
               onClick={() => navigate('/jackpot')}
             >
               JackPot

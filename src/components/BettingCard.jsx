@@ -150,7 +150,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
       <div className="border border-slate-200 rounded-2xl p-5 mb-4 bg-white shadow-sm transition-shadow hover:shadow-md">
         {/* Header Section */}
         <div className="flex gap-4 mb-6">
-          <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center shrink-0 border border-blue-100">
+          <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center shrink-0 border border-primary-light">
              <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Icon" className="w-8 h-8" />
           </div>
           <div className="flex-grow">
@@ -159,7 +159,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                    <h3 className="text-slate-800 font-bold text-base leading-none uppercase tracking-tight mb-1">
                       {title}
                    </h3>
-                   <p className="text-blue-600 font-bold text-[10px] uppercase tracking-wide leading-tight mb-2">
+                   <p className="text-primary font-bold text-[10px] uppercase tracking-wide leading-tight mb-2">
                       {currentWinText}
                    </p>
                    <p className="text-slate-900 font-bold text-lg leading-none">₹ {currentPrice}</p>
@@ -178,7 +178,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
         <div className="flex justify-between items-center mb-6 gap-4 px-1">
            <div className="flex gap-2">
               {row.numbers.map((_, i) => (
-                 <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[10px] shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-blue-600'}`}>
+                 <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[10px] shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
                     {getLabel(row, i)}
                  </div>
               ))}
@@ -194,7 +194,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                   pattern="[0-9]*"
                   value={num}
                   onChange={(e) => updateNumber(rowIdx, digIdx, e.target.value)}
-                  className={`w-12 h-12 border rounded-xl text-center text-2xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-blue-100 focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-300 focus:border-blue-500'}`} 
+                  className={`w-12 h-12 border rounded-xl text-center text-2xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-300 focus:border-primary'}`} 
                   placeholder="" 
                   maxLength="1"
                 />
@@ -214,14 +214,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
               {(row.numbers.length === 3 || row.numbers.length === 4) && (
                  <button 
                    onClick={() => handleBox(rowIdx)}
-                   className="bg-indigo-600 text-white px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-indigo-700"
+                   className="bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90"
                  >
                    BOX
                  </button>
               )}
               <button 
                 onClick={() => handleAdd(rowIdx)}
-                className="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-blue-700"
+                className="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-primary-hover"
               >
                 ADD
               </button>
@@ -235,14 +235,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
   return (
     <div className="border border-slate-200 rounded-2xl p-4 mb-6 bg-white shadow-sm transition-shadow hover:shadow-md">
       <div className="flex gap-4 mb-4 border-b border-slate-100 pb-4">
-        <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center shrink-0 border border-blue-100">
+        <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center shrink-0 border border-primary-light">
            <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Icon" className="w-8 h-8" />
         </div>
         <div className="flex-grow">
           <h3 className="text-slate-800 font-bold text-base leading-tight uppercase tracking-tight">
             {title}
           </h3>
-          <p className="text-blue-600 font-bold text-[10px] uppercase tracking-wide leading-none mb-1 mt-1">
+          <p className="text-primary font-bold text-[10px] uppercase tracking-wide leading-none mb-1 mt-1">
             {currentWinText && (currentWinText.includes('Win ') ? currentWinText : `Win ${currentWinText}`)}
           </p>
           <p className="text-slate-900 font-bold text-lg leading-none">₹ {currentPrice}</p>
@@ -263,7 +263,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
               onClick={() => setSelectedTier(opt)}
               className={`flex-shrink-0 px-4 py-2 rounded-lg text-[10px] font-bold uppercase transition-all border ${
                 selectedTier?.price === opt.price 
-                  ? 'bg-blue-50 text-blue-700 border-blue-200 shadow-sm' 
+                  ? 'bg-primary-light text-primary-dark border-primary-light shadow-sm' 
                   : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'
               }`}
             >
@@ -278,7 +278,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
           <div key={row.id} className="flex items-center justify-between gap-3 min-w-[340px]">
              <div className="flex gap-1 shrink-0">
                 {row.numbers.map((_, i) => (
-                   <div key={i} className={`w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-[9px] shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-blue-600'}`}>
+                   <div key={i} className={`w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-[9px] shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
                       {getLabel(row, i)}
                    </div>
                 ))}
@@ -294,7 +294,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                     pattern="[0-9]*"
                     value={num}
                     onChange={(e) => updateNumber(rowIdx, digIdx, e.target.value)}
-                    className={`w-10 h-10 border rounded-lg text-center text-xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-blue-100 focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-300 focus:border-blue-500'}`} 
+                    className={`w-10 h-10 border rounded-lg text-center text-xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-300 focus:border-primary'}`} 
                     placeholder="-" 
                     maxLength="1"
                   />
@@ -311,14 +311,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                 {(row.numbers.length === 3 || row.numbers.length === 4) && (
                    <button 
                      onClick={() => handleBox(rowIdx)}
-                     className="bg-indigo-600 text-white px-3 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-indigo-700"
+                     className="bg-primary-dark text-white px-3 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90"
                    >
                      BOX
                    </button>
                 )}
                 <button 
                   onClick={() => handleAdd(rowIdx)}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-blue-700"
+                  className="bg-primary text-white px-4 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-primary-hover"
                 >
                   ADD
                 </button>

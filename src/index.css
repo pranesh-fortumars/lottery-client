@@ -2,14 +2,62 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700;900&family=Inter:wght@400;600;700;900&family=Outfit:wght@400;600;700;800;900&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,900&display=swap');
 
+/* Core Theme Variables (Default Blue) */
 :root {
-  --color-brand-primary: #1e3a8a; /* blue-900 */
-  --color-brand-secondary: #4338ca; /* indigo-700 */
-  --color-brand-accent: #3b82f6; /* blue-500 */
+  --theme-primary: #2563eb;
+  --theme-primary-hover: #1d4ed8;
+  --theme-primary-light: #eff6ff;
+  --theme-primary-dark: #1e3a8a;
+  --theme-ring: rgba(37, 99, 235, 0.2);
+  
   --font-inter: "Inter", sans-serif;
   --font-outfit: "Outfit", sans-serif;
   --font-serif: "Crimson Pro", serif;
   --bg-body: #f8fafc;
+}
+
+/* Red Theme */
+.theme-red {
+  --theme-primary: #dc2626;
+  --theme-primary-hover: #b91c1c;
+  --theme-primary-light: #fef2f2;
+  --theme-primary-dark: #7f1d1d;
+  --theme-ring: rgba(220, 38, 38, 0.2);
+}
+
+/* Emerald Theme */
+.theme-emerald {
+  --theme-primary: #059669;
+  --theme-primary-hover: #047857;
+  --theme-primary-light: #ecfdf5;
+  --theme-primary-dark: #064e3b;
+  --theme-ring: rgba(5, 150, 105, 0.2);
+}
+
+/* Purple Theme */
+.theme-purple {
+  --theme-primary: #7c3aed;
+  --theme-primary-hover: #6d28d9;
+  --theme-primary-light: #f5f3ff;
+  --theme-primary-dark: #4c1d95;
+  --theme-ring: rgba(124, 58, 237, 0.2);
+}
+
+/* Gold/Amber Theme */
+.theme-gold {
+  --theme-primary: #d97706;
+  --theme-primary-hover: #b45309;
+  --theme-primary-light: #fffbeb;
+  --theme-primary-dark: #78350f;
+  --theme-ring: rgba(217, 119, 6, 0.2);
+}
+
+@theme {
+  --color-primary: var(--theme-primary);
+  --color-primary-hover: var(--theme-primary-hover);
+  --color-primary-light: var(--theme-primary-light);
+  --color-primary-dark: var(--theme-primary-dark);
+  --color-primary-ring: var(--theme-ring);
 }
 
 body {

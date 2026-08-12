@@ -38,7 +38,7 @@ import AdminPrizeSettings from './AdminPrizeSettings';
 const SettingRow = ({ label, desc, children }) => (
   <div className="flex flex-col justify-between items-start py-8 gap-4 first:pt-4 last:pb-4 border-b border-gray-50 last:border-none group">
     <div className="space-y-1">
-       <h4 className="text-base font-black text-gray-800 tracking-tight uppercase italic group-hover:text-[#6366f1] transition-colors">{label}</h4>
+       <h4 className="text-base font-black text-gray-800 tracking-tight uppercase italic group-hover:text-primary-hover transition-colors">{label}</h4>
        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-relaxed italic">{desc}</p>
     </div>
     <div className="w-full shrink-0">
@@ -70,7 +70,7 @@ const GeneralSettingsWithContext = () => {
           onClick={() => handleChange('maintenanceMode', !localSettings.maintenanceMode)}
           className="relative inline-flex items-center cursor-pointer group origin-left"
         >
-          <div className={`w-16 h-8 border rounded-full transition-all relative ${localSettings.maintenanceMode ? 'bg-[#4f46e5] border-[#4f46e5]' : 'bg-gray-100 border-gray-200'}`}>
+          <div className={`w-16 h-8 border rounded-full transition-all relative ${localSettings.maintenanceMode ? 'bg-primary border-primary' : 'bg-gray-100 border-gray-200'}`}>
              <div className={`absolute top-[4px] bg-white rounded-full h-6 w-8 transition-all ${localSettings.maintenanceMode ? 'left-[28px]' : 'left-[4px]'}`}></div>
           </div>
         </div>
@@ -83,7 +83,7 @@ const GeneralSettingsWithContext = () => {
             type="text" 
             value={localSettings.brandName} 
             onChange={(e) => handleChange('brandName', e.target.value)}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -95,7 +95,7 @@ const GeneralSettingsWithContext = () => {
             value={localSettings.hoveringNews || ''} 
             onChange={(e) => handleChange('hoveringNews', e.target.value)} 
             placeholder="E.g. Welcome to SMS Lottery!"
-            className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 h-16 font-black text-gray-800 outline-none text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest"
+            className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 h-16 font-black text-gray-800 outline-none text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest"
           />
         </div>
       </SettingRow>
@@ -109,7 +109,7 @@ const GeneralSettingsWithContext = () => {
             pattern="[0-9]*"
             value={localSettings.customerCare || ''} 
             onChange={(e) => handleChange('customerCare', e.target.value)}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -122,7 +122,7 @@ const GeneralSettingsWithContext = () => {
             value={localSettings.whatsapp || ''} 
             onChange={(e) => handleChange('whatsapp', e.target.value)}
             placeholder="https://wa.me/910000000000"
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -135,7 +135,7 @@ const GeneralSettingsWithContext = () => {
             value={localSettings.telegram || ''} 
             onChange={(e) => handleChange('telegram', e.target.value)}
             placeholder="https://t.me/yourusername"
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -146,7 +146,7 @@ const GeneralSettingsWithContext = () => {
           <select 
             value={localSettings.sessionPersistence}
             onChange={(e) => handleChange('sessionPersistence', e.target.value)}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest appearance-none"
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest appearance-none"
           >
             <option>01 HOUR (RELAXED)</option>
             <option>04 HOURS (STANDARD)</option>
@@ -233,7 +233,7 @@ const MyProfileSettings = () => {
             type="text" 
             value={localUser.name} 
             onChange={(e) => setLocalUser(prev => ({ ...prev, name: e.target.value }))}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -247,7 +247,7 @@ const MyProfileSettings = () => {
             pattern="[0-9]*"
             value={localUser.mobile} 
             onChange={(e) => setLocalUser(prev => ({ ...prev, mobile: e.target.value }))}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -259,7 +259,7 @@ const MyProfileSettings = () => {
             type="email" 
             value={localUser.email} 
             onChange={(e) => setLocalUser(prev => ({ ...prev, email: e.target.value }))}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -273,12 +273,12 @@ const MyProfileSettings = () => {
               value={newPassword} 
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="Enter New Password"
-              className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-14 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-[#4f46e5]/20 transition-all uppercase tracking-widest" 
+              className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-14 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
             />
             <button 
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-[#4f46e5]"
+              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-primary"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -500,13 +500,13 @@ const AdminSettings = () => {
   return (
     <div className="space-y-10 pb-32 p-4 min-h-screen bg-[#f8f9fa]">
       {/* Top Banner - Treasure Chest Theme */}
-      <div className="border-[1.5px] border-[#4f46e5] rounded-[2.5rem] p-8 bg-white shadow-2xl relative overflow-hidden group">
-         <div className="absolute top-0 right-0 w-32 h-32 bg-[#4f46e5]/5 rounded-full blur-3xl"></div>
+      <div className="border-[1.5px] border-primary rounded-[2.5rem] p-8 bg-white shadow-2xl relative overflow-hidden group">
+         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
          <div className="flex gap-4 items-center">
             <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Chest" className="w-16 h-16 drop-shadow-xl group-hover:scale-110 transition-transform" />
             <div className="flex-grow">
                <h2 className="text-2xl font-black text-gray-900 font-condensed uppercase tracking-tighter italic leading-none">Configuration</h2>
-               <p className="text-[#4f46e5] font-black text-[10px] uppercase tracking-widest leading-none mt-1">Platform Core Alignment</p>
+               <p className="text-primary font-black text-[10px] uppercase tracking-widest leading-none mt-1">Platform Core Alignment</p>
             </div>
          </div>
       </div>
@@ -519,7 +519,7 @@ const AdminSettings = () => {
              onClick={() => setActiveTab(tab.id)}
              className={`flex-shrink-0 flex items-center gap-3 px-8 py-4 rounded-2xl transition-all shadow-md active:scale-95 ${
                activeTab === tab.id 
-                 ? 'bg-[#4f46e5] text-white shadow-[#4f46e5]/20' 
+                 ? 'bg-primary text-white shadow-primary/20' 
                  : 'bg-white text-gray-400 border border-gray-100'
              }`}
            >
@@ -648,17 +648,17 @@ const AdminSettings = () => {
             <button className="py-5 bg-gray-900 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl shadow-black/10 active:scale-95 transition-all">
                Store Global Config
             </button>
-            <button className="py-5 bg-white border-2 border-dashed border-gray-100 text-gray-300 rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] active:bg-[#eff6ff] active:text-[#4f46e5] transition-all">
+            <button className="py-5 bg-white border-2 border-dashed border-gray-100 text-gray-300 rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] active:bg-[#eff6ff] active:text-primary transition-all">
                Reset Defaults
             </button>
           </div>
          )}
       </div>
       
-      <div className="mt-8 p-6 mx-4 text-center border border-[#4f46e5]/20 bg-[#4f46e5]/5 rounded-2xl shadow-sm space-y-2">
+      <div className="mt-8 p-6 mx-4 text-center border border-primary/20 bg-primary/5 rounded-2xl shadow-sm space-y-2">
          <p className="text-[11px] text-gray-800 font-black uppercase tracking-widest flex items-center justify-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Admin Core System: <span className="text-[#4f46e5]">{APP_VERSION}</span>
+            Admin Core System: <span className="text-primary">{APP_VERSION}</span>
          </p>
          <div className="w-16 h-[1px] bg-gray-200 mx-auto my-2"></div>
          <p className="text-[10px] text-gray-600 font-bold uppercase tracking-[0.2em] italic leading-tight">

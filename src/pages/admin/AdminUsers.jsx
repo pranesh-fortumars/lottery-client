@@ -89,13 +89,13 @@ const AdminUsers = () => {
   return (
     <div className="space-y-10 p-4 pb-24 relative min-h-screen bg-[#f8f9fa]">
       {/* Top Banner */}
-      <div className="border-[1.5px] border-[#4f46e5] rounded-[2.5rem] p-6 bg-white shadow-2xl relative overflow-hidden group">
-         <div className="absolute top-0 right-0 w-32 h-32 bg-[#4f46e5]/5 rounded-full blur-3xl"></div>
+      <div className="border-[1.5px] border-primary rounded-[2.5rem] p-6 bg-white shadow-2xl relative overflow-hidden group">
+         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
          <div className="flex gap-4 items-center">
             <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Chest" className="w-16 h-16 drop-shadow-xl" />
             <div className="flex-grow">
                <h2 className="text-2xl font-black text-gray-900 font-condensed uppercase tracking-tighter italic">Player Vault</h2>
-               <p className="text-[#4f46e5] font-black text-[10px] uppercase tracking-widest leading-none mt-1">Total Members: {users.length}</p>
+               <p className="text-primary font-black text-[10px] uppercase tracking-widest leading-none mt-1">Total Members: {users.length}</p>
             </div>
          </div>
       </div>
@@ -103,13 +103,13 @@ const AdminUsers = () => {
       {/* Search & Actions */}
       <div className="space-y-4">
         <div className="relative group">
-           <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#6366f1] transition-colors" size={20} />
+           <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-primary-hover transition-colors" size={20} />
            <input 
              type="text" 
              placeholder="Search by name or mobile..." 
              value={searchTerm}
              onChange={(e) => setSearchTerm(e.target.value)}
-             className="w-full h-15 bg-white border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 shadow-sm text-sm placeholder:text-gray-300 focus:border-[#6366f1]/30 transition-all"
+             className="w-full h-15 bg-white border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 shadow-sm text-sm placeholder:text-gray-300 focus:border-primary-hover/30 transition-all"
            />
         </div>
         
@@ -125,7 +125,7 @@ const AdminUsers = () => {
             onClick={() => setShowAddForm(true)}
             className="flex-1 h-15 bg-gray-900 rounded-2xl font-black text-[10px] text-white uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all shadow-black/10"
           >
-            <UserPlus size={16} className="text-[#6366f1]" /> Register
+            <UserPlus size={16} className="text-primary-hover" /> Register
           </button>
         </div>
       </div>
@@ -138,7 +138,7 @@ const AdminUsers = () => {
         
         {loading ? (
           <div className="flex justify-center py-10">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#6366f1]"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-hover"></div>
           </div>
         ) : (
           <AnimatePresence>
@@ -152,7 +152,7 @@ const AdminUsers = () => {
                 className="bg-white rounded-[2rem] p-5 shadow-lg border border-gray-100 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden"
               >
                  <div className="flex items-center gap-4 relative z-10">
-                    <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-[#6366f1] font-black text-xl border border-white shadow-sm group-hover:bg-[#6366f1] group-hover:text-white transition-all transform group-hover:rotate-6">
+                    <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-primary-hover font-black text-xl border border-white shadow-sm group-hover:bg-primary-hover group-hover:text-white transition-all transform group-hover:rotate-6">
                        {user.name?.charAt(0) || 'U'}
                     </div>
                     <div>
@@ -174,7 +174,7 @@ const AdminUsers = () => {
                          <span className="text-[7px] font-black uppercase text-blue-500">Bon: ₹{(user.bonusBalance || 0).toLocaleString()}</span>
                       </div>
                     </div>
-                    <ChevronRight size={20} className="text-gray-100 group-hover:text-[#6366f1] transition-colors" />
+                    <ChevronRight size={20} className="text-gray-100 group-hover:text-primary-hover transition-colors" />
                   </div>
               </motion.div>
             )) : (
@@ -208,7 +208,7 @@ const AdminUsers = () => {
               <div className="flex justify-between items-start border-b border-gray-50 pb-8">
                 <div>
                    <div className="flex items-center gap-3 mb-2">
-                       <UserPlus className="text-[#6366f1]" size={24} />
+                       <UserPlus className="text-primary-hover" size={24} />
                        <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tighter italic leading-none">New Identity</h2>
                    </div>
                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Registering unique player credentials</p>
@@ -231,7 +231,7 @@ const AdminUsers = () => {
                   <div key={field.key} className="space-y-1.5">
                     <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest ml-1">{field.label}</label>
                     <div className="relative group/field">
-                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-[#6366f1] transition-colors" size={18} />
+                      <field.icon className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within/field:text-primary-hover transition-colors" size={18} />
                       <input 
                         required={field.key !== 'email'}
                         type={field.type} 
@@ -240,7 +240,7 @@ const AdminUsers = () => {
                         placeholder={field.placeholder} 
                         value={newUser[field.key]}
                         onChange={e => setNewUser({...newUser, [field.key]: e.target.value})}
-                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#6366f1]/20 transition-all text-xs placeholder:text-gray-300"
+                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-primary-hover/20 transition-all text-xs placeholder:text-gray-300"
                       />
                     </div>
                   </div>
@@ -248,7 +248,7 @@ const AdminUsers = () => {
 
                 <button 
                   type="submit"
-                  className="w-full h-16 bg-gradient-to-r from-[#6366f1] to-[#4f46e5] text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl shadow-[#6366f1]/20 flex items-center justify-center gap-3 mt-6 active:scale-95 transition-all"
+                  className="w-full h-16 bg-gradient-to-r from-primary-hover to-primary text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl shadow-primary-hover/20 flex items-center justify-center gap-3 mt-6 active:scale-95 transition-all"
                 >
                    Finalize Registration <CheckCircle2 size={24} className="text-white/40" />
                 </button>
