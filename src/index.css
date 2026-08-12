@@ -9,13 +9,22 @@
   --bg-body: #f8fafc;
 }
 
-/* Core Theme Variables (Default Blue) */
+/* Core Theme Variables (Default Blue) & Global Contrast Adjustments */
 @theme {
   --color-primary: #2563eb;
   --color-primary-hover: #1d4ed8;
   --color-primary-light: #eff6ff;
   --color-primary-dark: #1e3a8a;
   --color-primary-ring: rgba(37, 99, 235, 0.2);
+
+  /* Increase Global UI Contrast by darkening mid-range grays used for text */
+  --color-gray-300: #9ca3af; /* Was D1D5DB (300) -> Now 400 */
+  --color-gray-400: #6b7280; /* Was 9CA3AF (400) -> Now 500 */
+  --color-gray-500: #4b5563; /* Was 6B7280 (500) -> Now 600 */
+  
+  --color-slate-300: #94a3b8; /* Was CBD5E1 (300) -> Now 400 */
+  --color-slate-400: #64748b; /* Was 94A3B8 (400) -> Now 500 */
+  --color-slate-500: #475569; /* Was 64748B (500) -> Now 600 */
 }
 
 /* Red Theme */
