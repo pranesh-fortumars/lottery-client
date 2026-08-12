@@ -68,7 +68,7 @@ export const Header = ({ title, showBack = false }) => {
               >
                 <Bell size={22} strokeWidth={2.5} />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-white text-[9px] font-bold w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-primary-dark animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-red-700 animate-pulse">
                     {unreadCount}
                   </span>
                 )}
@@ -239,7 +239,7 @@ export const BottomNav = () => {
 
   return (
     <div className="w-full bg-white border-t border-slate-200 pointer-events-auto shrink-0 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 relative">
-      <div className="bg-slate-50 text-slate-500 py-1.5 text-center font-bold text-[9px] tracking-widest border-b border-slate-200 uppercase">
+      <div className="bg-slate-100 text-slate-800 py-1.5 text-center font-black text-[10px] tracking-widest border-b border-slate-300 uppercase">
         {isAdmin ? 'Admin Dashboard' : appSettings.brandName}
       </div>
       
@@ -252,7 +252,7 @@ export const BottomNav = () => {
             className={({ isActive }) => `flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${
               isActive 
                 ? 'text-primary' 
-                : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
+                : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100 font-bold'
             }`}
           >
             {({ isActive }) => (
