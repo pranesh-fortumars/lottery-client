@@ -365,8 +365,8 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
     );
   }
 
-  // Determine layout width globally (force mobile view for all pages, but responsive on small screens)
-  const containerMaxWidth = "w-full sm:max-w-md";
+  // Determine layout width globally (slightly wider than mobile, but not too stretched)
+  const containerMaxWidth = "w-full sm:max-w-md md:max-w-lg";
 
   return (
     <div className={`flex flex-col h-[100dvh] bg-slate-50 relative ${containerMaxWidth} mx-auto sm:shadow-xl overflow-hidden sm:border-x border-slate-200`}>
