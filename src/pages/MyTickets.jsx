@@ -148,94 +148,94 @@ const MyTickets = () => {
                 <p className="text-[8px] font-black uppercase tracking-widest text-gray-400">Records: {resultCount}</p>
              </div>
             {transactionGroups.map((group) => (
-               <div key={group.id} className="bg-white rounded-3xl shadow-2xl border-2 border-[#1d4ed8] overflow-hidden">
+               <div key={group.id} className="bg-gray-950 rounded-3xl shadow-2xl border-2 border-primary overflow-hidden">
                   
                   {/* --- TRANSACTION PARENT HEADER --- */}
-                  <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                  <div className="p-5 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
                      <div>
-                        <p className="text-[8px] font-black text-[#1d4ed8] uppercase tracking-[0.3em] italic">Transaction Instance</p>
-                        <h4 className="text-[12px] font-black font-condensed italic text-gray-900">ID: {group.id}</h4>
+                        <p className="text-[8px] font-black text-primary uppercase tracking-[0.3em] italic">Transaction Instance</p>
+                        <h4 className="text-[12px] font-black font-condensed italic text-gray-100">ID: {group.id}</h4>
                      </div>
                      <div className="text-right">
-                        <p className="text-[11px] font-black font-condensed text-gray-950 italic">{group.date} | {group.time}</p>
+                        <p className="text-[11px] font-black font-condensed text-gray-400 italic">{group.date} | {group.time}</p>
                      </div>
                   </div>
 
                   {/* --- DRAW SLOT GROUPS --- */}
                   {Object.values(group.drawSlots).map((slotGroup, sIdx) => (
-                     <div key={sIdx} className="border-b-2 border-red-50 last:border-b-0">
+                     <div key={sIdx} className="border-b-2 border-gray-900 last:border-b-0">
                         
                         {/* --- SLOT HEADER: COMPACT --- */}
-                        <div className="bg-white p-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b border-gray-100">
+                        <div className="bg-gray-900 p-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b border-gray-800">
                            <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 bg-gray-900 rounded-xl flex items-center justify-center text-white shadow-md">
+                              <div className="w-9 h-9 bg-gray-950 border border-gray-800 rounded-xl flex items-center justify-center text-white shadow-md">
                                  <Clock size={16} className="text-amber-400" />
                               </div>
                               <div>
-                                 <h3 className="text-sm font-black font-condensed italic uppercase text-gray-950 leading-none">
-                                    {getBrandBySlot(slotGroup.slot)} LOTTERY <span className="mx-1 text-gray-300">|</span> {slotGroup.slot}
+                                 <h3 className="text-sm font-black font-condensed italic uppercase text-gray-100 leading-none">
+                                    {getBrandBySlot(slotGroup.slot)} LOTTERY <span className="mx-1 text-gray-700">|</span> {slotGroup.slot}
                                  </h3>
                                  <div className="flex items-center gap-2 mt-0.5">
-                                    <span className="text-[7px] font-black uppercase tracking-widest text-[#1d4ed8] animate-pulse italic">Result Declared</span>
-                                    <div className="w-0.5 h-0.5 bg-gray-300 rounded-full"></div>
-                                    <span className="text-[7px] font-bold text-gray-300 uppercase tracking-widest italic">Archived</span>
+                                    <span className="text-[7px] font-black uppercase tracking-widest text-primary animate-pulse italic">Result Declared</span>
+                                    <div className="w-0.5 h-0.5 bg-gray-700 rounded-full"></div>
+                                    <span className="text-[7px] font-bold text-gray-500 uppercase tracking-widest italic">Archived</span>
                                  </div>
                               </div>
                            </div>
                            
                            {/* --- MINI DECLARED RESULT --- */}
                            <div className="flex items-center gap-3">
-                              <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest italic">Result:</p>
+                              <p className="text-[7px] font-black text-gray-500 uppercase tracking-widest italic">Result:</p>
                               <div className="flex gap-1">
                                  {slotGroup.declaredNum.split('').map((n, ni) => (
-                                    <div key={ni} className="w-7 h-9 bg-white border-2 border-[#1d4ed8] rounded-lg flex items-center justify-center text-gray-950 font-black text-sm font-condensed italic">
+                                    <div key={ni} className="w-7 h-9 bg-gray-950 border border-primary rounded-lg flex items-center justify-center text-white font-black text-sm font-condensed italic">
                                        {n}
                                     </div>
                                  ))}
-                                 {slotGroup.declaredNum === '-' && <span className="text-[8px] font-black text-gray-300 italic">PENDING</span>}
+                                 {slotGroup.declaredNum === '-' && <span className="text-[8px] font-black text-gray-600 italic">PENDING</span>}
                               </div>
                            </div>
                         </div>
 
                         {/* --- TICKET SPECIFIC TABLE: ULTRA COMPACT --- */}
-                        <div className="overflow-x-auto scrollbar-hide">
-                           <table className="w-full text-center border-collapse table-fixed min-w-[320px]">
+                        <div className="overflow-x-auto scrollbar-hide bg-gray-950 p-2">
+                           <table className="w-full text-center border-collapse table-fixed min-w-[320px] border border-gray-800 rounded-lg overflow-hidden">
                               <thead>
-                                 <tr className="bg-gray-50/30 border-y-2 border-[#1d4ed8]">
-                                    <th className="w-[10%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TYP</th>
-                                    <th className="w-[14%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">BRD</th>
-                                    <th className="w-[30%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">NUMBER</th>
-                                    <th className="w-[8%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">Q</th>
-                                    <th className="w-[15%] py-1.5 border-r-2 border-[#1d4ed8] text-[7px] font-black uppercase text-gray-950 font-condensed italic">TIER</th>
-                                    <th className="w-[23%] py-1.5 text-[7px] font-black uppercase text-gray-950 font-condensed italic">PRIZE</th>
+                                 <tr className="bg-gray-900 border-b border-gray-800">
+                                    <th className="w-[10%] py-2 border-r border-gray-800 text-[7px] font-black uppercase text-gray-400 font-condensed italic">TYP</th>
+                                    <th className="w-[14%] py-2 border-r border-gray-800 text-[7px] font-black uppercase text-gray-400 font-condensed italic">BRD</th>
+                                    <th className="w-[30%] py-2 border-r border-gray-800 text-[7px] font-black uppercase text-gray-400 font-condensed italic">NUMBER</th>
+                                    <th className="w-[8%] py-2 border-r border-gray-800 text-[7px] font-black uppercase text-gray-400 font-condensed italic">Q</th>
+                                    <th className="w-[15%] py-2 border-r border-gray-800 text-[7px] font-black uppercase text-gray-400 font-condensed italic">TIER</th>
+                                    <th className="w-[23%] py-2 text-[7px] font-black uppercase text-gray-400 font-condensed italic">PRIZE</th>
                                  </tr>
                               </thead>
                               <tbody>
                                  {slotGroup.tickets.map((t, tIdx) => {
                                     const isWin = t.status === 'Won';
                                     return (
-                                       <tr key={tIdx} className={`group ${isWin ? 'bg-emerald-50/20' : ''}`}>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[8px] font-black text-gray-950 uppercase italic tracking-tighter leading-none text-center">
+                                       <tr key={tIdx} className={`group border-b border-gray-800 last:border-b-0 ${isWin ? 'bg-emerald-900/20' : 'bg-gray-950'}`}>
+                                          <td className="py-2 px-0 border-r border-gray-800 text-[8px] font-black text-gray-300 uppercase italic tracking-tighter leading-none text-center">
                                              {t.type}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[11px] font-black font-condensed italic text-gray-950 leading-none text-center">
+                                          <td className="py-2 px-0 border-r border-gray-800 text-[11px] font-black font-condensed italic text-gray-300 leading-none text-center">
                                              {t.pos}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-base font-black font-condensed italic text-gray-950 tracking-normal leading-none text-center">
+                                          <td className="py-2 px-0 border-r border-gray-800 text-base font-black font-condensed italic text-white tracking-normal leading-none text-center">
                                              {t.num}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[11px] font-black font-condensed italic text-[#1d4ed8] leading-none text-center">
+                                          <td className="py-2 px-0 border-r border-gray-800 text-[11px] font-black font-condensed italic text-primary leading-none text-center">
                                              {t.qty}
                                           </td>
-                                          <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[7px] font-bold text-gray-500 italic leading-none text-center">
+                                          <td className="py-2 px-0 border-r border-gray-800 text-[7px] font-bold text-gray-500 italic leading-none text-center">
                                              {t.price}
                                           </td>
-                                          <td className="py-1.5 px-0.5 border-b-2 border-[#1d4ed8] text-right align-middle">
+                                          <td className="py-2 px-1 text-right align-middle">
                                              <div className="flex flex-col items-end justify-center leading-none">
                                                 {isWin ? (
-                                                   <p className="text-[11px] font-black text-emerald-600 font-condensed italic">₹{String(t.prize || "0").replace(/[^\d]/g, '')}</p>
+                                                   <p className="text-[11px] font-black text-emerald-400 font-condensed italic">₹{String(t.prize || "0").replace(/[^\d]/g, '')}</p>
                                                 ) : (
-                                                   <span className="text-[6px] font-black text-gray-100 uppercase tracking-widest italic">{t.status || 'Active'}</span>
+                                                   <span className="text-[6px] font-black text-gray-600 uppercase tracking-widest italic">{t.status || 'Active'}</span>
                                                 )}
                                              </div>
                                           </td>
@@ -249,7 +249,7 @@ const MyTickets = () => {
                   ))}
 
                   {/* --- COMPACT TRANSACTION FOOTER --- */}
-                  <div className="bg-gray-950 p-4 text-white border-t-4 border-[#1d4ed8]">
+                  <div className="bg-gray-900 p-4 text-white border-t-2 border-primary">
                      <div className="flex justify-between items-end">
                         <div className="text-left">
                            <div className="flex items-center gap-2 mb-2 opacity-30">
@@ -288,15 +288,7 @@ const MyTickets = () => {
 
         <SupportSection />
 
-        {/* --- NAVIGATION --- */}
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-           <button 
-            onClick={() => navigate('/home')}
-            className="bg-[#1d4ed8] text-white px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl shadow-red-500/40 active:scale-95 transition-all flex items-center gap-3 border-4 border-white/20"
-           >
-              <Zap size={16} /> NEW DRAW SESSION
-           </button>
-        </div>
+
       </div>
     </PageWrapper>
   );
