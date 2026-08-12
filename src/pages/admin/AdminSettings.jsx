@@ -29,6 +29,7 @@ import { usePayment } from '../../context/PaymentContext';
 import { subscribeToAppSettings, updateAppSettings } from '../../services/firebaseService';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import { doc, updateDoc, collection, getDocs, deleteDoc, writeBatch, query } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -50,6 +51,7 @@ const SettingRow = ({ label, desc, children }) => (
 const GeneralSettingsWithContext = () => {
   const { appSettings, updateAppSettings } = useCart();
   const [localSettings, setLocalSettings] = useState(appSettings);
+  const { themes } = useTheme();
 
   useEffect(() => {
     setLocalSettings(appSettings);
@@ -65,6 +67,23 @@ const GeneralSettingsWithContext = () => {
 
   return (
     <div className="space-y-4">
+      <SettingRow label="Global Application Theme" desc="Select the primary brand color for all users globally.">
+        <div className="flex flex-wrap gap-4 pt-2">
+          {themes.map((t) => (
+             <button
+               key={t.id}
+               type="button"
+               onClick={() => handleChange('theme', t.id)}
+               className={`w-12 h-12 rounded-full border-[3px] transition-all flex items-center justify-center ${localSettings.theme === t.id ? 'border-gray-800 scale-110 shadow-lg' : 'border-transparent hover:scale-105 shadow-sm'}`}
+               style={{ backgroundColor: t.color }}
+               title={t.name}
+             >
+                {localSettings.theme === t.id && <div className="w-2 h-2 bg-white rounded-full"></div>}
+             </button>
+          ))}
+        </div>
+      </SettingRow>
+
       <SettingRow label="Platform Maintenance" desc="Temporarily disable all user features globally for system sync.">
         <div 
           onClick={() => handleChange('maintenanceMode', !localSettings.maintenanceMode)}

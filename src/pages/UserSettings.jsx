@@ -8,7 +8,6 @@ import { APP_VERSION, BUILD_VERSION } from '../config';
 
 const UserSettings = () => {
   const { user, logout } = useAuth();
-  const { theme, changeTheme, themes } = useTheme();
   const navigate = useNavigate();
 
   const settingsGroups = [
@@ -53,23 +52,7 @@ const UserSettings = () => {
           ))}
         </div>
 
-        {/* Theme Selector */}
-        <div className="w-full max-w-sm bg-white rounded-3xl p-6 mb-8 border border-slate-200 shadow-sm">
-           <p className="text-xs font-bold text-slate-800 uppercase tracking-tight mb-4">Application Theme</p>
-           <div className="flex flex-wrap gap-4">
-              {themes.map((t) => (
-                 <button
-                   key={t.id}
-                   onClick={() => changeTheme(t.id)}
-                   className={`w-12 h-12 rounded-full border-[3px] transition-all flex items-center justify-center ${theme === t.id ? 'border-gray-800 scale-110 shadow-lg' : 'border-transparent hover:scale-105'}`}
-                   style={{ backgroundColor: t.color }}
-                   title={t.name}
-                 >
-                    {theme === t.id && <div className="w-2 h-2 bg-white rounded-full"></div>}
-                 </button>
-              ))}
-           </div>
-        </div>
+
 
         <button 
           onClick={logout}

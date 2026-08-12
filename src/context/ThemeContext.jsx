@@ -1,14 +1,30 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { subscribeToAppSettings } from '../services/firebaseService';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(() => {
-    // Check local storage for saved theme
-    return localStorage.getItem('app_theme') || 'default';
-  });
+  const [theme, setTheme] = useState('default');
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Sync theme with Firebase global appSettings
   useEffect(() => {
+    const unsubscribe = subscribeToAppSettings((settings) => {
+      if (settings && settings.theme) {
+        setTheme(settings.theme);
+      } else {
+        setTheme('default');
+      }
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Apply theme class to the document body/html dynamically
+  useEffect(() => {
+    if (isLoading) return; // Wait for initial fetch
+    
     // Remove all old theme classes
     document.documentElement.classList.remove('theme-red', 'theme-emerald', 'theme-purple', 'theme-gold');
     
@@ -16,14 +32,7 @@ export const ThemeProvider = ({ children }) => {
     if (theme !== 'default') {
       document.documentElement.classList.add(`theme-${theme}`);
     }
-    
-    // Save to local storage
-    localStorage.setItem('app_theme', theme);
-  }, [theme]);
-
-  const changeTheme = (newTheme) => {
-    setTheme(newTheme);
-  };
+  }, [theme, isLoading]);
 
   const themes = [
     { id: 'default', name: 'Ocean Blue', color: '#2563eb' },
@@ -34,7 +43,7 @@ export const ThemeProvider = ({ children }) => {
   ];
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme, themes }}>
+    <ThemeContext.Provider value={{ theme, themes }}>
       {children}
     </ThemeContext.Provider>
   );
