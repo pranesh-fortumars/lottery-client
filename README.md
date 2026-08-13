@@ -23,6 +23,7 @@ An enterprise-grade, high-fidelity lottery management and play platform built fo
 - **Live Intake Monitor & High-Frequency Analytics**: Real-time analysis of number frequency mapping and combination volume tracking across active draw sessions. Features top-15 high-frequency combination rankings, board-specific filtering (A, B, C, AB, BC, AC), and price-tier breakdowns (e.g., ₹12, ₹28, ₹30, ₹55, ₹60 for 3D; ₹20, ₹50, ₹100 for 4D).
 - **Official PDF Export**: Built-in automated PDF generation (`jspdf`, `jspdf-autotable`) producing official lottery audit and result reports with professional formatting.
 - **Deep-Dive User Management & Metadata**: Detailed player profiles allowing administrators to monitor individual liquidity, adjust triple-balance allocations, update security parameters, review transaction histories, and track exact Account Registration timestamps (with automated legacy user migration mapping).
+- **Global Brand Management**: Dedicated Admin Settings to instantly broadcast Global Application Theme colors across all connected clients via live Firebase synchronization without page reloads.
 - **Version & Build Transparency**: Global `APP_VERSION` and `BUILD_VERSION` config constants displayed seamlessly across user profile settings and admin dashboards for clear deployment tracking.
 
 ---
@@ -32,7 +33,7 @@ An enterprise-grade, high-fidelity lottery management and play platform built fo
 - **Frontend**: React.js (Vite) with highly optimized Context API (`AuthContext`, `CartContext`, `PaymentContext`) for modular state management.
 - **Backend / Database**: Google Firebase Firestore (NoSQL) for real-time synchronization and live query listeners (`onSnapshot`).
 - **Authentication**: Firebase Auth with role-based access control (Admin vs. Verified Member) and dynamic multi-identifier resolution.
-- **Styling**: Tailwind CSS combined with custom glassmorphic aesthetics, vibrant gradients, and fluid micro-animations.
+- **Styling & Aesthetics**: Tailwind CSS integrated with a dynamic, vibrant multi-color design system. Features lottery-specific brand color coding (e.g., Red for Dear, Green for Kerala), fluid glassmorphism, and instant Global Theme Control for core UI accents.
 - **Icons**: Lucide-React for clean, scalable vector iconography.
 - **Export & Reporting**: jsPDF and jsPDF-AutoTable for client-side official document generation.
 

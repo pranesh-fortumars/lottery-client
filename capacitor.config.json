@@ -1,6 +1,6 @@
 {
-  "appId": "com.smslottery.app",
-  "appName": "SMS Lottery",
+  "appId": "com.lottery.app",
+  "appName": "Lottery App",
   "webDir": "dist",
   "bundledWebRuntime": false,
   "server": {
