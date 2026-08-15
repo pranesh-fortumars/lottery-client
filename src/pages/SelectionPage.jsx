@@ -128,8 +128,8 @@ const SelectionPage = () => {
                 drawTime={drawTime}
                 customRows={[
                 { labels: ['A', 'B'], digits: 2 },
-                { labels: ['A', 'C'], digits: 2 },
-                { labels: ['B', 'C'], digits: 2 }
+                { labels: ['B', 'C'], digits: 2 },
+                { labels: ['A', 'C'], digits: 2 }
                 ]}
             />
             
