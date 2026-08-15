@@ -61,12 +61,12 @@ const AdminReports = () => {
     try {
       const tickets = await fetchReportData('tickets');
       const data = tickets.map(t => [
-        t.ticketId || t.id,
-        t.userName || t.userId,
-        t.lotteryName,
-        t.drawDate,
-        `₹${t.totalPrice || 0}`,
-        t.timestamp?.toDate().toLocaleString() || 'N/A'
+        (t.ticketId || t.purchaseId || t.id || '').substring(0, 12),
+        t.userName || t.userId || 'Unknown',
+        t.brand || t.title || t.type || 'N/A',
+        t.draw || t.purchaseDate || 'N/A',
+        `₹${(Number(t.price || 0) * Number(t.qty || 1))}`,
+        t.timestamp?.toDate ? t.timestamp.toDate().toLocaleString() : (t.purchaseDate || 'N/A')
       ]);
 
       if (format === 'pdf') {
