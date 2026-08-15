@@ -203,37 +203,37 @@ const CartPage = () => {
         {/* Cart Table */}
         <div className="w-full max-w-sm mb-8 px-1">
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-            <table className="w-full text-left text-xs">
+            <table className="w-full text-left text-xs border-collapse">
               <tbody>
                 <tr className="border-b border-slate-200 bg-slate-50/50">
-                  <td colSpan={4} className="p-3 font-bold text-slate-700">Name: {user?.name || 'Guest'}</td>
-                  <td colSpan={2} className="p-3 text-right font-medium text-slate-500">{currentDate}</td>
+                  <td colSpan={4} className="p-3 font-bold text-slate-700 border border-slate-200">Name: {user?.name || 'Guest'}</td>
+                  <td colSpan={2} className="p-3 text-right font-medium text-slate-500 border border-slate-200">{currentDate}</td>
                 </tr>
                 
                 {/* Row 2: Headers */}
                 <tr className="border-b border-slate-200 bg-slate-100/50 text-[10px] uppercase tracking-wider text-slate-500 font-bold">
-                  <td className="p-3">Lot Details</td>
-                  <td className="p-3 text-center">Num</td>
-                  <td className="p-3 text-center">Qty</td>
-                  <td className="p-3 text-center">₹</td>
-                  <td className="p-3 text-right">Amt ₹</td>
-                  <td className="p-3 w-8"></td>
+                  <td className="p-3 border border-slate-200">Lot Details</td>
+                  <td className="p-3 text-center border border-slate-200">Num</td>
+                  <td className="p-3 text-center border border-slate-200">Qty</td>
+                  <td className="p-3 text-center border border-slate-200">₹</td>
+                  <td className="p-3 text-right border border-slate-200">Amt ₹</td>
+                  <td className="p-3 w-8 border border-slate-200"></td>
                 </tr>
 
                 {/* Data Rows */}
                 {cart.map((item) => (
                   <tr key={item.id} className="border-b border-slate-100 last:border-b-0 relative group hover:bg-slate-50/50 transition-colors">
-                    <td className="p-3">
+                    <td className="p-3 border border-slate-200">
                       <div className="flex flex-col">
                         <span className="font-bold text-slate-800 text-[11px] uppercase">{item.title}</span>
                         {item.board && <span className="text-[9px] text-slate-500 font-medium mt-0.5">Board: {item.board}</span>}
                       </div>
                     </td>
-                    <td className="p-3 text-center font-bold text-slate-800">{item.num}</td>
-                    <td className="p-3 text-center text-slate-600">{item.qty}</td>
-                    <td className="p-3 text-center text-slate-600">{item.price}</td>
-                    <td className="p-3 text-right font-bold text-blue-600">{(item.price * item.qty).toFixed(2)}</td>
-                    <td className="p-2 text-center align-middle">
+                    <td className="p-3 text-center font-bold text-slate-800 border border-slate-200">{item.num}</td>
+                    <td className="p-3 text-center text-slate-600 border border-slate-200">{item.qty}</td>
+                    <td className="p-3 text-center text-slate-600 border border-slate-200">{item.price}</td>
+                    <td className="p-3 text-right font-bold text-blue-600 border border-slate-200">{(item.price * item.qty).toFixed(2)}</td>
+                    <td className="p-2 text-center align-middle border border-slate-200">
                       <button 
                         onClick={() => removeFromCart(item.id)} 
                         className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mx-auto flex items-center justify-center"
@@ -253,9 +253,9 @@ const CartPage = () => {
 
                 {/* Total Amount Row */}
                 <tr className="bg-slate-50 border-t border-slate-200">
-                  <td colSpan={4} className="p-4 text-right uppercase tracking-widest text-[10px] font-bold text-slate-500">Grand Total:</td>
-                  <td className="p-4 text-right text-lg font-bold text-slate-800">{cartTotal.toFixed(2)}</td>
-                  <td className="p-4 bg-slate-50"></td>
+                  <td colSpan={4} className="p-4 text-right uppercase tracking-widest text-[10px] font-bold text-slate-500 border border-slate-200">Grand Total:</td>
+                  <td className="p-4 text-right text-lg font-bold text-slate-800 border border-slate-200">{cartTotal.toFixed(2)}</td>
+                  <td className="p-4 bg-slate-50 border border-slate-200"></td>
                 </tr>
               </tbody>
             </table>
