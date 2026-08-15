@@ -69,7 +69,7 @@ const AdminGuide = () => {
                   <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center shadow-inner">
                     {section.icon}
                   </div>
-                  <h2 className="text-lg font-black text-slate-800 tracking-tight uppercase italic">{section.title}</h2>
+                  <h2 className="text-lg font-black text-black tracking-tight uppercase italic">{section.title}</h2>
                </div>
                
                <div className="space-y-5">
@@ -81,7 +81,7 @@ const AdminGuide = () => {
                          </div>
                       </div>
                       <div>
-                         <h3 className="font-bold text-slate-800 text-sm">{item.title}</h3>
+                         <h3 className="font-bold text-black text-sm">{item.title}</h3>
                          <p className="text-xs text-slate-500 leading-relaxed mt-1">{item.desc}</p>
                       </div>
                    </div>

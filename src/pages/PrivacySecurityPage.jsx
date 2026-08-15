@@ -81,7 +81,7 @@ const PrivacySecurityPage = () => {
           {securityOptions.map((opt, idx) => (
             <div 
               key={idx} 
-              className="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer hover:border-blue-200"
+              className="bg-white rounded-2xl p-5 shadow-sm border border-slate-400 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer hover:border-blue-200"
               onClick={() => alert(`Redirecting to ${opt.label} configuration...`)}
             >
               <div className="flex items-center gap-4">
@@ -89,7 +89,7 @@ const PrivacySecurityPage = () => {
                   {opt.icon}
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-800 uppercase tracking-tight">{opt.label}</h3>
+                  <h3 className="text-sm font-bold text-black uppercase tracking-tight">{opt.label}</h3>
                   <p className="text-[10px] font-medium text-slate-500 mt-0.5">{opt.desc}</p>
                 </div>
               </div>
@@ -100,7 +100,7 @@ const PrivacySecurityPage = () => {
             </div>
           ))}
 
-          <div className="mt-8 pt-6 border-t border-slate-200 text-center">
+          <div className="mt-8 pt-6 border-t border-slate-400 text-center">
             <button 
               onClick={() => setShowDeleteModal(true)}
               className="text-[10px] font-bold text-red-600 uppercase tracking-widest hover:underline underline-offset-4"
@@ -145,7 +145,7 @@ const PrivacySecurityPage = () => {
               <button 
                 onClick={() => setShowDeleteModal(false)}
                 disabled={isDeleting}
-                className="flex-1 py-4 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-[10px] uppercase tracking-widest active:scale-95 transition-all disabled:opacity-50"
+                className="flex-1 py-4 bg-slate-100 hover:bg-slate-200 text-black rounded-xl font-bold text-[10px] uppercase tracking-widest active:scale-95 transition-all disabled:opacity-50"
               >
                 Cancel
               </button>

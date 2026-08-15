@@ -119,7 +119,7 @@ const UserTransactions = () => {
         );
       case 'cancelled':
         return (
-          <span className="flex items-center gap-1 bg-slate-100 text-slate-500 border border-slate-200 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm">
+          <span className="flex items-center gap-1 bg-slate-100 text-slate-500 border border-slate-400 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm">
             <Ban size={12} /> Cancelled
           </span>
         );
@@ -193,7 +193,7 @@ const UserTransactions = () => {
               className={`px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-wider shrink-0 transition-all ${
                 activeTab === tab.id
                   ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'
+                  : 'bg-white text-slate-500 border border-slate-400 hover:bg-slate-50'
               }`}
             >
               {tab.label}
@@ -208,7 +208,7 @@ const UserTransactions = () => {
               Loading Financial Records...
             </div>
           ) : filteredActivities.length === 0 ? (
-            <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 shadow-sm">
+            <div className="bg-white rounded-3xl p-12 text-center border border-slate-400 shadow-sm">
               <Filter className="mx-auto text-slate-300 mb-4" size={40} />
               <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">No Records Found</p>
               <p className="text-[10px] font-medium text-slate-400 max-w-[200px] mx-auto leading-relaxed">
@@ -224,13 +224,13 @@ const UserTransactions = () => {
               return (
                 <div 
                   key={item.id} 
-                  className="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4 group"
+                  className="bg-white rounded-3xl p-5 border border-slate-400 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4 group"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
                       {getCategoryIcon(item.category, item.type)}
                       <div>
-                        <p className="text-sm font-bold text-slate-800 uppercase tracking-tight leading-none mb-1">
+                        <p className="text-sm font-bold text-black uppercase tracking-tight leading-none mb-1">
                           {item.category === 'withdrawal' ? 'Payout Withdrawal' : item.category === 'purchase' ? 'Ticket Purchase' : 'Wallet Top-Up'}
                         </p>
                         <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
@@ -240,7 +240,7 @@ const UserTransactions = () => {
                     </div>
 
                     <div className="text-right">
-                      <p className={`text-lg font-bold tracking-tight ${item.category === 'withdrawal' || item.category === 'purchase' ? 'text-slate-800' : 'text-emerald-600'}`}>
+                      <p className={`text-lg font-bold tracking-tight ${item.category === 'withdrawal' || item.category === 'purchase' ? 'text-black' : 'text-emerald-600'}`}>
                         {item.category === 'withdrawal' || item.category === 'purchase' ? '-' : '+'}₹{parseFloat(item.amount).toLocaleString()}
                       </p>
                       <div className="mt-1 flex justify-end">{getStatusBadge(item.status)}</div>
@@ -250,27 +250,27 @@ const UserTransactions = () => {
                   {/* Additional Details Box */}
                   <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2 text-[10px]">
                     {item.transactionId && (
-                      <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+                      <div className="flex justify-between items-center border-b border-slate-400 pb-2">
                         <span className="font-bold text-slate-500 uppercase tracking-widest">Transaction ID / UTR</span>
-                        <span className="font-bold text-slate-800 select-all">{item.transactionId}</span>
+                        <span className="font-bold text-black select-all">{item.transactionId}</span>
                       </div>
                     )}
                     {item.upiId && (
-                      <div className="flex justify-between items-center border-b border-slate-200 pb-2 pt-1">
+                      <div className="flex justify-between items-center border-b border-slate-400 pb-2 pt-1">
                         <span className="font-bold text-slate-500 uppercase tracking-widest">Target UPI ID</span>
                         <span className="font-bold text-indigo-600 select-all">{item.upiId}</span>
                       </div>
                     )}
                     {item.userEnteredAmount !== undefined && item.userEnteredAmount !== null && item.userEnteredAmount > 0 && (
-                      <div className="flex justify-between items-center border-b border-slate-200 pb-2 pt-1">
+                      <div className="flex justify-between items-center border-b border-slate-400 pb-2 pt-1">
                         <span className="font-bold text-slate-500 uppercase tracking-widest">User Paid Amount</span>
                         <span className="font-bold text-emerald-600">₹{item.userEnteredAmount}</span>
                       </div>
                     )}
                     {item.paymentType && (
-                      <div className="flex justify-between items-center border-b border-slate-200 pb-2 pt-1">
+                      <div className="flex justify-between items-center border-b border-slate-400 pb-2 pt-1">
                         <span className="font-bold text-slate-500 uppercase tracking-widest">Payment Method</span>
-                        <span className="font-bold text-slate-800">{item.paymentType}</span>
+                        <span className="font-bold text-black">{item.paymentType}</span>
                       </div>
                     )}
                     {item.rejectionReason && (
@@ -287,7 +287,7 @@ const UserTransactions = () => {
                       <div className="pt-3">
                         <button 
                           onClick={() => handleCancelWithdrawal(item)}
-                          className="w-full bg-white border border-slate-200 hover:border-red-200 text-slate-500 hover:text-red-500 hover:bg-red-50 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-colors shadow-sm active:scale-95 flex items-center justify-center gap-2"
+                          className="w-full bg-white border border-slate-400 hover:border-red-200 text-slate-500 hover:text-red-500 hover:bg-red-50 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-colors shadow-sm active:scale-95 flex items-center justify-center gap-2"
                         >
                           <Ban size={14} /> Cancel Request
                         </button>

@@ -44,16 +44,16 @@ const ResultsPage = () => {
                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-sm"></div>
                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Draw Entry #{String(r.id || '').slice(-4)}</span>
               </div>
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="bg-white rounded-2xl border border-slate-400 shadow-sm overflow-hidden">
                 <table className="w-full text-left text-sm">
                   <tbody>
                     <tr className="border-b border-slate-100">
                       <td className="w-[35%] p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-slate-50/50">Draw Date</td>
-                      <td className="p-4 font-bold text-slate-800 text-xs">{r.date}</td>
+                      <td className="p-4 font-bold text-black text-xs">{r.date}</td>
                     </tr>
                     <tr className="border-b border-slate-100">
                       <td className="p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-slate-50/50">Draw Time</td>
-                      <td className="p-4 font-bold text-slate-800 text-xs">{r.draw}</td>
+                      <td className="p-4 font-bold text-black text-xs">{r.draw}</td>
                     </tr>
                     <tr className="border-b border-slate-100">
                       <td className="p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-slate-50/50">Lot Name</td>

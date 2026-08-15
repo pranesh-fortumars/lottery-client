@@ -96,10 +96,10 @@ const SelectionPage = () => {
 
         <div className="p-4 space-y-5">
           <div className="flex gap-3">
-             <button onClick={() => navigate('/rules')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-primary-hover hover:text-primary transition-all">
+             <button onClick={() => navigate('/rules')} className="flex-1 bg-white border border-slate-400 text-slate-900 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-primary-hover hover:text-primary transition-all">
                 <Gavel size={16} /> Rules
              </button>
-             <button onClick={() => navigate('/results')} className="flex-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-primary-hover hover:text-primary transition-all">
+             <button onClick={() => navigate('/results')} className="flex-1 bg-white border border-slate-400 text-slate-900 py-3 rounded-xl flex items-center justify-center gap-2 font-bold shadow-sm uppercase tracking-wider text-[10px] hover:border-primary-hover hover:text-primary transition-all">
                 <ScrollText size={16} /> History
              </button>
           </div>
@@ -156,10 +156,10 @@ const SelectionPage = () => {
             </div>
 
             {/* 4D - XABC (Split by Tier) */}
-            <div className="space-y-4 pt-4 border-t border-slate-200">
+            <div className="space-y-4 pt-4 border-t border-slate-400">
               <div className="flex items-center gap-2 ml-2">
-                 <div className="w-5 h-5 bg-slate-200 rounded-md flex items-center justify-center border border-slate-300">
-                    <span className="text-slate-700 font-bold text-[10px]">4D</span>
+                 <div className="w-5 h-5 bg-slate-200 rounded-md flex items-center justify-center border border-slate-500">
+                    <span className="text-slate-900 font-bold text-[10px]">4D</span>
                  </div>
                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">4D Pricing Categories</h4>
               </div>
@@ -179,9 +179,9 @@ const SelectionPage = () => {
           </div>
           
           {closed && (
-            <div className="bg-slate-100 p-6 rounded-2xl border border-slate-200 text-center space-y-2">
+            <div className="bg-slate-100 p-6 rounded-2xl border border-slate-400 text-center space-y-2">
                 <Lock className="mx-auto text-slate-400 mb-2" size={28} />
-                <p className="text-slate-700 font-bold uppercase text-xs tracking-wider">
+                <p className="text-slate-900 font-bold uppercase text-xs tracking-wider">
                   {globalLock ? 'GLOBAL SALES CLOSED' : (earlyClosure ? 'EARLY MARKET CLOSURE' : 'BOOKING FINISHED')}
                 </p>
                 <p className="text-slate-500 text-[11px] font-medium leading-relaxed">

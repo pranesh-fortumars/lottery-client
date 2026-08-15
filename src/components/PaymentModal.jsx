@@ -60,7 +60,7 @@ const PaymentModal = ({ isOpen, onClose, amount, onConfirm }) => {
 
           <div className="p-5 space-y-4 overflow-y-auto pb-4">
             {/* QR Code */}
-            <div className="flex flex-col items-center justify-center p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+            <div className="flex flex-col items-center justify-center p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-400">
                <div className="relative p-2 bg-white rounded-xl shadow-sm mb-3 w-[120px] sm:w-[140px] aspect-square flex items-center justify-center border border-slate-100">
                   <img src={activePayment.qrUrl} alt="UPI QR Code" className="w-full h-full object-contain rounded-lg" />
                </div>
@@ -74,7 +74,7 @@ const PaymentModal = ({ isOpen, onClose, amount, onConfirm }) => {
             <div className="bg-blue-50/50 p-3 rounded-xl border border-blue-100 flex flex-col items-center">
                <label className="text-[9px] font-bold text-blue-600 uppercase tracking-wider mb-2 text-center">Manual Transfer Details</label>
                <div className="flex items-center justify-between bg-white w-full px-3 py-2.5 rounded-lg border border-blue-100 shadow-sm">
-                  <span className="font-bold text-slate-800 text-xs sm:text-sm truncate select-all">{activePayment.upiId}</span>
+                  <span className="font-bold text-black text-xs sm:text-sm truncate select-all">{activePayment.upiId}</span>
                   <button 
                     onClick={handleCopy}
                     className="p-1.5 hover:bg-blue-50 rounded-md transition-colors text-blue-600 shrink-0 ml-2"
@@ -97,7 +97,7 @@ const PaymentModal = ({ isOpen, onClose, amount, onConfirm }) => {
                       value={paidAmount}
                       onChange={(e) => setPaidAmount(e.target.value)}
                       placeholder="Enter exact amount"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-xs font-bold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white transition-all text-slate-900"
+                      className="w-full bg-slate-50 border border-slate-400 rounded-xl px-3 py-3 text-xs font-bold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white transition-all text-slate-900"
                     />
                   </div>
                   <div className="w-full text-left">
@@ -109,7 +109,7 @@ const PaymentModal = ({ isOpen, onClose, amount, onConfirm }) => {
                       value={transactionId}
                       onChange={(e) => setTransactionId(e.target.value)}
                       placeholder="Enter 12-digit UTR"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-3 text-xs font-bold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white transition-all text-slate-900"
+                      className="w-full bg-slate-50 border border-slate-400 rounded-xl px-3 py-3 text-xs font-bold focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white transition-all text-slate-900"
                     />
                   </div>
                </div>
@@ -145,7 +145,7 @@ const PaymentModal = ({ isOpen, onClose, amount, onConfirm }) => {
 
                <button 
                   onClick={onClose}
-                  className="w-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700 py-3 rounded-lg font-bold text-[10px] uppercase tracking-wider active:scale-95 transition-all"
+                  className="w-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-900 py-3 rounded-lg font-bold text-[10px] uppercase tracking-wider active:scale-95 transition-all"
                >
                   Cancel Payment
                </button>

@@ -91,7 +91,7 @@ const WithdrawPage = () => {
           <div className="w-24 h-24 bg-emerald-50 rounded-3xl flex items-center justify-center mb-8 border border-emerald-100 shadow-sm">
             <CheckCircle2 size={48} className="text-emerald-500" />
           </div>
-          <h2 className="text-2xl font-bold uppercase tracking-tight text-slate-800 leading-none">Request Received</h2>
+          <h2 className="text-2xl font-bold uppercase tracking-tight text-black leading-none">Request Received</h2>
           <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-4 max-w-[240px] leading-relaxed">
             Your withdrawal of <span className="text-blue-600">₹{amount}</span> has been sent for authority approval.
           </p>
@@ -158,7 +158,7 @@ const WithdrawPage = () => {
                      pattern="[0-9]*"
                      value={amount}
                      onChange={(e) => setAmount(e.target.value)}
-                     className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-14 pr-6 font-bold text-slate-800 text-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-sm"
+                     className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-14 pr-6 font-bold text-black text-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-sm"
                      placeholder="0.00"
                    />
                 </div>
@@ -171,7 +171,7 @@ const WithdrawPage = () => {
                   type="text" 
                   value={upiId}
                   onChange={(e) => setUpiId(e.target.value)}
-                  className="w-full h-16 mt-2 bg-white border border-slate-200 rounded-2xl px-6 font-bold text-slate-800 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-sm"
+                  className="w-full h-16 mt-2 bg-white border border-slate-400 rounded-2xl px-6 font-bold text-black text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-sm"
                   placeholder="e.g. user@okaxis"
                 />
               </div>

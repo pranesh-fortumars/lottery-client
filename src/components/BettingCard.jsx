@@ -147,7 +147,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
     const rowIdx = 0;
     
     return (
-      <div className="border border-slate-200 rounded-2xl p-5 mb-4 bg-white shadow-sm transition-shadow hover:shadow-md">
+      <div className="border border-slate-400 rounded-2xl p-5 mb-4 bg-white shadow-sm transition-shadow hover:shadow-md">
         {/* Header Section */}
         <div className="flex gap-4 mb-6">
           <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center shrink-0 border border-primary-light">
@@ -156,7 +156,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
           <div className="flex-grow">
              <div className="flex justify-between items-start">
                 <div>
-                   <h3 className="text-slate-800 font-bold text-base leading-none uppercase tracking-tight mb-1">
+                   <h3 className="text-black font-bold text-base leading-none uppercase tracking-tight mb-1">
                       {title}
                    </h3>
                    <p className="text-primary font-bold text-[10px] uppercase tracking-wide leading-tight mb-2">
@@ -194,7 +194,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                   pattern="[0-9]*"
                   value={num}
                   onChange={(e) => updateNumber(rowIdx, digIdx, e.target.value)}
-                  className={`w-12 h-12 border rounded-xl text-center text-2xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-300 focus:border-primary'}`} 
+                  className={`w-12 h-12 border rounded-xl text-center text-2xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 focus:border-primary'}`} 
                   placeholder="" 
                   maxLength="1"
                 />
@@ -206,7 +206,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
         <div className="flex items-center justify-between pt-4 border-t border-slate-100">
            <div className="flex items-center bg-slate-100 rounded-lg overflow-hidden p-0.5">
               <button onClick={() => updateQty(rowIdx, -1)} className="bg-white text-slate-600 w-8 h-8 rounded-md font-bold text-lg flex items-center justify-center hover:bg-slate-50 active:bg-slate-200 shadow-sm transition-colors">-</button>
-              <div className="w-8 text-center font-bold text-sm text-slate-800">{row.qty}</div>
+              <div className="w-8 text-center font-bold text-sm text-black">{row.qty}</div>
               <button onClick={() => updateQty(rowIdx, 1)} className="bg-white text-slate-600 w-8 h-8 rounded-md font-bold text-lg flex items-center justify-center hover:bg-slate-50 active:bg-slate-200 shadow-sm transition-colors">+</button>
            </div>
 
@@ -233,13 +233,13 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
 
   // Original Multi-Row Layout for Single/Double Digit
   return (
-    <div className="border border-slate-200 rounded-2xl p-4 mb-6 bg-white shadow-sm transition-shadow hover:shadow-md">
+    <div className="border border-slate-400 rounded-2xl p-4 mb-6 bg-white shadow-sm transition-shadow hover:shadow-md">
       <div className="flex gap-4 mb-4 border-b border-slate-100 pb-4">
         <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center shrink-0 border border-primary-light">
            <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Icon" className="w-8 h-8" />
         </div>
         <div className="flex-grow">
-          <h3 className="text-slate-800 font-bold text-base leading-tight uppercase tracking-tight">
+          <h3 className="text-black font-bold text-base leading-tight uppercase tracking-tight">
             {title}
           </h3>
           <p className="text-primary font-bold text-[10px] uppercase tracking-wide leading-none mb-1 mt-1">
@@ -264,7 +264,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
               className={`flex-shrink-0 px-4 py-2 rounded-lg text-[10px] font-bold uppercase transition-all border ${
                 selectedTier?.price === opt.price 
                   ? 'bg-primary-light text-primary-dark border-primary-light shadow-sm' 
-                  : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'
+                  : 'bg-white text-slate-500 border-slate-400 hover:bg-slate-50'
               }`}
             >
               ₹ {opt.price}
@@ -294,7 +294,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                     pattern="[0-9]*"
                     value={num}
                     onChange={(e) => updateNumber(rowIdx, digIdx, e.target.value)}
-                    className={`w-10 h-10 border rounded-lg text-center text-xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-300 focus:border-primary'}`} 
+                    className={`w-10 h-10 border rounded-lg text-center text-xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 focus:border-primary'}`} 
                     placeholder="-" 
                     maxLength="1"
                   />
@@ -303,7 +303,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
 
              <div className="flex items-center bg-slate-100 rounded-lg overflow-hidden p-0.5 shrink-0">
                 <button onClick={() => updateQty(rowIdx, -1)} className="bg-white text-slate-600 w-7 h-7 rounded-md font-bold text-lg flex items-center justify-center hover:bg-slate-50 active:bg-slate-200 shadow-sm transition-colors">-</button>
-                <div className="w-6 text-center font-bold text-sm text-slate-800">{row.qty}</div>
+                <div className="w-6 text-center font-bold text-sm text-black">{row.qty}</div>
                 <button onClick={() => updateQty(rowIdx, 1)} className="bg-white text-slate-600 w-7 h-7 rounded-md font-bold text-lg flex items-center justify-center hover:bg-slate-50 active:bg-slate-200 shadow-sm transition-colors">+</button>
              </div>
 

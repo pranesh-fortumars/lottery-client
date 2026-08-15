@@ -97,7 +97,7 @@ const AdminMigration = () => {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6">
         <div className="flex flex-col gap-4 mb-6">
           <div>
-            <h2 className="text-xl font-black text-slate-800 tracking-tight">Execute Migration</h2>
+            <h2 className="text-xl font-black text-black tracking-tight">Execute Migration</h2>
             <p className="text-slate-500 text-sm">Select source database and collections to migrate.</p>
           </div>
           
@@ -112,7 +112,7 @@ const AdminMigration = () => {
                    value={sourceDbId}
                    onChange={(e) => setSourceDbId(e.target.value)}
                    disabled={migrating}
-                   className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-bold text-slate-700 outline-none focus:border-blue-500 disabled:opacity-50 appearance-none transition-all"
+                   className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-400 rounded-xl text-xs sm:text-sm font-bold text-slate-900 outline-none focus:border-blue-500 disabled:opacity-50 appearance-none transition-all"
                  >
                    <option value="secondary">lottery-application-136 (Secondary)</option>
                    <option value="tertiary">sms-lottery (Tertiary)</option>
@@ -130,7 +130,7 @@ const AdminMigration = () => {
                    value={selectedCollection}
                    onChange={(e) => setSelectedCollection(e.target.value)}
                    disabled={migrating}
-                   className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-bold text-slate-700 outline-none focus:border-blue-500 disabled:opacity-50 appearance-none transition-all"
+                   className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-400 rounded-xl text-xs sm:text-sm font-bold text-slate-900 outline-none focus:border-blue-500 disabled:opacity-50 appearance-none transition-all"
                  >
                    <option value="all">⚡ ALL COLLECTIONS (Full Migration)</option>
                    <option disabled>──────────</option>

@@ -167,7 +167,7 @@ export const Header = ({ title, showBack = false }) => {
                            {a.source === 'withdrawal' ? <Wallet size={18} /> : <ShoppingCart size={18} />}
                          </div>
                          <div className="flex-grow">
-                            <h4 className="text-[13px] font-bold text-slate-800 mb-1 flex items-center justify-between">
+                            <h4 className="text-[13px] font-bold text-black mb-1 flex items-center justify-between">
                                {a.title} 
                                <span className="bg-amber-100 text-amber-700 text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">ACTION</span>
                             </h4>
@@ -192,7 +192,7 @@ export const Header = ({ title, showBack = false }) => {
                            <Info size={18} />}
                         </div>
                         <div className="flex-grow pr-2">
-                          <h4 className="text-[13px] font-bold text-slate-800 mb-0.5">{n.title}</h4>
+                          <h4 className="text-[13px] font-bold text-black mb-0.5">{n.title}</h4>
                           <p className="text-[11px] font-medium text-slate-500 leading-relaxed">{n.message}</p>
                           <span className="text-[9px] font-bold text-slate-400 mt-2 block">{n.time}</span>
                         </div>
@@ -203,7 +203,7 @@ export const Header = ({ title, showBack = false }) => {
                 )}
               </div>
 
-              <div className="p-4 border-t border-slate-200 shrink-0 bg-white">
+              <div className="p-4 border-t border-slate-400 shrink-0 bg-white">
                  <button onClick={() => setShowNotifs(false)} className="w-full py-3 bg-slate-800 text-white rounded-xl font-bold text-[12px] uppercase tracking-wide hover:bg-slate-700 transition-colors">Close Panel</button>
               </div>
             </motion.div>
@@ -238,8 +238,8 @@ export const BottomNav = () => {
   const links = isAdmin ? adminLinks : userLinks;
 
   return (
-    <div className="w-full bg-white border-t border-slate-200 pointer-events-auto shrink-0 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 relative">
-      <div className="bg-slate-100 text-slate-800 py-1.5 text-center font-black text-[10px] tracking-widest border-b border-slate-300 uppercase">
+    <div className="w-full bg-white border-t border-slate-400 pointer-events-auto shrink-0 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 relative">
+      <div className="bg-slate-100 text-black py-1.5 text-center font-black text-[10px] tracking-widest border-b border-slate-500 uppercase">
         {isAdmin ? 'Admin Dashboard' : appSettings.brandName}
       </div>
       
@@ -252,7 +252,7 @@ export const BottomNav = () => {
             className={({ isActive }) => `flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${
               isActive 
                 ? 'text-primary' 
-                : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100 font-bold'
+                : 'text-slate-600 hover:text-black hover:bg-slate-100 font-bold'
             }`}
           >
             {({ isActive }) => (
@@ -291,7 +291,7 @@ export const SupportSection = () => {
 
   return (
     <div className="mt-4 px-4 pb-6">
-      <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+      <div className="bg-white rounded-2xl p-4 border border-slate-400 shadow-sm">
          <div className="flex flex-col gap-3">
              <div className="flex items-center justify-between">
                <div className="flex items-center gap-2">
@@ -315,7 +315,7 @@ export const SupportSection = () => {
                    <div className={`w-10 h-10 ${item.color} rounded-lg flex items-center justify-center mb-2`}>
                      {item.icon}
                    </div>
-                   <p className="text-[11px] font-bold text-slate-700">{item.label}</p>
+                   <p className="text-[11px] font-bold text-slate-900">{item.label}</p>
                  </a>
                ))}
              </div>
@@ -351,7 +351,7 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
         <div className="w-20 h-20 bg-primary-light rounded-full flex items-center justify-center">
            <ShieldAlert size={40} className="text-primary" />
         </div>
-        <h1 className="text-2xl font-bold text-slate-800">System Maintenance</h1>
+        <h1 className="text-2xl font-bold text-black">System Maintenance</h1>
         <p className="text-sm font-medium text-slate-500 leading-relaxed max-w-sm">
           {appSettings.brandName} is currently undergoing scheduled system synchronization. We will be back shortly.
         </p>
@@ -369,7 +369,7 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
   const containerMaxWidth = "w-full sm:max-w-md md:max-w-lg";
 
   return (
-    <div className={`flex flex-col h-[100dvh] bg-slate-50 relative ${containerMaxWidth} mx-auto sm:shadow-xl overflow-hidden sm:border-x border-slate-200`}>
+    <div className={`flex flex-col h-[100dvh] bg-slate-50 relative ${containerMaxWidth} mx-auto sm:shadow-xl overflow-hidden sm:border-x border-slate-400`}>
       {showHeader && <Header title={title || appSettings.brandName} showBack={showBack} />}
       
       <motion.main 

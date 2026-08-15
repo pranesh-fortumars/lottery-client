@@ -77,7 +77,7 @@ const Dashboard = () => {
     <div className="bg-slate-50">
       {/* Hero Banner Area */}
       <div className="p-4 pt-4">
-        <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-200">
+        <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-400">
            <img 
             src="/hero-banner.png" 
             alt="Hero Banner" 
@@ -91,7 +91,7 @@ const Dashboard = () => {
         <div className="px-4 mt-2">
            <div className="bg-white border border-red-200 p-6 rounded-2xl flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden">
               <Shield className="text-red-500 mb-2" size={32} />
-              <h3 className="text-slate-800 font-bold text-lg uppercase tracking-tight">Sales Closed For Today</h3>
+              <h3 className="text-black font-bold text-lg uppercase tracking-tight">Sales Closed For Today</h3>
               <p className="text-[10px] font-medium text-slate-500 uppercase tracking-widest mt-1">Administrator has manually suspended all ticket intake</p>
            </div>
         </div>
@@ -118,7 +118,7 @@ const Dashboard = () => {
               </div>
               <div>
                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Active Payment ID</p>
-                <p className="text-sm font-bold text-slate-800 uppercase">{activePayment.upiId}</p>
+                <p className="text-sm font-bold text-black uppercase">{activePayment.upiId}</p>
                 <p className="text-[9px] font-bold text-primary uppercase tracking-wider mt-0.5">{activePayment.bankName}</p>
               </div>
             </div>
@@ -134,7 +134,7 @@ const Dashboard = () => {
         <div className="w-10 h-10 bg-primary-light rounded-xl flex items-center justify-center border border-primary-light/50">
            <Diamond className="text-primary fill-primary/20" size={20} />
         </div>
-        <h2 className="text-xl font-bold text-slate-800 uppercase tracking-tight">3 & 4 Digits Game</h2>
+        <h2 className="text-xl font-bold text-black uppercase tracking-tight">3 & 4 Digits Game</h2>
       </div>
 
       {/* Games Grid */}
@@ -198,16 +198,16 @@ const Dashboard = () => {
       {/* Jackpot Section */}
       {jackpotVisible && (
         <>
-          <div className="px-5 py-4 flex items-center gap-3 border-t border-slate-200 pt-8">
+          <div className="px-5 py-4 flex items-center gap-3 border-t border-slate-400 pt-8">
             <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center border border-indigo-100">
                <Diamond className="text-indigo-600 fill-indigo-100" size={20} />
             </div>
-            <h2 className="text-xl font-bold text-slate-800 uppercase tracking-tight">Jackpot</h2>
+            <h2 className="text-xl font-bold text-black uppercase tracking-tight">Jackpot</h2>
           </div>
 
           <div className="px-4 py-2">
             <div 
-              className="rounded-2xl overflow-hidden shadow-sm border border-slate-200 cursor-pointer hover:shadow-md transition-shadow"
+              className="rounded-2xl overflow-hidden shadow-sm border border-slate-400 cursor-pointer hover:shadow-md transition-shadow"
               onClick={() => navigate('/jackpot')}
             >
               <img 

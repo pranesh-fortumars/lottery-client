@@ -104,14 +104,14 @@ const PersonalInfoPage = () => {
           {/* Avatar Section */}
           <div className="flex flex-col items-center mt-4">
             <div className="w-24 h-24 bg-white p-1 rounded-full shadow-sm mb-4 relative">
-               <div className="w-full h-full bg-slate-100 rounded-full flex items-center justify-center border border-slate-200 text-blue-600">
+               <div className="w-full h-full bg-slate-100 rounded-full flex items-center justify-center border border-slate-400 text-blue-600">
                  <Landmark size={40} />
                </div>
                <div className="absolute bottom-0 right-0 bg-blue-600 p-2 rounded-full text-white shadow-sm border-2 border-white">
                  <ShieldCheck size={14} />
                </div>
             </div>
-            <h2 className="text-lg font-bold uppercase tracking-tight text-slate-800">{user?.name || 'Member'}</h2>
+            <h2 className="text-lg font-bold uppercase tracking-tight text-black">{user?.name || 'Member'}</h2>
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mt-0.5">
               {isComplete ? 'Verification Complete' : 'Mandatory Verification Pending'}
             </p>
@@ -136,10 +136,10 @@ const PersonalInfoPage = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-5">
+            <div className="bg-white p-6 rounded-3xl border border-slate-400 shadow-sm space-y-5">
                <div className="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
                   <User className="text-blue-600" size={20} />
-                  <h3 className="text-sm font-bold uppercase tracking-tight text-slate-800">Personal Profile</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-tight text-black">Personal Profile</h3>
                </div>
 
                <div className="space-y-1">
@@ -152,7 +152,7 @@ const PersonalInfoPage = () => {
                      value={formData.name}
                      onChange={handleChange}
                      required
-                     className="w-full h-14 bg-white border border-slate-200 rounded-2xl pl-12 pr-4 font-bold text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -166,17 +166,17 @@ const PersonalInfoPage = () => {
                      name="mobile"
                      value={formData.mobile}
                      disabled
-                     className="w-full h-14 bg-slate-100 border border-slate-200 rounded-2xl pl-12 pr-4 font-bold text-slate-500 outline-none opacity-70 cursor-not-allowed shadow-sm text-sm"
+                     className="w-full h-14 bg-slate-100 border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-slate-500 outline-none opacity-70 cursor-not-allowed shadow-sm text-sm"
                    />
                  </div>
                  <p className="text-[9px] font-medium text-slate-400 ml-2 mt-1">Phone number acts as your account ID and cannot be changed.</p>
                </div>
             </div>
 
-            <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-5">
+            <div className="bg-white p-6 rounded-3xl border border-slate-400 shadow-sm space-y-5">
                <div className="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
                   <Landmark className="text-blue-600" size={20} />
-                  <h3 className="text-sm font-bold uppercase tracking-tight text-slate-800">Mandatory Banking Details</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-tight text-black">Mandatory Banking Details</h3>
                </div>
 
                <div className="space-y-1">
@@ -190,7 +190,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="As per bank records"
-                     className="w-full h-14 bg-white border border-slate-200 rounded-2xl pl-12 pr-4 font-bold text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -208,7 +208,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="Enter Account Number"
-                     className="w-full h-14 bg-white border border-slate-200 rounded-2xl pl-12 pr-4 font-bold text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -226,7 +226,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="Re-enter Account Number"
-                     className="w-full h-14 bg-white border border-slate-200 rounded-2xl pl-12 pr-4 font-bold text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -242,7 +242,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="e.g. SBIN0001234"
-                     className="w-full h-14 bg-white border border-slate-200 rounded-2xl pl-12 pr-4 font-bold text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm uppercase"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm uppercase"
                    />
                  </div>
                </div>
@@ -258,7 +258,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="e.g. username@okaxis"
-                     className="w-full h-14 bg-white border border-slate-200 rounded-2xl pl-12 pr-4 font-bold text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>

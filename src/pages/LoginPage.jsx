@@ -39,12 +39,12 @@ const LoginPage = () => {
         
         <form className="w-full space-y-5 pt-10 max-w-md mx-auto" onSubmit={handleLogin}>
           {/* ID Input Group */}
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
+          <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
             <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
               ID
             </div>
             <input 
-              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-slate-800 bg-transparent placeholder:text-slate-300" 
+              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-black bg-transparent placeholder:text-slate-300" 
               placeholder="Username, Mobile Number, or Email" 
               type="text"
               required
@@ -54,12 +54,12 @@ const LoginPage = () => {
           </div>
 
           {/* Password Input Group */}
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
+          <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
             <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100">
                <Lock size={16} className="text-slate-400" />
             </div>
             <input 
-              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-slate-800 bg-transparent placeholder:text-slate-300" 
+              className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-black bg-transparent placeholder:text-slate-300" 
               placeholder="Enter your password" 
               type="password"
               required
@@ -79,14 +79,14 @@ const LoginPage = () => {
             
             <div className="flex gap-4">
               <button 
-                className="flex-1 bg-white border border-slate-200 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-primary hover:text-primary transition-all shadow-sm" 
+                className="flex-1 bg-white border border-slate-400 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-primary hover:text-primary transition-all shadow-sm" 
                 type="button"
                 onClick={() => navigate('/signup')}
               >
                 New Account
               </button>
               <button 
-                className="flex-[2] bg-white border border-slate-200 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-primary hover:text-primary transition-all shadow-sm" 
+                className="flex-[2] bg-white border border-slate-400 text-slate-600 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:border-primary hover:text-primary transition-all shadow-sm" 
                 type="button"
                 onClick={() => navigate('/reset-password')}
               >

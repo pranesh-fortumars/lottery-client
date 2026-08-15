@@ -152,7 +152,7 @@ const ResetPasswordPage = () => {
             <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 shadow-sm border border-blue-100">
               <ShieldCheck size={24} />
             </div>
-            <h2 className="text-3xl font-bold text-slate-800 uppercase tracking-tight leading-none">Security Center</h2>
+            <h2 className="text-3xl font-bold text-black uppercase tracking-tight leading-none">Security Center</h2>
           </div>
           <p className="text-[10px] font-medium text-slate-500 uppercase tracking-widest leading-relaxed">
             {method === 'mobile' ? (
@@ -168,7 +168,7 @@ const ResetPasswordPage = () => {
         </div>
 
         {step === 1 && !success && (
-          <div className="flex gap-2 p-1 bg-white rounded-2xl mb-8 border border-slate-200 shadow-sm">
+          <div className="flex gap-2 p-1 bg-white rounded-2xl mb-8 border border-slate-400 shadow-sm">
             <button
               onClick={() => { setMethod('mobile'); setError(''); }}
               className={`flex-1 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${method === 'mobile' ? 'bg-slate-50 text-blue-600 shadow-sm border border-slate-100' : 'text-slate-400 hover:bg-slate-50'}`}
@@ -206,10 +206,10 @@ const ResetPasswordPage = () => {
                     <div className="relative group">
                       {method === 'mobile' ? (
                         <>
-                          <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-[10px] pr-4 border-r border-slate-200">+91</div>
+                          <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-[10px] pr-4 border-r border-slate-400">+91</div>
                           <input
                             required
-                            className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-20 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
+                            className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-20 pr-6 outline-none font-bold text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
                             placeholder="10 Digit Number"
                             type="tel"
                             inputMode="numeric"
@@ -224,7 +224,7 @@ const ResetPasswordPage = () => {
                           <Mail className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
                           <input
                             required
-                            className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-16 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
+                            className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-16 pr-6 outline-none font-bold text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
                             placeholder="Mobile or Registered Email"
                             type="text"
                             value={identifier}
@@ -253,7 +253,7 @@ const ResetPasswordPage = () => {
                       <Lock className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
                       <input
                         required
-                        className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-16 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-xl tracking-[0.5em] text-center shadow-sm"
+                        className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-16 pr-6 outline-none font-bold text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-xl tracking-[0.5em] text-center shadow-sm"
                         placeholder="······"
                         type="text"
                         inputMode="numeric"
@@ -283,7 +283,7 @@ const ResetPasswordPage = () => {
                       <Key className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
                       <input
                         required
-                        className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-16 pr-6 outline-none font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
+                        className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-16 pr-6 outline-none font-bold text-black focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all text-sm shadow-sm"
                         placeholder="Minimum 6 characters"
                         type="password"
                         value={newPassword}

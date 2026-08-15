@@ -40,7 +40,7 @@ const BalanceWarningModal = ({ isOpen, onClose, cartTotal, currentBalance, onRec
              <div className="flex justify-between items-center p-4 bg-slate-50 rounded-2xl border border-slate-100">
                 <div>
                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Your Balance</p>
-                   <p className="text-lg font-bold text-slate-800">₹{currentBalance.toFixed(2)}</p>
+                   <p className="text-lg font-bold text-black">₹{currentBalance.toFixed(2)}</p>
                 </div>
                 <div className="text-right">
                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Shortfall</p>
@@ -202,38 +202,38 @@ const CartPage = () => {
 
         {/* Cart Table */}
         <div className="w-full max-w-sm mb-8 px-1">
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-xl border border-slate-400 shadow-sm overflow-hidden">
             <table className="w-full text-left text-xs border-collapse">
               <tbody>
-                <tr className="border-b border-slate-200 bg-slate-50/50">
-                  <td colSpan={4} className="p-3 font-bold text-slate-700 border border-slate-200">Name: {user?.name || 'Guest'}</td>
-                  <td colSpan={2} className="p-3 text-right font-medium text-slate-500 border border-slate-200">{currentDate}</td>
+                <tr className="border-b border-slate-400 bg-slate-50/50">
+                  <td colSpan={4} className="p-3 font-bold text-slate-900 border border-slate-400">Name: {user?.name || 'Guest'}</td>
+                  <td colSpan={2} className="p-3 text-right font-medium text-slate-500 border border-slate-400">{currentDate}</td>
                 </tr>
                 
                 {/* Row 2: Headers */}
-                <tr className="border-b border-slate-200 bg-slate-100/50 text-[10px] uppercase tracking-wider text-slate-500 font-bold">
-                  <td className="p-3 border border-slate-200">Lot Details</td>
-                  <td className="p-3 text-center border border-slate-200">Num</td>
-                  <td className="p-3 text-center border border-slate-200">Qty</td>
-                  <td className="p-3 text-center border border-slate-200">₹</td>
-                  <td className="p-3 text-right border border-slate-200">Amt ₹</td>
-                  <td className="p-3 w-8 border border-slate-200"></td>
+                <tr className="border-b border-slate-400 bg-slate-100/50 text-[10px] uppercase tracking-wider text-slate-500 font-bold">
+                  <td className="p-3 border border-slate-400">Lot Details</td>
+                  <td className="p-3 text-center border border-slate-400">Num</td>
+                  <td className="p-3 text-center border border-slate-400">Qty</td>
+                  <td className="p-3 text-center border border-slate-400">₹</td>
+                  <td className="p-3 text-right border border-slate-400">Amt ₹</td>
+                  <td className="p-3 w-8 border border-slate-400"></td>
                 </tr>
 
                 {/* Data Rows */}
                 {cart.map((item) => (
                   <tr key={item.id} className="border-b border-slate-100 last:border-b-0 relative group hover:bg-slate-50/50 transition-colors">
-                    <td className="p-3 border border-slate-200">
+                    <td className="p-3 border border-slate-400">
                       <div className="flex flex-col">
-                        <span className="font-bold text-slate-800 text-[11px] uppercase">{item.title}</span>
+                        <span className="font-bold text-black text-[11px] uppercase">{item.title}</span>
                         {item.board && <span className="text-[9px] text-slate-500 font-medium mt-0.5">Board: {item.board}</span>}
                       </div>
                     </td>
-                    <td className="p-3 text-center font-bold text-slate-800 border border-slate-200">{item.num}</td>
-                    <td className="p-3 text-center text-slate-600 border border-slate-200">{item.qty}</td>
-                    <td className="p-3 text-center text-slate-600 border border-slate-200">{item.price}</td>
-                    <td className="p-3 text-right font-bold text-blue-600 border border-slate-200">{(item.price * item.qty).toFixed(2)}</td>
-                    <td className="p-2 text-center align-middle border border-slate-200">
+                    <td className="p-3 text-center font-bold text-black border border-slate-400">{item.num}</td>
+                    <td className="p-3 text-center text-slate-600 border border-slate-400">{item.qty}</td>
+                    <td className="p-3 text-center text-slate-600 border border-slate-400">{item.price}</td>
+                    <td className="p-3 text-right font-bold text-blue-600 border border-slate-400">{(item.price * item.qty).toFixed(2)}</td>
+                    <td className="p-2 text-center align-middle border border-slate-400">
                       <button 
                         onClick={() => removeFromCart(item.id)} 
                         className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mx-auto flex items-center justify-center"
@@ -252,10 +252,10 @@ const CartPage = () => {
                 )}
 
                 {/* Total Amount Row */}
-                <tr className="bg-slate-50 border-t border-slate-200">
-                  <td colSpan={4} className="p-4 text-right uppercase tracking-widest text-[10px] font-bold text-slate-500 border border-slate-200">Grand Total:</td>
-                  <td className="p-4 text-right text-lg font-bold text-slate-800 border border-slate-200">{cartTotal.toFixed(2)}</td>
-                  <td className="p-4 bg-slate-50 border border-slate-200"></td>
+                <tr className="bg-slate-50 border-t border-slate-400">
+                  <td colSpan={4} className="p-4 text-right uppercase tracking-widest text-[10px] font-bold text-slate-500 border border-slate-400">Grand Total:</td>
+                  <td className="p-4 text-right text-lg font-bold text-black border border-slate-400">{cartTotal.toFixed(2)}</td>
+                  <td className="p-4 bg-slate-50 border border-slate-400"></td>
                 </tr>
               </tbody>
             </table>
@@ -268,14 +268,14 @@ const CartPage = () => {
           </div>
 
           {/* Wallet Balance Info */}
-          <div className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between mb-6 shadow-sm">
+          <div className="bg-white border border-slate-400 rounded-xl p-4 flex items-center justify-between mb-6 shadow-sm">
              <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100">
                    <Wallet size={18} className="text-blue-600" />
                 </div>
                 <div>
                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Usable Balance</p>
-                  <p className="text-sm font-bold text-slate-800 uppercase">₹{totalUsableBalance.toFixed(2)}</p>
+                  <p className="text-sm font-bold text-black uppercase">₹{totalUsableBalance.toFixed(2)}</p>
                 </div>
              </div>
              <div className="flex flex-col items-end">
@@ -288,7 +288,7 @@ const CartPage = () => {
 
         <button 
           onClick={() => navigate('/home')} 
-          className="mb-10 flex items-center gap-2 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:text-blue-600 transition-colors bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200"
+          className="mb-10 flex items-center gap-2 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:text-blue-600 transition-colors bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-400"
         >
           <ChevronLeft size={14} /> Add more tickets
         </button>

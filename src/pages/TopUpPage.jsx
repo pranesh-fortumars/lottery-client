@@ -93,7 +93,7 @@ const TopUpPage = () => {
                   className={`py-3.5 rounded-xl font-bold text-xs border transition-all shadow-sm ${
                     amount === a 
                       ? 'bg-blue-600 text-white border-blue-600' 
-                      : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
+                      : 'bg-white text-slate-500 border-slate-400 hover:border-slate-500'
                   }`}
                 >
                    ₹ {Math.floor(parseFloat(a))}
@@ -109,7 +109,7 @@ const TopUpPage = () => {
                 pattern="[0-9]*"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full h-16 bg-white border border-slate-200 rounded-2xl pl-14 pr-6 font-bold text-slate-800 text-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm placeholder:text-slate-300" 
+                className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-14 pr-6 font-bold text-black text-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm placeholder:text-slate-300" 
                 placeholder="Custom Amount"
               />
            </div>
@@ -125,21 +125,21 @@ const TopUpPage = () => {
               <div className="flex gap-3">
                  <button 
                   onClick={() => setShowPayment(true)}
-                  className="flex-1 bg-white border border-slate-200 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm hover:border-blue-200 active:bg-blue-50 transition-colors"
+                  className="flex-1 bg-white border border-slate-400 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm hover:border-blue-200 active:bg-blue-50 transition-colors"
                 >
                     <QrCode size={18} className="text-blue-600" />
                     <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Active UPI QR</span>
                  </button>
-                 <div className="flex-1 bg-slate-100 border border-slate-200 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm opacity-60">
+                 <div className="flex-1 bg-slate-100 border border-slate-400 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm opacity-60">
                     <Landmark size={18} className="text-slate-400" />
                     <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Bank Transfer</span>
                  </div>
               </div>
               
               {activePayment && (
-                <div className="mt-6 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                <div className="mt-6 p-4 bg-white rounded-xl border border-slate-400 shadow-sm">
                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1 text-center">Currently Active Payment ID</p>
-                  <p className="text-sm font-bold text-slate-700 text-center">{activePayment.upiId}</p>
+                  <p className="text-sm font-bold text-slate-900 text-center">{activePayment.upiId}</p>
                 </div>
               )}
            </div>
