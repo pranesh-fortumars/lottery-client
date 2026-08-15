@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   FileText, 
   Download, 
@@ -8,15 +8,198 @@ import {
   ArrowRight,
   TrendingUp,
   Target,
-  ChevronRight
+  ChevronRight,
+  Filter,
+  Loader2
 } from 'lucide-react';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../firebase';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const AdminReports = () => {
+  // Date range state (default: Last 7 Days)
+  const [startDate, setStartDate] = useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() - 7);
+    return d.toISOString().split('T')[0];
+  });
+  const [endDate, setEndDate] = useState(() => {
+    return new Date().toISOString().split('T')[0];
+  });
+
+  const [loadingPdf, setLoadingPdf] = useState(null);
+  const [loadingCsv, setLoadingCsv] = useState(null);
+
+  // Generate Date Range Objects for Firebase Queries
+  const getDateRange = () => {
+    const start = new Date(startDate);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(endDate);
+    end.setHours(23, 59, 59, 999);
+    return { start, end };
+  };
+
+  const fetchReportData = async (collectionName) => {
+    const { start, end } = getDateRange();
+    const q = query(
+      collection(db, collectionName),
+      where('timestamp', '>=', start),
+      where('timestamp', '<=', end)
+    );
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  };
+
+  const generateRevenueReport = async (format) => {
+    setLoadingPdf(format === 'pdf' ? 'revenue' : null);
+    setLoadingCsv(format === 'csv' ? 'revenue' : null);
+    try {
+      const tickets = await fetchReportData('tickets');
+      const data = tickets.map(t => [
+        t.ticketId || t.id,
+        t.userName || t.userId,
+        t.lotteryName,
+        t.drawDate,
+        `₹${t.totalPrice || 0}`,
+        t.timestamp?.toDate().toLocaleString() || 'N/A'
+      ]);
+
+      if (format === 'pdf') {
+        const doc = new jsPDF();
+        doc.text(`Revenue Report (${startDate} to ${endDate})`, 14, 15);
+        doc.autoTable({
+          startY: 25,
+          head: [['Ticket ID', 'User', 'Lottery', 'Draw Date', 'Amount', 'Date']],
+          body: data,
+        });
+        doc.save(`Revenue_Report_${startDate}.pdf`);
+      } else {
+        const csvContent = "data:text/csv;charset=utf-8," 
+          + "Ticket ID,User,Lottery,Draw Date,Amount,Date\n"
+          + data.map(e => e.join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `Revenue_Report_${startDate}.csv`);
+        document.body.appendChild(link);
+        link.click();
+      }
+    } catch (err) {
+      alert("Error generating report: " + err.message);
+    } finally {
+      setLoadingPdf(null);
+      setLoadingCsv(null);
+    }
+  };
+
+  const generateGrowthReport = async (format) => {
+    setLoadingPdf(format === 'pdf' ? 'growth' : null);
+    setLoadingCsv(format === 'csv' ? 'growth' : null);
+    try {
+      const users = await fetchReportData('users');
+      const data = users.map(u => [
+        u.name || 'Unknown',
+        u.email || u.phone || 'N/A',
+        `₹${u.walletBalance || 0}`,
+        u.timestamp?.toDate().toLocaleString() || 'N/A'
+      ]);
+
+      if (format === 'pdf') {
+        const doc = new jsPDF();
+        doc.text(`User Growth Analytics (${startDate} to ${endDate})`, 14, 15);
+        doc.autoTable({
+          startY: 25,
+          head: [['Name', 'Contact', 'Wallet Balance', 'Joined Date']],
+          body: data,
+        });
+        doc.save(`User_Growth_Report_${startDate}.pdf`);
+      } else {
+        const csvContent = "data:text/csv;charset=utf-8," 
+          + "Name,Contact,Wallet Balance,Joined Date\n"
+          + data.map(e => e.join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `User_Growth_Report_${startDate}.csv`);
+        document.body.appendChild(link);
+        link.click();
+      }
+    } catch (err) {
+      alert("Error generating report: " + err.message);
+    } finally {
+      setLoadingPdf(null);
+      setLoadingCsv(null);
+    }
+  };
+
+  const generateWalletReport = async (format) => {
+    setLoadingPdf(format === 'pdf' ? 'wallet' : null);
+    setLoadingCsv(format === 'csv' ? 'wallet' : null);
+    try {
+      const transactions = await fetchReportData('transactions');
+      const data = transactions.map(t => [
+        t.id,
+        t.userId,
+        t.type || t.transactionType,
+        t.status,
+        `₹${t.amount || 0}`,
+        t.timestamp?.toDate().toLocaleString() || 'N/A'
+      ]);
+
+      if (format === 'pdf') {
+        const doc = new jsPDF();
+        doc.text(`Wallet Transaction Log (${startDate} to ${endDate})`, 14, 15);
+        doc.autoTable({
+          startY: 25,
+          head: [['Transaction ID', 'User ID', 'Type', 'Status', 'Amount', 'Date']],
+          body: data,
+        });
+        doc.save(`Wallet_Transactions_${startDate}.pdf`);
+      } else {
+        const csvContent = "data:text/csv;charset=utf-8," 
+          + "Transaction ID,User ID,Type,Status,Amount,Date\n"
+          + data.map(e => e.join(",")).join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `Wallet_Transactions_${startDate}.csv`);
+        document.body.appendChild(link);
+        link.click();
+      }
+    } catch (err) {
+      alert("Error generating report: " + err.message);
+    } finally {
+      setLoadingPdf(null);
+      setLoadingCsv(null);
+    }
+  };
+
   const reports = [
-    { title: 'Daily Revenue Report', desc: 'Detailed breakdown of sales and prize payouts.', date: 'Daily Update', icon: Activity, color: 'text-emerald-500', bg: 'bg-emerald-50' },
-    { title: 'User Growth Analytics', desc: 'Tracking new registrations and user retention.', date: 'Weekly Sync', icon: PieChart, color: 'text-blue-500', bg: 'bg-blue-50' },
-    { title: 'Lottery Accuracy Audit', desc: 'Verifying random number generation and results.', date: 'Monthly Audit', icon: Target, color: 'text-orange-500', bg: 'bg-orange-50' },
-    { title: 'Wallet Transaction Log', desc: 'Complete history of all deposits and winnings.', date: 'Live Feed', icon: Calendar, color: 'text-primary-hover', bg: 'bg-[#eff6ff]' },
+    { 
+      id: 'revenue',
+      title: 'Revenue Report', 
+      desc: 'Detailed breakdown of sales and prize payouts.', 
+      date: 'Live Data', 
+      icon: Activity, color: 'text-emerald-500', bg: 'bg-emerald-50',
+      onGenerate: generateRevenueReport
+    },
+    { 
+      id: 'growth',
+      title: 'User Growth Analytics', 
+      desc: 'Tracking new registrations and user retention.', 
+      date: 'Live Data', 
+      icon: PieChart, color: 'text-blue-500', bg: 'bg-blue-50',
+      onGenerate: generateGrowthReport
+    },
+    { 
+      id: 'wallet',
+      title: 'Wallet Transaction Log', 
+      desc: 'Complete history of all deposits and winnings.', 
+      date: 'Live Data', 
+      icon: Calendar, color: 'text-primary-hover', bg: 'bg-[#eff6ff]',
+      onGenerate: generateWalletReport
+    },
   ];
 
   return (
@@ -30,9 +213,40 @@ const AdminReports = () => {
                <h2 className="text-2xl font-black text-gray-900 font-condensed uppercase tracking-tighter italic leading-none">Intelligence</h2>
                <p className="text-primary font-black text-[10px] uppercase tracking-widest leading-none mt-1">SMS Lottery Insights</p>
             </div>
-            <button className="bg-gray-50 border border-gray-100 p-3 rounded-2xl text-gray-400 hover:text-primary-hover hover:bg-[#eff6ff] transition-all">
-               <Download size={20} />
-            </button>
+         </div>
+      </div>
+
+      {/* Date Filter Controls */}
+      <div className="bg-white rounded-[2rem] p-6 border border-slate-400 shadow-sm flex flex-col sm:flex-row gap-4 items-center justify-between">
+         <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
+               <Filter size={18} />
+            </div>
+            <div>
+               <h3 className="text-sm font-black text-gray-800 uppercase">Report Date Filter</h3>
+               <p className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Custom Time Range</p>
+            </div>
+         </div>
+         
+         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="flex flex-col">
+               <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1 mb-1">Start Date</label>
+               <input 
+                 type="date" 
+                 value={startDate}
+                 onChange={(e) => setStartDate(e.target.value)}
+                 className="border border-slate-400 rounded-xl px-4 py-2 text-sm font-bold text-gray-700 focus:border-primary outline-none"
+               />
+            </div>
+            <div className="flex flex-col">
+               <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1 mb-1">End Date</label>
+               <input 
+                 type="date" 
+                 value={endDate}
+                 onChange={(e) => setEndDate(e.target.value)}
+                 className="border border-slate-400 rounded-xl px-4 py-2 text-sm font-bold text-gray-700 focus:border-primary outline-none"
+               />
+            </div>
          </div>
       </div>
 
@@ -40,10 +254,10 @@ const AdminReports = () => {
       <div className="space-y-6">
          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4 mb-2 italic">Standard Audit Logs</p>
          <div className="space-y-4">
-            {reports.map((report, idx) => (
-               <div key={idx} className="bg-white rounded-[2.2rem] p-6 border border-gray-100 shadow-lg flex flex-col gap-6 active:scale-[0.98] transition-all group hover:border-primary-hover/20">
+            {reports.map((report) => (
+               <div key={report.id} className="bg-white rounded-[2.2rem] p-6 border border-slate-400 shadow-sm flex flex-col gap-6 transition-all hover:border-primary-hover/50">
                   <div className="flex items-center gap-5">
-                     <div className={`w-14 h-14 rounded-2xl shrink-0 flex items-center justify-center shadow-md border border-white ${report.bg} ${report.color} group-hover:rotate-6 transition-transform`}>
+                     <div className={`w-14 h-14 rounded-2xl shrink-0 flex items-center justify-center shadow-md border border-white ${report.bg} ${report.color}`}>
                         <report.icon size={28} strokeWidth={2.5} />
                      </div>
                      
@@ -58,12 +272,22 @@ const AdminReports = () => {
                      </div>
                   </div>
 
-                  <div className="flex gap-3 justify-end border-t border-gray-50 pt-5">
-                     <button className="bg-gray-50 text-gray-500 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-primary-hover hover:text-white transition-all">
-                        <FileText size={14} /> View PDF
+                  <div className="flex gap-3 justify-end border-t border-slate-200 pt-5">
+                     <button 
+                       onClick={() => report.onGenerate('pdf')}
+                       disabled={loadingPdf === report.id || loadingCsv === report.id}
+                       className="bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-primary-hover hover:text-white transition-all disabled:opacity-50"
+                     >
+                        {loadingPdf === report.id ? <Loader2 size={14} className="animate-spin" /> : <FileText size={14} />} 
+                        {loadingPdf === report.id ? 'Loading...' : 'View PDF'}
                      </button>
-                     <button className="bg-gray-50 text-gray-500 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-gray-900 hover:text-white transition-all">
-                        <Download size={14} /> Export CSV
+                     <button 
+                       onClick={() => report.onGenerate('csv')}
+                       disabled={loadingPdf === report.id || loadingCsv === report.id}
+                       className="bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest flex items-center gap-2 hover:bg-gray-900 hover:text-white transition-all disabled:opacity-50"
+                     >
+                        {loadingCsv === report.id ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />} 
+                        {loadingCsv === report.id ? 'Loading...' : 'Export CSV'}
                      </button>
                   </div>
                </div>
