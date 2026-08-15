@@ -42,13 +42,17 @@ const AdminReports = () => {
 
   const fetchReportData = async (collectionName) => {
     const { start, end } = getDateRange();
-    const q = query(
-      collection(db, collectionName),
-      where('timestamp', '>=', start),
-      where('timestamp', '<=', end)
-    );
-    const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    
+    // Fetch all documents and filter locally to avoid Firestore missing index hangs
+    const snapshot = await getDocs(collection(db, collectionName));
+    const allData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    
+    return allData.filter(item => {
+      // Handle both 'timestamp' (tickets, transactions) and 'createdAt' (users) fields
+      const itemDate = item.timestamp?.toDate ? item.timestamp.toDate() 
+                       : (item.createdAt ? new Date(item.createdAt) : new Date(0));
+      return itemDate >= start && itemDate <= end;
+    });
   };
 
   const generateRevenueReport = async (format) => {
