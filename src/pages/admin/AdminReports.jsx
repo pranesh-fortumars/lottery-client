@@ -15,7 +15,7 @@ import {
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
 const AdminReports = () => {
   // Date range state (default: Last 7 Days)
@@ -72,7 +72,7 @@ const AdminReports = () => {
       if (format === 'pdf') {
         const doc = new jsPDF();
         doc.text(`Revenue Report (${startDate} to ${endDate})`, 14, 15);
-        doc.autoTable({
+        autoTable(doc, {
           startY: 25,
           head: [['Ticket ID', 'User', 'Lottery', 'Draw Date', 'Amount', 'Date']],
           body: data,
@@ -112,7 +112,7 @@ const AdminReports = () => {
       if (format === 'pdf') {
         const doc = new jsPDF();
         doc.text(`User Growth Analytics (${startDate} to ${endDate})`, 14, 15);
-        doc.autoTable({
+        autoTable(doc, {
           startY: 25,
           head: [['Name', 'Contact', 'Wallet Balance', 'Joined Date']],
           body: data,
@@ -154,7 +154,7 @@ const AdminReports = () => {
       if (format === 'pdf') {
         const doc = new jsPDF();
         doc.text(`Wallet Transaction Log (${startDate} to ${endDate})`, 14, 15);
-        doc.autoTable({
+        autoTable(doc, {
           startY: 25,
           head: [['Transaction ID', 'User ID', 'Type', 'Status', 'Amount', 'Date']],
           body: data,
