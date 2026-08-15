@@ -178,7 +178,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
         <div className="flex justify-between items-center mb-6 gap-4 px-1">
            <div className="flex gap-2">
               {row.numbers.map((_, i) => (
-                 <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
+                 <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
                     {getLabel(row, i)}
                  </div>
               ))}
@@ -278,7 +278,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
           <div key={row.id} className="flex items-center justify-between gap-3 min-w-[340px]">
              <div className="flex gap-1 shrink-0">
                 {row.numbers.map((_, i) => (
-                   <div key={i} className={`w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-[11px] shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
+                   <div key={i} className={`w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
                       {getLabel(row, i)}
                    </div>
                 ))}
