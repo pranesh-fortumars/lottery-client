@@ -16,6 +16,10 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { Capacitor } from '@capacitor/core';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const AdminReports = () => {
   // Date range state (default: Last 7 Days)
@@ -30,6 +34,60 @@ const AdminReports = () => {
 
   const [loadingPdf, setLoadingPdf] = useState(null);
   const [loadingCsv, setLoadingCsv] = useState(null);
+
+  const [chartData, setChartData] = useState({ revenue: [], users: [] });
+  const [loadingCharts, setLoadingCharts] = useState(false);
+
+  React.useEffect(() => {
+    let isMounted = true;
+    const fetchChartData = async () => {
+      setLoadingCharts(true);
+      try {
+        const start = new Date(startDate);
+        start.setHours(0, 0, 0, 0);
+        const end = new Date(endDate);
+        end.setHours(23, 59, 59, 999);
+
+        const ticketsSnap = await getDocs(collection(db, 'tickets'));
+        const usersSnap = await getDocs(collection(db, 'users'));
+
+        const revMap = {};
+        ticketsSnap.docs.forEach(doc => {
+            const t = doc.data();
+            const d = t.timestamp?.toDate ? t.timestamp.toDate() : (t.purchaseDate ? new Date(t.purchaseDate) : new Date(0));
+            if (d >= start && d <= end) {
+                const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+                if (!revMap[dateStr]) revMap[dateStr] = 0;
+                revMap[dateStr] += (Number(t.price || 0) * Number(t.qty || 1));
+            }
+        });
+
+        const userMap = {};
+        usersSnap.docs.forEach(doc => {
+            const u = doc.data();
+            const d = u.createdAt ? new Date(u.createdAt) : new Date(0);
+            if (d >= start && d <= end) {
+                const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+                if (!userMap[dateStr]) userMap[dateStr] = 0;
+                userMap[dateStr] += 1;
+            }
+        });
+
+        if (isMounted) {
+          setChartData({
+            revenue: Object.keys(revMap).map(date => ({ name: date, amount: revMap[date] })),
+            users: Object.keys(userMap).map(date => ({ name: date, users: userMap[date] }))
+          });
+        }
+      } catch (e) {
+        console.error("Chart fetch error:", e);
+      } finally {
+        if (isMounted) setLoadingCharts(false);
+      }
+    };
+    fetchChartData();
+    return () => { isMounted = false; };
+  }, [startDate, endDate]);
 
   // Generate Date Range Objects for Firebase Queries
   const getDateRange = () => {
@@ -267,6 +325,57 @@ const AdminReports = () => {
                  onChange={(e) => setEndDate(e.target.value)}
                  className="border border-slate-400 rounded-xl px-4 py-2 text-sm font-bold text-gray-700 focus:border-primary outline-none"
                />
+            </div>
+         </div>
+      </div>
+
+      {/* Visualizations */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+         {/* Revenue Chart */}
+         <div className="bg-white rounded-[2rem] p-6 border border-slate-400 shadow-sm flex flex-col gap-4">
+            <h3 className="text-sm font-black text-gray-800 uppercase italic flex items-center gap-2">
+               <TrendingUp size={16} className="text-emerald-500" /> Revenue Trends
+            </h3>
+            <div className="h-[250px] w-full">
+               {loadingCharts ? (
+                  <div className="h-full flex items-center justify-center text-gray-400"><Loader2 className="animate-spin" size={24} /></div>
+               ) : chartData.revenue.length === 0 ? (
+                  <div className="h-full flex items-center justify-center text-gray-400 text-xs font-bold uppercase">No Data</div>
+               ) : (
+                  <ResponsiveContainer width="100%" height="100%">
+                     <LineChart data={chartData.revenue}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                        <XAxis dataKey="name" tick={{fontSize: 10, fill: '#64748b', fontWeight: 'bold'}} axisLine={false} tickLine={false} />
+                        <YAxis tick={{fontSize: 10, fill: '#64748b', fontWeight: 'bold'}} axisLine={false} tickLine={false} tickFormatter={(val) => `₹${val}`} />
+                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
+                        <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={4} dot={{r: 4, strokeWidth: 2}} activeDot={{r: 6}} />
+                     </LineChart>
+                  </ResponsiveContainer>
+               )}
+            </div>
+         </div>
+
+         {/* User Growth Chart */}
+         <div className="bg-white rounded-[2rem] p-6 border border-slate-400 shadow-sm flex flex-col gap-4">
+            <h3 className="text-sm font-black text-gray-800 uppercase italic flex items-center gap-2">
+               <PieChart size={16} className="text-blue-500" /> User Growth
+            </h3>
+            <div className="h-[250px] w-full">
+               {loadingCharts ? (
+                  <div className="h-full flex items-center justify-center text-gray-400"><Loader2 className="animate-spin" size={24} /></div>
+               ) : chartData.users.length === 0 ? (
+                  <div className="h-full flex items-center justify-center text-gray-400 text-xs font-bold uppercase">No Data</div>
+               ) : (
+                  <ResponsiveContainer width="100%" height="100%">
+                     <BarChart data={chartData.users}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                        <XAxis dataKey="name" tick={{fontSize: 10, fill: '#64748b', fontWeight: 'bold'}} axisLine={false} tickLine={false} />
+                        <YAxis tick={{fontSize: 10, fill: '#64748b', fontWeight: 'bold'}} axisLine={false} tickLine={false} />
+                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} cursor={{fill: '#f1f5f9'}} />
+                        <Bar dataKey="users" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                     </BarChart>
+                  </ResponsiveContainer>
+               )}
             </div>
          </div>
       </div>
