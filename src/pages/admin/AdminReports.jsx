@@ -55,6 +55,39 @@ const AdminReports = () => {
     });
   };
 
+  const exportReport = async (format, doc, csvText, filename) => {
+    if (Capacitor.isNativePlatform()) {
+      try {
+        let base64Data = '';
+        if (format === 'pdf') {
+          base64Data = doc.output('datauristring').split(',')[1];
+        } else {
+          base64Data = btoa(unescape(encodeURIComponent(csvText)));
+        }
+        const result = await Filesystem.writeFile({
+          path: filename,
+          data: base64Data,
+          directory: Directory.Cache
+        });
+        await Share.share({ url: result.uri });
+      } catch(e) {
+        alert("Mobile Export Error: " + e.message);
+      }
+    } else {
+      if (format === 'pdf') {
+        doc.save(filename);
+      } else {
+        const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvText);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();
+        if (link.parentNode) link.parentNode.removeChild(link);
+      }
+    }
+  };
+
   const generateRevenueReport = async (format) => {
     setLoadingPdf(format === 'pdf' ? 'revenue' : null);
     setLoadingCsv(format === 'csv' ? 'revenue' : null);
@@ -69,26 +102,18 @@ const AdminReports = () => {
         t.timestamp?.toDate ? t.timestamp.toDate().toLocaleString() : (t.purchaseDate || 'N/A')
       ]);
 
-      if (format === 'pdf') {
-        const doc = new jsPDF();
-        doc.text(`Revenue Report (${startDate} to ${endDate})`, 14, 15);
-        autoTable(doc, {
-          startY: 25,
-          head: [['Ticket ID', 'User', 'Lottery', 'Draw Date', 'Amount', 'Date']],
-          body: data,
-        });
-        doc.save(`Revenue_Report_${startDate}.pdf`);
-      } else {
-        const csvContent = "data:text/csv;charset=utf-8," 
-          + "Ticket ID,User,Lottery,Draw Date,Amount,Date\n"
-          + data.map(e => e.join(",")).join("\n");
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", `Revenue_Report_${startDate}.csv`);
-        document.body.appendChild(link);
-        link.click();
-      }
+      const doc = new jsPDF();
+      doc.text(`Revenue Report (${startDate} to ${endDate})`, 14, 15);
+      autoTable(doc, {
+        startY: 25,
+        head: [['Ticket ID', 'User', 'Lottery', 'Draw Date', 'Amount', 'Date']],
+        body: data,
+      });
+      
+      const csvContentText = "Ticket ID,User,Lottery,Draw Date,Amount,Date\n" + data.map(e => e.join(",")).join("\n");
+      const filename = `Revenue_Report_${startDate}.${format}`;
+      
+      await exportReport(format, doc, csvContentText, filename);
     } catch (err) {
       alert("Error generating report: " + err.message);
     } finally {
@@ -105,30 +130,22 @@ const AdminReports = () => {
       const data = users.map(u => [
         u.name || 'Unknown',
         u.email || u.phone || 'N/A',
-        `₹${u.walletBalance || 0}`,
-        u.timestamp?.toDate().toLocaleString() || 'N/A'
+        `₹${u.walletBalance || u.balance || 0}`,
+        u.createdAt ? new Date(u.createdAt).toLocaleString() : 'N/A'
       ]);
 
-      if (format === 'pdf') {
-        const doc = new jsPDF();
-        doc.text(`User Growth Analytics (${startDate} to ${endDate})`, 14, 15);
-        autoTable(doc, {
-          startY: 25,
-          head: [['Name', 'Contact', 'Wallet Balance', 'Joined Date']],
-          body: data,
-        });
-        doc.save(`User_Growth_Report_${startDate}.pdf`);
-      } else {
-        const csvContent = "data:text/csv;charset=utf-8," 
-          + "Name,Contact,Wallet Balance,Joined Date\n"
-          + data.map(e => e.join(",")).join("\n");
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", `User_Growth_Report_${startDate}.csv`);
-        document.body.appendChild(link);
-        link.click();
-      }
+      const doc = new jsPDF();
+      doc.text(`User Growth Analytics (${startDate} to ${endDate})`, 14, 15);
+      autoTable(doc, {
+        startY: 25,
+        head: [['Name', 'Contact', 'Wallet Balance', 'Joined Date']],
+        body: data,
+      });
+      
+      const csvContentText = "Name,Contact,Wallet Balance,Joined Date\n" + data.map(e => e.join(",")).join("\n");
+      const filename = `User_Growth_Report_${startDate}.${format}`;
+      
+      await exportReport(format, doc, csvContentText, filename);
     } catch (err) {
       alert("Error generating report: " + err.message);
     } finally {
@@ -148,29 +165,21 @@ const AdminReports = () => {
         t.type || t.transactionType,
         t.status,
         `₹${t.amount || 0}`,
-        t.timestamp?.toDate().toLocaleString() || 'N/A'
+        t.timestamp?.toDate ? t.timestamp.toDate().toLocaleString() : 'N/A'
       ]);
 
-      if (format === 'pdf') {
-        const doc = new jsPDF();
-        doc.text(`Wallet Transaction Log (${startDate} to ${endDate})`, 14, 15);
-        autoTable(doc, {
-          startY: 25,
-          head: [['Transaction ID', 'User ID', 'Type', 'Status', 'Amount', 'Date']],
-          body: data,
-        });
-        doc.save(`Wallet_Transactions_${startDate}.pdf`);
-      } else {
-        const csvContent = "data:text/csv;charset=utf-8," 
-          + "Transaction ID,User ID,Type,Status,Amount,Date\n"
-          + data.map(e => e.join(",")).join("\n");
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", `Wallet_Transactions_${startDate}.csv`);
-        document.body.appendChild(link);
-        link.click();
-      }
+      const doc = new jsPDF();
+      doc.text(`Wallet Transaction Log (${startDate} to ${endDate})`, 14, 15);
+      autoTable(doc, {
+        startY: 25,
+        head: [['Transaction ID', 'User ID', 'Type', 'Status', 'Amount', 'Date']],
+        body: data,
+      });
+
+      const csvContentText = "Transaction ID,User ID,Type,Status,Amount,Date\n" + data.map(e => e.join(",")).join("\n");
+      const filename = `Wallet_Transactions_${startDate}.${format}`;
+      
+      await exportReport(format, doc, csvContentText, filename);
     } catch (err) {
       alert("Error generating report: " + err.message);
     } finally {
