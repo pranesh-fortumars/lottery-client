@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 
-const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digits = 1, gameName = "Dear Lottery", drawTime = "", priceOptions = [], customRows = null, singleRow = false }) => {
+const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digits = 1, gameName = "Dear Lottery", drawTime = "", priceOptions = [], customRows = null, singleRow = false, colorTheme = "primary" }) => {
   const { addToCart } = useCart();
   const [selectedTier, setSelectedTier] = useState(priceOptions.length > 0 ? priceOptions[0] : null);
   
   const currentPrice = selectedTier ? selectedTier.price : initialPrice;
   const currentWinText = selectedTier ? `Win ${selectedTier.win}` : (initialWinText || "");
+
+  const themeStyles = {
+    primary: { bg: 'bg-primary', text: 'text-primary', light: 'bg-primary-light border-primary-light', hover: 'hover:bg-primary-hover', ring: 'focus:ring-primary focus:border-primary', btn: 'bg-primary text-white hover:bg-primary-hover', btnLight: 'bg-primary/10 text-primary hover:bg-primary/20' },
+    orange: { bg: 'bg-orange-500', text: 'text-orange-600', light: 'bg-orange-100 border-orange-200', hover: 'hover:bg-orange-600', ring: 'focus:ring-orange-500 focus:border-orange-500', btn: 'bg-gradient-to-r from-orange-500 to-amber-500 text-white', btnLight: 'bg-orange-50 text-orange-600 border border-orange-200 hover:bg-orange-100' },
+    emerald: { bg: 'bg-emerald-500', text: 'text-emerald-600', light: 'bg-emerald-100 border-emerald-200', hover: 'hover:bg-emerald-600', ring: 'focus:ring-emerald-500 focus:border-emerald-500', btn: 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white', btnLight: 'bg-emerald-50 text-emerald-600 border border-emerald-200 hover:bg-emerald-100' },
+    blue: { bg: 'bg-blue-500', text: 'text-blue-600', light: 'bg-blue-100 border-blue-200', hover: 'hover:bg-blue-600', ring: 'focus:ring-blue-500 focus:border-blue-500', btn: 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white', btnLight: 'bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100' },
+    purple: { bg: 'bg-purple-500', text: 'text-purple-600', light: 'bg-purple-100 border-purple-200', hover: 'hover:bg-purple-600', ring: 'focus:ring-purple-500 focus:border-purple-500', btn: 'bg-gradient-to-r from-purple-600 to-fuchsia-500 text-white', btnLight: 'bg-purple-50 text-purple-600 border border-purple-200 hover:bg-purple-100' }
+  };
+  const theme = themeStyles[colorTheme] || themeStyles.primary;
 
   // Local state for rows. Each row has its own data.
   const [rows, setRows] = useState(() => {
@@ -150,7 +159,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
       <div className="border border-slate-400 rounded-2xl p-5 mb-4 bg-white shadow-sm transition-shadow hover:shadow-md">
         {/* Header Section */}
         <div className="flex gap-4 mb-6">
-          <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center shrink-0 border border-primary-light">
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${theme.light}`}>
              <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Icon" className="w-8 h-8" />
           </div>
           <div className="flex-grow">
@@ -159,7 +168,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                    <h3 className="text-black font-bold text-base leading-none uppercase tracking-tight mb-1">
                       {title}
                    </h3>
-                   <p className="text-primary font-bold text-[10px] uppercase tracking-wide leading-tight mb-2">
+                   <p className={`${theme.text} font-bold text-[10px] uppercase tracking-wide leading-tight mb-2`}>
                       {currentWinText}
                    </p>
                    <p className="text-slate-900 font-bold text-lg leading-none">₹ {currentPrice}</p>
@@ -178,7 +187,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
         <div className="flex justify-between items-center mb-6 gap-4 px-1">
            <div className="flex gap-2">
               {row.numbers.map((_, i) => (
-                 <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
+                 <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : theme.bg}`}>
                     {getLabel(row, i)}
                  </div>
               ))}
@@ -194,7 +203,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                   pattern="[0-9]*"
                   value={num}
                   onChange={(e) => updateNumber(rowIdx, digIdx, e.target.value)}
-                  className={`w-12 h-12 border rounded-xl text-center text-2xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 focus:border-primary'}`} 
+                  className={`w-12 h-12 border rounded-xl text-center text-2xl font-bold bg-slate-50 outline-none transition-all focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 ' + theme.ring}`} 
                   placeholder="" 
                   maxLength="1"
                 />
@@ -214,14 +223,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
               {(row.numbers.length === 3 || row.numbers.length === 4) && (
                  <button 
                    onClick={() => handleBox(rowIdx)}
-                   className="bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90"
+                   className={`px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90 ${theme.btn}`}
                  >
                    BOX
                  </button>
               )}
               <button 
                 onClick={() => handleAdd(rowIdx)}
-                className="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-primary-hover"
+                className={`px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors ${theme.btn}`}
               >
                 ADD
               </button>
@@ -235,14 +244,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
   return (
     <div className="border border-slate-400 rounded-2xl p-4 mb-6 bg-white shadow-sm transition-shadow hover:shadow-md">
       <div className="flex gap-4 mb-4 border-b border-slate-100 pb-4">
-        <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center shrink-0 border border-primary-light">
+        <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${theme.light}`}>
            <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Icon" className="w-8 h-8" />
         </div>
         <div className="flex-grow">
           <h3 className="text-black font-bold text-base leading-tight uppercase tracking-tight">
             {title}
           </h3>
-          <p className="text-primary font-bold text-[10px] uppercase tracking-wide leading-none mb-1 mt-1">
+          <p className={`${theme.text} font-bold text-[10px] uppercase tracking-wide leading-none mb-1 mt-1`}>
             {currentWinText && (currentWinText.includes('Win ') ? currentWinText : `Win ${currentWinText}`)}
           </p>
           <p className="text-slate-900 font-bold text-lg leading-none">₹ {currentPrice}</p>
@@ -263,7 +272,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
               onClick={() => setSelectedTier(opt)}
               className={`flex-shrink-0 px-4 py-2 rounded-lg text-[10px] font-bold uppercase transition-all border ${
                 selectedTier?.price === opt.price 
-                  ? 'bg-primary-light text-primary-dark border-primary-light shadow-sm' 
+                  ? theme.light + ' shadow-sm text-slate-800' 
                   : 'bg-white text-slate-500 border-slate-400 hover:bg-slate-50'
               }`}
             >
@@ -278,7 +287,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
           <div key={row.id} className="flex items-center justify-between gap-3 min-w-[340px]">
              <div className="flex gap-1 shrink-0">
                 {row.numbers.map((_, i) => (
-                   <div key={i} className={`w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : 'bg-primary'}`}>
+                   <div key={i} className={`w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : theme.bg}`}>
                       {getLabel(row, i)}
                    </div>
                 ))}
@@ -294,7 +303,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                     pattern="[0-9]*"
                     value={num}
                     onChange={(e) => updateNumber(rowIdx, digIdx, e.target.value)}
-                    className={`w-10 h-10 border rounded-lg text-center text-xl font-bold bg-slate-50 outline-none transition-all focus:ring-2 focus:ring-primary-light focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 focus:border-primary'}`} 
+                    className={`w-10 h-10 border rounded-lg text-center text-xl font-bold bg-slate-50 outline-none transition-all focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 ' + theme.ring}`} 
                     placeholder="-" 
                     maxLength="1"
                   />
@@ -311,14 +320,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                 {(row.numbers.length === 3 || row.numbers.length === 4) && (
                    <button 
                      onClick={() => handleBox(rowIdx)}
-                     className="bg-primary-dark text-white px-3 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90"
+                     className={`px-3 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90 ${theme.btn}`}
                    >
                      BOX
                    </button>
                 )}
                 <button 
                   onClick={() => handleAdd(rowIdx)}
-                  className="bg-primary text-white px-4 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:bg-primary-hover"
+                  className={`px-4 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors ${theme.btn}`}
                 >
                   ADD
                 </button>

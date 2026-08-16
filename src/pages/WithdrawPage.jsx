@@ -110,7 +110,7 @@ const WithdrawPage = () => {
     <PageWrapper title="WITHDRAW FUNDS" showBack={true}>
       <div className="bg-slate-50 min-h-screen p-6 flex flex-col items-center">
         {/* Balance Card */}
-        <div className="w-full max-w-sm bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-3xl p-8 text-white shadow-sm relative overflow-hidden mb-8 group">
+        <div className="w-full max-w-sm bg-gradient-to-br from-emerald-500 to-teal-400 rounded-3xl p-8 text-white shadow-lg border border-white/20 backdrop-blur-md relative overflow-hidden mb-8 group">
            <div className="absolute top-0 right-0 p-6 opacity-10 bg-white rounded-bl-3xl group-hover:scale-110 transition-transform">
               <Zap size={48} />
            </div>
@@ -191,7 +191,7 @@ const WithdrawPage = () => {
            <button 
              type="submit"
              disabled={isProcessing || winnings <= 0 || !isProfileComplete}
-             className="w-full h-14 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:grayscale"
+             className="w-full h-14 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500 text-white rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm active:scale-95 transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:grayscale"
            >
              {isProcessing ? 'PROCESSING...' : 'Authorize Withdrawal'} <ArrowUpRight size={18} />
            </button>

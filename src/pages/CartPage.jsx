@@ -28,12 +28,13 @@ const BalanceWarningModal = ({ isOpen, onClose, cartTotal, currentBalance, onRec
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           className="relative w-full max-w-sm bg-white rounded-3xl overflow-hidden shadow-xl"
         >
-          <div className="bg-blue-600 p-8 text-white text-center relative overflow-hidden">
-             <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div className="bg-gradient-to-br from-orange-500 to-rose-600 p-8 text-white text-center relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-16 -mt-16"></div>
+             <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-md border border-white/20">
                 <AlertCircle size={32} />
              </div>
-             <h3 className="text-xl font-bold uppercase tracking-tight">Insufficient Balance</h3>
-             <p className="text-blue-100 text-[10px] font-bold uppercase tracking-widest mt-1">Refill required to continue</p>
+             <h3 className="text-xl font-bold uppercase tracking-tight relative z-10">Insufficient Balance</h3>
+             <p className="text-rose-100 text-[10px] font-bold uppercase tracking-widest mt-1 relative z-10">Refill required to continue</p>
           </div>
 
           <div className="p-6 space-y-6">
@@ -44,7 +45,7 @@ const BalanceWarningModal = ({ isOpen, onClose, cartTotal, currentBalance, onRec
                 </div>
                 <div className="text-right">
                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Shortfall</p>
-                   <p className="text-lg font-bold text-blue-600">₹{(cartTotal - currentBalance).toFixed(2)}</p>
+                   <p className="text-lg font-bold text-rose-600">₹{(cartTotal - currentBalance).toFixed(2)}</p>
                 </div>
              </div>
 
@@ -78,7 +79,7 @@ const BalanceWarningModal = ({ isOpen, onClose, cartTotal, currentBalance, onRec
              <div className="pt-2 space-y-3">
                 <button 
                   onClick={onRecharge}
-                  className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm active:scale-95 transition-colors hover:bg-blue-700 flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-orange-500 to-rose-500 text-white py-4 rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm active:scale-95 transition-colors hover:from-orange-600 hover:to-rose-600 flex items-center justify-center gap-2"
                 >
                    Recharge Wallet <ChevronRight size={16} />
                 </button>
@@ -159,7 +160,7 @@ const CartPage = () => {
       <button 
         onClick={handlePay}
         disabled={isProcessing || cart.length === 0 || anyClosed}
-        className={`flex-1 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm shadow-sm active:scale-95 transition-all disabled:opacity-50 ${anyClosed ? 'bg-slate-400' : 'bg-blue-600 hover:bg-blue-700'}`}
+        className={`flex-1 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-bold text-sm shadow-md active:scale-95 transition-all disabled:opacity-50 ${anyClosed ? 'bg-slate-400' : 'bg-gradient-to-r from-orange-500 to-rose-500 hover:opacity-90'}`}
       >
         <ShoppingCart size={20} fill="white" /> {isProcessing ? 'Waiting...' : (anyClosed ? 'Slot Expired' : (isFullBonus ? 'Pay with Bonus' : 'Confirm Pay'))}
       </button>
@@ -177,9 +178,10 @@ const CartPage = () => {
     <PageWrapper title="SHOPPING CART" footerAction={cartFooter}>
       <div className="bg-slate-50 flex flex-col items-center min-h-screen pb-24">
         {/* Header Bar */}
-        <div className="w-full max-w-sm bg-blue-600 text-white py-4 mt-4 rounded-xl flex items-center justify-center gap-2 shadow-sm mb-6">
-           <ShoppingCart size={20} fill="white" />
-           <span className="text-lg font-bold uppercase tracking-wider">Your Cart</span>
+        <div className="w-full max-w-sm bg-gradient-to-r from-orange-500 to-rose-500 text-white py-4 mt-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg mb-6 relative overflow-hidden border border-white/20 backdrop-blur-md">
+           <div className="absolute top-0 left-0 w-24 h-24 bg-white/20 rounded-full blur-2xl -ml-10 -mt-10"></div>
+           <ShoppingCart size={20} fill="white" className="relative z-10" />
+           <span className="text-lg font-black uppercase tracking-widest italic relative z-10">Your Cart</span>
         </div>
 
         {/* Slot Closure Warning */}
@@ -232,7 +234,7 @@ const CartPage = () => {
                     <td className="p-3 text-center font-bold text-black border border-slate-400">{item.num}</td>
                     <td className="p-3 text-center text-slate-600 border border-slate-400">{item.qty}</td>
                     <td className="p-3 text-center text-slate-600 border border-slate-400">{item.price}</td>
-                    <td className="p-3 text-right font-bold text-blue-600 border border-slate-400">{(item.price * item.qty).toFixed(2)}</td>
+                    <td className="p-3 text-right font-bold text-rose-600 border border-slate-400">{(item.price * item.qty).toFixed(2)}</td>
                     <td className="p-2 text-center align-middle border border-slate-400">
                       <button 
                         onClick={() => removeFromCart(item.id)} 
@@ -268,10 +270,10 @@ const CartPage = () => {
           </div>
 
           {/* Wallet Balance Info */}
-          <div className="bg-white border border-slate-400 rounded-xl p-4 flex items-center justify-between mb-6 shadow-sm">
-             <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100">
-                   <Wallet size={18} className="text-blue-600" />
+           <div className="bg-white border border-slate-400 rounded-2xl p-5 flex items-center justify-between mb-6 shadow-sm group hover:shadow-md transition-shadow">
+             <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center border border-rose-100 group-hover:bg-rose-100 transition-colors">
+                   <Wallet size={20} className="text-rose-600" />
                 </div>
                 <div>
                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Usable Balance</p>
@@ -288,7 +290,7 @@ const CartPage = () => {
 
         <button 
           onClick={() => navigate('/home')} 
-          className="mb-10 flex items-center gap-2 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:text-blue-600 transition-colors bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-400"
+          className="mb-10 flex items-center gap-2 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:text-rose-600 transition-colors bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-400"
         >
           <ChevronLeft size={14} /> Add more tickets
         </button>

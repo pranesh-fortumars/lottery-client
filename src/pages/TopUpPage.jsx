@@ -60,16 +60,16 @@ const TopUpPage = () => {
     <PageWrapper title="WALLET TOP UP" showBack={true}>
       <div className="bg-slate-50 min-h-screen p-4 flex flex-col items-center pb-20">
         {/* Wallet Overview */}
-        <div className="w-full max-w-sm bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl p-8 text-white shadow-sm relative overflow-hidden mb-8 group">
+        <div className="w-full max-w-sm bg-gradient-to-br from-emerald-500 to-teal-400 rounded-3xl p-8 text-white shadow-lg border border-white/20 backdrop-blur-md relative overflow-hidden mb-8 group">
            <div className="absolute top-0 right-0 p-6 opacity-10 bg-white rounded-bl-3xl group-hover:scale-110 transition-transform">
               <Wallet size={48} />
            </div>
-           <p className="text-[10px] font-bold uppercase tracking-widest text-blue-100 mb-2">Available Balance</p>
+           <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-100 mb-2">Available Balance</p>
            <h3 className="text-4xl font-bold tracking-tight">₹ {user?.balance?.toLocaleString() || '0.00'}</h3>
            
            <div className="mt-8 flex gap-4 pt-6 border-t border-white/20">
               <div className="flex-1">
-                 <p className="text-[9px] font-bold uppercase tracking-widest leading-none mb-2 text-blue-100">Vault Status</p>
+                 <p className="text-[9px] font-bold uppercase tracking-widest leading-none mb-2 text-emerald-100">Vault Status</p>
                  <p className="text-[10px] font-bold uppercase tracking-wider bg-white/10 rounded px-2.5 py-1 inline-block text-emerald-200 backdrop-blur-sm">Active & Secured</p>
               </div>
               <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 backdrop-blur-sm">
@@ -81,7 +81,7 @@ const TopUpPage = () => {
         {/* Amount Selection */}
         <div className="w-full max-w-sm space-y-4">
            <div className="flex items-center gap-3 ml-2 mb-2">
-              <CreditCard className="text-blue-600" size={18} />
+              <CreditCard className="text-emerald-500" size={18} />
               <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Select Recharge Amount</h4>
            </div>
            
@@ -92,7 +92,7 @@ const TopUpPage = () => {
                   onClick={() => setAmount(a)}
                   className={`py-3.5 rounded-xl font-bold text-xs border transition-all shadow-sm ${
                     amount === a 
-                      ? 'bg-blue-600 text-white border-blue-600' 
+                      ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white border-transparent' 
                       : 'bg-white text-slate-500 border-slate-400 hover:border-slate-500'
                   }`}
                 >
@@ -102,14 +102,14 @@ const TopUpPage = () => {
            </div>
 
            <div className="relative mt-8 group">
-              <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors font-bold text-xl">₹</div>
+              <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors font-bold text-xl">₹</div>
               <input 
                 type="text" 
                 inputMode="decimal"
                 pattern="[0-9]*"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-14 pr-6 font-bold text-black text-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm placeholder:text-slate-300" 
+                className="w-full h-16 bg-white border border-slate-400 rounded-2xl pl-14 pr-6 font-bold text-black text-lg outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-sm placeholder:text-slate-300" 
                 placeholder="Custom Amount"
               />
            </div>
@@ -117,7 +117,7 @@ const TopUpPage = () => {
             <div className="space-y-4 mt-8">
               <button 
                 onClick={() => setShowPayment(true)}
-                className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold tracking-wider text-sm uppercase shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2"
+                className="w-full h-14 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500 text-white rounded-xl font-bold tracking-wider text-sm uppercase shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2"
               >
                 Proceed to Pay <ChevronRight size={18} />
               </button>
@@ -125,9 +125,9 @@ const TopUpPage = () => {
               <div className="flex gap-3">
                  <button 
                   onClick={() => setShowPayment(true)}
-                  className="flex-1 bg-white border border-slate-400 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm hover:border-blue-200 active:bg-blue-50 transition-colors"
+                  className="flex-1 bg-white border border-slate-400 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm hover:border-emerald-200 active:bg-emerald-50 transition-colors"
                 >
-                    <QrCode size={18} className="text-blue-600" />
+                    <QrCode size={18} className="text-emerald-500" />
                     <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Active UPI QR</span>
                  </button>
                  <div className="flex-1 bg-slate-100 border border-slate-400 p-4 rounded-xl flex flex-col items-center gap-2 shadow-sm opacity-60">

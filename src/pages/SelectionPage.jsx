@@ -112,6 +112,7 @@ const SelectionPage = () => {
                 price={d1Price} 
                 gameName={getGameName()} 
                 drawTime={drawTime}
+                colorTheme="orange"
                 customRows={[
                 { labels: ['A'], digits: 1 },
                 { labels: ['B'], digits: 1 },
@@ -126,6 +127,7 @@ const SelectionPage = () => {
                 price={d2Price} 
                 gameName={getGameName()} 
                 drawTime={drawTime}
+                colorTheme="emerald"
                 customRows={[
                 { labels: ['A', 'B'], digits: 2 },
                 { labels: ['B', 'C'], digits: 2 },
@@ -136,8 +138,8 @@ const SelectionPage = () => {
             {/* Triple Digit - ABC (Split by Tier) */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 ml-2">
-                 <div className="w-5 h-5 bg-primary-light rounded-md flex items-center justify-center border border-primary-light">
-                    <span className="text-primary font-bold text-[10px]">3D</span>
+                 <div className="w-6 h-6 bg-blue-100 rounded-md flex items-center justify-center border border-blue-200">
+                    <span className="text-blue-600 font-bold text-[10px]">3D</span>
                  </div>
                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">3D Pricing Categories</h4>
               </div>
@@ -151,6 +153,7 @@ const SelectionPage = () => {
                   gameName={getGameName()} 
                   drawTime={drawTime}
                   singleRow={true}
+                  colorTheme="blue"
                 />
               ))}
             </div>
@@ -158,8 +161,8 @@ const SelectionPage = () => {
             {/* 4D - XABC (Split by Tier) */}
             <div className="space-y-4 pt-4 border-t border-slate-400">
               <div className="flex items-center gap-2 ml-2">
-                 <div className="w-5 h-5 bg-slate-200 rounded-md flex items-center justify-center border border-slate-500">
-                    <span className="text-slate-900 font-bold text-[10px]">4D</span>
+                 <div className="w-6 h-6 bg-purple-100 rounded-md flex items-center justify-center border border-purple-200">
+                    <span className="text-purple-600 font-bold text-[10px]">4D</span>
                  </div>
                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">4D Pricing Categories</h4>
               </div>
@@ -173,6 +176,7 @@ const SelectionPage = () => {
                   gameName={getGameName()} 
                   drawTime={drawTime}
                   singleRow={true}
+                  colorTheme="purple"
                 />
               ))}
             </div>

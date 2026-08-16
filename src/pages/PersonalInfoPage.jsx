@@ -93,7 +93,7 @@ const PersonalInfoPage = () => {
     <PageWrapper title="VERIFICATION DETAILS" showNav={false}>
       <div className="bg-slate-50 min-h-screen pb-24">
         {/* Header */}
-        <div className="bg-blue-600 h-[70px] flex items-center px-4 text-white shadow-sm relative z-10">
+        <div className="bg-gradient-to-r from-violet-600 to-fuchsia-500 h-[70px] flex items-center px-4 text-white shadow-md relative z-10">
           <button onClick={() => navigate('/profile')} className="p-2 -ml-2 active:scale-95 transition-all">
             <ChevronLeft size={28} />
           </button>
@@ -104,10 +104,10 @@ const PersonalInfoPage = () => {
           {/* Avatar Section */}
           <div className="flex flex-col items-center mt-4">
             <div className="w-24 h-24 bg-white p-1 rounded-full shadow-sm mb-4 relative">
-               <div className="w-full h-full bg-slate-100 rounded-full flex items-center justify-center border border-slate-400 text-blue-600">
+               <div className="w-full h-full bg-slate-100 rounded-full flex items-center justify-center border border-slate-400 text-violet-600">
                  <Landmark size={40} />
                </div>
-               <div className="absolute bottom-0 right-0 bg-blue-600 p-2 rounded-full text-white shadow-sm border-2 border-white">
+               <div className="absolute bottom-0 right-0 bg-gradient-to-r from-violet-600 to-fuchsia-500 p-2 rounded-full text-white shadow-sm border-2 border-white">
                  <ShieldCheck size={14} />
                </div>
             </div>
@@ -138,21 +138,21 @@ const PersonalInfoPage = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="bg-white p-6 rounded-3xl border border-slate-400 shadow-sm space-y-5">
                <div className="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
-                  <User className="text-blue-600" size={20} />
+                  <User className="text-violet-600" size={20} />
                   <h3 className="text-sm font-bold uppercase tracking-tight text-black">Personal Profile</h3>
                </div>
 
                <div className="space-y-1">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">Full Name</label>
                  <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"><User size={18} /></div>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors"><User size={18} /></div>
                    <input 
                      type="text" 
                      name="name"
                      value={formData.name}
                      onChange={handleChange}
                      required
-                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -160,7 +160,7 @@ const PersonalInfoPage = () => {
                <div className="space-y-1">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">Registered Phone Number</label>
                  <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"><Phone size={18} /></div>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors"><Phone size={18} /></div>
                    <input 
                      type="tel" 
                      name="mobile"
@@ -175,14 +175,14 @@ const PersonalInfoPage = () => {
 
             <div className="bg-white p-6 rounded-3xl border border-slate-400 shadow-sm space-y-5">
                <div className="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
-                  <Landmark className="text-blue-600" size={20} />
+                  <Landmark className="text-violet-600" size={20} />
                   <h3 className="text-sm font-bold uppercase tracking-tight text-black">Mandatory Banking Details</h3>
                </div>
 
                <div className="space-y-1">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">Account Holder Name</label>
                  <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"><User size={18} /></div>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors"><User size={18} /></div>
                    <input 
                      type="text" 
                      name="accountHolderName"
@@ -190,7 +190,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="As per bank records"
-                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -198,7 +198,7 @@ const PersonalInfoPage = () => {
                <div className="space-y-1">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">Account Number</label>
                  <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"><CreditCard size={18} /></div>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors"><CreditCard size={18} /></div>
                    <input 
                      type="text" 
                      inputMode="numeric"
@@ -208,7 +208,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="Enter Account Number"
-                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -216,7 +216,7 @@ const PersonalInfoPage = () => {
                <div className="space-y-1">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">Confirm Account Number</label>
                  <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"><CreditCard size={18} /></div>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors"><CreditCard size={18} /></div>
                    <input 
                      type="password" 
                      inputMode="numeric"
@@ -226,7 +226,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="Re-enter Account Number"
-                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -234,7 +234,7 @@ const PersonalInfoPage = () => {
                <div className="space-y-1">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">IFSC Code</label>
                  <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"><Key size={18} /></div>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors"><Key size={18} /></div>
                    <input 
                      type="text" 
                      name="ifscCode"
@@ -242,7 +242,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="e.g. SBIN0001234"
-                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm uppercase"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all shadow-sm text-sm uppercase"
                    />
                  </div>
                </div>
@@ -250,7 +250,7 @@ const PersonalInfoPage = () => {
                <div className="space-y-1">
                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-2">UPI Address / ID</label>
                  <div className="relative group">
-                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"><Mail size={18} /></div>
+                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-violet-600 transition-colors"><Mail size={18} /></div>
                    <input 
                      type="text" 
                      name="upiId"
@@ -258,7 +258,7 @@ const PersonalInfoPage = () => {
                      onChange={handleChange}
                      required
                      placeholder="e.g. username@okaxis"
-                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm text-sm"
+                     className="w-full h-14 bg-white border border-slate-400 rounded-2xl pl-12 pr-4 font-bold text-black outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all shadow-sm text-sm"
                    />
                  </div>
                </div>
@@ -267,7 +267,7 @@ const PersonalInfoPage = () => {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white h-14 rounded-xl font-bold uppercase tracking-wider text-sm mt-8 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-500 hover:from-violet-700 hover:to-fuchsia-600 text-white h-14 rounded-xl font-bold uppercase tracking-wider text-sm mt-8 shadow-sm active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {loading ? "SAVING DETAILS..." : "Save Verification Details"}
             </button>

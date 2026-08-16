@@ -18,15 +18,16 @@ const ResultsPage = () => {
     <PageWrapper title="DAILY RESULTS">
       <div className="bg-slate-50 min-h-screen p-4 pb-24 flex flex-col items-center">
         {/* Header Logic */}
-        <div className="w-full max-w-sm bg-blue-600 text-white p-5 rounded-2xl mb-8 flex justify-between items-center shadow-sm relative overflow-hidden">
-           <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 blur-xl"></div>
-           <div>
-              <h3 className="text-lg font-bold uppercase tracking-tight">Live Results Board</h3>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-blue-100">
+        <div className="w-full max-w-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white p-5 rounded-3xl mb-8 flex justify-between items-center shadow-lg border border-white/20 backdrop-blur-md relative overflow-hidden">
+           <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+           <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12 blur-xl"></div>
+           <div className="relative z-10">
+              <h3 className="text-xl font-black uppercase tracking-tight italic">Live Results Board</h3>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-100 mt-0.5">
                 Last Sync: {lastSync.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
               </p>
            </div>
-           <div className="flex items-center gap-2">
+           <div className="flex items-center gap-2 relative z-10">
               <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
               <Trophy size={24} fill="white" className="opacity-40" />
            </div>
