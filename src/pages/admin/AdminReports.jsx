@@ -158,14 +158,22 @@ const AdminReports = () => {
     setLoadingPdf(format === 'pdf' ? 'wallet' : null);
     setLoadingCsv(format === 'csv' ? 'wallet' : null);
     try {
-      const transactions = await fetchReportData('transactions');
-      const data = transactions.map(t => [
-        t.id,
-        t.userId,
-        t.type || t.transactionType,
-        t.status,
-        `₹${t.amount || 0}`,
-        t.timestamp?.toDate ? t.timestamp.toDate().toLocaleString() : 'N/A'
+      const pendingTx = await fetchReportData('pending_transactions');
+      const withdrawals = await fetchReportData('withdrawals');
+      
+      const combined = [...pendingTx, ...withdrawals].sort((a, b) => {
+        const timeA = a.timestamp?.toDate ? a.timestamp.toDate() : new Date(a.timestamp || 0);
+        const timeB = b.timestamp?.toDate ? b.timestamp.toDate() : new Date(b.timestamp || 0);
+        return timeB - timeA;
+      });
+
+      const data = combined.map(t => [
+        (t.transactionId || t.id || '').substring(0, 12),
+        t.userName || t.userId || 'Unknown',
+        (t.type || t.category || (t.bankName ? 'Withdrawal' : 'Top-Up')).toUpperCase(),
+        (t.status || 'Pending').toUpperCase(),
+        `₹${t.amount || t.amountPaid || 0}`,
+        t.timestamp?.toDate ? t.timestamp.toDate().toLocaleString() : (t.timestamp ? new Date(t.timestamp).toLocaleString() : 'N/A')
       ]);
 
       const doc = new jsPDF();
