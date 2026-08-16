@@ -64,10 +64,13 @@ const ResultsPage = () => {
                     <tr className="bg-blue-50">
                       <td className="p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-600">Winning Digits</td>
                       <td className="p-4">
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 mt-2 pb-1">
                           {(r.number || "").split('').map((n, j) => (
-                            <div key={j} className="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm border border-slate-700">
-                              {n}
+                            <div key={j} className="flex flex-col items-center gap-1">
+                              <span className="text-[10px] font-black text-blue-500">{['X', 'A', 'B', 'C'][j]}</span>
+                              <div className="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm border border-slate-700">
+                                {n}
+                              </div>
                             </div>
                           ))}
                           {!r.number && <span className="text-[10px] font-bold text-slate-400">Processing...</span>}
