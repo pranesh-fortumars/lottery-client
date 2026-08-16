@@ -21,10 +21,11 @@ An enterprise-grade, high-fidelity lottery management and play platform built fo
 - **Advanced Audit Trail & Oversight**: Comprehensive administrative logging capturing transaction IDs, exact timestamps, banking metadata, and custom rejection reasons for full accountability.
 - **Time-Locked Announcements & Market Control**: Secure result declaration engine with built-in validation for market-specific slots, including automated **Kerala Lottery Early Closure (02:00 PM)** rules and a master switch for global ticket sales.
 - **Live Intake Monitor & High-Frequency Analytics**: Real-time analysis of number frequency mapping and combination volume tracking across active draw sessions. Features top-15 high-frequency combination rankings, board-specific filtering (A, B, C, AB, BC, AC), and price-tier breakdowns (e.g., ₹12, ₹28, ₹30, ₹55, ₹60 for 3D; ₹20, ₹50, ₹100 for 4D).
-- **Official PDF Export**: Built-in automated PDF generation (`jspdf`, `jspdf-autotable`) producing official lottery audit and result reports with professional formatting.
-- **Deep-Dive User Management & Metadata**: Detailed player profiles allowing administrators to monitor individual liquidity, adjust triple-balance allocations, update security parameters, review transaction histories, and track exact Account Registration timestamps (with automated legacy user migration mapping).
+- **Comprehensive Admin Reporting**: Advanced PDF and CSV export tools (`jspdf`, `jspdf-autotable`) capable of generating dynamic **Revenue Reports**, **User Growth Analytics**, and **Wallet Transaction Logs** with custom time-range filtering directly from Firestore. Features client-side querying to eliminate indexing bottlenecks.
+- **Deep-Dive User Management & Metadata**: Detailed player profiles allowing administrators to monitor individual liquidity, adjust triple-balance allocations, update security parameters, review transaction histories, and track exact Account Registration timestamps.
 - **Global Brand Management**: Dedicated Admin Settings to instantly broadcast Global Application Theme colors across all connected clients via live Firebase synchronization without page reloads.
-- **Version & Build Transparency**: Global `APP_VERSION` and `BUILD_VERSION` config constants displayed seamlessly across user profile settings and admin dashboards for clear deployment tracking.
+- **Database Migration & Synchronization**: Support for zero-downtime Firebase Authentication migration across projects, perfectly retaining legacy SCRYPT password hashes (`firebase-tools auth:export/import`) and seamlessly updating user UUIDs.
+- **Version & Build Transparency**: Global `APP_VERSION` and `BUILD_VERSION` config constants displayed seamlessly across user profile settings and admin dashboards for clear deployment tracking, supporting side-by-side local APK testing.
 
 ---
 
