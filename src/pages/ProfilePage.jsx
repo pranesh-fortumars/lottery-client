@@ -122,37 +122,56 @@ const ProfilePage = () => {
          {/* Triple-Balance Management Card */}
          {!isAdmin && (
            <div className="px-6 -mt-10 relative z-20">
-              <div className="bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden">
+              <div className="bg-gradient-to-br from-[#0047ff] to-[#0075ff] rounded-[2rem] shadow-2xl overflow-hidden relative border border-[#ffffff]/10">
+                 {/* Decorative background circle */}
+                 <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                 
                  {/* Top: Total Balance */}
-                 <div className="p-8 bg-gray-50/50 border-b border-gray-100 flex items-center justify-between group cursor-pointer active:bg-gray-100 transition-all" onClick={() => navigate('/topup')}>
-                    <div className="flex items-center gap-5">
-                       <div className="w-14 h-14 bg-[#2563eb] text-white rounded-[1.4rem] flex items-center justify-center shadow-lg shadow-red-500/20 group-hover:rotate-6 transition-transform">
-                          <Wallet size={28} />
+                 <div className="p-6 pb-4 relative z-10">
+                    <div className="flex items-center justify-between mb-4">
+                       <div className="flex items-center gap-2 text-white/90">
+                          <Wallet size={16} />
+                          <span className="text-[11px] font-bold tracking-widest uppercase">My Wallet</span>
                        </div>
-                       <div>
-                          <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1.5">Total Available Balance</p>
-                          <p className="text-3xl font-black text-gray-900 italic tracking-tighter">₹ {user?.balance?.toLocaleString() || '0.00'}</p>
-                       </div>
+                       <button onClick={() => window.location.reload()} className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white/80 hover:bg-white/20 active:scale-95 transition-all">
+                          <History size={12} className="rotate-180" />
+                       </button>
                     </div>
-                    <ChevronRight size={24} className="text-gray-200 group-hover:text-[#2563eb] transition-all" />
+                    <div className="mb-2">
+                       <p className="text-4xl font-black text-white italic tracking-tighter drop-shadow-md">₹{user?.balance?.toLocaleString() || '0.00'}</p>
+                    </div>
                  </div>
 
                   {/* Bottom Split: Deposited vs Winnings vs Bonus */}
-                  <div className="grid grid-cols-3 divide-x divide-gray-100">
-                     <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-red-50/30 transition-all" onClick={() => navigate('/topup')}>
-                        <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Deposit</p>
-                        <p className="text-sm font-black text-gray-800 italic">₹ {user?.depositedBalance?.toLocaleString() || '0'}</p>
-                        <span className="mt-1.5 text-[6px] font-black bg-gray-100 text-gray-400 px-1.5 py-0.5 rounded-full uppercase tracking-tighter">Purchase</span>
-                     </div>
-                     <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-emerald-50/30 transition-all" onClick={() => navigate('/withdraw')}>
-                        <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Winning</p>
-                        <p className="text-sm font-black text-emerald-600 italic">₹ {user?.winningBalance?.toLocaleString() || '0'}</p>
-                        <span className="mt-1.5 text-[6px] font-black bg-emerald-100 text-emerald-600 px-1.5 py-0.5 rounded-full uppercase tracking-tighter">Payout</span>
-                     </div>
-                     <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-blue-50/30 transition-all">
-                        <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Bonus</p>
-                        <p className="text-sm font-black text-blue-600 italic">₹ {user?.bonusBalance?.toLocaleString() || '0'}</p>
-                        <span className="mt-1.5 text-[6px] font-black bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded-full uppercase tracking-tighter">Tickets Only</span>
+                  <div className="px-6 pb-6 pt-2">
+                     <div className="flex gap-3">
+                        <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10 hover:bg-white/20 cursor-pointer transition-colors" onClick={() => navigate('/topup')}>
+                           <div className="flex items-center justify-between mb-2">
+                              <span className="text-[9px] font-bold text-white/70 uppercase tracking-widest">Deposit</span>
+                              <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
+                                 <span className="text-[8px] text-white/80 font-black">!</span>
+                              </div>
+                           </div>
+                           <p className="text-sm font-black text-white italic">₹{user?.depositedBalance?.toLocaleString() || '0'}</p>
+                        </div>
+                        <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10 hover:bg-white/20 cursor-pointer transition-colors" onClick={() => navigate('/withdraw')}>
+                           <div className="flex items-center justify-between mb-2">
+                              <span className="text-[9px] font-bold text-white/70 uppercase tracking-widest">Winning</span>
+                              <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
+                                 <span className="text-[8px] text-white/80 font-black">!</span>
+                              </div>
+                           </div>
+                           <p className="text-sm font-black text-white italic">₹{user?.winningBalance?.toLocaleString() || '0'}</p>
+                        </div>
+                        <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10 hover:bg-white/20 cursor-pointer transition-colors" onClick={() => navigate('/tickets')}>
+                           <div className="flex items-center justify-between mb-2">
+                              <span className="text-[9px] font-bold text-white/70 uppercase tracking-widest">Bonus</span>
+                              <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
+                                 <span className="text-[8px] text-white/80 font-black">!</span>
+                              </div>
+                           </div>
+                           <p className="text-sm font-black text-white italic">₹{user?.bonusBalance?.toLocaleString() || '0'}</p>
+                        </div>
                      </div>
                   </div>
                </div>
