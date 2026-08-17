@@ -92,10 +92,14 @@ const ProfilePage = () => {
            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:scale-125 transition-transform"></div>
            <div className="flex flex-col items-center relative z-10">
               <div className="w-24 h-24 bg-white p-1 rounded-[2.5rem] shadow-2xl mb-4 group relative transform group-hover:-rotate-3 transition-transform">
-                 <div className="w-full h-full bg-gray-50 rounded-[2.5rem] flex items-center justify-center border border-gray-100 italic font-black text-3xl text-[#2563eb] shadow-inner">
-                    {user?.name?.charAt(0) || 'P'}
+                 <div className="w-full h-full bg-gray-50 rounded-[2.2rem] flex items-center justify-center border border-gray-100 overflow-hidden shadow-inner">
+                    <img 
+                      src={`https://api.dicebear.com/9.x/micah/svg?seed=${user?.uid || user?.name || 'player'}&backgroundColor=f8fafc`} 
+                      alt="Profile Avatar" 
+                      className="w-full h-full object-cover"
+                    />
                  </div>
-                 <div className="absolute bottom-1 right-1 bg-white p-1.5 rounded-full shadow-lg border border-[#2563eb]/20">
+                 <div className="absolute bottom-1 right-1 bg-white p-1.5 rounded-full shadow-lg border border-[#2563eb]/20 z-10">
                     <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
                  </div>
               </div>
