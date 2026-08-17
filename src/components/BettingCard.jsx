@@ -184,16 +184,16 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
         </div>
 
         {/* Input Section */}
-        <div className="flex justify-between items-center mb-6 gap-4 px-1">
-           <div className="flex gap-2">
+        <div className={`flex justify-between items-center mb-6 px-1 ${row.numbers.length === 4 ? 'gap-2' : 'gap-4'}`}>
+           <div className={`flex ${row.numbers.length === 4 ? 'gap-1' : 'gap-2'} shrink-0`}>
               {row.numbers.map((_, i) => (
-                 <div key={i} className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : theme.bg}`}>
+                 <div key={i} className={`${row.numbers.length === 4 ? 'w-7 h-7 text-xs' : 'w-8 h-8 text-sm'} rounded-full flex items-center justify-center text-white font-bold shadow-sm uppercase ${getLabel(row, i) === 'X' ? 'bg-slate-800' : theme.bg}`}>
                     {getLabel(row, i)}
                  </div>
               ))}
            </div>
            
-           <div className="flex gap-1.5 flex-grow justify-end">
+           <div className={`flex ${row.numbers.length === 4 ? 'gap-1' : 'gap-1.5'} flex-grow justify-end shrink-0`}>
               {row.numbers.map((num, digIdx) => (
                 <input 
                   key={digIdx}
@@ -203,7 +203,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                   pattern="[0-9]*"
                   value={num}
                   onChange={(e) => updateNumber(rowIdx, digIdx, e.target.value)}
-                  className={`w-12 h-12 border rounded-xl text-center text-2xl font-bold bg-slate-50 outline-none transition-all focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 ' + theme.ring}`} 
+                  className={`${row.numbers.length === 4 ? 'w-10 h-10 text-xl' : 'w-12 h-12 text-2xl'} border rounded-xl text-center font-bold bg-slate-50 outline-none transition-all focus:bg-white ${getLabel(row, digIdx) === 'X' ? 'border-slate-800 focus:border-slate-800' : 'border-slate-500 ' + theme.ring}`} 
                   placeholder="" 
                   maxLength="1"
                 />
