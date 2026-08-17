@@ -204,7 +204,7 @@ const CartPage = () => {
 
         {/* Cart Table */}
         <div className="w-full max-w-sm mb-8 px-1">
-          <div className="bg-white rounded-xl border border-slate-400 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-xl border-2 border-black shadow-sm overflow-hidden">
             <table className="w-full text-left text-xs border-collapse">
               <tbody>
                 <tr className="border-b border-slate-400 bg-slate-50/50">

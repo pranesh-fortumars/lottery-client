@@ -71,7 +71,7 @@ const ResultsPage = () => {
                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Draw Entry #{String(r.id || '').slice(-4)}</span>
               </div>
               
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="bg-white rounded-2xl border-2 border-black shadow-sm overflow-hidden flex flex-col">
                 {/* New Flex Layout Section */}
                 <div className="p-4 flex justify-between items-center bg-slate-50/50">
                    {/* Left Side: Logo and Brand Name */}
@@ -121,7 +121,7 @@ const ResultsPage = () => {
                 </div>
 
                 {/* Old Table Structure Section */}
-                <div className="border-t border-slate-200">
+                <div className="border-t-2 border-black">
                   <table className="w-full text-left text-sm">
                     <tbody>
                       <tr className="border-b border-slate-100">
