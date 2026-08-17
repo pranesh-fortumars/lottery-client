@@ -155,25 +155,56 @@ const ProfilePage = () => {
             </div>
           )}
 
+          {/* Action Buttons: Recharge & Withdraw */}
+          {!isAdmin && (
+            <div className="px-6 mt-4 grid grid-cols-2 gap-3 relative z-20">
+              <div 
+                onClick={() => navigate('/topup')}
+                className="bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-[1.5rem] p-4 flex items-center justify-between text-white shadow-lg shadow-emerald-500/20 cursor-pointer active:scale-95 transition-transform"
+              >
+                <div>
+                  <h4 className="font-black text-sm uppercase tracking-wider text-shadow-sm leading-tight">Recharge</h4>
+                  <p className="text-[9px] font-bold text-emerald-100 uppercase tracking-widest leading-tight mt-0.5">Instant Deposit</p>
+                </div>
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shrink-0 shadow-inner backdrop-blur-sm">
+                  <Wallet size={20} className="text-white drop-shadow" />
+                </div>
+              </div>
+              <div 
+                onClick={() => navigate('/withdraw')}
+                className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-[1.5rem] p-4 flex items-center justify-between text-white shadow-lg shadow-blue-500/20 cursor-pointer active:scale-95 transition-transform"
+              >
+                <div>
+                  <h4 className="font-black text-sm uppercase tracking-wider text-shadow-sm leading-tight">Withdraw</h4>
+                  <p className="text-[9px] font-bold text-blue-100 uppercase tracking-widest leading-tight mt-0.5">Quick Transfer</p>
+                </div>
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shrink-0 shadow-inner backdrop-blur-sm">
+                  <CreditCard size={20} className="text-white drop-shadow" />
+                </div>
+              </div>
+            </div>
+          )}
 
         {/* Menu Items */}
-        <div className="p-4 py-6 space-y-4">
-          <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2 mb-2 italic">Account Services</p>
-          {menuItems.map((item, i) => (
-            <div 
-              key={i} 
-              onClick={() => item.path !== '#' && navigate(item.path)}
-              className="group flex items-center justify-between p-5 bg-white rounded-[2rem] border border-gray-100 shadow-sm active:bg-gray-50 active:scale-[0.98] transition-all cursor-pointer hover:border-red-100"
-            >
-              <div className="flex items-center gap-5">
-                 <div className={`${item.color} bg-gray-50 p-3 rounded-2xl shadow-sm border border-gray-50 group-hover:scale-110 transition-transform group-hover:rotate-6 group-hover:bg-white`}>
-                    {item.icon}
-                 </div>
-                 <span className="font-black text-gray-800 uppercase tracking-tight text-sm italic">{item.label}</span>
+        <div className="px-6 py-4 space-y-4 relative z-20">
+          <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2 mb-1 italic">Account Services</p>
+          <div className="bg-white rounded-[2rem] shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden px-2">
+            {menuItems.map((item, i) => (
+              <div 
+                key={i} 
+                onClick={() => item.path !== '#' && navigate(item.path)}
+                className={`group flex items-center justify-between p-4 bg-white active:bg-gray-50 transition-colors cursor-pointer ${i !== menuItems.length - 1 ? 'border-b border-gray-100' : ''}`}
+              >
+                <div className="flex items-center gap-4">
+                   <div className={`${item.color} bg-gray-50 p-2.5 rounded-xl shadow-sm border border-gray-50 group-hover:scale-110 transition-transform group-hover:bg-white`}>
+                      {React.cloneElement(item.icon, { size: 18 })}
+                   </div>
+                   <span className="font-bold text-gray-800 uppercase tracking-tight text-xs">{item.label}</span>
+                </div>
+                <ChevronRight size={18} className="text-gray-300 group-hover:text-gray-900 transition-colors" />
               </div>
-              <ChevronRight size={20} className="text-gray-200 group-hover:text-[#2563eb] transition-colors" />
-            </div>
-          ))}
+            ))}
+          </div>
 
           <div 
             onClick={() => {
