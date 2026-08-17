@@ -23,7 +23,8 @@ import {
   Trophy,
   Info,
   ChevronLeft,
-  Wallet
+  Wallet,
+  Receipt
 } from 'lucide-react';
 import PullToRefresh from './PullToRefresh';
 
@@ -224,6 +225,7 @@ export const BottomNav = () => {
     { to: '/tickets', icon: Ticket },
     { to: '/results', icon: ScrollText },
     { to: '/cart', icon: ShoppingCart },
+    { to: '/order-details', icon: Receipt },
   ];
 
   const adminLinks = [

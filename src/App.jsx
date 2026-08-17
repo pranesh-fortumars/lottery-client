@@ -122,6 +122,7 @@ const AnimatedRoutes = () => {
           <Route path="/topup" element={<ProtectedRoute role="user"><TopUpPage /></ProtectedRoute>} />
           <Route path="/withdraw" element={<ProtectedRoute role="user"><WithdrawPage /></ProtectedRoute>} />
           <Route path="/transactions" element={<ProtectedRoute role="user"><UserTransactions /></ProtectedRoute>} />
+          <Route path="/order-details" element={<ProtectedRoute role="user"><MyTickets /></ProtectedRoute>} />
           <Route path="/order-details/:orderId" element={<ProtectedRoute role="user"><OrderDetails /></ProtectedRoute>} />
           
           {/* Admin Routes */}

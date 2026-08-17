@@ -7,12 +7,28 @@ import { getBrandBySlot } from '../constants/lotteryConfig';
 const OrderDetails = () => {
   const { orderId } = useParams();
   const navigate = useNavigate();
-  const { purchasedTickets, declaredResults } = useCart();
+  const { purchasedTickets, declaredResults, loading } = useCart();
 
   // 1. Group tickets by orderId
   const orderTickets = useMemo(() => {
     return purchasedTickets.filter(t => t.purchaseId === orderId);
   }, [purchasedTickets, orderId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#f4f6f8] flex flex-col">
+        <div className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-200">
+          <div className="flex items-center gap-3">
+            <button onClick={() => navigate(-1)}><ChevronLeft size={24} className="text-gray-800" /></button>
+            <h1 className="text-lg font-bold text-gray-900">Order details</h1>
+          </div>
+        </div>
+        <div className="flex-grow flex items-center justify-center text-gray-500 font-medium">
+          Loading order...
+        </div>
+      </div>
+    );
+  }
 
   if (!orderTickets || orderTickets.length === 0) {
     return (
@@ -46,6 +62,8 @@ const OrderDetails = () => {
   });
 
   const firstTicket = orderTickets[0];
+  const isPending = firstTicket.status === 'Active';
+
   const slot = firstTicket.draw || '';
   const brand = getBrandBySlot(slot);
   const purchaseDate = firstTicket.purchaseDate || '';
@@ -56,8 +74,12 @@ const OrderDetails = () => {
   const declaredNum = result ? result.number : null;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(orderId);
-    alert('Order ID copied to clipboard');
+    try {
+      navigator.clipboard.writeText(orderId);
+      alert('Order ID copied to clipboard');
+    } catch (e) {
+      console.error('Clipboard copy failed', e);
+    }
   };
 
   // Helper to render bubbles
@@ -125,10 +147,10 @@ const OrderDetails = () => {
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
            
            {/* Top Info Bar */}
-           <div className={`px-3 py-2 flex items-center justify-between ${isWin ? 'bg-orange-50' : 'bg-[#fff5f5]'}`}>
+           <div className={`px-3 py-2 flex items-center justify-between ${isPending ? 'bg-blue-50' : isWin ? 'bg-orange-50' : 'bg-[#fff5f5]'}`}>
               <div className="flex items-center gap-2">
-                 <span className={`text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded ${isWin ? 'bg-orange-100 text-orange-700' : 'bg-red-50 text-red-700'}`}>
-                    {isWin ? 'WIN' : 'NO WIN'}
+                 <span className={`text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded ${isPending ? 'bg-blue-100 text-blue-700' : isWin ? 'bg-orange-100 text-orange-700' : 'bg-red-50 text-red-700'}`}>
+                    {isPending ? 'PENDING' : isWin ? 'WIN' : 'NO WIN'}
                  </span>
                  <span className="text-[10px] sm:text-[11px] text-gray-500 font-medium tracking-wide">
                     ID {orderId}
@@ -160,14 +182,14 @@ const OrderDetails = () => {
               <div className="flex justify-between items-center pb-2">
                  <span className="text-xs text-gray-500">Result</span>
                  <span className="text-xs text-gray-900 font-medium">
-                    {isWin ? <span className="text-orange-500 font-bold">Won ₹{totalWin.toFixed(2)}</span> : `No Win ₹0.00`}
+                    {isPending ? <span className="text-blue-500 font-bold">Pending</span> : isWin ? <span className="text-orange-500 font-bold">Won ₹{totalWin.toFixed(2)}</span> : `No Win ₹0.00`}
                  </span>
               </div>
 
               {/* Message Box */}
               <div className="bg-[#f5f5f5] rounded-lg py-3 px-2 text-center">
                  <p className="text-xs text-gray-700">
-                    {isWin ? "Congratulations, you have won!" : "Sorry, Your guessing is wrong, Try next time"}
+                    {isPending ? "Waiting for result declaration..." : isWin ? "Congratulations, you have won!" : "Sorry, Your guessing is wrong, Try next time"}
                  </p>
               </div>
 
@@ -181,18 +203,16 @@ const OrderDetails = () => {
         </div>
 
         {/* Result Card */}
-        {declaredNum && (
-          <div className="bg-[#eaf1f8] rounded-xl border border-blue-100 p-3 sm:p-4 flex items-center justify-between shadow-sm">
-             <div>
-                <h3 className="text-sm font-bold text-gray-900">{brand} {slot}</h3>
-                <p className="text-[10px] text-gray-500 mt-1">Draw time <span className="ml-1 text-gray-700 font-medium">{purchaseDate} {slot}</span></p>
-                <p className="text-[10px] text-gray-500 mt-0.5 tracking-wider">{result?.id || '260807060100001'}</p>
-             </div>
-             <div>
-                {renderDeclaredBubbles(declaredNum)}
-             </div>
-          </div>
-        )}
+        <div className="bg-[#eaf1f8] rounded-xl border border-blue-100 p-3 sm:p-4 flex items-center justify-between shadow-sm">
+           <div>
+              <h3 className="text-sm font-bold text-gray-900">{brand} {slot}</h3>
+              <p className="text-[10px] text-gray-500 mt-1">Draw time <span className="ml-1 text-gray-700 font-medium">{purchaseDate} {slot}</span></p>
+              <p className="text-[10px] text-gray-500 mt-0.5 tracking-wider">{result?.id || 'Pending...'}</p>
+           </div>
+           <div>
+              {renderDeclaredBubbles(declaredNum)}
+           </div>
+        </div>
 
         {/* My Bets Card */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -245,7 +265,12 @@ const OrderDetails = () => {
                              <p className="text-[11px] sm:text-xs font-bold text-gray-700">₹{tCost.toFixed(2)}*{t.qty}</p>
                           </div>
                           <div className="flex-1 text-right">
-                             {isTWin ? (
+                             {isPending ? (
+                                <div className="flex flex-col items-end">
+                                   <p className="text-[10px] text-gray-500 font-medium leading-tight">Status</p>
+                                   <p className="text-[11px] sm:text-xs font-bold text-blue-500 leading-tight">Pending</p>
+                                </div>
+                             ) : isTWin ? (
                                 <div className="flex flex-col items-end">
                                    <p className="text-[10px] text-gray-500 font-medium leading-tight">Won</p>
                                    <p className="text-[11px] sm:text-xs font-bold text-orange-500 leading-tight">₹{tWin.toFixed(2)}</p>
