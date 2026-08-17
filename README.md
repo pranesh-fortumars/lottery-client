@@ -8,6 +8,7 @@ An enterprise-grade, high-fidelity lottery management and play platform built fo
 
 ### 🎮 For Players
 - **Triple-Balance Wallet Architecture**: Advanced financial segregation tracking **Deposited Balance** (for ticket purchases), **Winning Balance** (fully withdrawable winnings), and **Bonus Chips** (promotional, non-withdrawable chips for ticket purchases).
+- **Comprehensive Order Details Hub**: A dedicated, real-time analytics page for individual ticket orders. It seamlessly maps dynamic ticket states (Pending, Win, No Win) and perfectly syncs total spending and winning payouts directly from the central Firestore ledger for absolute transparency.
 - **Dynamic Betting Matrix**: Comprehensive support for 1D (Single Digit boards A, B, C), 2D (Double Digit combos AB, BC, AC), 3D (ABC), and 4D (XABC) combination patterns across multiple lottery markets.
 - **Automated Payout Engine**: Real-time winner detection and instant balance credit using atomic database transactions.
 - **Mandatory Payout Verification**: Secure onboarding workflow requiring verified banking details (Account Holder Name, Account Number, IFSC Code, UPI ID) before ticket purchases or withdrawal requests are permitted.
