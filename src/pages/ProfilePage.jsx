@@ -94,7 +94,7 @@ const ProfilePage = () => {
               <div className="w-24 h-24 bg-white p-1 rounded-[2.5rem] shadow-2xl mb-4 group relative transform group-hover:-rotate-3 transition-transform">
                  <div className="w-full h-full bg-gray-50 rounded-[2.2rem] flex items-center justify-center border border-gray-100 overflow-hidden shadow-inner">
                     <img 
-                      src={`https://api.dicebear.com/9.x/micah/svg?seed=${user?.uid || user?.name || 'player'}&backgroundColor=f8fafc`} 
+                      src={`https://api.dicebear.com/9.x/bottts-neutral/svg?seed=${user?.uid || user?.name || 'player'}&backgroundColor=f8fafc`} 
                       alt="Profile Avatar" 
                       className="w-full h-full object-cover"
                     />
@@ -192,7 +192,7 @@ const ProfilePage = () => {
         {/* Menu Items */}
         <div className="px-6 py-4 space-y-4 relative z-20">
           <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-2 mb-1 italic">Account Services</p>
-          <div className="bg-white rounded-[2rem] shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden px-2">
+          <div className="bg-white rounded-[2rem] shadow-xl shadow-gray-200/50 border-2 border-gray-900 overflow-hidden px-2">
             {menuItems.map((item, i) => (
               <div 
                 key={i} 
