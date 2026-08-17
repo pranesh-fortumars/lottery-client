@@ -122,56 +122,37 @@ const ProfilePage = () => {
          {/* Triple-Balance Management Card */}
          {!isAdmin && (
            <div className="px-6 -mt-10 relative z-20">
-              <div className="bg-gradient-to-br from-[#0047ff] to-[#0075ff] rounded-[2rem] shadow-2xl overflow-hidden relative border border-[#ffffff]/10">
-                 {/* Decorative background circle */}
-                 <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-                 
+              <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 overflow-hidden">
                  {/* Top: Total Balance */}
-                 <div className="p-6 pb-4 relative z-10">
-                    <div className="flex items-center justify-between mb-4">
-                       <div className="flex items-center gap-2 text-white/90">
-                          <Wallet size={16} />
-                          <span className="text-[11px] font-bold tracking-widest uppercase">My Wallet</span>
+                 <div className="p-6 bg-white border-b border-gray-50 flex items-center justify-between group cursor-pointer active:bg-gray-50 transition-all" onClick={() => navigate('/topup')}>
+                    <div className="flex items-center gap-4">
+                       <div className="w-12 h-12 bg-gradient-to-br from-[#2563eb] to-[#1e40af] text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-3 transition-transform">
+                          <Wallet size={24} />
                        </div>
-                       <button onClick={() => window.location.reload()} className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-white/80 hover:bg-white/20 active:scale-95 transition-all">
-                          <History size={12} className="rotate-180" />
-                       </button>
+                       <div>
+                          <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">Total Available Balance</p>
+                          <p className="text-3xl font-black text-gray-900 italic tracking-tighter">₹ {user?.balance?.toLocaleString() || '0.00'}</p>
+                       </div>
                     </div>
-                    <div className="mb-2">
-                       <p className="text-4xl font-black text-white italic tracking-tighter drop-shadow-md">₹{user?.balance?.toLocaleString() || '0.00'}</p>
-                    </div>
+                    <ChevronRight size={20} className="text-gray-300 group-hover:text-[#2563eb] transition-colors" />
                  </div>
 
                   {/* Bottom Split: Deposited vs Winnings vs Bonus */}
-                  <div className="px-6 pb-6 pt-2">
-                     <div className="flex gap-3">
-                        <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10 hover:bg-white/20 cursor-pointer transition-colors" onClick={() => navigate('/topup')}>
-                           <div className="flex items-center justify-between mb-2">
-                              <span className="text-[9px] font-bold text-white/70 uppercase tracking-widest">Deposit</span>
-                              <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
-                                 <span className="text-[8px] text-white/80 font-black">!</span>
-                              </div>
-                           </div>
-                           <p className="text-sm font-black text-white italic">₹{user?.depositedBalance?.toLocaleString() || '0'}</p>
-                        </div>
-                        <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10 hover:bg-white/20 cursor-pointer transition-colors" onClick={() => navigate('/withdraw')}>
-                           <div className="flex items-center justify-between mb-2">
-                              <span className="text-[9px] font-bold text-white/70 uppercase tracking-widest">Winning</span>
-                              <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
-                                 <span className="text-[8px] text-white/80 font-black">!</span>
-                              </div>
-                           </div>
-                           <p className="text-sm font-black text-white italic">₹{user?.winningBalance?.toLocaleString() || '0'}</p>
-                        </div>
-                        <div className="flex-1 bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10 hover:bg-white/20 cursor-pointer transition-colors" onClick={() => navigate('/tickets')}>
-                           <div className="flex items-center justify-between mb-2">
-                              <span className="text-[9px] font-bold text-white/70 uppercase tracking-widest">Bonus</span>
-                              <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center">
-                                 <span className="text-[8px] text-white/80 font-black">!</span>
-                              </div>
-                           </div>
-                           <p className="text-sm font-black text-white italic">₹{user?.bonusBalance?.toLocaleString() || '0'}</p>
-                        </div>
+                  <div className="grid grid-cols-3 divide-x divide-gray-50 bg-gray-50/30">
+                     <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => navigate('/topup')}>
+                        <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Deposit</p>
+                        <p className="text-sm font-black text-gray-800 italic">₹ {user?.depositedBalance?.toLocaleString() || '0'}</p>
+                        <span className="mt-1.5 text-[6px] font-black bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full uppercase tracking-widest">Purchase</span>
+                     </div>
+                     <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-emerald-50/50 transition-colors" onClick={() => navigate('/withdraw')}>
+                        <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Winning</p>
+                        <p className="text-sm font-black text-emerald-600 italic">₹ {user?.winningBalance?.toLocaleString() || '0'}</p>
+                        <span className="mt-1.5 text-[6px] font-black bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full uppercase tracking-widest border border-emerald-100/50">Payout</span>
+                     </div>
+                     <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-blue-50/50 transition-colors">
+                        <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Bonus</p>
+                        <p className="text-sm font-black text-[#2563eb] italic">₹ {user?.bonusBalance?.toLocaleString() || '0'}</p>
+                        <span className="mt-1.5 text-[6px] font-black bg-blue-50 text-[#2563eb] px-2 py-0.5 rounded-full uppercase tracking-widest border border-blue-100/50">Tickets Only</span>
                      </div>
                   </div>
                </div>
