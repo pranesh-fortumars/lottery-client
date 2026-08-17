@@ -156,6 +156,64 @@ const ProfilePage = () => {
           )}
 
 
+        {/* Menu Items */}
+        <div className="p-4 py-6 space-y-4">
+          <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2 mb-2 italic">Account Services</p>
+          {menuItems.map((item, i) => (
+            <div 
+              key={i} 
+              onClick={() => item.path !== '#' && navigate(item.path)}
+              className="group flex items-center justify-between p-5 bg-white rounded-[2rem] border border-gray-100 shadow-sm active:bg-gray-50 active:scale-[0.98] transition-all cursor-pointer hover:border-red-100"
+            >
+              <div className="flex items-center gap-5">
+                 <div className={`${item.color} bg-gray-50 p-3 rounded-2xl shadow-sm border border-gray-50 group-hover:scale-110 transition-transform group-hover:rotate-6 group-hover:bg-white`}>
+                    {item.icon}
+                 </div>
+                 <span className="font-black text-gray-800 uppercase tracking-tight text-sm italic">{item.label}</span>
+              </div>
+              <ChevronRight size={20} className="text-gray-200 group-hover:text-[#2563eb] transition-colors" />
+            </div>
+          ))}
+
+          <div 
+            onClick={() => {
+              logout();
+            }}
+            className="flex items-center justify-between p-5 bg-gray-950 text-white rounded-[2rem] border border-gray-900 mt-10 active:scale-95 transition-all cursor-pointer shadow-xl shadow-black/10"
+          >
+            <div className="flex items-center gap-5">
+               <div className="text-[#2563eb] bg-white/10 p-3 rounded-2xl shadow-sm border border-white/5">
+                  <LogOut size={20} />
+               </div>
+               <span className="font-black uppercase tracking-widest text-[11px] italic">Logout Securely</span>
+            </div>
+            <ChevronRight size={20} className="text-white/20" />
+          </div>
+
+          {/* Mandatory Profile Completion Warning Banner */}
+          {!isAdmin && !Boolean(user?.accountHolderName && user?.accountNumber && user?.ifscCode && user?.upiId) && (
+            <div className="mt-8 bg-amber-50 border-2 border-amber-200 rounded-[2.5rem] p-6 shadow-lg flex flex-col gap-4 animate-pulse">
+               <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-md">
+                     <AlertCircle size={24} />
+                  </div>
+                  <div>
+                     <h3 className="text-sm font-black text-amber-900 uppercase tracking-tight italic font-condensed">Action Required: Mandatory Profile Completion</h3>
+                     <p className="text-[10px] text-amber-800 font-bold mt-0.5 leading-relaxed">
+                        You must verify your banking & UPI payout credentials before purchasing tickets or requesting withdrawals.
+                     </p>
+                  </div>
+               </div>
+               <button 
+                 onClick={() => navigate('/settings/personal-info')}
+                 className="w-full bg-amber-500 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+               >
+                  Complete Verification Details <ChevronRight size={16} />
+               </button>
+            </div>
+          )}
+        </div>
+
           {/* Payout & Banking Info Card */}
           {!isAdmin && (
             <div className="p-6">
@@ -268,64 +326,6 @@ const ProfilePage = () => {
                </div>
             </div>
           )}
-
-        {/* Menu Items */}
-        <div className="p-4 py-6 space-y-4">
-          <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] ml-2 mb-2 italic">Account Services</p>
-          {menuItems.map((item, i) => (
-            <div 
-              key={i} 
-              onClick={() => item.path !== '#' && navigate(item.path)}
-              className="group flex items-center justify-between p-5 bg-white rounded-[2rem] border border-gray-100 shadow-sm active:bg-gray-50 active:scale-[0.98] transition-all cursor-pointer hover:border-red-100"
-            >
-              <div className="flex items-center gap-5">
-                 <div className={`${item.color} bg-gray-50 p-3 rounded-2xl shadow-sm border border-gray-50 group-hover:scale-110 transition-transform group-hover:rotate-6 group-hover:bg-white`}>
-                    {item.icon}
-                 </div>
-                 <span className="font-black text-gray-800 uppercase tracking-tight text-sm italic">{item.label}</span>
-              </div>
-              <ChevronRight size={20} className="text-gray-200 group-hover:text-[#2563eb] transition-colors" />
-            </div>
-          ))}
-
-          <div 
-            onClick={() => {
-              logout();
-            }}
-            className="flex items-center justify-between p-5 bg-gray-950 text-white rounded-[2rem] border border-gray-900 mt-10 active:scale-95 transition-all cursor-pointer shadow-xl shadow-black/10"
-          >
-            <div className="flex items-center gap-5">
-               <div className="text-[#2563eb] bg-white/10 p-3 rounded-2xl shadow-sm border border-white/5">
-                  <LogOut size={20} />
-               </div>
-               <span className="font-black uppercase tracking-widest text-[11px] italic">Logout Securely</span>
-            </div>
-            <ChevronRight size={20} className="text-white/20" />
-          </div>
-
-          {/* Mandatory Profile Completion Warning Banner */}
-          {!isAdmin && !Boolean(user?.accountHolderName && user?.accountNumber && user?.ifscCode && user?.upiId) && (
-            <div className="mt-8 bg-amber-50 border-2 border-amber-200 rounded-[2.5rem] p-6 shadow-lg flex flex-col gap-4 animate-pulse">
-               <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-md">
-                     <AlertCircle size={24} />
-                  </div>
-                  <div>
-                     <h3 className="text-sm font-black text-amber-900 uppercase tracking-tight italic font-condensed">Action Required: Mandatory Profile Completion</h3>
-                     <p className="text-[10px] text-amber-800 font-bold mt-0.5 leading-relaxed">
-                        You must verify your banking & UPI payout credentials before purchasing tickets or requesting withdrawals.
-                     </p>
-                  </div>
-               </div>
-               <button 
-                 onClick={() => navigate('/settings/personal-info')}
-                 className="w-full bg-amber-500 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
-               >
-                  Complete Verification Details <ChevronRight size={16} />
-               </button>
-            </div>
-          )}
-        </div>
 
         {!isAdmin && <SupportSection />}
 
