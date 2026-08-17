@@ -45,41 +45,51 @@ const ResultsPage = () => {
                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-sm"></div>
                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Draw Entry #{String(r.id || '').slice(-4)}</span>
               </div>
-              <div className="bg-white rounded-2xl border border-slate-400 shadow-sm overflow-hidden">
-                <table className="w-full text-left text-sm">
-                  <tbody>
-                    <tr className="border-b border-slate-100">
-                      <td className="w-[35%] p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-slate-50/50">Draw Date</td>
-                      <td className="p-4 font-bold text-black text-xs">{r.date}</td>
-                    </tr>
-                    <tr className="border-b border-slate-100">
-                      <td className="p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-slate-50/50">Draw Time</td>
-                      <td className="p-4 font-bold text-black text-xs">{r.draw}</td>
-                    </tr>
-                    <tr className="border-b border-slate-100">
-                      <td className="p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-slate-50/50">Lot Name</td>
-                      <td className="p-4 font-bold text-blue-600 text-xs uppercase">
-                        {getBrandBySlot(r.draw)} LOTTERY
-                      </td>
-                    </tr>
-                    <tr className="bg-blue-50">
-                      <td className="p-4 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-600">Winning Digits</td>
-                      <td className="p-4">
-                        <div className="flex gap-2 mt-2 pb-1">
-                          {(r.number || "").split('').map((n, j) => (
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 flex justify-between items-center">
+                 {/* Left Side: Logo and Brand Name */}
+                 <div className="flex flex-col items-center gap-1 min-w-[90px]">
+                    <div className="w-12 h-12 flex items-center justify-center bg-slate-50 rounded-full border border-slate-100 shadow-inner">
+                       <img 
+                         src={
+                           getBrandBySlot(r.draw).toLowerCase().includes('dear') ? 'https://img.icons8.com/color/48/000000/bull.png' :
+                           getBrandBySlot(r.draw).toLowerCase().includes('goa') ? 'https://img.icons8.com/color/48/000000/crown.png' :
+                           getBrandBySlot(r.draw).toLowerCase().includes('kerala') ? 'https://img.icons8.com/color/48/000000/palm-tree.png' :
+                           'https://img.icons8.com/color/48/000000/treasure-chest.png'
+                         }
+                         alt="logo" 
+                         className="w-8 h-8 object-contain"
+                       />
+                    </div>
+                    <span className="font-bold text-xs text-black text-center leading-tight mt-1">
+                      {getBrandBySlot(r.draw)} <br/> {r.draw.split(' ')[0]}
+                    </span>
+                 </div>
+
+                 {/* Right Side: Date/Time and Digits */}
+                 <div className="flex flex-col items-end justify-between h-full gap-3">
+                    <div className="text-right">
+                       <span className="text-[11px] font-bold text-black">{r.date} {r.draw}</span>
+                    </div>
+                    <div className="flex gap-2">
+                       {(r.number || "").split('').map((n, j) => {
+                          const ringColors = [
+                            'border-red-600 text-red-600', 
+                            'border-orange-500 text-orange-600', 
+                            'border-blue-500 text-blue-600', 
+                            'border-green-600 text-green-600'
+                          ];
+                          return (
                             <div key={j} className="flex flex-col items-center gap-1">
-                              <span className="text-[10px] font-black text-blue-500">{['X', 'A', 'B', 'C'][j]}</span>
-                              <div className="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm border border-slate-700">
+                              <span className="text-[8px] font-black uppercase text-slate-400 leading-none">{['X', 'A', 'B', 'C'][j]}</span>
+                              <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center font-bold text-lg bg-white shadow-sm ${ringColors[j] || 'border-slate-500 text-slate-600'}`}>
                                 {n}
                               </div>
                             </div>
-                          ))}
-                          {!r.number && <span className="text-[10px] font-bold text-slate-400">Processing...</span>}
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                          );
+                       })}
+                       {!r.number && <span className="text-[10px] font-bold text-slate-400 mt-2">Processing...</span>}
+                    </div>
+                 </div>
               </div>
             </div>
           ))
