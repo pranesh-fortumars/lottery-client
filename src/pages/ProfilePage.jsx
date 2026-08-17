@@ -197,7 +197,7 @@ const ProfilePage = () => {
               <div 
                 key={i} 
                 onClick={() => item.path !== '#' && navigate(item.path)}
-                className={`group flex items-center justify-between p-4 bg-white active:bg-gray-50 transition-colors cursor-pointer ${i !== menuItems.length - 1 ? 'border-b border-gray-100' : ''}`}
+                className={`group flex items-center justify-between p-4 bg-white active:bg-gray-50 transition-colors cursor-pointer ${i !== menuItems.length - 1 ? 'border-b-2 border-gray-200' : ''}`}
               >
                 <div className="flex items-center gap-4">
                    <div className={`${item.color} bg-gray-50 p-2.5 rounded-xl shadow-sm border border-gray-50 group-hover:scale-110 transition-transform group-hover:bg-white`}>
