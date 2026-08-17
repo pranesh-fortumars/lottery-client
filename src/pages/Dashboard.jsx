@@ -75,16 +75,6 @@ const Dashboard = () => {
 
   return (
     <div className="bg-slate-50">
-      {/* Hero Banner Area */}
-      <div className="p-4 pt-4">
-        <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-400">
-           <img 
-            src="/hero-banner.png" 
-            alt="Hero Banner" 
-            className="w-full h-auto object-cover"
-          />
-        </div>
-      </div>
 
       {/* Global Sales Closed Banner */}
       {appSettings.globalSalesClosed && (
@@ -234,6 +224,16 @@ const Dashboard = () => {
           </div>
         </>
       )}
+      {/* Hero Banner Area */}
+      <div className="p-4">
+        <div className="rounded-2xl overflow-hidden shadow-sm border border-slate-400">
+           <img 
+            src="/hero-banner.png" 
+            alt="Hero Banner" 
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
       <SupportSection />
     </div>
   );
