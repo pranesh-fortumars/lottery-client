@@ -23,6 +23,7 @@ import TopUpPage from './pages/TopUpPage';
 import WithdrawPage from './pages/WithdrawPage';
 import UserTransactions from './pages/UserTransactions';
 import UserGuide from './pages/UserGuide';
+import OrderDetails from './pages/OrderDetails';
 
 import PageWrapper from './components/PageWrapper';
 import AdminLayout from './components/AdminLayout';
@@ -121,6 +122,7 @@ const AnimatedRoutes = () => {
           <Route path="/topup" element={<ProtectedRoute role="user"><TopUpPage /></ProtectedRoute>} />
           <Route path="/withdraw" element={<ProtectedRoute role="user"><WithdrawPage /></ProtectedRoute>} />
           <Route path="/transactions" element={<ProtectedRoute role="user"><UserTransactions /></ProtectedRoute>} />
+          <Route path="/order-details/:orderId" element={<ProtectedRoute role="user"><OrderDetails /></ProtectedRoute>} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<ProtectedRoute role="admin"><AdminLayout><AdminDashboard /></AdminLayout></ProtectedRoute>} />

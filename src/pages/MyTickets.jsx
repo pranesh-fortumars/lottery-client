@@ -148,7 +148,11 @@ const MyTickets = () => {
                 <p className="text-[8px] font-black uppercase tracking-widest text-gray-400">Records: {resultCount}</p>
              </div>
             {transactionGroups.map((group) => (
-               <div key={group.id} className="bg-gray-950 rounded-3xl shadow-2xl border-2 border-black overflow-hidden">
+               <div 
+                  key={group.id} 
+                  onClick={() => navigate(`/order-details/${group.id}`)}
+                  className="bg-gray-950 rounded-3xl shadow-2xl border-2 border-black overflow-hidden cursor-pointer hover:border-gray-500 transition-colors"
+               >
                   
                   {/* --- TRANSACTION PARENT HEADER --- */}
                   <div className="p-5 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
