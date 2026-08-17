@@ -79,7 +79,7 @@ const ResultsPage = () => {
                       <div className="w-12 h-12 flex items-center justify-center bg-white rounded-full border border-slate-200 shadow-sm">
                          <img 
                            src={
-                             getBrandBySlot(r.draw).toLowerCase().includes('dear') ? 'https://img.icons8.com/color/48/000000/cow.png' :
+                             getBrandBySlot(r.draw).toLowerCase().includes('dear') ? 'https://img.icons8.com/color/48/000000/sunrise.png' :
                              getBrandBySlot(r.draw).toLowerCase().includes('goa') ? 'https://img.icons8.com/color/48/000000/crown.png' :
                              getBrandBySlot(r.draw).toLowerCase().includes('kerala') ? 'https://img.icons8.com/color/48/000000/palm-tree.png' :
                              'https://img.icons8.com/color/48/000000/treasure-chest.png'
