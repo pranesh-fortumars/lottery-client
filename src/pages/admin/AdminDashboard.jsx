@@ -211,8 +211,8 @@ const AdminDashboard = () => {
       {/* Main Reports Area */}
       <div className="space-y-8">
         {/* Draw Performance */}
-        <div className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-gray-100">
-           <div className="flex justify-between items-center mb-8">
+        <div className="bg-white rounded-[2.5rem] shadow-xl border-2 border-gray-900 overflow-hidden p-6">
+           <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-3">
                  <Target className="text-primary-hover" size={24} />
                  <h2 className="text-xl font-black text-gray-800 font-condensed uppercase tracking-tighter">Recent Results</h2>
@@ -220,9 +220,9 @@ const AdminDashboard = () => {
               <button className="text-primary-hover text-[10px] font-extrabold uppercase tracking-widest bg-indigo-50 px-4 py-2 rounded-full">Explore All</button>
            </div>
            
-           <div className="space-y-6">
+           <div className="flex flex-col">
               {recentDraws.length > 0 ? recentDraws.map((draw, idx) => (
-                <div key={idx} className="flex flex-col gap-4 bg-gray-50/50 p-5 rounded-3xl border border-transparent hover:border-gray-100 transition-all group">
+                <div key={idx} className={`flex flex-col gap-4 p-5 bg-white hover:bg-gray-50 transition-all group ${idx !== recentDraws.length - 1 ? 'border-b-2 border-gray-200' : ''}`}>
                    <div className="flex justify-between items-center">
                       <div className="flex items-center gap-4">
                          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center font-black text-gray-800 shadow-sm group-hover:scale-110 transition-transform">{draw.draw?.split(':')[0] || '--'}</div>
