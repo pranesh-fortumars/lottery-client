@@ -221,21 +221,21 @@ export const BottomNav = () => {
   const isAdmin = user?.role === 'admin';
 
   const userLinks = [
-    { to: '/home', icon: HomeIcon },
-    { to: '/tickets', icon: Ticket },
-    { to: '/results', icon: ScrollText },
-    { to: '/cart', icon: ShoppingCart },
-    { to: '/order-details', icon: Receipt },
-    { to: '/profile', icon: User },
+    { to: '/home', icon: HomeIcon, label: 'Home' },
+    { to: '/tickets', icon: Ticket, label: 'Tickets' },
+    { to: '/results', icon: ScrollText, label: 'Results' },
+    { to: '/cart', icon: ShoppingCart, label: 'Cart' },
+    { to: '/order-details', icon: Receipt, label: 'Orders' },
+    { to: '/profile', icon: User, label: 'Profile' },
   ];
 
   const adminLinks = [
-    { to: '/admin', icon: LayoutDashboard },
-    { to: '/admin/announcements', icon: Megaphone },
-    { to: '/admin/control', icon: ShieldAlert },
-    { to: '/admin/users', icon: Users },
-    { to: '/admin/reports', icon: BarChart3 },
-    { to: '/admin/settings', icon: Settings },
+    { to: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/admin/announcements', icon: Megaphone, label: 'Alerts' },
+    { to: '/admin/control', icon: ShieldAlert, label: 'Control' },
+    { to: '/admin/users', icon: Users, label: 'Users' },
+    { to: '/admin/reports', icon: BarChart3, label: 'Reports' },
+    { to: '/admin/settings', icon: Settings, label: 'Settings' },
   ];
 
   const links = isAdmin ? adminLinks : userLinks;
@@ -260,8 +260,8 @@ export const BottomNav = () => {
           >
             {({ isActive }) => (
               <>
-                <link.icon size={22} strokeWidth={isActive ? 2.5 : 2} />
-                <div className={`w-1 h-1 rounded-full bg-primary transition-opacity ${isActive ? 'opacity-100' : 'opacity-0'}`}></div>
+                <link.icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+                <span className={`text-[8px] uppercase tracking-wider ${isActive ? 'font-black' : 'font-bold'}`}>{link.label}</span>
               </>
             )}
           </NavLink>
