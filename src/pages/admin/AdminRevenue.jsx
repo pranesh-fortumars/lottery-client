@@ -71,21 +71,21 @@ const AdminRevenue = () => {
   return (
     <div className="p-4 space-y-6 pb-24">
       {/* Today's Banner */}
-      <div className="border-[1.5px] border-amber-500 rounded-[2.5rem] p-6 bg-white shadow-2xl relative overflow-hidden group">
-         <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl"></div>
+      <div className="border border-gray-900 rounded-[2.5rem] p-6 bg-white shadow-sm relative overflow-hidden group">
+         <div className="absolute top-0 right-0 w-32 h-32 bg-gray-900/5 rounded-full blur-3xl"></div>
          <div className="flex gap-4 items-center mb-6">
-            <div className="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center shadow-sm shrink-0">
-               <Wallet size={28} />
+            <div className="w-14 h-14 bg-gray-50 text-gray-900 rounded-2xl flex items-center justify-center border border-gray-900 shadow-sm shrink-0">
+               <Wallet size={24} />
             </div>
             <div className="flex-grow">
-               <h2 className="text-2xl font-black text-gray-900 font-condensed uppercase tracking-tighter italic">Today's Income</h2>
-               <p className="text-amber-500 font-black text-[10px] uppercase tracking-widest leading-none mt-1">Real-Time Daily Revenue</p>
+               <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Today's Income</h2>
+               <p className="text-gray-500 font-bold text-[10px] uppercase tracking-widest leading-none mt-1">Real-Time Daily Revenue</p>
             </div>
          </div>
          
-         <div className="bg-amber-50 p-6 rounded-3xl border border-amber-100 flex flex-col justify-center items-center">
-            <p className="text-5xl font-black text-amber-500 tracking-tighter italic">₹{todayRevenue.toLocaleString()}</p>
-            <p className="text-[10px] font-black text-amber-600/80 uppercase tracking-widest mt-2">{new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+         <div className="bg-gray-50 p-6 rounded-3xl border border-gray-900 flex flex-col justify-center items-center">
+            <p className="text-4xl font-black text-gray-900 tracking-tight">₹{todayRevenue.toLocaleString()}</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">{new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
          </div>
       </div>
 

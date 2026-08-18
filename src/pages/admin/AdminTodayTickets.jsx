@@ -60,13 +60,11 @@ const AdminTodayTickets = () => {
   }, [tickets, brandFilter, drawFilter, typeFilter]);
 
   const getDrawOptions = () => {
-    const draws = new Set(tickets.map(t => t.draw).filter(Boolean));
-    return Array.from(draws).sort();
+    return ['01:00 PM', '06:00 PM', '08:00 PM'];
   };
 
   const getTypeOptions = () => {
-    const types = new Set(tickets.map(t => t.gameType === '3D_LUCKY_PICK' ? '3D_LUCKY_PICK' : t.type).filter(Boolean));
-    return Array.from(types).sort();
+    return ['1D', '2D', '3D', '4D', '3D_LUCKY_PICK'];
   };
 
   if (loading) return <div className="p-8 text-center text-gray-500 font-bold uppercase tracking-widest text-[10px]">Loading Today's Tickets...</div>;
