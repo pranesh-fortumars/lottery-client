@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
-import { 
-  Home as HomeIcon, 
-  Gavel, 
-  ScrollText, 
-  ShoppingCart, 
-  User, 
+import {
+  Home as HomeIcon,
+  Gavel,
+  ScrollText,
+  ShoppingCart,
+  User,
   Download,
   LayoutDashboard,
   Megaphone,
@@ -33,7 +33,7 @@ export const Header = ({ title, showBack = false }) => {
   const { logout, user } = useAuth();
   const { notifications, adminAlerts, markAllRead, lastAnnouncement, hoveringNews, appSettings } = useCart();
   const [showNotifs, setShowNotifs] = useState(false);
-  
+
   const displayTitle = title || appSettings.brandName || "SECURE PORTAL";
 
   const unreadCount = notifications.filter(n => !n.read).length + adminAlerts.length;
@@ -48,22 +48,22 @@ export const Header = ({ title, showBack = false }) => {
         <div className="flex items-center justify-between px-4" style={{ height: '70px' }}>
           <div className="flex items-center gap-3">
             {showBack ? (
-              <button 
-                onClick={() => navigate(-1)} 
+              <button
+                onClick={() => navigate(-1)}
                 className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all active:scale-95"
               >
                 <ChevronLeft size={24} />
               </button>
             ) : (
               <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center border border-white/20">
-                 <img src="https://img.icons8.com/color/48/000000/treasure-chest.png" alt="Logo" className="w-7 h-7" />
+                <img src="https://img.icons8.com/color/48/000000/treasure-chest.png" alt="Logo" className="w-7 h-7" />
               </div>
             )}
             <h1 className="text-lg font-outfit font-bold tracking-tight uppercase leading-none">{displayTitle}</h1>
           </div>
           <div className="flex items-center gap-2">
             {user && (
-              <button 
+              <button
                 onClick={handleOpenNotifs}
                 className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all border border-white/10 relative"
               >
@@ -84,7 +84,7 @@ export const Header = ({ title, showBack = false }) => {
         {/* Global Result Ticker / Breaking News */}
         <AnimatePresence>
           {hoveringNews && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -92,12 +92,12 @@ export const Header = ({ title, showBack = false }) => {
             >
               <div className="animate-marquee inline-block px-4">
                 <span className="text-white px-2 py-0.5 bg-primary rounded mr-4 font-bold text-[9px]">LATEST NEWS</span>
-                {hoveringNews} • {hoveringNews} • {hoveringNews} • 
+                {hoveringNews} • {hoveringNews} • {hoveringNews} •
               </div>
             </motion.div>
           )}
           {lastAnnouncement && !hoveringNews && (
-            <motion.div 
+            <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -105,7 +105,7 @@ export const Header = ({ title, showBack = false }) => {
             >
               <div className="animate-marquee inline-block px-4">
                 <span className="text-white px-2 py-0.5 bg-primary rounded mr-4 font-bold text-[9px]">BREAKING NEWS</span>
-                {lastAnnouncement.message} • {lastAnnouncement.ticker} • CHECK RESULTS TAB FOR DETAILS • 
+                {lastAnnouncement.message} • {lastAnnouncement.ticker} • CHECK RESULTS TAB FOR DETAILS •
               </div>
             </motion.div>
           )}
@@ -116,14 +116,14 @@ export const Header = ({ title, showBack = false }) => {
       <AnimatePresence>
         {showNotifs && (
           <>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowNotifs(false)}
               className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[2000]"
             />
-            <motion.div 
+            <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -156,41 +156,40 @@ export const Header = ({ title, showBack = false }) => {
                   <>
                     {/* Admin Specific Alerts */}
                     {adminAlerts.map((a) => (
-                      <div 
-                        key={a.id} 
+                      <div
+                        key={a.id}
                         onClick={() => {
                           setShowNotifs(false);
                           navigate(a.source === 'withdrawal' ? '/admin/withdrawals' : '/admin/approvals');
                         }}
                         className="p-4 rounded-xl border bg-white border-amber-200 shadow-sm cursor-pointer hover:bg-amber-50 transition-all flex gap-3 items-start"
                       >
-                         <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-amber-100 text-amber-700">
-                           {a.source === 'withdrawal' ? <Wallet size={18} /> : <ShoppingCart size={18} />}
-                         </div>
-                         <div className="flex-grow">
-                            <h4 className="text-[13px] font-bold text-black mb-1 flex items-center justify-between">
-                               {a.title} 
-                               <span className="bg-amber-100 text-amber-700 text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">ACTION</span>
-                            </h4>
-                            <p className="text-[11px] font-medium text-slate-500 leading-relaxed">{a.message}</p>
-                            <span className="text-[9px] font-bold text-slate-400 mt-2 block">
-                               {a.timestamp?.toDate ? a.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'JUST NOW'}
-                            </span>
-                         </div>
+                        <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-amber-100 text-amber-700">
+                          {a.source === 'withdrawal' ? <Wallet size={18} /> : <ShoppingCart size={18} />}
+                        </div>
+                        <div className="flex-grow">
+                          <h4 className="text-[13px] font-bold text-black mb-1 flex items-center justify-between">
+                            {a.title}
+                            <span className="bg-amber-100 text-amber-700 text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">ACTION</span>
+                          </h4>
+                          <p className="text-[11px] font-medium text-slate-500 leading-relaxed">{a.message}</p>
+                          <span className="text-[9px] font-bold text-slate-400 mt-2 block">
+                            {a.timestamp?.toDate ? a.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'JUST NOW'}
+                          </span>
+                        </div>
                       </div>
                     ))}
 
                     {/* Standard User Notifications */}
                     {notifications.map((n) => (
                       <div key={n.id} className={`p-4 rounded-xl border transition-all flex gap-3 items-start ${n.read ? 'bg-slate-50 border-slate-100' : 'bg-white border-blue-100 shadow-sm'}`}>
-                        <div className={`w-10 h-10 rounded-lg shrink-0 flex items-center justify-center ${
-                          n.type === 'win' ? 'bg-emerald-100 text-emerald-700' :
-                          n.type === 'result' ? 'bg-indigo-100 text-indigo-700' :
-                          'bg-primary-light text-primary-dark'
-                        }`}>
-                          {n.type === 'win' ? <Trophy size={18} /> : 
-                           n.type === 'result' ? <Megaphone size={18} /> : 
-                           <Info size={18} />}
+                        <div className={`w-10 h-10 rounded-lg shrink-0 flex items-center justify-center ${n.type === 'win' ? 'bg-emerald-100 text-emerald-700' :
+                            n.type === 'result' ? 'bg-indigo-100 text-indigo-700' :
+                              'bg-primary-light text-primary-dark'
+                          }`}>
+                          {n.type === 'win' ? <Trophy size={18} /> :
+                            n.type === 'result' ? <Megaphone size={18} /> :
+                              <Info size={18} />}
                         </div>
                         <div className="flex-grow pr-2">
                           <h4 className="text-[13px] font-bold text-black mb-0.5">{n.title}</h4>
@@ -205,7 +204,7 @@ export const Header = ({ title, showBack = false }) => {
               </div>
 
               <div className="p-4 border-t border-slate-400 shrink-0 bg-white">
-                 <button onClick={() => setShowNotifs(false)} className="w-full py-3 bg-slate-800 text-white rounded-xl font-bold text-[12px] uppercase tracking-wide hover:bg-slate-700 transition-colors">Close Panel</button>
+                <button onClick={() => setShowNotifs(false)} className="w-full py-3 bg-slate-800 text-white rounded-xl font-bold text-[12px] uppercase tracking-wide hover:bg-slate-700 transition-colors">Close Panel</button>
               </div>
             </motion.div>
           </>
@@ -231,7 +230,7 @@ export const BottomNav = () => {
 
   const adminLinks = [
     { to: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
-    { to: '/admin/announcements', icon: Megaphone, label: 'Alerts' },
+    { to: '/admin/announcements', icon: Megaphone, label: 'Announcements' },
     { to: '/admin/control', icon: ShieldAlert, label: 'Control' },
     { to: '/admin/users', icon: Users, label: 'Users' },
     { to: '/admin/reports', icon: BarChart3, label: 'Reports' },
@@ -245,18 +244,17 @@ export const BottomNav = () => {
       <div className="bg-slate-100 text-black py-1.5 text-center font-black text-[10px] tracking-widest border-b border-slate-500 uppercase">
         {isAdmin ? 'Admin Dashboard' : appSettings.brandName}
       </div>
-      
+
       <nav className="flex justify-around items-center py-3 px-2 bg-white pb-safe">
         {links.map((link, idx) => (
-          <NavLink 
+          <NavLink
             key={idx}
-            to={link.to} 
+            to={link.to}
             end={link.to === '/admin'}
-            className={({ isActive }) => `flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${
-              isActive 
-                ? 'text-primary' 
+            className={({ isActive }) => `flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${isActive
+                ? 'text-primary'
                 : 'text-slate-600 hover:text-black hover:bg-slate-100 font-bold'
-            }`}
+              }`}
           >
             {({ isActive }) => (
               <>
@@ -276,56 +274,56 @@ export const BottomNav = () => {
 export const SupportSection = () => {
   const supportNumber = "447988024040";
   const displayMobile = "+44 79 88 02 40 40";
-  
+
   const supportLinks = [
-    { 
-      icon: <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WA" className="w-7 h-7" />, 
-      label: 'WhatsApp', 
-      color: 'bg-emerald-50', 
-      link: `https://wa.me/${supportNumber}` 
+    {
+      icon: <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WA" className="w-7 h-7" />,
+      label: 'WhatsApp',
+      color: 'bg-emerald-50',
+      link: `https://wa.me/${supportNumber}`
     },
-    { 
-      icon: <img src="https://img.icons8.com/color/48/telegram-app.png" alt="TG" className="w-7 h-7" />, 
-      label: 'Telegram', 
-      color: 'bg-blue-50', 
-      link: `https://t.me/+${supportNumber}` 
+    {
+      icon: <img src="https://img.icons8.com/color/48/telegram-app.png" alt="TG" className="w-7 h-7" />,
+      label: 'Telegram',
+      color: 'bg-blue-50',
+      link: `https://t.me/+${supportNumber}`
     }
   ];
 
   return (
     <div className="mt-4 px-4 pb-6">
       <div className="bg-white rounded-2xl p-4 border border-slate-400 shadow-sm">
-         <div className="flex flex-col gap-3">
-             <div className="flex items-center justify-between">
-               <div className="flex items-center gap-2">
-                  <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Need Support?</p>
-               </div>
-               <span className="flex items-center gap-1.5 text-[9px] font-bold text-emerald-600 uppercase bg-emerald-50 px-2 py-0.5 rounded">
-                  <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                  Online
-               </span>
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Need Support?</p>
             </div>
-            
-             <div className="grid grid-cols-2 gap-3 mt-1">
-               {supportLinks.map((item, idx) => (
-                 <a
-                   key={idx}
-                   href={item.link}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   className="flex flex-col items-center justify-center p-3 rounded-xl border border-slate-100 bg-slate-50 transition-colors hover:bg-slate-100"
-                 >
-                   <div className={`w-10 h-10 ${item.color} rounded-lg flex items-center justify-center mb-2`}>
-                     {item.icon}
-                   </div>
-                   <p className="text-[11px] font-bold text-slate-900">{item.label}</p>
-                 </a>
-               ))}
-             </div>
-             <p className="text-[10px] font-medium text-slate-400 text-center mt-2">
-               Official: {displayMobile}
-             </p>
-         </div>
+            <span className="flex items-center gap-1.5 text-[9px] font-bold text-emerald-600 uppercase bg-emerald-50 px-2 py-0.5 rounded">
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+              Online
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 mt-1">
+            {supportLinks.map((item, idx) => (
+              <a
+                key={idx}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center justify-center p-3 rounded-xl border border-slate-100 bg-slate-50 transition-colors hover:bg-slate-100"
+              >
+                <div className={`w-10 h-10 ${item.color} rounded-lg flex items-center justify-center mb-2`}>
+                  {item.icon}
+                </div>
+                <p className="text-[11px] font-bold text-slate-900">{item.label}</p>
+              </a>
+            ))}
+          </div>
+          <p className="text-[10px] font-medium text-slate-400 text-center mt-2">
+            Official: {displayMobile}
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -342,7 +340,7 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
       document.title = appSettings.brandName;
     }
   }, [appSettings.brandName]);
-  
+
   const isAuthPage = window.location.pathname === '/login' || window.location.pathname === '/signup';
   const isAdminView = window.location.pathname.startsWith('/admin');
 
@@ -352,13 +350,13 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
     return (
       <div className="flex flex-col h-screen w-full bg-slate-50 items-center justify-center p-10 text-center space-y-6">
         <div className="w-20 h-20 bg-primary-light rounded-full flex items-center justify-center">
-           <ShieldAlert size={40} className="text-primary" />
+          <ShieldAlert size={40} className="text-primary" />
         </div>
         <h1 className="text-2xl font-bold text-black">System Maintenance</h1>
         <p className="text-sm font-medium text-slate-500 leading-relaxed max-w-sm">
           {appSettings.brandName} is currently undergoing scheduled system synchronization. We will be back shortly.
         </p>
-        <button 
+        <button
           onClick={() => navigate('/login')}
           className="text-[11px] font-bold text-slate-400 hover:text-primary transition-colors pt-10"
         >
@@ -374,8 +372,8 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
   return (
     <div className={`flex flex-col h-[100dvh] bg-slate-50 relative ${containerMaxWidth} mx-auto sm:shadow-xl overflow-hidden sm:border-x border-slate-400`}>
       {showHeader && <Header title={title || appSettings.brandName} showBack={showBack} />}
-      
-      <motion.main 
+
+      <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -386,15 +384,15 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
           {children}
         </PullToRefresh>
       </motion.main>
-      
+
       {/* Footer Area: Actions above BottomNav */}
       <div className="shrink-0 w-full bg-transparent pointer-events-none z-40">
-         {footerAction && (
-           <div className="px-4 pb-4 pointer-events-auto">
-             {footerAction}
-           </div>
-         )}
-         {showNav && <BottomNav />}
+        {footerAction && (
+          <div className="px-4 pb-4 pointer-events-auto">
+            {footerAction}
+          </div>
+        )}
+        {showNav && <BottomNav />}
       </div>
     </div>
   );
