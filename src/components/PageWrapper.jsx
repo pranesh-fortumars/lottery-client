@@ -226,6 +226,7 @@ export const BottomNav = () => {
     { to: '/results', icon: ScrollText },
     { to: '/cart', icon: ShoppingCart },
     { to: '/order-details', icon: Receipt },
+    { to: '/profile', icon: User },
   ];
 
   const adminLinks = [
