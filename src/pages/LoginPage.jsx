@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import PageWrapper, { SupportSection } from '../components/PageWrapper';
-import { LogIn, Lock, UserPlus, HelpCircle, AlertCircle } from 'lucide-react';
+import { LogIn, Lock, UserPlus, HelpCircle, AlertCircle, Eye, EyeOff } from 'lucide-react';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,6 +11,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -61,11 +62,18 @@ const LoginPage = () => {
             <input 
               className="flex-grow px-4 outline-none border-none focus:ring-0 text-sm font-bold text-black bg-transparent placeholder:text-slate-300" 
               placeholder="Enter your password" 
-              type="password"
+              type={showPassword ? "text" : "password"}
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="px-4 text-slate-400 hover:text-slate-600 transition-colors focus:outline-none flex items-center justify-center"
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
           </div>
 
           <div className="pt-6 space-y-4">
