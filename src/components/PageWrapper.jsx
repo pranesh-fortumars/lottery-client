@@ -370,7 +370,7 @@ const PageWrapper = ({ children, title, showNav = true, showHeader = true, showB
   const containerMaxWidth = "w-full sm:max-w-md md:max-w-lg";
 
   return (
-    <div className={`flex flex-col h-[100dvh] bg-slate-50 relative ${containerMaxWidth} mx-auto sm:shadow-xl overflow-hidden sm:border-x border-slate-400`}>
+    <div className={`flex flex-col h-[100dvh] bg-slate-50 relative ${containerMaxWidth} mx-auto sm:shadow-xl overflow-hidden sm:border-x border-gray-900`}>
       {showHeader && <Header title={title || appSettings.brandName} showBack={showBack} />}
 
       <motion.main
