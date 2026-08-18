@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Users, 
   Ticket, 
@@ -21,11 +22,12 @@ import { useAuth } from '../../context/AuthContext';
 import { Database } from 'lucide-react';
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState([
-    { label: 'Total Users', value: '0', icon: Users, change: '0%', bg: 'bg-blue-600', text: 'text-white', iconBg: 'bg-blue-500', subText: 'text-blue-200' },
-    { label: 'Today Tickets', value: '0', icon: Ticket, change: '0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200' },
-    { label: 'Revenue (Today)', value: '₹0', icon: Wallet, change: '0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100' },
-    { label: 'Active Sessions', value: '0', icon: TrendingUp, change: '0%', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200' },
+    { label: 'Total Users', value: '0', icon: Users, change: '0%', bg: 'bg-blue-600', text: 'text-white', iconBg: 'bg-blue-500', subText: 'text-blue-200', link: '/admin/users' },
+    { label: 'Today Tickets', value: '0', icon: Ticket, change: '0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200', link: '/admin/reports' },
+    { label: 'Revenue (Today)', value: '₹0', icon: Wallet, change: '0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/reports' },
+    { label: 'Active Sessions', value: '0', icon: TrendingUp, change: '0%', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/users' },
   ]);
 
   const { user } = useAuth();
@@ -49,10 +51,10 @@ const AdminDashboard = () => {
       const totalRevenue = ticketsData.reduce((sum, t) => sum + (parseFloat(t.price || 0) * (t.qty || 1)), 0);
 
       setStats([
-        { label: 'Total Users', value: usersData.length.toString(), icon: Users, change: '+0%', bg: 'bg-blue-600', text: 'text-white', iconBg: 'bg-blue-500', subText: 'text-blue-200' },
-        { label: 'Today Tickets', value: todayTicketsCount.toString(), icon: Ticket, change: '+0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200' },
-        { label: 'Revenue (Lifetime)', value: `₹${totalRevenue.toLocaleString()}`, icon: Wallet, change: '+0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100' },
-        { label: 'Active Sessions', value: 'Live', icon: TrendingUp, change: 'Stable', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200' },
+        { label: 'Total Users', value: usersData.length.toString(), icon: Users, change: '+0%', bg: 'bg-blue-600', text: 'text-white', iconBg: 'bg-blue-500', subText: 'text-blue-200', link: '/admin/users' },
+        { label: 'Today Tickets', value: todayTicketsCount.toString(), icon: Ticket, change: '+0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200', link: '/admin/reports' },
+        { label: 'Revenue (Lifetime)', value: `₹${totalRevenue.toLocaleString()}`, icon: Wallet, change: '+0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/reports' },
+        { label: 'Active Sessions', value: 'Live', icon: TrendingUp, change: 'Stable', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/users' },
       ]);
       setLoading(false);
     };
@@ -122,7 +124,11 @@ const AdminDashboard = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-3 mt-6">
         {stats.map((stat, idx) => (
-          <div key={idx} className={`${stat.bg} rounded-3xl p-4 sm:p-5 shadow-lg relative overflow-hidden flex flex-col justify-between`}>
+          <div 
+            key={idx} 
+            onClick={() => stat.link && navigate(stat.link)}
+            className={`${stat.bg} rounded-3xl p-4 sm:p-5 shadow-lg relative overflow-hidden flex flex-col justify-between ${stat.link ? 'cursor-pointer hover:opacity-90 active:scale-95 transition-all' : ''}`}
+          >
             <div className="flex items-center gap-2 mb-3">
                <div className={`w-10 h-10 ${stat.iconBg} rounded-2xl flex items-center justify-center shrink-0 shadow-inner`}>
                   <stat.icon size={18} className="text-white" />
