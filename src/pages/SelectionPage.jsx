@@ -51,6 +51,9 @@ const SelectionPage = () => {
   const d2Price = currentBrandScheme ? currentBrandScheme['2D'].price : "11.00";
   const d2Win = currentBrandScheme ? `₹ ${currentBrandScheme['2D'].AB}` : "₹ 1000";
 
+  const luckyPickPrice = currentBrandScheme?.LUCKY_PICK?.price || "7.50";
+  const luckyPickWin = currentBrandScheme?.LUCKY_PICK?.win || "5000";
+
   // --- Persistent Footer Action ---
   const footerBtn = (
     <button 
@@ -157,8 +160,8 @@ const SelectionPage = () => {
                     <BettingCard 
                       title="3D Lucky Pick" 
                       digits={3} 
-                      price="7.50" 
-                      winText="Win ₹ 5000"
+                      price={luckyPickPrice} 
+                      winText={`Win ₹ ${luckyPickWin}`}
                       gameName={getGameName()} 
                       drawTime={drawTime}
                       singleRow={true}

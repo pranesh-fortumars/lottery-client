@@ -346,10 +346,18 @@ export const CartProvider = ({ children }) => {
               }
             } else if (ticket.type === '3D') {
               if (ticket.gameType === '3D_LUCKY_PICK') {
-                // 3D Lucky Pick: Exact Match Only
+                // 3D Lucky Pick: Exact Match Only (Dynamic Prize)
+                let luckyWinAmt = 5000;
+                if (res.prizes?.v2) {
+                  const brandScheme = res.prizes[res.brand] || res.prizes['DEAR'];
+                  if (brandScheme?.LUCKY_PICK?.win) {
+                    luckyWinAmt = Number(brandScheme.LUCKY_PICK.win);
+                  }
+                }
+
                 if (ticketNum === winningCombos['3D_ABC']) {
                   isWinner = true;
-                  winAmt = 5000;
+                  winAmt = luckyWinAmt;
                 } else {
                   isWinner = false;
                   winAmt = 0;

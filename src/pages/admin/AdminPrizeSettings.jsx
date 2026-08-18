@@ -117,6 +117,19 @@ const AdminPrizeSettings = () => {
     });
   };
 
+  const handleSpecialChange = (gameKey, field, value) => {
+    setLocalScheme(prev => ({
+      ...prev,
+      [activeBrand]: {
+        ...prev[activeBrand],
+        [gameKey]: {
+          ...(prev[activeBrand][gameKey] || {}),
+          [field]: value
+        }
+      }
+    }));
+  };
+
   const handleSave = async () => {
     setIsSaving(true);
     try {
@@ -154,6 +167,15 @@ const AdminPrizeSettings = () => {
               <span className={activeBrand === 'DEAR' ? 'text-primary' : 'text-[#00d084]'}>{activeBrand}</span> Configurations
             </h3>
             <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1">Manage ticket prices & payouts</p>
+         </div>
+      </div>
+
+      {/* LUCKY PICK CONFIG */}
+      <div className="bg-orange-50/50 p-6 rounded-3xl border border-orange-100 shadow-sm">
+         <h4 className="text-lg font-black italic tracking-tighter mb-4 flex items-center gap-2 text-orange-600"><Edit3 size={18} className="text-orange-400" /> 3D Lucky Pick Configuration</h4>
+         <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
+            <InputField label="Ticket Price (₹)" value={currentBrandConfig['LUCKY_PICK']?.price || '7.50'} onChange={(v) => handleSpecialChange('LUCKY_PICK', 'price', v)} />
+            <InputField label="Exact Match Payout (₹)" value={currentBrandConfig['LUCKY_PICK']?.win || '5000'} onChange={(v) => handleSpecialChange('LUCKY_PICK', 'win', v)} />
          </div>
       </div>
 
