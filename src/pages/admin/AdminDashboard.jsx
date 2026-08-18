@@ -25,9 +25,9 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState([
     { label: 'Total Users', value: '0', icon: Users, change: '0%', bg: 'bg-blue-600', text: 'text-white', iconBg: 'bg-blue-500', subText: 'text-blue-200', link: '/admin/users' },
-    { label: 'Today Tickets', value: '0', icon: Ticket, change: '0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200', link: '/admin/reports' },
-    { label: 'Revenue (Today)', value: '₹0', icon: Wallet, change: '0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/reports' },
-    { label: 'Active Sessions', value: '0', icon: TrendingUp, change: '0%', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/users' },
+    { label: 'Today Tickets', value: '0', icon: Ticket, change: '0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200', link: '/admin/today-tickets' },
+    { label: 'Revenue (Today)', value: '₹0', icon: Wallet, change: '0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/revenue' },
+    { label: 'Active Sessions', value: '0', icon: TrendingUp, change: '0%', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/active-sessions' },
   ]);
 
   const { user } = useAuth();
@@ -52,9 +52,9 @@ const AdminDashboard = () => {
 
       setStats([
         { label: 'Total Users', value: usersData.length.toString(), icon: Users, change: '+0%', bg: 'bg-blue-600', text: 'text-white', iconBg: 'bg-blue-500', subText: 'text-blue-200', link: '/admin/users' },
-        { label: 'Today Tickets', value: todayTicketsCount.toString(), icon: Ticket, change: '+0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200', link: '/admin/reports' },
-        { label: 'Revenue (Lifetime)', value: `₹${totalRevenue.toLocaleString()}`, icon: Wallet, change: '+0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/reports' },
-        { label: 'Active Sessions', value: 'Live', icon: TrendingUp, change: 'Stable', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/users' },
+        { label: 'Today Tickets', value: todayTicketsCount.toString(), icon: Ticket, change: '+0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200', link: '/admin/today-tickets' },
+        { label: 'Revenue (Lifetime)', value: `₹${totalRevenue.toLocaleString()}`, icon: Wallet, change: '+0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/revenue' },
+        { label: 'Active Sessions', value: 'Live', icon: TrendingUp, change: 'Stable', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/active-sessions' },
       ]);
       setLoading(false);
     };

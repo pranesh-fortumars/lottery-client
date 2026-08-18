@@ -38,6 +38,9 @@ import AdminApprovals from './pages/admin/AdminApprovals';
 import AdminWithdrawals from './pages/admin/AdminWithdrawals';
 import AdminMigration from './pages/admin/AdminMigration';
 import AdminGuide from './pages/admin/AdminGuide';
+import AdminTodayTickets from './pages/admin/AdminTodayTickets';
+import AdminRevenue from './pages/admin/AdminRevenue';
+import AdminActiveSessions from './pages/admin/AdminActiveSessions';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { PaymentProvider } from './context/PaymentContext';
@@ -137,6 +140,9 @@ const AnimatedRoutes = () => {
           <Route path="/admin/withdrawals" element={<ProtectedRoute role="admin"><AdminLayout><AdminWithdrawals /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/migration" element={<ProtectedRoute role="admin"><AdminLayout><AdminMigration /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/guide" element={<ProtectedRoute role="admin"><AdminLayout><AdminGuide /></AdminLayout></ProtectedRoute>} />
+          <Route path="/admin/today-tickets" element={<ProtectedRoute role="admin"><AdminLayout><AdminTodayTickets /></AdminLayout></ProtectedRoute>} />
+          <Route path="/admin/revenue" element={<ProtectedRoute role="admin"><AdminLayout><AdminRevenue /></AdminLayout></ProtectedRoute>} />
+          <Route path="/admin/active-sessions" element={<ProtectedRoute role="admin"><AdminLayout><AdminActiveSessions /></AdminLayout></ProtectedRoute>} />
           
           <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
