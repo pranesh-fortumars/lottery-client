@@ -322,7 +322,7 @@ const AdminUserDetails = () => {
                  <span className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest border border-emerald-100 flex items-center gap-1">
                     <Zap size={10} fill="currentColor" /> {user.status || 'Active'}
                  </span>
-                 <span className="bg-gray-50 text-gray-400 px-3 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest border border-gray-100">
+                 <span className="bg-gray-50 text-gray-400 px-3 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest border border-gray-900">
                     ID: #{user.id.slice(0, 8)}
                  </span>
                  {user.createdAt && (
@@ -336,7 +336,7 @@ const AdminUserDetails = () => {
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex bg-white p-1 rounded-2xl shadow-sm border border-gray-100 mb-6 w-full mx-auto relative z-10">
+      <div className="flex bg-white p-1 rounded-2xl shadow-sm border border-gray-900 mb-6 w-full mx-auto relative z-10">
         <button 
           onClick={() => setActiveTab('overview')}
           className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeTab === 'overview' ? 'bg-gray-900 text-white shadow-lg shadow-gray-200' : 'text-gray-400 hover:bg-gray-50'}`}
@@ -399,7 +399,7 @@ const AdminUserDetails = () => {
        </div>
 
       {/* Credentials & Details */}
-      <div className="bg-white rounded-[2.5rem] p-5 md:p-10 shadow-xl border border-gray-100 space-y-8">
+      <div className="bg-white rounded-[2.5rem] p-5 md:p-10 shadow-xl border border-gray-900 space-y-8">
          <div className="flex items-center gap-3 border-b border-gray-50 pb-6">
             <ShieldCheck className="text-primary-hover" size={22} />
             <h3 className="text-xl font-black font-condensed uppercase tracking-tighter text-gray-800 italic leading-none">Identity Check</h3>
@@ -416,7 +416,7 @@ const AdminUserDetails = () => {
                </div>
                <button 
                   onClick={() => handleCopy(user.email, 'email')}
-                  className="p-2 bg-white rounded-lg border border-gray-100 shadow-sm shrink-0 ml-2 active:scale-90 transition-all"
+                  className="p-2 bg-white rounded-lg border border-gray-900 shadow-sm shrink-0 ml-2 active:scale-90 transition-all"
                >
                   {copiedField === 'email' ? <CheckCircle2 size={16} className="text-emerald-500" /> : <Copy size={16} className="text-gray-400" />}
                </button>
@@ -431,7 +431,7 @@ const AdminUserDetails = () => {
                </div>
                <button 
                   onClick={() => handleCopy(user.mobile, 'mobile')}
-                  className="p-2 bg-white rounded-lg border border-gray-100 shadow-sm shrink-0 ml-2 active:scale-90 transition-all"
+                  className="p-2 bg-white rounded-lg border border-gray-900 shadow-sm shrink-0 ml-2 active:scale-90 transition-all"
                >
                   {copiedField === 'mobile' ? <CheckCircle2 size={16} className="text-emerald-500" /> : <Copy size={16} className="text-gray-400" />}
                </button>
@@ -439,7 +439,7 @@ const AdminUserDetails = () => {
          </div>
 
          {/* Banking & Payout Credentials */}
-         <div className="bg-gray-50/30 rounded-[2rem] p-6 border border-gray-100 space-y-6 relative">
+         <div className="bg-gray-50/30 rounded-[2rem] p-6 border border-gray-900 space-y-6 relative">
             {/* Inline Toast Notification */}
             <AnimatePresence>
               {copiedField && (
@@ -454,13 +454,13 @@ const AdminUserDetails = () => {
               )}
             </AnimatePresence>
 
-            <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <div className="flex items-center gap-3 border-b border-gray-900 pb-4">
                <Landmark className="text-primary-hover" size={20} />
                <h4 className="text-sm font-black uppercase tracking-tight text-gray-800 italic font-condensed">Banking & Payout Credentials</h4>
             </div>
             
             <div className="flex flex-col gap-4">
-               <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-start">
+               <div className="bg-white p-4 rounded-2xl border border-gray-900 shadow-sm flex justify-between items-start">
                   <div className="pr-2 overflow-hidden">
                      <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Account Holder Name</p>
                      <p className="text-[11px] font-black text-gray-800 break-words leading-tight">{user.accountHolderName || <span className="text-red-500 italic">Not Provided</span>}</p>
@@ -469,7 +469,7 @@ const AdminUserDetails = () => {
                      {copiedField === 'name' ? <CheckCircle2 size={14} className="text-emerald-500" /> : <Copy size={14} className="text-gray-400" />}
                   </button>
                </div>
-               <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-start">
+               <div className="bg-white p-4 rounded-2xl border border-gray-900 shadow-sm flex justify-between items-start">
                   <div className="pr-2 overflow-hidden">
                      <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Account Number</p>
                      <p className="text-[11px] font-black text-gray-800 break-words leading-tight">{user.accountNumber || <span className="text-red-500 italic">Not Provided</span>}</p>
@@ -478,7 +478,7 @@ const AdminUserDetails = () => {
                      {copiedField === 'acc' ? <CheckCircle2 size={14} className="text-emerald-500" /> : <Copy size={14} className="text-gray-400" />}
                   </button>
                </div>
-               <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-start">
+               <div className="bg-white p-4 rounded-2xl border border-gray-900 shadow-sm flex justify-between items-start">
                   <div className="pr-2 overflow-hidden">
                      <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">IFSC Code</p>
                      <p className="text-[11px] font-black text-gray-800 break-words leading-tight">{user.ifscCode || <span className="text-red-500 italic">Not Provided</span>}</p>
@@ -487,7 +487,7 @@ const AdminUserDetails = () => {
                      {copiedField === 'ifsc' ? <CheckCircle2 size={14} className="text-emerald-500" /> : <Copy size={14} className="text-gray-400" />}
                   </button>
                </div>
-               <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex justify-between items-start">
+               <div className="bg-white p-4 rounded-2xl border border-gray-900 shadow-sm flex justify-between items-start">
                   <div className="pr-2 overflow-hidden">
                      <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">UPI ID / Address</p>
                      <p className="text-[11px] font-black text-gray-800 break-words leading-tight">{user.upiId || <span className="text-red-500 italic">Not Provided</span>}</p>
@@ -569,8 +569,8 @@ const AdminUserDetails = () => {
       ) : (
         <div className="space-y-6">
            {/* TICKET HISTORY UI */}
-           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 flex flex-col sm:flex-row items-center justify-between gap-3 max-w-4xl mx-auto">
-              <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl w-full sm:max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#1d4ed8]/10 border border-gray-100">
+           <div className="bg-white rounded-2xl shadow-sm border border-gray-900 p-3 flex flex-col sm:flex-row items-center justify-between gap-3 max-w-4xl mx-auto">
+              <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl w-full sm:max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#1d4ed8]/10 border border-gray-900">
                  <Calendar size={14} className="text-[#1d4ed8]" />
                  <div className="flex flex-col w-full">
                     <span className="text-[6px] font-black text-gray-400 uppercase tracking-widest leading-none mb-0.5">Filter Date</span>
@@ -600,7 +600,7 @@ const AdminUserDetails = () => {
            </div>
 
            {transactionGroups.length === 0 ? (
-             <div className="flex flex-col items-center justify-center py-24 text-center space-y-6 bg-white rounded-[2.5rem] shadow-sm border border-gray-100">
+             <div className="flex flex-col items-center justify-center py-24 text-center space-y-6 bg-white rounded-[2.5rem] shadow-sm border border-gray-900">
                 <div className="relative">
                    <Receipt size={64} className="text-gray-100" />
                    <Search size={24} className="absolute -bottom-2 -right-2 text-gray-200" />
@@ -619,7 +619,7 @@ const AdminUserDetails = () => {
                
                {transactionGroups.map((group) => (
                   <div key={group.id} className="bg-white rounded-3xl shadow-xl border-2 border-[#1d4ed8] overflow-hidden">
-                     <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                     <div className="p-5 border-b border-gray-900 flex justify-between items-center bg-gray-50/50">
                         <div>
                            <p className="text-[8px] font-black text-[#1d4ed8] uppercase tracking-[0.3em] italic">Transaction Instance</p>
                            <h4 className="text-[12px] font-black font-condensed italic text-gray-900">ID: {group.id}</h4>
@@ -631,7 +631,7 @@ const AdminUserDetails = () => {
 
                      {Object.values(group.drawSlots).map((slotGroup, sIdx) => (
                         <div key={sIdx} className="border-b-2 border-red-50 last:border-b-0">
-                           <div className="bg-white p-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b border-gray-100">
+                           <div className="bg-white p-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b border-gray-900">
                               <div className="flex items-center gap-3">
                                  <div className="w-9 h-9 bg-gray-900 rounded-xl flex items-center justify-center text-white shadow-md">
                                     <Clock size={16} className="text-amber-400" />
@@ -646,7 +646,7 @@ const AdminUserDetails = () => {
                                  <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest italic">Result:</p>
                                  <div className="flex gap-1">
                                     {slotGroup.declaredNum.split('').map((n, ni) => (
-                                       <div key={ni} className="w-7 h-9 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-gray-950 font-black text-sm font-condensed italic">
+                                       <div key={ni} className="w-7 h-9 bg-gray-50 border border-gray-800 rounded-lg flex items-center justify-center text-gray-950 font-black text-sm font-condensed italic">
                                           {n}
                                        </div>
                                     ))}
@@ -755,7 +755,7 @@ const AdminUserDetails = () => {
                 </div>
                 <button 
                   onClick={() => setShowEditModal(false)}
-                  className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 active:bg-red-50 active:text-red-500 transition-all border border-gray-100"
+                  className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 active:bg-red-50 active:text-red-500 transition-all border border-gray-900"
                 >
                   <X size={24} />
                 </button>
@@ -782,7 +782,7 @@ const AdminUserDetails = () => {
                         pattern={field.pattern}
                         value={editData[field.key]}
                         onChange={e => setEditData({...editData, [field.key]: e.target.value})}
-                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-primary-hover/20 transition-all text-xs"
+                        className="w-full h-15 bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-primary-hover/20 transition-all text-xs"
                       />
                     </div>
                   </div>

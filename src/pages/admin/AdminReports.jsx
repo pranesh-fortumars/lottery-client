@@ -416,7 +416,7 @@ const AdminReports = () => {
                      </div>
                   </div>
 
-                  <div className="flex gap-3 justify-end border-t border-slate-200 pt-5">
+                  <div className="flex gap-3 justify-end border-t border-slate-800 pt-5">
                      <button 
                        onClick={() => report.onGenerate('pdf')}
                        disabled={loadingPdf === report.id || loadingCsv === report.id}

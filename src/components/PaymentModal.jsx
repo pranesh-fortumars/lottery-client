@@ -61,7 +61,7 @@ const PaymentModal = ({ isOpen, onClose, amount, onConfirm }) => {
           <div className="p-5 space-y-4 overflow-y-auto pb-4">
             {/* QR Code */}
             <div className="flex flex-col items-center justify-center p-4 bg-slate-50 rounded-2xl border border-dashed border-slate-400">
-               <div className="relative p-2 bg-white rounded-xl shadow-sm mb-3 w-[120px] sm:w-[140px] aspect-square flex items-center justify-center border border-slate-100">
+               <div className="relative p-2 bg-white rounded-xl shadow-sm mb-3 w-[120px] sm:w-[140px] aspect-square flex items-center justify-center border border-slate-900">
                   <img src={activePayment.qrUrl} alt="UPI QR Code" className="w-full h-full object-contain rounded-lg" />
                </div>
                <p className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider text-center leading-relaxed">

@@ -214,7 +214,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
         </div>
 
         {/* Action Section */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+        <div className="flex items-center justify-between pt-4 border-t border-slate-900">
            <div className="flex items-center bg-slate-100 rounded-lg overflow-hidden p-0.5">
               <button onClick={() => updateQty(rowIdx, -1)} className="bg-white text-slate-600 w-8 h-8 rounded-md font-bold text-lg flex items-center justify-center hover:bg-slate-50 active:bg-slate-200 shadow-sm transition-colors">-</button>
               <div className="w-8 text-center font-bold text-sm text-black">{row.qty}</div>
@@ -245,7 +245,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
   // Original Multi-Row Layout for Single/Double Digit
   return (
     <div className="border border-slate-400 rounded-2xl p-4 mb-6 bg-white shadow-sm transition-shadow hover:shadow-md">
-      <div className="flex gap-4 mb-4 border-b border-slate-100 pb-4">
+      <div className="flex gap-4 mb-4 border-b border-slate-900 pb-4">
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${theme.light}`}>
            <img src="https://img.icons8.com/color/64/000000/treasure-chest.png" alt="Icon" className="w-8 h-8" />
         </div>

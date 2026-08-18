@@ -57,7 +57,7 @@ const AdminControl = () => {
            
            <div className="space-y-4">
               {activeLotteries.map((item) => (
-                <div key={item.id} className="bg-white rounded-[2rem] p-6 border border-gray-100 shadow-lg flex items-center justify-between group active:scale-[0.98] transition-all hover:border-primary-hover/20 relative overflow-hidden">
+                <div key={item.id} className="bg-white rounded-[2rem] p-6 border border-gray-900 shadow-lg flex items-center justify-between group active:scale-[0.98] transition-all hover:border-primary-hover/20 relative overflow-hidden">
                    <div className="flex items-center gap-5 relative z-10">
                       <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-lg border border-white shadow-sm ${
                         item.status === 'Running' ? 'bg-[#eff6ff] text-primary-hover' : 'bg-gray-50 text-gray-300'
@@ -75,8 +75,8 @@ const AdminControl = () => {
                    </div>
                    
                    <div className="flex gap-2 relative z-10">
-                      <button className="p-3 rounded-xl bg-gray-50 text-gray-400 hover:text-gray-900 transition-colors border border-gray-100"><Play size={18} fill="currentColor" /></button>
-                      <button className="p-3 rounded-xl bg-gray-50 text-gray-400 hover:text-emerald-500 transition-colors border border-gray-100"><RefreshCcw size={18} /></button>
+                      <button className="p-3 rounded-xl bg-gray-50 text-gray-400 hover:text-gray-900 transition-colors border border-gray-900"><Play size={18} fill="currentColor" /></button>
+                      <button className="p-3 rounded-xl bg-gray-50 text-gray-400 hover:text-emerald-500 transition-colors border border-gray-900"><RefreshCcw size={18} /></button>
                    </div>
                 </div>
               ))}
@@ -84,13 +84,13 @@ const AdminControl = () => {
         </div>
 
         {/* Global Parameters */}
-        <div className="space-y-6 pt-4 border-t border-gray-100">
+        <div className="space-y-6 pt-4 border-t border-gray-900">
            <div className="flex items-center gap-3 ml-2">
               <ShieldCheck className="text-primary-hover" size={20} />
               <h3 className="text-xl font-black text-gray-800 font-condensed uppercase tracking-tighter italic leading-none">Security Parameters</h3>
            </div>
 
-           <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-xl space-y-8">
+           <div className="bg-white rounded-[2.5rem] p-10 border border-gray-900 shadow-xl space-y-8">
               <div className="grid grid-cols-1 gap-6">
                 {[
                   { label: 'Platform Commission (%)', value: '10', icon: Target, unit: '%' },
@@ -99,7 +99,7 @@ const AdminControl = () => {
                 ].map((param, idx) => (
                   <div key={idx} className="space-y-2 group/param">
                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2 block group-focus-within/param:text-primary-hover transition-colors">{param.label}</label>
-                    <div className="flex items-center bg-gray-50/50 border border-gray-100 rounded-2xl px-6 h-16 group-focus-within/param:border-primary-hover/20 group-focus-within/param:bg-white transition-all shadow-sm">
+                    <div className="flex items-center bg-gray-50/50 border border-gray-900 rounded-2xl px-6 h-16 group-focus-within/param:border-primary-hover/20 group-focus-within/param:bg-white transition-all shadow-sm">
                        <param.icon className="text-primary-hover opacity-20 mr-4" size={24} />
                        <input 
                          type="text" 

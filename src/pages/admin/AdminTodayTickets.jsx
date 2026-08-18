@@ -96,7 +96,7 @@ const AdminTodayTickets = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-5 rounded-3xl shadow-lg border border-gray-100 flex flex-col sm:flex-row gap-4 items-center">
+      <div className="bg-white p-5 rounded-3xl shadow-lg border border-gray-900 flex flex-col sm:flex-row gap-4 items-center">
          <div className="flex items-center gap-2 shrink-0">
             <Filter size={16} className="text-gray-400" />
             <span className="text-[10px] font-black text-gray-800 uppercase tracking-widest">Filters:</span>
@@ -105,7 +105,7 @@ const AdminTodayTickets = () => {
             <select 
               value={brandFilter} 
               onChange={(e) => setBrandFilter(e.target.value)}
-              className="bg-gray-50 border border-gray-200 text-gray-800 text-[10px] font-black uppercase tracking-widest rounded-xl px-3 py-2 outline-none focus:border-emerald-500"
+              className="bg-gray-50 border border-gray-800 text-gray-800 text-[10px] font-black uppercase tracking-widest rounded-xl px-3 py-2 outline-none focus:border-emerald-500"
             >
               <option value="ALL">All Brands</option>
               <option value="DEAR">Dear Lottery</option>
@@ -114,7 +114,7 @@ const AdminTodayTickets = () => {
             <select 
               value={drawFilter} 
               onChange={(e) => setDrawFilter(e.target.value)}
-              className="bg-gray-50 border border-gray-200 text-gray-800 text-[10px] font-black uppercase tracking-widest rounded-xl px-3 py-2 outline-none focus:border-emerald-500"
+              className="bg-gray-50 border border-gray-800 text-gray-800 text-[10px] font-black uppercase tracking-widest rounded-xl px-3 py-2 outline-none focus:border-emerald-500"
             >
               <option value="ALL">All Draws</option>
               {getDrawOptions().map(d => (
@@ -124,7 +124,7 @@ const AdminTodayTickets = () => {
             <select 
               value={typeFilter} 
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="bg-gray-50 border border-gray-200 text-gray-800 text-[10px] font-black uppercase tracking-widest rounded-xl px-3 py-2 outline-none focus:border-emerald-500"
+              className="bg-gray-50 border border-gray-800 text-gray-800 text-[10px] font-black uppercase tracking-widest rounded-xl px-3 py-2 outline-none focus:border-emerald-500"
             >
               <option value="ALL">All Types</option>
               {getTypeOptions().map(t => (
@@ -136,20 +136,20 @@ const AdminTodayTickets = () => {
 
       {/* Results */}
       {filteredTickets.length === 0 ? (
-         <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-100 shadow-inner">
+         <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-900 shadow-inner">
             <BadgeCheck className="mx-auto text-gray-300 mb-4 opacity-50" size={48} />
             <p className="text-[12px] font-black uppercase tracking-widest text-gray-400 italic">No tickets found for today.</p>
          </div>
       ) : (
-         <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
+         <div className="bg-white rounded-3xl shadow-lg border border-gray-900 overflow-hidden">
             <div className="overflow-x-auto">
                <table className="w-full text-left border-collapse">
                   <thead>
                      <tr className="bg-gray-50/50">
-                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-100">Draw & Type</th>
-                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-100">User / Qty</th>
-                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-100">Number / Board</th>
-                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-100 text-right">Value (₹)</th>
+                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-900">Draw & Type</th>
+                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-900">User / Qty</th>
+                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-900">Number / Board</th>
+                        <th className="p-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 border-b border-gray-900 text-right">Value (₹)</th>
                      </tr>
                   </thead>
                   <tbody>

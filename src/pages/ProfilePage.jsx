@@ -92,7 +92,7 @@ const ProfilePage = () => {
            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:scale-125 transition-transform"></div>
            <div className="flex flex-col items-center relative z-10">
               <div className="w-24 h-24 bg-white p-1 rounded-[2.5rem] shadow-2xl mb-4 group relative transform group-hover:-rotate-3 transition-transform">
-                 <div className="w-full h-full bg-gray-50 rounded-[2.2rem] flex items-center justify-center border border-gray-100 overflow-hidden shadow-inner">
+                 <div className="w-full h-full bg-gray-50 rounded-[2.2rem] flex items-center justify-center border border-gray-900 overflow-hidden shadow-inner">
                     <img 
                       src={`https://api.dicebear.com/9.x/bottts-neutral/svg?seed=${user?.uid || user?.name || 'player'}&backgroundColor=f8fafc`} 
                       alt="Profile Avatar" 
@@ -122,7 +122,7 @@ const ProfilePage = () => {
          {/* Triple-Balance Management Card */}
          {!isAdmin && (
            <div className="px-6 -mt-10 relative z-20">
-              <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+              <div className="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-900 overflow-hidden">
                  {/* Top: Total Balance */}
                  <div className="p-6 bg-white border-b border-gray-50 flex items-center justify-between group cursor-pointer active:bg-gray-50 transition-all" onClick={() => navigate('/topup')}>
                     <div className="flex items-center gap-4">
@@ -197,7 +197,7 @@ const ProfilePage = () => {
               <div 
                 key={i} 
                 onClick={() => item.path !== '#' && navigate(item.path)}
-                className={`group flex items-center justify-between p-4 bg-white active:bg-gray-50 transition-colors cursor-pointer ${i !== menuItems.length - 1 ? 'border-b-2 border-gray-200' : ''}`}
+                className={`group flex items-center justify-between p-4 bg-white active:bg-gray-50 transition-colors cursor-pointer ${i !== menuItems.length - 1 ? 'border-b-2 border-gray-800' : ''}`}
               >
                 <div className="flex items-center gap-4">
                    <div className={`${item.color} bg-gray-50 p-2.5 rounded-xl shadow-sm border border-gray-50 group-hover:scale-110 transition-transform group-hover:bg-white`}>
@@ -252,7 +252,7 @@ const ProfilePage = () => {
           {/* Payout & Banking Info Card */}
           {!isAdmin && (
             <div className="p-6">
-               <div className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-xl relative overflow-hidden group">
+               <div className="bg-white rounded-[2.5rem] p-8 border border-gray-900 shadow-xl relative overflow-hidden group">
                   <div className="flex items-center justify-between mb-6 border-b border-gray-50 pb-4">
                      <div className="flex items-center gap-3">
                         <CreditCard className="text-[#2563eb]" size={24} />
@@ -268,26 +268,26 @@ const ProfilePage = () => {
 
                   <div className="space-y-4">
                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-900">
                            <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Account Holder</p>
                            <p className="text-xs font-black text-gray-800 truncate">{user?.accountHolderName || <span className="text-red-500 italic">Required</span>}</p>
                         </div>
-                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-900">
                            <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Account Number</p>
                            <p className="text-xs font-black text-gray-800 truncate">{user?.accountNumber || <span className="text-red-500 italic">Required</span>}</p>
                         </div>
                      </div>
                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-900">
                            <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">IFSC Code</p>
                            <p className="text-xs font-black text-gray-800 truncate">{user?.ifscCode || <span className="text-red-500 italic">Required</span>}</p>
                         </div>
-                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                        <div className="bg-gray-50 p-4 rounded-2xl border border-gray-900">
                            <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">UPI Address / ID</p>
                            <p className="text-xs font-black text-gray-800 truncate">{user?.upiId || <span className="text-red-500 italic">Required</span>}</p>
                         </div>
                      </div>
-                     <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                     <div className="bg-gray-50 p-4 rounded-2xl border border-gray-900">
                         <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-1">Registered Phone Number</p>
                         <p className="text-xs font-black text-gray-800">{user?.mobile || 'N/A'}</p>
                      </div>
@@ -407,7 +407,7 @@ const ProfilePage = () => {
                 </div>
                 <button 
                   onClick={() => setShowEditModal(false)}
-                  className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 active:bg-red-50 active:text-red-500 transition-all border border-gray-100"
+                  className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 active:bg-red-50 active:text-red-500 transition-all border border-gray-900"
                 >
                   <X size={24} />
                 </button>
@@ -429,7 +429,7 @@ const ProfilePage = () => {
                         pattern={field.pattern}
                         value={editData[field.key]}
                         onChange={e => setEditData({...editData, [field.key]: e.target.value})}
-                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#2563eb]/20 transition-all text-xs"
+                        className="w-full h-15 bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-[#2563eb]/20 transition-all text-xs"
                       />
                     </div>
                   </div>

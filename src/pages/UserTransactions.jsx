@@ -248,7 +248,7 @@ const UserTransactions = () => {
                   </div>
 
                   {/* Additional Details Box */}
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2 text-[10px]">
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-900 space-y-2 text-[10px]">
                     {item.transactionId && (
                       <div className="flex justify-between items-center border-b border-slate-400 pb-2">
                         <span className="font-bold text-slate-500 uppercase tracking-widest">Transaction ID / UTR</span>

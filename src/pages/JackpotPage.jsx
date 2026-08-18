@@ -99,7 +99,7 @@ const JackpotPage = () => {
                 className={`border-[2px] rounded-2xl p-2.5 text-center transition-all cursor-pointer h-[70px] flex flex-col justify-center ${
                   slot.status === 'active' 
                     ? (activeSlot === slot.time ? 'border-[#4f46e5] bg-[#fff0f5] shadow-lg ring-2 ring-[#4f46e5]/10' : 'border-[#4f46e5] bg-white shadow-sm hover:shadow-md') 
-                    : 'border-gray-200 bg-gray-100 opacity-50 grayscale'
+                    : 'border-gray-800 bg-gray-100 opacity-50 grayscale'
                 }`}
               >
                 <p className={`text-[12px] font-black leading-none mb-1 ${slot.status === 'active' ? 'text-red-500' : 'text-gray-500'}`}>{slot.time}</p>

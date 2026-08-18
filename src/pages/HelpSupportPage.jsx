@@ -65,11 +65,11 @@ const HelpSupportPage = () => {
           {supportOptions.map((opt, idx) => (
             <div 
               key={idx} 
-              className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer hover:border-gray-200"
+              className="bg-white rounded-3xl p-5 shadow-sm border border-gray-900 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer hover:border-gray-800"
               onClick={opt.action}
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white transition-colors border border-gray-100 shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-[#2563eb] group-hover:bg-[#2563eb] group-hover:text-white transition-colors border border-gray-900 shadow-sm">
                   {opt.icon}
                 </div>
                 <div>
@@ -81,7 +81,7 @@ const HelpSupportPage = () => {
             </div>
           ))}
 
-          <div className="bg-white p-6 rounded-[2rem] border border-gray-200 mt-8 shadow-sm text-center">
+          <div className="bg-white p-6 rounded-[2rem] border border-gray-800 mt-8 shadow-sm text-center">
              <h3 className="text-sm font-black text-gray-900 uppercase italic">{appSettings.brandName}</h3>
              <p className="text-[10px] text-gray-400 font-bold mt-1 italic tracking-widest uppercase">Support: {displayMobile}</p>
              <p className="text-[9px] text-gray-300 font-bold uppercase tracking-widest mt-2">Available 24/7 Official Support Network</p>

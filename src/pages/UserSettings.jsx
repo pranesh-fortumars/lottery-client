@@ -40,7 +40,7 @@ const UserSettings = () => {
               onClick={group.onClick}
               className="w-full bg-white border border-slate-400 p-5 rounded-2xl flex items-center gap-4 hover:border-primary/50 active:scale-95 transition-all group shadow-sm"
             >
-              <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:bg-primary/5 transition-colors border border-slate-100">
+              <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:bg-primary/5 transition-colors border border-slate-900">
                  {group.icon}
               </div>
               <div className="text-left flex-1 min-w-0">

@@ -94,7 +94,7 @@ const AdminMigration = () => {
       </div>
 
       {/* Control Panel */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-900 p-4 sm:p-6">
         <div className="flex flex-col gap-4 mb-6">
           <div>
             <h2 className="text-xl font-black text-black tracking-tight">Execute Migration</h2>

@@ -90,7 +90,7 @@ const AdminRevenue = () => {
       </div>
 
       {/* Date Range Analytics */}
-      <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100">
+      <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-900">
          <div className="flex items-center gap-3 mb-6">
             <Calendar className="text-gray-400" size={20} />
             <h3 className="text-lg font-black uppercase tracking-tighter italic text-gray-900">Custom Range Explorer</h3>
@@ -103,7 +103,7 @@ const AdminRevenue = () => {
                  type="date" 
                  value={startDate}
                  onChange={(e) => setStartDate(e.target.value)}
-                 className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:border-amber-500"
+                 className="w-full bg-gray-50 border border-gray-800 text-gray-800 text-xs font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:border-amber-500"
                />
             </div>
             <div className="flex-1">
@@ -112,12 +112,12 @@ const AdminRevenue = () => {
                  type="date" 
                  value={endDate}
                  onChange={(e) => setEndDate(e.target.value)}
-                 className="w-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:border-amber-500"
+                 className="w-full bg-gray-50 border border-gray-800 text-gray-800 text-xs font-black uppercase tracking-wider rounded-xl px-4 py-3 outline-none focus:border-amber-500"
                />
             </div>
          </div>
 
-         <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex justify-between items-center">
+         <div className="bg-gray-50 p-6 rounded-2xl border border-gray-900 flex justify-between items-center">
             <div>
                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Range Total</p>
                <p className="text-2xl font-black text-gray-900 tracking-tighter italic mt-1">₹{rangeRevenue.toLocaleString()}</p>

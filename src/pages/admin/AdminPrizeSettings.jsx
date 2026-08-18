@@ -27,7 +27,7 @@ const InputField = ({ label, value, onChange }) => (
         const val = e.target.value.replace(/[^0-9.]/g, '');
         onChange(val);
       }}
-      className="w-full min-w-0 bg-gray-50 border border-gray-200 rounded-xl px-2 py-2.5 font-black text-gray-900 text-sm outline-none focus:bg-white focus:border-primary transition-all shadow-inner text-center"
+      className="w-full min-w-0 bg-gray-50 border border-gray-800 rounded-xl px-2 py-2.5 font-black text-gray-900 text-sm outline-none focus:bg-white focus:border-primary transition-all shadow-inner text-center"
     />
   </div>
 );
@@ -146,7 +146,7 @@ const AdminPrizeSettings = () => {
   return (
     <div className="space-y-6">
       {/* Brand Toggle */}
-      <div className="flex bg-gray-100 p-1.5 rounded-2xl shadow-inner border border-gray-200 mb-8 w-full max-w-sm mx-auto">
+      <div className="flex bg-gray-100 p-1.5 rounded-2xl shadow-inner border border-gray-800 mb-8 w-full max-w-sm mx-auto">
         <button 
           onClick={() => setActiveBrand('DEAR')}
           className={`flex-1 py-3 text-[11px] font-black uppercase tracking-widest rounded-xl transition-all ${activeBrand === 'DEAR' ? 'bg-primary text-white shadow-lg shadow-red-500/20' : 'text-gray-500 hover:text-gray-900'}`}
@@ -161,7 +161,7 @@ const AdminPrizeSettings = () => {
         </button>
       </div>
 
-      <div className="flex justify-between items-end border-b border-gray-100 pb-4">
+      <div className="flex justify-between items-end border-b border-gray-900 pb-4">
          <div>
             <h3 className="text-xl font-black uppercase italic tracking-tighter text-gray-900 leading-none">
               <span className={activeBrand === 'DEAR' ? 'text-primary' : 'text-[#00d084]'}>{activeBrand}</span> Configurations
@@ -180,7 +180,7 @@ const AdminPrizeSettings = () => {
       </div>
 
       {/* 1D CONFIG */}
-      <div className="bg-gray-50/50 p-6 rounded-3xl border border-gray-100 shadow-sm">
+      <div className="bg-gray-50/50 p-6 rounded-3xl border border-gray-900 shadow-sm">
          <h4 className="text-lg font-black italic tracking-tighter mb-4 flex items-center gap-2"><Edit3 size={18} className="text-gray-400" /> 1D Lottery Base Configuration</h4>
          <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
             <InputField label="Ticket Price (₹)" value={currentBrandConfig['1D'].price} onChange={(v) => handle1D2DChange('1D', 'price', v)} />
@@ -191,7 +191,7 @@ const AdminPrizeSettings = () => {
       </div>
 
       {/* 2D CONFIG */}
-      <div className="bg-gray-50/50 p-6 rounded-3xl border border-gray-100 shadow-sm">
+      <div className="bg-gray-50/50 p-6 rounded-3xl border border-gray-900 shadow-sm">
          <h4 className="text-lg font-black italic tracking-tighter mb-4 flex items-center gap-2"><Edit3 size={18} className="text-gray-400" /> 2D Lottery Base Configuration</h4>
          <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
             <InputField label="Ticket Price (₹)" value={currentBrandConfig['2D'].price} onChange={(v) => handle1D2DChange('2D', 'price', v)} />
@@ -202,7 +202,7 @@ const AdminPrizeSettings = () => {
       </div>
 
       {/* 3D CONFIG */}
-      <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-md">
+      <div className="bg-white p-6 rounded-3xl border border-gray-800 shadow-md">
          <div className="flex justify-between items-center mb-6">
             <h4 className="text-lg font-black italic tracking-tighter flex items-center gap-2"><Settings2 size={18} className="text-primary" /> 3D Lottery Tiers</h4>
             <button onClick={() => handleAddTier('3D')} className="bg-gray-900 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 active:scale-95 transition-all shadow-lg hover:bg-primary">
@@ -212,7 +212,7 @@ const AdminPrizeSettings = () => {
          
          <div className="space-y-4">
             {currentBrandConfig['3D'].map((tier, idx) => (
-              <div key={tier.id} className={`p-5 rounded-2xl border transition-all ${tier.active ? 'bg-gray-50 border-gray-200' : 'bg-gray-100 border-gray-200 opacity-60'}`}>
+              <div key={tier.id} className={`p-5 rounded-2xl border transition-all ${tier.active ? 'bg-gray-50 border-gray-800' : 'bg-gray-100 border-gray-800 opacity-60'}`}>
                  <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center gap-3">
                        <span className="bg-black text-white w-6 h-6 flex items-center justify-center rounded-lg text-[10px] font-black">{idx + 1}</span>
@@ -242,7 +242,7 @@ const AdminPrizeSettings = () => {
       </div>
 
       {/* 4D CONFIG */}
-      <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-md">
+      <div className="bg-white p-6 rounded-3xl border border-gray-800 shadow-md">
          <div className="flex justify-between items-center mb-6">
             <h4 className="text-lg font-black italic tracking-tighter flex items-center gap-2"><Settings2 size={18} className="text-primary" /> 4D Lottery Tiers</h4>
             <button onClick={() => handleAddTier('4D')} className="bg-gray-900 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 active:scale-95 transition-all shadow-lg hover:bg-primary">
@@ -252,7 +252,7 @@ const AdminPrizeSettings = () => {
          
          <div className="space-y-4">
             {currentBrandConfig['4D'].map((tier, idx) => (
-              <div key={tier.id} className={`p-5 rounded-2xl border transition-all ${tier.active ? 'bg-gray-50 border-gray-200' : 'bg-gray-100 border-gray-200 opacity-60'}`}>
+              <div key={tier.id} className={`p-5 rounded-2xl border transition-all ${tier.active ? 'bg-gray-50 border-gray-800' : 'bg-gray-100 border-gray-800 opacity-60'}`}>
                  <div className="flex justify-between items-center mb-4">
                     <div className="flex items-center gap-3">
                        <span className="bg-black text-white w-6 h-6 flex items-center justify-center rounded-lg text-[10px] font-black">{idx + 1}</span>

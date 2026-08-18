@@ -109,14 +109,14 @@ const AdminUsers = () => {
              placeholder="Search by name or mobile..." 
              value={searchTerm}
              onChange={(e) => setSearchTerm(e.target.value)}
-             className="w-full h-15 bg-white border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 shadow-sm text-sm placeholder:text-gray-300 focus:border-primary-hover/30 transition-all"
+             className="w-full h-15 bg-white border border-gray-900 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 shadow-sm text-sm placeholder:text-gray-300 focus:border-primary-hover/30 transition-all"
            />
         </div>
         
         <div className="flex gap-3">
           <button 
             onClick={() => setShowArchived(!showArchived)}
-            className={`flex-1 h-15 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all border ${showArchived ? 'bg-red-50 text-red-500 border-red-200' : 'bg-white text-gray-500 border-gray-200 shadow-sm'}`}
+            className={`flex-1 h-15 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all border ${showArchived ? 'bg-red-50 text-red-500 border-red-200' : 'bg-white text-gray-500 border-gray-800 shadow-sm'}`}
           >
             {showArchived ? 'View Active' : 'View Archived'}
           </button>
@@ -149,7 +149,7 @@ const AdminUsers = () => {
                 animate={{ opacity: 1, y: 0 }}
                 key={user.id} 
                 onClick={() => navigate(`/admin/users/${user.id}`)}
-                className="bg-white rounded-[2rem] p-5 shadow-lg border border-gray-100 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden"
+                className="bg-white rounded-[2rem] p-5 shadow-lg border border-gray-900 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer relative overflow-hidden"
               >
                  <div className="flex items-center gap-4 relative z-10">
                     <div className="w-14 h-14 bg-gray-50 rounded-2xl flex items-center justify-center text-primary-hover font-black text-xl border border-white shadow-sm group-hover:bg-primary-hover group-hover:text-white transition-all transform group-hover:rotate-6">
@@ -215,7 +215,7 @@ const AdminUsers = () => {
                 </div>
                 <button 
                   onClick={() => setShowAddForm(false)}
-                  className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 active:bg-red-50 active:text-red-500 transition-all border border-gray-100"
+                  className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-400 active:bg-red-50 active:text-red-500 transition-all border border-gray-900"
                 >
                   <X size={24} />
                 </button>
@@ -240,7 +240,7 @@ const AdminUsers = () => {
                         placeholder={field.placeholder} 
                         value={newUser[field.key]}
                         onChange={e => setNewUser({...newUser, [field.key]: e.target.value})}
-                        className="w-full h-15 bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-primary-hover/20 transition-all text-xs placeholder:text-gray-300"
+                        className="w-full h-15 bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 outline-none font-bold text-gray-800 focus:bg-white focus:border-primary-hover/20 transition-all text-xs placeholder:text-gray-300"
                       />
                     </div>
                   </div>

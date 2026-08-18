@@ -275,7 +275,7 @@ const AdminAnnouncements = () => {
     <div className="space-y-8 p-4 pb-24 h-full bg-[#f8fbff] overflow-y-auto scrollbar-hide">
       
       {/* Navigation */}
-      <div className="flex bg-white rounded-2xl p-2 shadow-sm border border-gray-100 sticky top-0 z-[100]">
+      <div className="flex bg-white rounded-2xl p-2 shadow-sm border border-gray-900 sticky top-0 z-[100]">
         {[
           { id: 'dispatch', label: 'Dispatch', icon: Zap },
           { id: 'analysis', label: 'Monitor', icon: TrendingUp },
@@ -312,23 +312,23 @@ const AdminAnnouncements = () => {
                   <button onClick={() => setWorkflowStep('root')} className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gray-500 transition-colors"><Trash2 size={18} /></button>
                </div>
 
-               <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-gray-100 space-y-8">
+               <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-gray-900 space-y-8">
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-gray-50/50 p-5 rounded-2xl border border-gray-100 space-y-4">
+                        <div className="bg-gray-50/50 p-5 rounded-2xl border border-gray-900 space-y-4">
                             <p className="text-[9px] font-black text-blue-500 uppercase tracking-widest">1D Board Prizes</p>
                             {['A', 'B', 'C'].map(p => (
                             <div key={p} className="flex items-center justify-between gap-2">
                                 <span className="text-[10px] font-black text-gray-400 italic">{p} Board</span>
-                                <input type="text" inputMode="decimal" pattern="[0-9]*" value={localScheme['1D'][p]} onChange={(e) => setLocalScheme({...localScheme, '1D': {...localScheme['1D'], [p]: e.target.value}})} className="w-20 bg-white border border-gray-200 rounded-lg py-1 px-2 text-xs font-black" />
+                                <input type="text" inputMode="decimal" pattern="[0-9]*" value={localScheme['1D'][p]} onChange={(e) => setLocalScheme({...localScheme, '1D': {...localScheme['1D'], [p]: e.target.value}})} className="w-20 bg-white border border-gray-800 rounded-lg py-1 px-2 text-xs font-black" />
                             </div>
                             ))}
                         </div>
-                        <div className="bg-gray-50/50 p-5 rounded-2xl border border-gray-100 space-y-4">
+                        <div className="bg-gray-50/50 p-5 rounded-2xl border border-gray-900 space-y-4">
                             <p className="text-[9px] font-black text-blue-500 uppercase tracking-widest">2D Board Prizes</p>
                             {['AB', 'BC', 'AC'].map(p => (
                             <div key={p} className="flex items-center justify-between gap-2">
                                 <span className="text-[10px] font-black text-gray-400 italic">{p} Combo</span>
-                                <input type="text" inputMode="decimal" pattern="[0-9]*" value={localScheme['2D'][p]} onChange={(e) => setLocalScheme({...localScheme, '2D': {...localScheme['2D'], [p]: e.target.value}})} className="w-20 bg-white border border-gray-200 rounded-lg py-1 px-2 text-xs font-black" />
+                                <input type="text" inputMode="decimal" pattern="[0-9]*" value={localScheme['2D'][p]} onChange={(e) => setLocalScheme({...localScheme, '2D': {...localScheme['2D'], [p]: e.target.value}})} className="w-20 bg-white border border-gray-800 rounded-lg py-1 px-2 text-xs font-black" />
                             </div>
                             ))}
                         </div>
@@ -338,7 +338,7 @@ const AdminAnnouncements = () => {
                         <p className="text-[10px] font-black text-gray-900 uppercase tracking-widest ml-2 italic">3D Tier Configuration</p>
                         <div className="grid grid-cols-1 gap-3">
                             {Object.keys(localScheme['3D']).map(tier => (
-                                <div key={tier} className="bg-gray-50/50 p-4 rounded-2xl border border-gray-100 flex items-center justify-between gap-4">
+                                <div key={tier} className="bg-gray-50/50 p-4 rounded-2xl border border-gray-900 flex items-center justify-between gap-4">
                                     <div className="shrink-0"><span className="text-xs font-black text-blue-600">₹{tier}</span></div>
                                     <div className="flex gap-2 overflow-x-auto pb-1">
                                         {['ABC', 'BC', 'C'].map(pos => (
@@ -356,7 +356,7 @@ const AdminAnnouncements = () => {
                                                             [tier]: { ...localScheme['3D'][tier], [pos]: e.target.value }
                                                         }
                                                     })} 
-                                                    className="w-16 bg-white border border-gray-200 rounded-lg py-1 px-2 text-[10px] font-black text-center" 
+                                                    className="w-16 bg-white border border-gray-800 rounded-lg py-1 px-2 text-[10px] font-black text-center" 
                                                 />
                                             </div>
                                         ))}
@@ -370,7 +370,7 @@ const AdminAnnouncements = () => {
                         <p className="text-[10px] font-black text-gray-900 uppercase tracking-widest ml-2 italic">4D Tier Configuration</p>
                         <div className="grid grid-cols-1 gap-3">
                             {Object.keys(localScheme['4D']).map(tier => (
-                                <div key={tier} className="bg-gray-50/50 p-4 rounded-2xl border border-gray-100 flex items-center justify-between gap-4">
+                                <div key={tier} className="bg-gray-50/50 p-4 rounded-2xl border border-gray-900 flex items-center justify-between gap-4">
                                     <div className="shrink-0"><span className="text-xs font-black text-blue-600">₹{tier}</span></div>
                                     <div className="flex gap-2 overflow-x-auto pb-1">
                                         {['XABC', 'ABC', 'BC', 'C'].map(pos => (
@@ -388,7 +388,7 @@ const AdminAnnouncements = () => {
                                                             [tier]: { ...localScheme['4D'][tier], [pos]: e.target.value }
                                                         }
                                                     })} 
-                                                    className="w-16 bg-white border border-gray-200 rounded-lg py-1 px-2 text-[10px] font-black text-center" 
+                                                    className="w-16 bg-white border border-gray-800 rounded-lg py-1 px-2 text-[10px] font-black text-center" 
                                                 />
                                             </div>
                                         ))}
@@ -413,7 +413,7 @@ const AdminAnnouncements = () => {
                </div>
                <div className="grid grid-cols-2 gap-4">
                   {['DEAR', 'KERALA'].map(m => (
-                    <button key={m} onClick={() => { setMarketSelection(m); setWorkflowStep('slot'); }} className="p-8 rounded-[1.5rem] bg-gray-50 border border-gray-100 hover:border-[#1d4ed8] transition-all text-center">
+                    <button key={m} onClick={() => { setMarketSelection(m); setWorkflowStep('slot'); }} className="p-8 rounded-[1.5rem] bg-gray-50 border border-gray-900 hover:border-[#1d4ed8] transition-all text-center">
                        <p className="text-xl font-black font-condensed italic">{m}</p>
                     </button>
                   ))}
@@ -435,7 +435,7 @@ const AdminAnnouncements = () => {
                         setDispatchDate(e.target.value);
                         setMonitorDate(e.target.value); // Sync monitor date to see correct stats
                       }}
-                      className="bg-gray-50 border border-gray-200 rounded-xl px-3 py-1.5 text-[10px] font-black uppercase outline-none focus:border-red-500"
+                      className="bg-gray-50 border border-gray-800 rounded-xl px-3 py-1.5 text-[10px] font-black uppercase outline-none focus:border-red-500"
                     />
                     <button onClick={() => setWorkflowStep('market')} className="text-[10px] font-black uppercase text-gray-300">Back</button>
                   </div>
@@ -485,7 +485,7 @@ const AdminAnnouncements = () => {
                   </div>
                   <button onClick={() => setWorkflowStep('slot')} className="ml-4 w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors"><Trash2 size={18} /></button>
                </div>
-               <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-gray-100 space-y-8">
+               <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-gray-900 space-y-8">
                   <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-center gap-3">
                      <AlertCircle className="text-amber-600" size={20} />
                      <p className="text-[9px] font-black uppercase text-amber-900 tracking-tight italic">Warning: Results will be synced with tickets purchased on {dispatchDate}. Ensure this is correct.</p>
@@ -494,7 +494,7 @@ const AdminAnnouncements = () => {
                         {['X', 'A', 'B', 'C'].map(col => (
                         <div key={col} className="space-y-2 text-center">
                             <label className="text-[9px] font-black uppercase text-gray-400">{col === 'X' ? 'X / D' : col}</label>
-                            <input type="text" inputMode="numeric" pattern="[0-9]*" value={resultDigits[col]} onChange={(e) => handleDigitChange(col, e.target.value)} className="w-full h-20 bg-gray-50 border-2 border-gray-100 rounded-2xl text-center text-4xl font-black focus:border-[#1d4ed8] outline-none" />
+                            <input type="text" inputMode="numeric" pattern="[0-9]*" value={resultDigits[col]} onChange={(e) => handleDigitChange(col, e.target.value)} className="w-full h-20 bg-gray-50 border-2 border-gray-900 rounded-2xl text-center text-4xl font-black focus:border-[#1d4ed8] outline-none" />
                         </div>
                         ))}
                     </div>
@@ -533,7 +533,7 @@ const AdminAnnouncements = () => {
                        
                        <div className="flex flex-row flex-wrap items-center gap-4 justify-end w-full sm:w-auto mt-2 sm:mt-0">
                           {/* Date Filter Integration */}
-                          <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl border border-gray-100 shadow-sm shrink-0">
+                          <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl border border-gray-900 shadow-sm shrink-0">
                              <Calendar size={18} className="text-red-500 shrink-0" />
                              <div className="flex flex-col">
                                 <label className="text-[7px] font-black uppercase text-gray-400 tracking-[0.2em] mb-0.5">Filter Date</label>
@@ -565,7 +565,7 @@ const AdminAnnouncements = () => {
                          {drawAssignments[mKey].map(slot => {
                             const data = dynamicAnalyticFeed[slot];
                             return (
-                               <div key={slot} onClick={() => setShowDetailSlot(slot)} className="bg-white rounded-[2rem] p-6 border border-gray-100 shadow-lg flex flex-col gap-6 hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden active:scale-[0.99] group">
+                               <div key={slot} onClick={() => setShowDetailSlot(slot)} className="bg-white rounded-[2rem] p-6 border border-gray-900 shadow-lg flex flex-col gap-6 hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden active:scale-[0.99] group">
                                   <div className="absolute -top-10 -right-10 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity transform group-hover:rotate-12 duration-1000"><Shapes size={180} /></div>
                                   
                                   <div className="flex justify-between items-start relative z-10">
@@ -586,11 +586,11 @@ const AdminAnnouncements = () => {
                                   </div>
 
                                   <div className="grid grid-cols-3 gap-3 relative z-10">
-                                     <div className="bg-gray-50/50 p-3.5 rounded-2xl border border-gray-100/50 flex flex-col items-center">
+                                     <div className="bg-gray-50/50 p-3.5 rounded-2xl border border-gray-900/50 flex flex-col items-center">
                                         <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Tickets</p>
                                         <span className="text-lg font-black font-condensed italic text-gray-900">{data?.totalQty || 0}</span>
                                      </div>
-                                     <div className="bg-gray-50/50 p-3.5 rounded-2xl border border-gray-100/50 flex flex-col items-center">
+                                     <div className="bg-gray-50/50 p-3.5 rounded-2xl border border-gray-900/50 flex flex-col items-center">
                                         <p className="text-[7px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Boards</p>
                                         <span className="text-lg font-black font-condensed italic text-gray-900">Active</span>
                                      </div>
@@ -627,10 +627,10 @@ const AdminAnnouncements = () => {
                 </div>
 
                  {/* Refined Filter Bar */}
-                 <div className="bg-white rounded-[2rem] p-4 sm:p-5 shadow-xl border border-gray-100 space-y-4 sticky top-2 z-[90]">
+                 <div className="bg-white rounded-[2rem] p-4 sm:p-5 shadow-xl border border-gray-900 space-y-4 sticky top-2 z-[90]">
                     {/* Primary Row: Type & Search */}
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-                       <div className="flex gap-1.5 p-1 bg-gray-50 rounded-2xl border border-gray-100">
+                       <div className="flex gap-1.5 p-1 bg-gray-50 rounded-2xl border border-gray-900">
                           {['1D', '2D', '3D', '4D'].map(type => (
                              <button 
                                key={type} 
@@ -649,19 +649,19 @@ const AdminAnnouncements = () => {
                             placeholder="Search combination..." 
                             value={monitorSearch}
                             onChange={(e) => setMonitorSearch(e.target.value)}
-                            className="w-full pl-11 pr-5 py-3 bg-gray-50 border border-gray-100 rounded-2xl text-[11px] font-black outline-none focus:border-red-600 transition-all placeholder:text-gray-300 shadow-sm"
+                            className="w-full pl-11 pr-5 py-3 bg-gray-50 border border-gray-900 rounded-2xl text-[11px] font-black outline-none focus:border-red-600 transition-all placeholder:text-gray-300 shadow-sm"
                           />
                        </div>
                     </div>
 
                     {/* High-Density Row: Boards & Tiers (No Scrolling) */}
-                    <div className="flex flex-wrap gap-x-6 gap-y-3 pt-4 border-t border-gray-100 items-center">
+                    <div className="flex flex-wrap gap-x-6 gap-y-3 pt-4 border-t border-gray-900 items-center">
                        <div className="flex flex-wrap gap-2 items-center">
                           {boardOptions[monitorType].map(board => (
                              <button 
                                key={board} 
                                onClick={() => setMonitorBoard(board)}
-                               className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all border-2 whitespace-nowrap ${monitorBoard === board ? 'border-red-600 text-red-600 bg-red-50 shadow-sm' : 'border-gray-100 text-gray-400 hover:border-gray-200 bg-white'}`}
+                               className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all border-2 whitespace-nowrap ${monitorBoard === board ? 'border-red-600 text-red-600 bg-red-50 shadow-sm' : 'border-gray-900 text-gray-400 hover:border-gray-800 bg-white'}`}
                              >
                                 {board} Board
                              </button>
@@ -669,7 +669,7 @@ const AdminAnnouncements = () => {
                        </div>
 
                        {(monitorType === '3D' || monitorType === '4D') && (
-                          <div className="flex flex-wrap items-center gap-2 border-l-0 sm:border-l sm:pl-6 border-gray-100">
+                          <div className="flex flex-wrap items-center gap-2 border-l-0 sm:border-l sm:pl-6 border-gray-900">
                              <div className="flex items-center gap-1.5 shrink-0 mr-1">
                                 <ListFilter size={12} className="text-gray-300" />
                                 <span className="text-[9px] font-black text-gray-300 uppercase tracking-widest">Tiers:</span>
@@ -685,7 +685,7 @@ const AdminAnnouncements = () => {
                                 <button 
                                   key={tier} 
                                   onClick={() => setMonitorTier(tier)}
-                                  className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all whitespace-nowrap ${monitorTier === tier ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-gray-400 border border-gray-100 hover:border-gray-300'}`}
+                                  className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all whitespace-nowrap ${monitorTier === tier ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-gray-400 border border-gray-900 hover:border-gray-300'}`}
                                 >
                                    ₹{tier}
                                 </button>
@@ -697,8 +697,8 @@ const AdminAnnouncements = () => {
 
                  {/* High-Frequency Analytics Table (Support 3D & 4D) */}
                  {(monitorType === '3D' || monitorType === '4D') && (
-                   <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mb-8 animate-in slide-in-from-left duration-700">
-                     <div className="p-6 border-b border-gray-200 bg-red-50/30 flex items-center justify-between">
+                   <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-8 animate-in slide-in-from-left duration-700">
+                     <div className="p-6 border-b border-gray-800 bg-red-50/30 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                            <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-red-500/20"><Zap size={20} /></div>
                            <div>
@@ -748,7 +748,7 @@ const AdminAnnouncements = () => {
                                        <td className="px-6 py-4 border-2 border-[#1d4ed8]">
                                          <div className="flex gap-2">
                                            {num.split('').map((d, i) => (
-                                             <span key={i} className="w-10 h-10 rounded-xl bg-white border-2 border-gray-100 flex items-center justify-center font-black text-xl italic text-gray-900 shadow-sm group-hover:border-red-600 transition-all">{d}</span>
+                                             <span key={i} className="w-10 h-10 rounded-xl bg-white border-2 border-gray-900 flex items-center justify-center font-black text-xl italic text-gray-900 shadow-sm group-hover:border-red-600 transition-all">{d}</span>
                                            ))}
                                          </div>
                                        </td>
@@ -769,8 +769,8 @@ const AdminAnnouncements = () => {
                  )}
 
                 {/* Detailed Monitoring Table */}
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mb-12">
-                   <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row items-center justify-between bg-gray-50/50 gap-4">
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-12">
+                   <div className="p-6 border-b border-gray-800 flex flex-col sm:flex-row items-center justify-between bg-gray-50/50 gap-4">
                       <div className="flex items-center gap-4">
                          <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white shadow-lg"><BarChart3 size={20} /></div>
                          <div>
@@ -783,7 +783,7 @@ const AdminAnnouncements = () => {
                            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Total</p>
                            <p className="text-lg font-black font-condensed italic text-gray-950 tabular-nums">{getNumberRange().length}</p>
                         </div>
-                        <div className="text-right border-l border-gray-200 pl-8">
+                        <div className="text-right border-l border-gray-800 pl-8">
                            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Active</p>
                            <p className="text-lg font-black font-condensed italic text-red-600 tabular-nums">{getNumberRange().filter(n => (dynamicAnalyticFeed[showDetailSlot]?.dataStore?.[monitorType]?.[monitorBoard]?.[n] || 0) > 0).length}</p>
                         </div>
@@ -808,7 +808,7 @@ const AdminAnnouncements = () => {
                                  <tr key={num} className={`group transition-all ${count > 0 ? 'bg-red-50/20' : 'bg-white hover:bg-gray-50'}`}>
                                     <td className="px-6 py-4 border-2 border-[#1d4ed8]">
                                        <div className="flex items-center gap-4">
-                                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-black text-lg font-condensed italic transition-all ${count > 0 ? 'bg-red-600 text-white shadow-md' : 'bg-gray-50 text-gray-500 border border-gray-200'}`}>
+                                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center font-black text-lg font-condensed italic transition-all ${count > 0 ? 'bg-red-600 text-white shadow-md' : 'bg-gray-50 text-gray-500 border border-gray-800'}`}>
                                              {num}
                                           </div>
                                           {count > 0 && (
@@ -828,7 +828,7 @@ const AdminAnnouncements = () => {
                                              {count > 0 && <span className="text-[9px] font-black text-emerald-500 uppercase italic">Units</span>}
                                           </div>
                                           {count > 0 && (
-                                            <div className="w-24 h-1.5 bg-gray-100 rounded-full mt-2 overflow-hidden border border-gray-200">
+                                            <div className="w-24 h-1.5 bg-gray-100 rounded-full mt-2 overflow-hidden border border-gray-800">
                                                <div className="h-full bg-red-600 rounded-full shadow-[0_0_8px_rgba(220,38,38,0.5)]" style={{ width: `${intensity}%` }}></div>
                                             </div>
                                           )}
@@ -850,7 +850,7 @@ const AdminAnnouncements = () => {
       {activeTab === 'history' && (
         <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500 mx-auto pb-20">
             {/* Record Archive Header */}
-            <div className="bg-white rounded-[2rem] p-4 shadow-xl border border-gray-100 flex flex-row flex-wrap justify-between items-center gap-4 sticky top-2 z-[90]">
+            <div className="bg-white rounded-[2rem] p-4 shadow-xl border border-gray-900 flex flex-row flex-wrap justify-between items-center gap-4 sticky top-2 z-[90]">
                <div className="flex items-center gap-3 shrink-0">
                   <div className="w-12 h-12 bg-gray-950 rounded-2xl flex items-center justify-center text-white shadow-lg shrink-0"><Calendar size={20} /></div>
                   <div className="flex flex-col">
@@ -871,9 +871,9 @@ const AdminAnnouncements = () => {
 
            <div className="space-y-4 pb-20">
               {filteredHistory.length > 0 ? filteredHistory.map((res, i) => (
-                <div key={i} className="bg-white rounded-[2rem] p-6 border border-gray-100 shadow-lg flex items-center justify-between group hover:border-red-200 transition-all">
+                <div key={i} className="bg-white rounded-[2rem] p-6 border border-gray-900 shadow-lg flex items-center justify-between group hover:border-red-200 transition-all">
                   <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 bg-gray-50 rounded-2xl flex flex-col items-center justify-center border border-gray-100 shrink-0">
+                    <div className="w-16 h-16 bg-gray-50 rounded-2xl flex flex-col items-center justify-center border border-gray-900 shrink-0">
                        <p className="text-[8px] font-black text-gray-400 uppercase leading-none mb-1">Time</p>
                        <p className="text-xs font-black font-condensed italic text-gray-900">{res.draw}</p>
                     </div>
@@ -895,7 +895,7 @@ const AdminAnnouncements = () => {
                   </div>
                 </div>
               )) : (
-                <div className="text-center py-20 bg-white rounded-[2.5rem] border-2 border-dashed border-gray-100">
+                <div className="text-center py-20 bg-white rounded-[2.5rem] border-2 border-dashed border-gray-900">
                    <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-300">
                       <History size={40} />
                    </div>

@@ -65,7 +65,7 @@ const SignupPage = () => {
         <form onSubmit={handleSignup} className="w-full space-y-5 max-w-md mx-auto">
           {/* Name Input */}
           <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
-            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-900 text-slate-400">
                <User size={18} />
             </div>
             <input 
@@ -80,7 +80,7 @@ const SignupPage = () => {
 
           {/* Email Input (Optional/Recommended) */}
           <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
-            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-900 text-slate-400">
                <Mail className="text-slate-400" size={18} />
             </div>
             <input 
@@ -94,7 +94,7 @@ const SignupPage = () => {
 
           {/* Mobile Number Input */}
           <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
-            <div className="bg-slate-50 px-4 flex items-center justify-center border-r border-slate-100 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
+            <div className="bg-slate-50 px-4 flex items-center justify-center border-r border-slate-900 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
               +91
             </div>
             <input 
@@ -111,7 +111,7 @@ const SignupPage = () => {
 
           {/* Password Input */}
           <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
-            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-900 text-slate-400">
                <Lock size={18} />
             </div>
             <input 
@@ -127,7 +127,7 @@ const SignupPage = () => {
           {/* Referral Code Input */}
           <div className="space-y-2">
             <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
-              <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400">
+              <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-900 text-slate-400">
                 <Users size={18} />
               </div>
               <input 

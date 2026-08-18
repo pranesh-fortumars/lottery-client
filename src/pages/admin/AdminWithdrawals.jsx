@@ -163,14 +163,14 @@ const AdminWithdrawals = () => {
       {/* Tab Content */}
       {activeTab === 'pending' ? (
         pendingReqs.length === 0 ? (
-           <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-100 shadow-inner">
+           <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-900 shadow-inner">
               <BadgeCheck className="mx-auto text-emerald-400 mb-4 opacity-50" size={48} />
               <p className="text-[12px] font-black uppercase tracking-widest text-gray-400 italic">No Pending Requests</p>
            </div>
         ) : (
           <div className="space-y-4">
             {pendingReqs.map(req => (
-              <div key={req.id} className="bg-white rounded-3xl p-5 shadow-lg border border-gray-100 flex flex-col gap-4 group hover:border-emerald-100 transition-all">
+              <div key={req.id} className="bg-white rounded-3xl p-5 shadow-lg border border-gray-900 flex flex-col gap-4 group hover:border-emerald-100 transition-all">
                 <div className="flex justify-between items-start">
                    <div>
                       <div className="flex items-center gap-2">
@@ -232,7 +232,7 @@ const AdminWithdrawals = () => {
         )
       ) : (
         historyReqs.length === 0 ? (
-           <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-100 shadow-inner">
+           <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-900 shadow-inner">
               <Filter className="mx-auto text-gray-300 mb-4" size={40} />
               <p className="text-[12px] font-black uppercase tracking-widest text-gray-400 italic">No Payout History Found</p>
            </div>
@@ -247,7 +247,7 @@ const AdminWithdrawals = () => {
               const actionTimeStr = actionDateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
               return (
-                <div key={req.id} className="bg-white rounded-3xl p-5 shadow-lg border border-gray-100 flex flex-col gap-4 group hover:border-emerald-100 transition-all">
+                <div key={req.id} className="bg-white rounded-3xl p-5 shadow-lg border border-gray-900 flex flex-col gap-4 group hover:border-emerald-100 transition-all">
                   <div className="flex justify-between items-start">
                      <div>
                         <div className="flex items-center gap-2">

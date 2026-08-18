@@ -228,7 +228,7 @@ const AdminDashboard = () => {
            
            <div className="flex flex-col">
               {recentDraws.length > 0 ? recentDraws.map((draw, idx) => (
-                <div key={idx} className={`flex flex-col gap-4 p-5 bg-white hover:bg-gray-50 transition-all group ${idx !== recentDraws.length - 1 ? 'border-b-2 border-gray-200' : ''}`}>
+                <div key={idx} className={`flex flex-col gap-4 p-5 bg-white hover:bg-gray-50 transition-all group ${idx !== recentDraws.length - 1 ? 'border-b-2 border-gray-800' : ''}`}>
                    <div className="flex justify-between items-center">
                       <div className="flex items-center gap-4">
                          <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center font-black text-gray-800 shadow-sm group-hover:scale-110 transition-transform">{draw.draw?.split(':')[0] || '--'}</div>

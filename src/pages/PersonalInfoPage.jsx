@@ -137,7 +137,7 @@ const PersonalInfoPage = () => {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="bg-white p-6 rounded-3xl border border-slate-400 shadow-sm space-y-5">
-               <div className="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
+               <div className="flex items-center gap-2 border-b border-slate-900 pb-4 mb-2">
                   <User className="text-violet-600" size={20} />
                   <h3 className="text-sm font-bold uppercase tracking-tight text-black">Personal Profile</h3>
                </div>
@@ -174,7 +174,7 @@ const PersonalInfoPage = () => {
             </div>
 
             <div className="bg-white p-6 rounded-3xl border border-slate-400 shadow-sm space-y-5">
-               <div className="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
+               <div className="flex items-center gap-2 border-b border-slate-900 pb-4 mb-2">
                   <Landmark className="text-violet-600" size={20} />
                   <h3 className="text-sm font-bold uppercase tracking-tight text-black">Mandatory Banking Details</h3>
                </div>

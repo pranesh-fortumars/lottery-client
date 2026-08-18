@@ -76,7 +76,7 @@ const PullToRefresh = ({ onRefresh, children }) => {
         initial={{ y: -50 }}
       >
         <div 
-          className="bg-white rounded-full p-2.5 shadow-lg border border-gray-100 flex items-center justify-center transition-transform"
+          className="bg-white rounded-full p-2.5 shadow-lg border border-gray-900 flex items-center justify-center transition-transform"
           style={{ transform: `scale(${isRefreshing ? 1 : Math.max(pullProgress, 0.5)})`, opacity: pullProgress > 0 || isRefreshing ? 1 : 0 }}
         >
           <RefreshCw 

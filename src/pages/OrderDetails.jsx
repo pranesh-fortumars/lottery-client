@@ -17,7 +17,7 @@ const OrderDetails = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#f4f6f8] flex flex-col">
-        <div className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-200">
+        <div className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-800">
           <div className="flex items-center gap-3">
             <button onClick={() => navigate(-1)}><ChevronLeft size={24} className="text-gray-800" /></button>
             <h1 className="text-lg font-bold text-gray-900">Order details</h1>
@@ -33,7 +33,7 @@ const OrderDetails = () => {
   if (!orderTickets || orderTickets.length === 0) {
     return (
       <div className="min-h-screen bg-[#f4f6f8] flex flex-col">
-        <div className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-200">
+        <div className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-800">
           <div className="flex items-center gap-3">
             <button onClick={() => navigate(-1)}><ChevronLeft size={24} className="text-gray-800" /></button>
             <h1 className="text-lg font-bold text-gray-900">Order details</h1>
@@ -130,7 +130,7 @@ const OrderDetails = () => {
   return (
     <div className="min-h-screen bg-[#f4f6f8] font-sans pb-10">
       {/* Header */}
-      <div className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-200 sticky top-0 z-10">
+      <div className="bg-white px-4 py-4 flex items-center justify-between border-b border-gray-800 sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate(-1)} className="p-1 -ml-1 active:scale-95 transition-all">
              <ChevronLeft size={24} strokeWidth={2.5} className="text-gray-900" />
@@ -144,7 +144,7 @@ const OrderDetails = () => {
 
       <div className="p-3 sm:p-4 max-w-md mx-auto space-y-3">
         {/* Main Details Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-900 overflow-hidden">
            
            {/* Top Info Bar */}
            <div className={`px-3 py-2 flex items-center justify-between ${isPending ? 'bg-blue-50' : isWin ? 'bg-orange-50' : 'bg-[#fff5f5]'}`}>
@@ -163,7 +163,7 @@ const OrderDetails = () => {
 
            {/* Core Details */}
            <div className="p-4 space-y-4">
-              <div className="flex justify-between items-start border-b border-gray-100 pb-3">
+              <div className="flex justify-between items-start border-b border-gray-900 pb-3">
                  <div>
                     <h2 className="text-sm font-bold text-gray-900">{brand} {slot}</h2>
                     <p className="text-[11px] text-gray-500 mt-0.5">Draw time <span className="ml-1 text-gray-800">{purchaseDate} {slot}</span></p>
@@ -215,8 +215,8 @@ const OrderDetails = () => {
         </div>
 
         {/* My Bets Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-           <div className="p-3 sm:p-4 border-b border-gray-100">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-900 overflow-hidden">
+           <div className="p-3 sm:p-4 border-b border-gray-900">
               <h3 className="text-sm font-bold text-gray-900">My Bets</h3>
            </div>
            

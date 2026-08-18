@@ -92,7 +92,7 @@ const AdminActiveSessions = () => {
       {/* User List */}
       <div className="space-y-4">
         {activeUsers.length === 0 ? (
-          <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-100 shadow-inner">
+          <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-900 shadow-inner">
              <AlertCircle className="mx-auto text-gray-300 mb-4 opacity-50" size={48} />
              <p className="text-[12px] font-black uppercase tracking-widest text-gray-400 italic">No recent activity detected.</p>
           </div>
@@ -101,7 +101,7 @@ const AdminActiveSessions = () => {
             <div 
               key={user.id} 
               onClick={() => navigate(`/admin/users/${user.id}`)}
-              className="bg-white rounded-3xl p-5 shadow-lg border border-gray-100 flex items-center justify-between cursor-pointer hover:border-rose-200 active:scale-95 transition-all group"
+              className="bg-white rounded-3xl p-5 shadow-lg border border-gray-900 flex items-center justify-between cursor-pointer hover:border-rose-200 active:scale-95 transition-all group"
             >
               <div className="flex items-center gap-4">
                  <div className="w-12 h-12 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center font-black text-lg border border-rose-100 shadow-sm group-hover:bg-rose-500 group-hover:text-white transition-all transform group-hover:rotate-6">

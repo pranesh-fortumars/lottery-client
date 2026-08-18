@@ -39,7 +39,7 @@ const ResultsPage = () => {
         </div>
 
         {/* Date Filter */}
-        <div className="w-full max-w-sm mb-8 bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+        <div className="w-full max-w-sm mb-8 bg-white p-4 rounded-2xl shadow-sm border border-slate-800">
            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2 mb-2">
              <Search size={14} className="text-blue-500" /> Filter by Date
            </label>
@@ -76,7 +76,7 @@ const ResultsPage = () => {
                 <div className="p-4 flex justify-between items-center bg-slate-50/50">
                    {/* Left Side: Logo and Brand Name */}
                    <div className="flex flex-col items-center gap-1 min-w-[90px]">
-                      <div className="w-12 h-12 flex items-center justify-center bg-white rounded-full border border-slate-200 shadow-sm">
+                      <div className="w-12 h-12 flex items-center justify-center bg-white rounded-full border border-slate-800 shadow-sm">
                          <img 
                            src={
                              getBrandBySlot(r.draw).toLowerCase().includes('dear') ? 'https://img.icons8.com/color/48/000000/sunrise.png' :
@@ -124,22 +124,22 @@ const ResultsPage = () => {
                 <div className="border-t-2 border-black">
                   <table className="w-full text-left text-sm">
                     <tbody>
-                      <tr className="border-b border-slate-100">
-                        <td className="w-[35%] p-3 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-white">Draw Date</td>
+                      <tr className="border-b border-slate-900">
+                        <td className="w-[35%] p-3 border-r border-slate-900 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-white">Draw Date</td>
                         <td className="p-3 font-bold text-black text-xs bg-slate-50/30">{r.date}</td>
                       </tr>
-                      <tr className="border-b border-slate-100">
-                        <td className="p-3 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-white">Draw Time</td>
+                      <tr className="border-b border-slate-900">
+                        <td className="p-3 border-r border-slate-900 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-white">Draw Time</td>
                         <td className="p-3 font-bold text-black text-xs bg-slate-50/30">{r.draw}</td>
                       </tr>
-                      <tr className="border-b border-slate-100">
-                        <td className="p-3 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-white">Lot Name</td>
+                      <tr className="border-b border-slate-900">
+                        <td className="p-3 border-r border-slate-900 font-bold text-[10px] uppercase tracking-wider text-slate-500 bg-white">Lot Name</td>
                         <td className="p-3 font-bold text-blue-600 text-xs uppercase bg-slate-50/30">
                           {getBrandBySlot(r.draw)} LOTTERY
                         </td>
                       </tr>
                       <tr className="bg-blue-50/50">
-                        <td className="p-3 border-r border-slate-100 font-bold text-[10px] uppercase tracking-wider text-slate-600">Winning Digits</td>
+                        <td className="p-3 border-r border-slate-900 font-bold text-[10px] uppercase tracking-wider text-slate-600">Winning Digits</td>
                         <td className="p-3">
                           <div className="flex gap-2 pb-1">
                             {(r.number || "").split('').map((n, j) => (

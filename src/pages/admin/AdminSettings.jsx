@@ -89,7 +89,7 @@ const GeneralSettingsWithContext = () => {
           onClick={() => handleChange('maintenanceMode', !localSettings.maintenanceMode)}
           className="relative inline-flex items-center cursor-pointer group origin-left"
         >
-          <div className={`w-16 h-8 border rounded-full transition-all relative ${localSettings.maintenanceMode ? 'bg-primary border-primary' : 'bg-gray-100 border-gray-200'}`}>
+          <div className={`w-16 h-8 border rounded-full transition-all relative ${localSettings.maintenanceMode ? 'bg-primary border-primary' : 'bg-gray-100 border-gray-800'}`}>
              <div className={`absolute top-[4px] bg-white rounded-full h-6 w-8 transition-all ${localSettings.maintenanceMode ? 'left-[28px]' : 'left-[4px]'}`}></div>
           </div>
         </div>
@@ -102,7 +102,7 @@ const GeneralSettingsWithContext = () => {
             type="text" 
             value={localSettings.brandName} 
             onChange={(e) => handleChange('brandName', e.target.value)}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -114,7 +114,7 @@ const GeneralSettingsWithContext = () => {
             value={localSettings.hoveringNews || ''} 
             onChange={(e) => handleChange('hoveringNews', e.target.value)} 
             placeholder="E.g. Welcome to SMS Lottery!"
-            className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 h-16 font-black text-gray-800 outline-none text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest"
+            className="w-full bg-gray-50/50 border border-gray-900 rounded-2xl px-6 h-16 font-black text-gray-800 outline-none text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest"
           />
         </div>
       </SettingRow>
@@ -128,7 +128,7 @@ const GeneralSettingsWithContext = () => {
             pattern="[0-9]*"
             value={localSettings.customerCare || ''} 
             onChange={(e) => handleChange('customerCare', e.target.value)}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -141,7 +141,7 @@ const GeneralSettingsWithContext = () => {
             value={localSettings.whatsapp || ''} 
             onChange={(e) => handleChange('whatsapp', e.target.value)}
             placeholder="https://wa.me/910000000000"
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -154,7 +154,7 @@ const GeneralSettingsWithContext = () => {
             value={localSettings.telegram || ''} 
             onChange={(e) => handleChange('telegram', e.target.value)}
             placeholder="https://t.me/yourusername"
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -165,7 +165,7 @@ const GeneralSettingsWithContext = () => {
           <select 
             value={localSettings.sessionPersistence}
             onChange={(e) => handleChange('sessionPersistence', e.target.value)}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest appearance-none"
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest appearance-none"
           >
             <option>01 HOUR (RELAXED)</option>
             <option>04 HOURS (STANDARD)</option>
@@ -252,7 +252,7 @@ const MyProfileSettings = () => {
             type="text" 
             value={localUser.name} 
             onChange={(e) => setLocalUser(prev => ({ ...prev, name: e.target.value }))}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -266,7 +266,7 @@ const MyProfileSettings = () => {
             pattern="[0-9]*"
             value={localUser.mobile} 
             onChange={(e) => setLocalUser(prev => ({ ...prev, mobile: e.target.value }))}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -278,7 +278,7 @@ const MyProfileSettings = () => {
             type="email" 
             value={localUser.email} 
             onChange={(e) => setLocalUser(prev => ({ ...prev, email: e.target.value }))}
-            className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+            className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-6 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
           />
         </div>
       </SettingRow>
@@ -292,7 +292,7 @@ const MyProfileSettings = () => {
               value={newPassword} 
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="Enter New Password"
-              className="bg-gray-50/50 border border-gray-100 rounded-2xl pl-16 pr-14 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
+              className="bg-gray-50/50 border border-gray-900 rounded-2xl pl-16 pr-14 h-16 font-black text-gray-800 outline-none w-full text-xs focus:bg-white focus:border-primary/20 transition-all uppercase tracking-widest" 
             />
             <button 
               type="button"
@@ -304,7 +304,7 @@ const MyProfileSettings = () => {
           </div>
           <button 
             onClick={handlePasswordReset}
-            className="w-full py-4 bg-white border border-gray-100 text-[9px] font-black uppercase tracking-widest text-gray-400 rounded-xl hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+            className="w-full py-4 bg-white border border-gray-900 text-[9px] font-black uppercase tracking-widest text-gray-400 rounded-xl hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
           >
              <Key size={14} /> Traditional Email Reset
           </button>
@@ -315,14 +315,14 @@ const MyProfileSettings = () => {
          <div className="grid grid-cols-2 gap-4">
             <div 
               onClick={() => setLocalUser(prev => ({ ...prev, notifications: !prev.notifications }))}
-              className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col items-center gap-2 ${localUser.notifications ? 'bg-emerald-50 border-emerald-100 text-emerald-700' : 'bg-gray-50 border-gray-100 text-gray-400 opacity-50'}`}
+              className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col items-center gap-2 ${localUser.notifications ? 'bg-emerald-50 border-emerald-100 text-emerald-700' : 'bg-gray-50 border-gray-900 text-gray-400 opacity-50'}`}
             >
                <Bell size={24} />
                <span className="text-[9px] font-black uppercase tracking-widest">Push Alerts</span>
             </div>
             <div 
               onClick={() => setLocalUser(prev => ({ ...prev, securityAlerts: !prev.securityAlerts }))}
-              className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col items-center gap-2 ${localUser.securityAlerts ? 'bg-blue-50 border-blue-100 text-blue-700' : 'bg-gray-50 border-gray-100 text-gray-400 opacity-50'}`}
+              className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col items-center gap-2 ${localUser.securityAlerts ? 'bg-blue-50 border-blue-100 text-blue-700' : 'bg-gray-50 border-gray-900 text-gray-400 opacity-50'}`}
             >
                <Shield size={24} />
                <span className="text-[9px] font-black uppercase tracking-widest">Security</span>
@@ -427,7 +427,7 @@ const DatabaseCleanseSettings = () => {
         </div>
       </div>
 
-      <div className="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 flex items-center justify-between group cursor-help">
+      <div className="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-900 flex items-center justify-between group cursor-help">
          <div className="flex items-center gap-4">
             <RotateCcw className="text-blue-500" size={24} />
             <div>
@@ -539,7 +539,7 @@ const AdminSettings = () => {
              className={`flex-shrink-0 flex items-center gap-3 px-8 py-4 rounded-2xl transition-all shadow-md active:scale-95 ${
                activeTab === tab.id 
                  ? 'bg-primary text-white shadow-primary/20' 
-                 : 'bg-white text-gray-400 border border-gray-100'
+                 : 'bg-white text-gray-400 border border-gray-900'
              }`}
            >
               <tab.icon size={18} />
@@ -549,7 +549,7 @@ const AdminSettings = () => {
       </div>
 
       {/* Settings Grid Content */}
-      <div className="bg-white rounded-[2.5rem] p-10 border border-gray-100 shadow-xl space-y-2">
+      <div className="bg-white rounded-[2.5rem] p-10 border border-gray-900 shadow-xl space-y-2">
          <div className="flex items-center gap-3 mb-8 border-b border-gray-50 pb-6">
             <Zap className="text-amber-500" size={24} fill="currentColor" />
             <h2 className="text-xl font-black font-condensed uppercase tracking-tighter text-gray-800 italic">{activeTab} Parameters</h2>
@@ -558,7 +558,7 @@ const AdminSettings = () => {
          {activeTab === 'General' && (
           <div className="space-y-4">
             <SettingRow label="Jackpot Section Visibility" desc="Control whether the Jackpot banner and buttons appear on the user dashboard.">
-               <div className="flex items-center justify-between bg-gray-50/50 border border-gray-100 rounded-2xl p-5">
+               <div className="flex items-center justify-between bg-gray-50/50 border border-gray-900 rounded-2xl p-5">
                   <div className="flex items-center gap-4">
                      {appSettings.jackpotVisible ? (
                        <Eye className="text-emerald-500" size={24} />
@@ -667,7 +667,7 @@ const AdminSettings = () => {
             <button className="py-5 bg-gray-900 text-white rounded-2xl font-black text-[12px] uppercase tracking-widest shadow-xl shadow-black/10 active:scale-95 transition-all">
                Store Global Config
             </button>
-            <button className="py-5 bg-white border-2 border-dashed border-gray-100 text-gray-300 rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] active:bg-[#eff6ff] active:text-primary transition-all">
+            <button className="py-5 bg-white border-2 border-dashed border-gray-900 text-gray-300 rounded-2xl font-black text-[12px] uppercase tracking-[0.2em] active:bg-[#eff6ff] active:text-primary transition-all">
                Reset Defaults
             </button>
           </div>

@@ -48,7 +48,7 @@ import { PaymentProvider } from './context/PaymentContext';
 const FullPageLoader = () => (
   <div className="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center p-8">
      <div className="relative">
-        <div className="w-20 h-20 border-[3px] border-gray-100 border-t-red-600 rounded-full animate-spin"></div>
+        <div className="w-20 h-20 border-[3px] border-gray-900 border-t-red-600 rounded-full animate-spin"></div>
         <div className="absolute inset-0 flex items-center justify-center">
            <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center animate-pulse">
               <div className="w-6 h-6 bg-red-600 rounded-full"></div>

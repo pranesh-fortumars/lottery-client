@@ -57,7 +57,7 @@ const UserGuide = () => {
       <div className="bg-[#f8f9fa] min-h-screen px-4 sm:px-6 py-6 pb-24 space-y-6 overflow-y-auto">
         
         {/* Intro Card */}
-        <div className="bg-white rounded-[2rem] p-6 sm:p-8 shadow-sm border border-gray-100 relative overflow-hidden">
+        <div className="bg-white rounded-[2rem] p-6 sm:p-8 shadow-sm border border-gray-900 relative overflow-hidden">
            <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#2563eb]/5 rounded-full blur-3xl"></div>
            <div className="flex flex-col items-center text-center gap-4 relative z-10">
               <div className="w-16 h-16 bg-blue-50 rounded-[1.5rem] flex items-center justify-center border-4 border-white shadow-inner">
@@ -75,9 +75,9 @@ const UserGuide = () => {
         {/* Content Sections */}
         <div className="space-y-6">
           {sections.map((section, idx) => (
-            <div key={idx} className="bg-white rounded-[2rem] p-6 shadow-sm border border-gray-100">
-               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                  <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shadow-inner border border-gray-100">
+            <div key={idx} className="bg-white rounded-[2rem] p-6 shadow-sm border border-gray-900">
+               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-900">
+                  <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shadow-inner border border-gray-900">
                     {section.icon}
                   </div>
                   <h2 className="text-lg font-black text-gray-900 font-condensed tracking-tighter uppercase italic">{section.title}</h2>

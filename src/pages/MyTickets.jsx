@@ -92,8 +92,8 @@ const MyTickets = () => {
       <div className="bg-[#f0f0f0] min-h-screen p-2 sm:p-4 pb-24 space-y-4 font-sans">
         
         {/* --- DYNAMIC FILTER BAR --- */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-3 flex items-center justify-between gap-2 max-w-4xl mx-auto">
-           <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl flex-grow max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#1d4ed8]/10 border border-gray-100">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-900 p-3 flex items-center justify-between gap-2 max-w-4xl mx-auto">
+           <div className="flex items-center gap-2 bg-gray-50 p-2 px-3 rounded-xl flex-grow max-w-[220px] transition-all focus-within:ring-2 focus-within:ring-[#1d4ed8]/10 border border-gray-900">
               <Calendar size={14} className="text-[#1d4ed8]" />
               <div className="flex flex-col">
                  <span className="text-[6px] font-black text-gray-400 uppercase tracking-widest leading-none mb-0.5">Filter Date</span>
@@ -281,11 +281,11 @@ const MyTickets = () => {
         {/* --- GLOBAL PRINT/SAVE --- */}
         <div className="flex justify-center gap-6 py-10 opacity-30 hover:opacity-100 transition-opacity">
            <button className="flex flex-col items-center gap-2 active:scale-95 transition-all">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-950 shadow-xl border border-gray-100"><Printer size={20} /></div>
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-950 shadow-xl border border-gray-900"><Printer size={20} /></div>
               <span className="text-[8px] font-black uppercase tracking-widest">Print Result</span>
            </button>
            <button className="flex flex-col items-center gap-2 active:scale-95 transition-all">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-950 shadow-xl border border-gray-100"><Download size={20} /></div>
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-950 shadow-xl border border-gray-900"><Download size={20} /></div>
               <span className="text-[8px] font-black uppercase tracking-widest">Save Ledger</span>
            </button>
         </div>

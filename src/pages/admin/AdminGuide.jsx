@@ -64,8 +64,8 @@ const AdminGuide = () => {
         {/* Content Sections */}
         <div className="space-y-6">
           {sections.map((section, idx) => (
-            <div key={idx} className="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100">
-               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+            <div key={idx} className="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-900">
+               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-900">
                   <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center shadow-inner">
                     {section.icon}
                   </div>

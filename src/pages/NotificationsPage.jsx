@@ -15,9 +15,9 @@ const NotificationsPage = () => {
   const toggleSetting = (key) => setSettings(prev => ({ ...prev, [key]: !prev[key] }));
 
   const ToggleSwitch = ({ label, desc, icon: Icon, stateKey }) => (
-    <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer hover:border-gray-200" onClick={() => toggleSetting(stateKey)}>
+    <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-900 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer hover:border-gray-800" onClick={() => toggleSetting(stateKey)}>
       <div className="flex items-center gap-4">
-        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-colors border ${settings[stateKey] ? 'bg-[#2563eb] text-white border-[#2563eb]' : 'bg-gray-50 text-gray-500 border-gray-100'}`}>
+        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-colors border ${settings[stateKey] ? 'bg-[#2563eb] text-white border-[#2563eb]' : 'bg-gray-50 text-gray-500 border-gray-900'}`}>
           <Icon size={20} />
         </div>
         <div>

@@ -85,7 +85,7 @@ const PrivacySecurityPage = () => {
               onClick={() => alert(`Redirecting to ${opt.label} configuration...`)}
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors border border-slate-100">
+                <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors border border-slate-900">
                   {opt.icon}
                 </div>
                 <div>
@@ -114,7 +114,7 @@ const PrivacySecurityPage = () => {
       {/* Delete Confirmation Modal */}
       {showDeleteModal && (
         <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-200 border border-slate-100">
+          <div className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-200 border border-slate-900">
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl"></div>
             
             <div className="flex justify-between items-start mb-6 relative z-10">

@@ -40,7 +40,7 @@ const LoginPage = () => {
         <form className="w-full space-y-5 pt-10 max-w-md mx-auto" onSubmit={handleLogin}>
           {/* ID Input Group */}
           <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
-            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-900 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
               ID
             </div>
             <input 
@@ -55,7 +55,7 @@ const LoginPage = () => {
 
           {/* Password Input Group */}
           <div className="flex border border-slate-400 rounded-2xl overflow-hidden h-14 bg-white shadow-sm focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-ring transition-all">
-            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-100">
+            <div className="bg-slate-50 px-5 flex items-center justify-center border-r border-slate-900">
                <Lock size={16} className="text-slate-400" />
             </div>
             <input 

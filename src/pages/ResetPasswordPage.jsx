@@ -171,13 +171,13 @@ const ResetPasswordPage = () => {
           <div className="flex gap-2 p-1 bg-white rounded-2xl mb-8 border border-slate-400 shadow-sm">
             <button
               onClick={() => { setMethod('mobile'); setError(''); }}
-              className={`flex-1 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${method === 'mobile' ? 'bg-slate-50 text-blue-600 shadow-sm border border-slate-100' : 'text-slate-400 hover:bg-slate-50'}`}
+              className={`flex-1 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${method === 'mobile' ? 'bg-slate-50 text-blue-600 shadow-sm border border-slate-900' : 'text-slate-400 hover:bg-slate-50'}`}
             >
               Mobile OTP
             </button>
             <button
               onClick={() => { setMethod('email'); setError(''); }}
-              className={`flex-1 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${method === 'email' ? 'bg-slate-50 text-blue-600 shadow-sm border border-slate-100' : 'text-slate-400 hover:bg-slate-50'}`}
+              className={`flex-1 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${method === 'email' ? 'bg-slate-50 text-blue-600 shadow-sm border border-slate-900' : 'text-slate-400 hover:bg-slate-50'}`}
             >
               Email Link
             </button>

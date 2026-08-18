@@ -182,7 +182,7 @@ export const Header = ({ title, showBack = false }) => {
 
                     {/* Standard User Notifications */}
                     {notifications.map((n) => (
-                      <div key={n.id} className={`p-4 rounded-xl border transition-all flex gap-3 items-start ${n.read ? 'bg-slate-50 border-slate-100' : 'bg-white border-blue-100 shadow-sm'}`}>
+                      <div key={n.id} className={`p-4 rounded-xl border transition-all flex gap-3 items-start ${n.read ? 'bg-slate-50 border-slate-900' : 'bg-white border-blue-100 shadow-sm'}`}>
                         <div className={`w-10 h-10 rounded-lg shrink-0 flex items-center justify-center ${n.type === 'win' ? 'bg-emerald-100 text-emerald-700' :
                             n.type === 'result' ? 'bg-indigo-100 text-indigo-700' :
                               'bg-primary-light text-primary-dark'
@@ -311,7 +311,7 @@ export const SupportSection = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center justify-center p-3 rounded-xl border border-slate-100 bg-slate-50 transition-colors hover:bg-slate-100"
+                className="flex flex-col items-center justify-center p-3 rounded-xl border border-slate-900 bg-slate-50 transition-colors hover:bg-slate-100"
               >
                 <div className={`w-10 h-10 ${item.color} rounded-lg flex items-center justify-center mb-2`}>
                   {item.icon}

@@ -38,7 +38,7 @@ const BalanceWarningModal = ({ isOpen, onClose, cartTotal, currentBalance, onRec
           </div>
 
           <div className="p-6 space-y-6">
-             <div className="flex justify-between items-center p-4 bg-slate-50 rounded-2xl border border-slate-100">
+             <div className="flex justify-between items-center p-4 bg-slate-50 rounded-2xl border border-slate-900">
                 <div>
                    <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">Your Balance</p>
                    <p className="text-lg font-bold text-black">₹{currentBalance.toFixed(2)}</p>
@@ -224,7 +224,7 @@ const CartPage = () => {
 
                 {/* Data Rows */}
                 {cart.map((item) => (
-                  <tr key={item.id} className="border-b border-slate-100 last:border-b-0 relative group hover:bg-slate-50/50 transition-colors">
+                  <tr key={item.id} className="border-b border-slate-900 last:border-b-0 relative group hover:bg-slate-50/50 transition-colors">
                     <td className="p-3 border border-slate-400">
                       <div className="flex flex-col">
                         <span className="font-bold text-black text-[11px] uppercase">{item.title}</span>
