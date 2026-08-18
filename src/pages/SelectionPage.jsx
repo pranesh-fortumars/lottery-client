@@ -143,6 +143,33 @@ const SelectionPage = () => {
                  </div>
                  <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">3D Pricing Categories</h4>
               </div>
+
+              {/* 3D LUCKY PICK */}
+              <div className="bg-gradient-to-r from-red-500 to-rose-600 rounded-[2rem] p-1 shadow-lg shadow-red-500/20 mb-6">
+                <div className="bg-white rounded-[1.8rem] overflow-hidden">
+                  <div className="bg-red-50/50 p-4 border-b border-red-100 text-center relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+                    <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-red-600 text-white text-[9px] font-black uppercase tracking-widest mb-1 shadow-sm">SPECIAL GAME</span>
+                    <h3 className="text-xl font-black italic tracking-tighter text-gray-900 leading-none mt-1">3D Lucky Pick</h3>
+                    <p className="text-[10px] font-bold text-red-600/80 uppercase tracking-widest mt-1">Match the complete 3-digit result to win ₹5,000</p>
+                  </div>
+                  <div className="p-4 bg-white">
+                    <BettingCard 
+                      title="3D Lucky Pick" 
+                      digits={3} 
+                      price="7.50" 
+                      winText="Win ₹ 5000"
+                      gameName={getGameName()} 
+                      drawTime={drawTime}
+                      singleRow={true}
+                      colorTheme="orange"
+                      overrideType="3D"
+                      gameType="3D_LUCKY_PICK"
+                    />
+                  </div>
+                </div>
+              </div>
+
               {abcTiers.map((tier, idx) => (
                 <BettingCard 
                   key={`abc-${idx}`}

@@ -345,28 +345,39 @@ export const CartProvider = ({ children }) => {
                 winAmt = Number(tierPrizes.C);
               }
             } else if (ticket.type === '3D') {
-              // 3D Tiered Cascading Logic: ABC -> BC -> C
-              let tierPrizes = {};
-              if (res.prizes?.v2) {
-                const brandScheme = res.prizes[res.brand] || res.prizes['DEAR'];
-                tierPrizes = brandScheme?.['3D']?.find(t => Number(t.price) === Number(ticket.price)) || {};
-              } else {
-                if (Array.isArray(res.prizes?.['3D'])) {
-                  tierPrizes = res.prizes['3D'].find(t => Number(t.price) === Number(ticket.price)) || {};
+              if (ticket.gameType === '3D_LUCKY_PICK') {
+                // 3D Lucky Pick: Exact Match Only
+                if (ticketNum === winningCombos['3D_ABC']) {
+                  isWinner = true;
+                  winAmt = 5000;
                 } else {
-                  tierPrizes = res.prizes?.['3D']?.[ticketPriceKey] || {};
+                  isWinner = false;
+                  winAmt = 0;
                 }
-              }
+              } else {
+                // 3D Tiered Cascading Logic: ABC -> BC -> C
+                let tierPrizes = {};
+                if (res.prizes?.v2) {
+                  const brandScheme = res.prizes[res.brand] || res.prizes['DEAR'];
+                  tierPrizes = brandScheme?.['3D']?.find(t => Number(t.price) === Number(ticket.price)) || {};
+                } else {
+                  if (Array.isArray(res.prizes?.['3D'])) {
+                    tierPrizes = res.prizes['3D'].find(t => Number(t.price) === Number(ticket.price)) || {};
+                  } else {
+                    tierPrizes = res.prizes?.['3D']?.[ticketPriceKey] || {};
+                  }
+                }
 
-              if (ticketNum === winningCombos['3D_ABC'] && Number(tierPrizes.ABC || 0) > 0) {
-                isWinner = true;
-                winAmt = Number(tierPrizes.ABC);
-              } else if (ticketNum.slice(-2) === winningCombos['2D_BC'] && Number(tierPrizes.BC || 0) > 0) {
-                isWinner = true;
-                winAmt = Number(tierPrizes.BC);
-              } else if (ticketNum.slice(-1) === winningCombos['1D_C'] && Number(tierPrizes.C || 0) > 0) {
-                isWinner = true;
-                winAmt = Number(tierPrizes.C);
+                if (ticketNum === winningCombos['3D_ABC'] && Number(tierPrizes.ABC || 0) > 0) {
+                  isWinner = true;
+                  winAmt = Number(tierPrizes.ABC);
+                } else if (ticketNum.slice(-2) === winningCombos['2D_BC'] && Number(tierPrizes.BC || 0) > 0) {
+                  isWinner = true;
+                  winAmt = Number(tierPrizes.BC);
+                } else if (ticketNum.slice(-1) === winningCombos['1D_C'] && Number(tierPrizes.C || 0) > 0) {
+                  isWinner = true;
+                  winAmt = Number(tierPrizes.C);
+                }
               }
             } else {
               // Standard 1D/2D Positional Logic (Non-tiered)

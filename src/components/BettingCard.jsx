@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 
-const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digits = 1, gameName = "Dear Lottery", drawTime = "", priceOptions = [], customRows = null, singleRow = false, colorTheme = "primary" }) => {
+const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digits = 1, gameName = "Dear Lottery", drawTime = "", priceOptions = [], customRows = null, singleRow = false, colorTheme = "primary", hideBox = false, overrideType = null, gameType = null }) => {
   const { addToCart } = useCart();
   const [selectedTier, setSelectedTier] = useState(priceOptions.length > 0 ? priceOptions[0] : null);
   
@@ -80,16 +80,17 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
     }
     
     const permutations = getPermutations(row.numbers);
-    const typeLabel = len === 3 ? '3D' : '4D';
+    const typeLabel = overrideType || (len === 3 ? '3D' : '4D');
     const posLabel = len === 3 ? 'ABC' : 'XABC';
 
     permutations.forEach(num => {
       addToCart({
-        title: `[${drawTime}] ${gameName} - ${title} (BOX)`,
+        title: gameType === '3D_LUCKY_PICK' ? `[${drawTime}] ${gameName} - 3D Lucky Pick (BOX)` : `[${drawTime}] ${gameName} - ${title} (BOX)`,
         num: num,
         qty: row.qty,
         price: parseFloat(currentPrice),
         type: typeLabel,
+        gameType: gameType || "STANDARD",
         draw: drawTime,
         pos: posLabel,
         board: posLabel
@@ -121,11 +122,12 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
     }
 
     addToCart({
-      title: `[${drawTime}] ${gameName} - ${title} (${boardLabel})`,
+      title: gameType === '3D_LUCKY_PICK' ? `[${drawTime}] ${gameName} - 3D Lucky Pick` : `[${drawTime}] ${gameName} - ${title} (${boardLabel})`,
       num: row.numbers.join(''),
       qty: row.qty,
       price: parseFloat(currentPrice),
-      type: title === "Single Digit" ? "1D" : title === "Double Digits" ? "2D" : title === "Three Digits" ? "3D" : "4D",
+      type: overrideType || (title === "Single Digit" ? "1D" : title === "Double Digits" ? "2D" : title === "Three Digits" ? "3D" : "4D"),
+      gameType: gameType || "STANDARD",
       draw: drawTime,
       pos: boardLabel,
       board: boardLabel
@@ -220,7 +222,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
            </div>
 
            <div className="flex gap-2">
-              {(row.numbers.length === 3 || row.numbers.length === 4) && (
+              {(row.numbers.length === 3 || row.numbers.length === 4) && !hideBox && (
                  <button 
                    onClick={() => handleBox(rowIdx)}
                    className={`px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90 ${theme.btn}`}
