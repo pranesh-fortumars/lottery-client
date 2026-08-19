@@ -377,7 +377,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                      BOX
                    </button>
                 )}
-                {digits > 1 && gameType !== '3D_LUCKY_PICK' && (
+                {digits > 1 && (
                    <button 
                      onClick={() => setActiveSetRow(rowIdx)}
                      className={`px-3 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90 bg-slate-900 text-white border border-slate-700 flex items-center gap-1`}
