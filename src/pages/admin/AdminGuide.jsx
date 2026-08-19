@@ -35,7 +35,17 @@ const AdminGuide = () => {
         { title: "Announcements & News", desc: "Super Admins can broadcast messages to all users via the Announcements tab. These appear as moving tickers on the users' screens." },
         { title: "User Management", desc: "Super Admins have the power to view all registered users, adjust their wallet balances directly, ban malicious users, or unban them." },
         { title: "System Settings", desc: "Super Admins can change the brand name, modify UPI details for payments, edit global withdrawal limits, and enable 'Maintenance Mode' to lock out regular users." },
-        { title: "Data Migration", desc: "Super Admins can use the Data Migration tool to copy historical data from old databases in chunks." }
+        { title: "Data Migration", desc: "Super Admins can use the Data Migration tool to copy historical data from old databases in chunks." },
+        { title: "Global Theme Control", desc: "Super Admins can instantly broadcast global application theme colors across all connected clients via live Firebase synchronization without page reloads." }
+      ]
+    },
+    {
+      title: "4. Advanced Analytics & Reporting",
+      icon: <ShoppingCart className="text-purple-500" size={24} />,
+      items: [
+        { title: "Today's Tickets", desc: "Admins can monitor a live feed of all tickets purchased for the current day, complete with total volume tracking and dynamic time/type filters." },
+        { title: "Revenue Explorer", desc: "Admins can view real-time daily income and use the Custom Range Explorer to calculate exact revenue over specific dates, as well as track lifetime platform revenue." },
+        { title: "Active Sessions", desc: "Admins can view real-time online user presence, tracking who is currently active in the application based on live session indicators." }
       ]
     }
   ];
