@@ -13,7 +13,8 @@ import {
   Zap,
   Landmark,
   AlertCircle,
-  BookOpen
+  BookOpen,
+  Key
 } from 'lucide-react';
 import { subscribeToUsers, subscribeToResults, subscribeToTickets } from '../../services/firebaseService';
 import PullToRefresh from '../../components/PullToRefresh';
@@ -28,6 +29,7 @@ const AdminDashboard = () => {
     { label: 'Today Tickets', value: '0', icon: Ticket, change: '0%', bg: 'bg-emerald-600', text: 'text-white', iconBg: 'bg-emerald-500', subText: 'text-emerald-200', link: '/admin/today-tickets' },
     { label: 'Revenue (Today)', value: '₹0', icon: Wallet, change: '0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/revenue' },
     { label: 'Active Sessions', value: '0', icon: TrendingUp, change: '0%', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/active-sessions' },
+    { label: 'Login History', value: 'Logs', icon: Key, change: '0%', bg: 'bg-purple-600', text: 'text-white', iconBg: 'bg-purple-500', subText: 'text-purple-200', link: '/admin/login-history' },
   ]);
 
   const { user } = useAuth();

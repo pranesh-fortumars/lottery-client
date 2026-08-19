@@ -5,7 +5,7 @@ import {
   signOut, 
   onAuthStateChanged 
 } from 'firebase/auth';
-import { doc, getDoc, setDoc, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, setDoc, collection, query, where, getDocs, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { COMMON_REFERRAL_CODE } from '../constants/referralConfig';
 
@@ -118,6 +118,30 @@ export const AuthProvider = ({ children }) => {
       }
     };
   }, []);
+
+  const getDeviceName = () => {
+    const ua = navigator.userAgent;
+    if (/android/i.test(ua)) return 'Android';
+    if (/iPad|iPhone|iPod/.test(ua)) return 'iOS';
+    if (/Windows/.test(ua)) return 'Windows';
+    if (/Mac OS/.test(ua)) return 'Mac OS';
+    if (/Linux/.test(ua)) return 'Linux';
+    return 'Unknown Device';
+  };
+
+  const logSession = async (uid, name) => {
+    try {
+      await addDoc(collection(db, 'login_sessions'), {
+        userId: uid,
+        userName: name || 'Unknown',
+        deviceName: getDeviceName(),
+        userAgent: navigator.userAgent,
+        timestamp: serverTimestamp()
+      });
+    } catch (err) {
+      console.error("Failed to log session:", err);
+    }
+  };
 
   const signup = async (email, password, additionalData) => {
     try {
@@ -262,6 +286,7 @@ export const AuthProvider = ({ children }) => {
               status: 'Active',
               createdAt: new Date().toISOString()
            });
+           await logSession(userCredential.user.uid, isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'));
            return { success: true };
         }
 
@@ -275,6 +300,7 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: "This account has been deleted. Please contact support." };
       }
 
+      await logSession(userCredential.user.uid, sessionUserData.name || 'User');
       return { success: true };
     } catch (error) {
       // Special Auto-Provisioning for Default Mock Accounts
@@ -298,6 +324,7 @@ export const AuthProvider = ({ children }) => {
               status: 'Active',
               createdAt: new Date().toISOString()
             });
+            await logSession(firebaseUser.uid, isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'));
             return { success: true };
           } catch (signupError) {
             if (signupError.code !== 'auth/email-already-in-use') {
