@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { Layers } from 'lucide-react';
+import SetModal from './SetModal';
 
 const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digits = 1, gameName = "Dear Lottery", drawTime = "", priceOptions = [], customRows = null, singleRow = false, colorTheme = "primary", hideBox = false, overrideType = null, gameType = null }) => {
   const { addToCart } = useCart();
   const [selectedTier, setSelectedTier] = useState(priceOptions.length > 0 ? priceOptions[0] : null);
+  const [activeSetRow, setActiveSetRow] = useState(null);
   
   const currentPrice = selectedTier ? selectedTier.price : initialPrice;
   const currentWinText = selectedTier ? `Win ${selectedTier.win}` : (initialWinText || "");
@@ -52,8 +55,41 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
 
   const updateQty = (rowIdx, delta) => {
     const newRows = [...rows];
-    newRows[rowIdx].qty = Math.max(1, newRows[rowIdx].qty + delta);
+    newRows[rowIdx].numbers = Array(digits).fill('');
+    newRows[rowIdx].qty = 1;
     setRows(newRows);
+  };
+
+  const handleSetConfirm = (generatedNumbers) => {
+    if (activeSetRow === null) return;
+    
+    const rowIdx = activeSetRow;
+    const row = rows[rowIdx];
+    const len = digits;
+    
+    const typeLabel = overrideType || (len === 1 ? '1D' : len === 2 ? '2D' : len === 3 ? '3D' : '4D');
+    
+    let posLabel = 'ABC';
+    if (len === 1) posLabel = row.labels ? row.labels[0] : 'A';
+    else if (len === 2) posLabel = row.labels ? row.labels.join('') : 'AB';
+    else if (len === 4) posLabel = 'XABC';
+
+    generatedNumbers.forEach(num => {
+      addToCart({
+        title: gameType === '3D_LUCKY_PICK' ? `[${drawTime}] ${gameName} - 3D Lucky Pick` : `[${drawTime}] ${gameName} - ${title}`,
+        num: num,
+        qty: row.qty,
+        price: parseFloat(currentPrice),
+        type: typeLabel,
+        gameType: gameType || "STANDARD",
+        draw: drawTime,
+        pos: posLabel,
+        board: posLabel,
+        source: 'SET'
+      });
+    });
+
+    setActiveSetRow(null);
   };
 
   const getPermutations = (arr) => {
@@ -230,6 +266,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                    BOX
                  </button>
               )}
+              {digits > 1 && gameType !== '3D_LUCKY_PICK' && (
+                 <button 
+                   onClick={() => setActiveSetRow(rowIdx)}
+                   className={`px-4 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90 bg-slate-900 text-white border border-slate-700 flex items-center gap-1`}
+                 >
+                   <Layers size={14} /> SET
+                 </button>
+              )}
               <button 
                 onClick={() => handleAdd(rowIdx)}
                 className={`px-5 py-2.5 rounded-lg font-bold text-[11px] uppercase shadow-sm active:scale-95 transition-colors ${theme.btn}`}
@@ -238,6 +282,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
               </button>
            </div>
         </div>
+        <SetModal 
+          isOpen={activeSetRow !== null}
+          onClose={() => setActiveSetRow(null)}
+          onConfirm={handleSetConfirm}
+          digits={digits}
+          price={currentPrice}
+          theme={theme}
+        />
       </div>
     );
   }
@@ -267,21 +319,21 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
       </div>
 
       {priceOptions.length > 0 && (
-        <div className="flex overflow-x-auto gap-2 mb-4 pb-2 scrollbar-hide">
-          {priceOptions.map((opt, idx) => (
-            <button
-              key={idx}
-              onClick={() => setSelectedTier(opt)}
-              className={`flex-shrink-0 px-4 py-2 rounded-lg text-[10px] font-bold uppercase transition-all border ${
-                selectedTier?.price === opt.price 
-                  ? theme.light + ' shadow-sm text-slate-800' 
-                  : 'bg-white text-slate-500 border-slate-400 hover:bg-slate-50'
-              }`}
-            >
-              ₹ {opt.price}
-            </button>
-          ))}
-        </div>
+         <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200 mb-4">
+            {priceOptions.map((opt, i) => (
+               <button
+                 key={i}
+                 onClick={() => setSelectedTier(opt)}
+                 className={`flex-1 min-w-[30%] py-2 px-3 rounded-lg font-bold text-[10px] uppercase tracking-widest border transition-all ${
+                   selectedTier?.price === opt.price 
+                     ? `${theme.bg} text-white border-transparent shadow-md transform scale-[1.02]` 
+                     : 'bg-white text-slate-600 border-slate-300 hover:border-slate-400 hover:bg-slate-50'
+                 }`}
+               >
+                  <span className="block text-sm">₹ {opt.price}</span>
+               </button>
+            ))}
+         </div>
       )}
 
       <div className="space-y-4 overflow-x-auto pb-2 scrollbar-hide">
@@ -327,6 +379,14 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
                      BOX
                    </button>
                 )}
+                {digits > 1 && gameType !== '3D_LUCKY_PICK' && (
+                   <button 
+                     onClick={() => setActiveSetRow(rowIdx)}
+                     className={`px-3 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors hover:opacity-90 bg-slate-900 text-white border border-slate-700 flex items-center gap-1`}
+                   >
+                     <Layers size={12} /> SET
+                   </button>
+                )}
                 <button 
                   onClick={() => handleAdd(rowIdx)}
                   className={`px-4 py-2 rounded-lg font-bold text-[10px] uppercase shadow-sm active:scale-95 transition-colors ${theme.btn}`}
@@ -337,6 +397,15 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
           </div>
         ))}
       </div>
+
+      <SetModal 
+        isOpen={activeSetRow !== null}
+        onClose={() => setActiveSetRow(null)}
+        onConfirm={handleSetConfirm}
+        digits={digits}
+        price={currentPrice}
+        theme={theme}
+      />
     </div>
   );
 };
