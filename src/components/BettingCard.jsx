@@ -75,7 +75,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
 
     generatedNumbers.forEach(num => {
       addToCart({
-        title: gameType === '3D_LUCKY_PICK' ? `[${drawTime}] ${gameName} - 3D Lucky Pick` : `[${drawTime}] ${gameName} - ${title}`,
+        title: gameType === '3D_LUCKY_PICK' ? `[${drawTime}] ${gameName} - 3D Lucky Pick` : `[${drawTime}] ${gameName} - ${title} (${posLabel})`,
         num: num,
         qty: row.qty,
         price: parseFloat(currentPrice),
@@ -404,6 +404,8 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
         digits={digits}
         price={currentPrice}
         theme={theme}
+        initialStartNum={activeSetRow !== null ? rows[activeSetRow].numbers.join('') : ''}
+        purchaseTitle={activeSetRow !== null ? `${title} (${rows[activeSetRow].labels ? rows[activeSetRow].labels.join('') : (digits === 2 ? 'AB' : digits === 3 ? 'ABC' : 'XABC')})` : ''}
       />
     </div>
   );

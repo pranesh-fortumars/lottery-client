@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Layers, AlertCircle, CheckCircle2 } from 'lucide-react';
 
-const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
+const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialStartNum, purchaseTitle }) => {
   const [startNum, setStartNum] = useState('');
   const [endNum, setEndNum] = useState('');
   const [tickets, setTickets] = useState('');
@@ -10,7 +10,7 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setStartNum('');
+      setStartNum(initialStartNum || '');
       setEndNum('');
       setTickets('');
       setError('');
@@ -109,7 +109,7 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
           <div className="flex items-center gap-3">
              <Layers size={24} />
              <div>
-                <h3 className="font-black text-xl italic tracking-tighter uppercase leading-none">SET Purchase</h3>
+                <h3 className="font-black text-xl italic tracking-tighter uppercase leading-none">{purchaseTitle || 'SET Purchase'}</h3>
                 <p className="text-[10px] font-bold uppercase tracking-widest mt-1 opacity-80">Auto-Generate Sequential Tickets</p>
              </div>
           </div>
