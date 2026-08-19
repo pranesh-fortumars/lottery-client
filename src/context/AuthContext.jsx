@@ -250,16 +250,40 @@ export const AuthProvider = ({ children }) => {
             return { success: false, message: "This account has been deleted. Please contact support." };
           }
           loginEmail = userData.email || `${userData.mobile}@lottery.com`;
+        } else if (cleanMobile === '8248222450' && password === '123456') {
+          // AUTO-CREATE MOCK TESTER ACCOUNT IF IT DOESN'T EXIST YET
+          const mockEmail = 'tester8248222450@lottery.com';
+          const signupResult = await signup(mockEmail, password, {
+             name: 'Mock Tester',
+             mobile: '8248222450',
+             email: mockEmail
+          });
+          
+          if (signupResult.success) {
+             // Give the tester some initial balance to play with
+             const userToUpdate = auth.currentUser;
+             if (userToUpdate) {
+                await setDoc(doc(db, 'users', userToUpdate.uid), {
+                   depositedBalance: 50000,
+                   balance: 50000
+                }, { merge: true });
+             }
+             return { success: true };
+          } else {
+             return { success: false, message: "Failed to auto-create mock tester account." };
+          }
         } else {
           // Fallback check if identifier is a direct email or 10-digit mobile pattern not yet in Firestore metadata
-          if (idTrimmed.includes('@')) {
-            loginEmail = idTrimmed;
+          if (idLower.includes('@')) {
+            loginEmail = idLower;
           } else if (/^\d{10}$/.test(cleanMobile)) {
-            loginEmail = `${cleanMobile}@lottery.com`;
-          } else {
-            return { success: false, message: "Account not found. Please check your Username, Mobile number, or Email." };
+             return { success: false, message: "Account not found. Please check your credentials." };
           }
         }
+      }
+
+      if (!loginEmail) {
+        return { success: false, message: "Account not found. Please check your credentials." };
       }
 
       // 3. Perform Firebase Authentication
