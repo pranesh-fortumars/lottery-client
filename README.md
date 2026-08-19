@@ -4,7 +4,9 @@ An enterprise-grade, high-fidelity lottery management and play platform built fo
 
 ---
 
-## ✨ Latest Updates (v2.1)
+## ✨ Latest Updates (v2.2)
+- **Advanced Sequential SET Engine**: Re-engineered the SET purchase flow to use smart pre-filling, dynamic next-N sequence counting, and independent quantity multipliers. Integrated the SET architecture inline with the main UI for uninterrupted user flows, and successfully ported the capability to the special 3D Lucky Pick slot.
+- **QA Tester Fast-Path (God Mode)**: Integrated a seamless auto-creation protocol for a designated mock tester account (`8248222450`). Upon login, it natively bypasses all time-lock constraints (Global Closure, Kerala Early Closure, and strict Slot Closures) and pre-loads a ₹50,000 test balance, allowing for frictionless production auditing and QA without needing to manipulate the database.
 - **Global High-Contrast UI**: Upgraded the entire application's visual architecture to feature sharp, dark-contrast borders (`border-gray-900`) across all grids, cards, and admin panels for a premium, highly defined aesthetic.
 - **Enhanced Admin Analytics Hub**: Replaced basic dashboard cards with fully interactive, detailed reporting pages for **Today's Tickets**, **Revenue (Custom Range Explorer)**, and **Active Sessions**, complete with static time/type filters.
 - **Security & UX Enhancements**: Integrated a seamless password visibility toggle to the login portal to prevent credential input errors.
