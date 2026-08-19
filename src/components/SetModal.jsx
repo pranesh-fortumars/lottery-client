@@ -103,10 +103,9 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
   const totalPrice = preview.length * parseFloat(price || 0);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-      <div className="bg-white rounded-[2rem] w-full max-w-md shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        {/* Header */}
-        <div className={`p-6 text-white flex justify-between items-center ${theme.bg || 'bg-slate-800'}`}>
+    <div className="mt-4 border-2 border-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col animate-in fade-in slide-in-from-top-2 duration-300">
+      {/* Header */}
+      <div className={`p-4 text-white flex justify-between items-center ${theme.bg || 'bg-slate-800'}`}>
           <div className="flex items-center gap-3">
              <Layers size={24} />
              <div>
@@ -120,11 +119,11 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-5 overflow-y-auto">
+        <div className="p-4 space-y-4 bg-white">
           {/* Inputs */}
-          <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-3">
              <div>
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Start Number</label>
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">Start</label>
                 <input 
                   type="text" 
                   inputMode="numeric"
@@ -138,7 +137,7 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
              </div>
              
              <div>
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">End Number</label>
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">End</label>
                 <input 
                   type="text" 
                   inputMode="numeric"
@@ -151,8 +150,8 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
                 />
              </div>
 
-             <div>
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Number of Tickets</label>
+             <div className="col-span-2">
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">Number of Tickets</label>
                 <input 
                   type="text" 
                   inputMode="numeric"
@@ -225,7 +224,6 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme }) => {
            >
              <Layers size={16} /> Add {preview.length || ''} To Cart
            </button>
-        </div>
       </div>
     </div>
   );
