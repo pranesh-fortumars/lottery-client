@@ -4,12 +4,14 @@ import PageWrapper from '../components/PageWrapper';
 import { ScrollText, Gavel, ShoppingCart, Lock, Info } from 'lucide-react';
 import BettingCard from '../components/BettingCard';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { getSlotById, isSlotClosed } from '../constants/lotteryConfig';
 
 const SelectionPage = () => {
   const navigate = useNavigate();
   const { gameId } = useParams();
   const { cart, appSettings, prizeScheme } = useCart();
+  const { user } = useAuth();
   
   const slotData = getSlotById(gameId);
   const marketName = slotData?.brand || 'DEAR';
@@ -21,9 +23,10 @@ const SelectionPage = () => {
   
   const getGameName = () => `${marketName} LOTTERY`;
   
+  const isMockTester = user?.mobile === '8248222450';
   const globalLock = appSettings?.globalSalesClosed;
-  // Let the time-based cutoff handle kerala early closure dynamically
-  const closed = globalLock || isSlotClosed(drawTime, marketName, appSettings);
+  // Let the time-based cutoff handle kerala early closure dynamically, bypass for tester
+  const closed = isMockTester ? false : (globalLock || isSlotClosed(drawTime, marketName, appSettings));
 
   const currentBrandScheme = prizeScheme?.v2 ? prizeScheme[marketName.toUpperCase()] || prizeScheme['DEAR'] : null;
 
