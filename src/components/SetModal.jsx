@@ -11,6 +11,11 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
   useEffect(() => {
     if (isOpen) {
       setStartNum(initialStartNum || '');
+    }
+  }, [isOpen, initialStartNum]);
+
+  useEffect(() => {
+    if (isOpen) {
       setCount('');
       setQty('1');
       setError('');
