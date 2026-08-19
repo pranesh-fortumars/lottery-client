@@ -55,8 +55,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
 
   const updateQty = (rowIdx, delta) => {
     const newRows = [...rows];
-    newRows[rowIdx].numbers = Array(digits).fill('');
-    newRows[rowIdx].qty = 1;
+    newRows[rowIdx].qty = Math.max(1, newRows[rowIdx].qty + delta);
     setRows(newRows);
   };
 
