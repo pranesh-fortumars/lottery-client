@@ -4,6 +4,13 @@ An enterprise-grade, high-fidelity lottery management and play platform built fo
 
 ---
 
+## ✨ Latest Updates (v2.1)
+- **Global High-Contrast UI**: Upgraded the entire application's visual architecture to feature sharp, dark-contrast borders (`border-gray-900`) across all grids, cards, and admin panels for a premium, highly defined aesthetic.
+- **Enhanced Admin Analytics Hub**: Replaced basic dashboard cards with fully interactive, detailed reporting pages for **Today's Tickets**, **Revenue (Custom Range Explorer)**, and **Active Sessions**, complete with static time/type filters.
+- **Security & UX Enhancements**: Integrated a seamless password visibility toggle to the login portal to prevent credential input errors.
+
+---
+
 ## 🚀 Key Features
 
 ### 🎮 For Players
