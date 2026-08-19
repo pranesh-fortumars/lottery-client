@@ -51,7 +51,7 @@ const AdminGuide = () => {
   ];
 
   return (
-    <PageWrapper title="System Guide" showNav={true}>
+    <>
       <div className="p-4 sm:p-6 pb-24 max-w-4xl mx-auto space-y-6">
         
         {/* Header */}
@@ -113,7 +113,7 @@ const AdminGuide = () => {
         </div>
 
       </div>
-    </PageWrapper>
+    </>
   );
 };
 
