@@ -46,7 +46,7 @@ export const Header = ({ title, showBack = false }) => {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-primary-dark to-primary text-white flex flex-col z-[1000] shadow-md w-full shrink-0 border-b border-white/10 overflow-hidden">
+      <header className="bg-gradient-to-r from-primary-dark to-primary text-white flex flex-col z-[1000] shadow-md w-full shrink-0 border-b border-white/10 relative">
         <div className="flex items-center justify-between px-4" style={{ height: '70px' }}>
           <div className="flex items-center gap-3">
             {showBack ? (
