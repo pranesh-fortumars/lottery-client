@@ -24,15 +24,17 @@ import {
   Info,
   ChevronLeft,
   Wallet,
-  Receipt
+  Receipt,
+  LogOut
 } from 'lucide-react';
 import PullToRefresh from './PullToRefresh';
 
 export const Header = ({ title, showBack = false }) => {
   const navigate = useNavigate();
-  const { logout, user } = useAuth();
+  const { logout, user, isAdmin } = useAuth();
   const { notifications, adminAlerts, markAllRead, lastAnnouncement, hoveringNews, appSettings } = useCart();
   const [showNotifs, setShowNotifs] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const displayTitle = title || appSettings.brandName || "SECURE PORTAL";
 
@@ -75,9 +77,69 @@ export const Header = ({ title, showBack = false }) => {
                 )}
               </button>
             )}
-            <NavLink to="/profile" className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all border border-white/10 pointer-events-auto">
-              <User size={22} strokeWidth={2.5} />
-            </NavLink>
+            <div className="relative">
+              <button 
+                onClick={() => setShowProfileMenu(!showProfileMenu)} 
+                className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all border pointer-events-auto ${showProfileMenu ? 'bg-white/20 border-white/30' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
+              >
+                <User size={22} strokeWidth={2.5} />
+              </button>
+              
+              <AnimatePresence>
+                {showProfileMenu && (
+                  <>
+                    {/* Backdrop for closing */}
+                    <div className="fixed inset-0 z-[1001]" onClick={() => setShowProfileMenu(false)} />
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      className="absolute right-0 top-12 w-56 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-[1002]"
+                    >
+                      <div className="p-3 border-b border-slate-100 bg-slate-50">
+                        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Signed in as</p>
+                        <p className="text-sm font-black text-slate-900 truncate">{user?.mobile || user?.email || 'User'}</p>
+                      </div>
+                      
+                      <div className="p-2 flex flex-col">
+                        <button 
+                          onClick={() => { setShowProfileMenu(false); navigate('/profile'); }}
+                          className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 transition-colors text-left text-sm font-bold text-slate-700"
+                        >
+                          <User size={18} className="text-slate-500" /> My Profile
+                        </button>
+                        
+                        <button 
+                          onClick={() => { setShowProfileMenu(false); navigate('/settings'); }}
+                          className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 transition-colors text-left text-sm font-bold text-slate-700"
+                        >
+                          <Settings size={18} className="text-slate-500" /> Account Settings
+                        </button>
+
+                        {(isAdmin || user?.role === 'admin' || user?.role === 'super_admin') && (
+                          <button 
+                            onClick={() => { setShowProfileMenu(false); navigate('/admin/dashboard'); }}
+                            className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-50 transition-colors text-left text-sm font-bold text-blue-700"
+                          >
+                            <LayoutDashboard size={18} className="text-blue-500" /> Admin Dashboard
+                          </button>
+                        )}
+                        
+                        <div className="h-px bg-slate-100 my-1"></div>
+                        
+                        <button 
+                          onClick={() => { setShowProfileMenu(false); logout(); }}
+                          className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 transition-colors text-left text-sm font-bold text-red-600"
+                        >
+                          <LogOut size={18} className="text-red-500" /> Log Out
+                        </button>
+                      </div>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
 
