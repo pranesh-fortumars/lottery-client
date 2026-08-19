@@ -59,11 +59,10 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
     setRows(newRows);
   };
 
-  const handleSetConfirm = (generatedNumbers) => {
+  const handleSetConfirm = (generatedNumbers, setQty) => {
     if (activeSetRow === null) return;
     
-    const rowIdx = activeSetRow;
-    const row = rows[rowIdx];
+    const row = rows[activeSetRow];
     const len = digits;
     
     const typeLabel = overrideType || (len === 1 ? '1D' : len === 2 ? '2D' : len === 3 ? '3D' : '4D');
@@ -77,7 +76,7 @@ const BettingCard = ({ title, winText: initialWinText, price: initialPrice, digi
       addToCart({
         title: gameType === '3D_LUCKY_PICK' ? `[${drawTime}] ${gameName} - 3D Lucky Pick` : `[${drawTime}] ${gameName} - ${title} (${posLabel})`,
         num: num,
-        qty: row.qty,
+        qty: setQty || row.qty,
         price: parseFloat(currentPrice),
         type: typeLabel,
         gameType: gameType || "STANDARD",

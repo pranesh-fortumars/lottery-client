@@ -3,16 +3,16 @@ import { X, Layers, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialStartNum, purchaseTitle }) => {
   const [startNum, setStartNum] = useState('');
-  const [endNum, setEndNum] = useState('');
-  const [tickets, setTickets] = useState('');
+  const [count, setCount] = useState('');
+  const [qty, setQty] = useState('1');
   const [error, setError] = useState('');
   const [preview, setPreview] = useState([]);
 
   useEffect(() => {
     if (isOpen) {
       setStartNum(initialStartNum || '');
-      setEndNum('');
-      setTickets('');
+      setCount('');
+      setQty('1');
       setError('');
       setPreview([]);
     }
@@ -22,7 +22,7 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
     setError('');
     setPreview([]);
 
-    if (!startNum || !endNum || !tickets) {
+    if (!startNum || !count || !qty) {
        setError('Please fill in all fields.');
        return false;
     }
@@ -32,34 +32,22 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
        return false;
     }
 
-    if (endNum.length !== digits) {
-       setError(`End number must be exactly ${digits} digits.`);
-       return false;
-    }
-
     const startInt = parseInt(startNum, 10);
-    const endInt = parseInt(endNum, 10);
-    const ticketsInt = parseInt(tickets, 10);
+    const countInt = parseInt(count, 10);
+    const qtyInt = parseInt(qty, 10);
 
-    if (isNaN(startInt) || isNaN(endInt) || isNaN(ticketsInt)) {
+    if (isNaN(startInt) || isNaN(countInt) || isNaN(qtyInt)) {
        setError('Please enter valid numbers.');
        return false;
     }
 
-    if (startInt > endInt) {
-       setError('Start number must be less than or equal to end number.');
+    if (countInt <= 0) {
+       setError('Next sequence count must be at least 1.');
        return false;
     }
 
-    const available = endInt - startInt + 1;
-
-    if (ticketsInt <= 0) {
-       setError('Number of tickets must be at least 1.');
-       return false;
-    }
-
-    if (ticketsInt > available) {
-       setError(`Only ${available} numbers are available in this range.`);
+    if (qtyInt <= 0) {
+       setError('Quantity per ticket must be at least 1.');
        return false;
     }
     
@@ -68,14 +56,21 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
     if (digits === 2) maxLimit = 100;
     if (digits === 3) maxLimit = 1000;
 
-    if (ticketsInt > maxLimit) {
+    if (countInt > maxLimit) {
         setError(`Cannot generate more than ${maxLimit} tickets at once for ${digits}D.`);
         return false;
     }
 
     const generated = [];
-    for (let i = 0; i < ticketsInt; i++) {
-        const num = (startInt + i).toString().padStart(digits, '0');
+    const maxVal = Math.pow(10, digits) - 1;
+
+    for (let i = 0; i < countInt; i++) {
+        const currentNum = startInt + i;
+        if (currentNum > maxVal) {
+           setError(`Sequence exceeds maximum ${digits}D number (${maxVal}).`);
+           return false;
+        }
+        const num = currentNum.toString().padStart(digits, '0');
         generated.push(num);
     }
     setPreview(generated);
@@ -83,24 +78,24 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
   };
 
   useEffect(() => {
-    if (startNum && endNum && tickets) {
+    if (startNum && count && qty) {
       validateAndPreview();
     } else {
       setPreview([]);
       setError('');
     }
-  }, [startNum, endNum, tickets]);
+  }, [startNum, count, qty]);
 
   const handleConfirm = () => {
     if (validateAndPreview() && preview.length > 0) {
-      onConfirm(preview);
+      onConfirm(preview, parseInt(qty, 10));
       onClose();
     }
   };
 
   if (!isOpen) return null;
 
-  const totalPrice = preview.length * parseFloat(price || 0);
+  const totalPrice = preview.length * parseInt(qty || '1', 10) * parseFloat(price || 0);
 
   return (
     <div className="mt-4 border-2 border-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col animate-in fade-in slide-in-from-top-2 duration-300">
@@ -137,30 +132,35 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
              </div>
              
              <div>
-                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">End</label>
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">Next N Numbers</label>
                 <input 
                   type="text" 
                   inputMode="numeric"
                   pattern="[0-9]*"
-                  maxLength={digits}
-                  value={endNum}
-                  onChange={(e) => setEndNum(e.target.value.replace(/\D/g, ''))}
+                  value={count}
+                  onChange={(e) => setCount(e.target.value.replace(/\D/g, ''))}
                   className={`w-full border-2 rounded-xl text-lg font-black tracking-widest p-3 outline-none transition-colors ${theme.ring ? theme.ring : 'focus:border-slate-800'} border-slate-200`}
-                  placeholder={'0'.repeat(digits)}
+                  placeholder="e.g. 10"
                 />
              </div>
 
              <div className="col-span-2">
-                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">Number of Tickets</label>
-                <input 
-                  type="text" 
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  value={tickets}
-                  onChange={(e) => setTickets(e.target.value.replace(/\D/g, ''))}
-                  className={`w-full border-2 rounded-xl text-lg font-black tracking-widest p-3 outline-none transition-colors ${theme.ring ? theme.ring : 'focus:border-slate-800'} border-slate-200 bg-slate-50`}
-                  placeholder="e.g. 5"
-                />
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">Quantity Per Ticket</label>
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="text" 
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={qty}
+                    onChange={(e) => setQty(e.target.value.replace(/\D/g, ''))}
+                    className={`w-full border-2 rounded-xl text-lg font-black tracking-widest p-3 outline-none transition-colors ${theme.ring ? theme.ring : 'focus:border-slate-800'} border-slate-200 bg-slate-50`}
+                    placeholder="e.g. 2"
+                  />
+                  <div className="flex flex-col gap-1 shrink-0">
+                    <button onClick={() => setQty(q => String(Math.max(1, parseInt(q || '0') + 1)))} className="bg-slate-100 p-1 rounded hover:bg-slate-200 text-slate-600">+</button>
+                    <button onClick={() => setQty(q => String(Math.max(1, parseInt(q || '0') - 1)))} className="bg-slate-100 p-1 rounded hover:bg-slate-200 text-slate-600">-</button>
+                  </div>
+                </div>
              </div>
           </div>
 
