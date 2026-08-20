@@ -487,7 +487,7 @@ const AdminAnnouncements = () => {
                </div>
                <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-gray-900 space-y-8">
                   <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-center gap-3">
-                     <AlertCircle className="text-amber-600" size={20} />
+                     <AlertCircle className="text-amber-800" size={20} />
                      <p className="text-[9px] font-black uppercase text-amber-900 tracking-tight italic">Warning: Results will be synced with tickets purchased on {dispatchDate}. Ensure this is correct.</p>
                   </div>
                     <div className="grid grid-cols-4 gap-4">
@@ -619,7 +619,7 @@ const AdminAnnouncements = () => {
                       </div>
                    </div>
                    <div className="text-right relative z-10 w-full sm:w-auto flex sm:flex-col items-center sm:items-end justify-between">
-                      <div className="text-[8px] font-black uppercase opacity-60 italic tracking-widest text-emerald-400 flex items-center gap-2 bg-emerald-500/10 px-3 py-1 rounded-full w-fit">
+                      <div className="text-[8px] font-black uppercase opacity-60 italic tracking-widest text-emerald-600 flex items-center gap-2 bg-emerald-500/10 px-3 py-1 rounded-full w-fit">
                          <div className="w-1 h-1 bg-emerald-500 rounded-full animate-pulse"></div> LIVE
                       </div>
                       <p className="text-2xl font-black font-condensed italic tracking-widest text-white mt-2">₹ {dynamicAnalyticFeed[showDetailSlot]?.totalValue?.toLocaleString() || 0}</p>

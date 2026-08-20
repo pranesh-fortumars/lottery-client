@@ -84,10 +84,10 @@ const AdminMigration = () => {
     <div className="space-y-6 pb-20 p-4 max-w-4xl mx-auto">
       {/* Warning Banner */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-4">
-        <AlertTriangle className="text-amber-700 flex-shrink-0" size={24} />
+        <AlertTriangle className="text-amber-900 flex-shrink-0" size={24} />
         <div>
-          <h3 className="text-amber-700 font-bold text-sm">Live Migration Engine</h3>
-          <p className="text-amber-700 text-xs mt-1 leading-relaxed">
+          <h3 className="text-amber-900 font-bold text-sm">Live Migration Engine</h3>
+          <p className="text-amber-900 text-xs mt-1 leading-relaxed">
             Copy historical data from the selected source database to your Primary Database. To avoid hitting Firestore daily write limits (20,000 writes/day), you can migrate individual collections (chunks) one by one on different days.
           </p>
         </div>
@@ -177,7 +177,7 @@ const AdminMigration = () => {
               {logs.map((log, i) => (
                 <div key={i} className="flex gap-2">
                   <span className="text-slate-500 shrink-0">[{log.time}]</span>
-                  <span className={`${log.type === 'success' ? 'text-emerald-400' : log.type === 'error' ? 'text-red-400' : 'text-blue-400'} whitespace-nowrap leading-relaxed`}>
+                  <span className={`${log.type === 'success' ? 'text-emerald-600' : log.type === 'error' ? 'text-red-400' : 'text-blue-400'} whitespace-nowrap leading-relaxed`}>
                     {log.text}
                   </span>
                 </div>

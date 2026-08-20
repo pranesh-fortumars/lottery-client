@@ -371,17 +371,17 @@ const AdminUserDetails = () => {
                    <p className="text-xl font-black italic">₹ {(user.depositedBalance || 0).toLocaleString()}</p>
                 </div>
                 <div className="flex gap-2">
-                   <button onClick={() => handleAdjustBalance('deposited', true)} className="bg-white/10 hover:bg-emerald-500/20 p-2 rounded-lg text-emerald-400 transition-colors"><Zap size={14} fill="currentColor" /></button>
+                   <button onClick={() => handleAdjustBalance('deposited', true)} className="bg-white/10 hover:bg-emerald-500/20 p-2 rounded-lg text-emerald-600 transition-colors"><Zap size={14} fill="currentColor" /></button>
                    <button onClick={() => handleAdjustBalance('deposited', false)} className="bg-white/10 hover:bg-red-500/20 p-2 rounded-lg text-red-400 transition-colors"><X size={14} /></button>
                 </div>
              </div>
              <div className="space-y-3">
                 <div>
                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-1">Winning</p>
-                   <p className="text-xl font-black text-emerald-400 italic">₹ {(user.winningBalance || 0).toLocaleString()}</p>
+                   <p className="text-xl font-black text-emerald-600 italic">₹ {(user.winningBalance || 0).toLocaleString()}</p>
                 </div>
                 <div className="flex gap-2">
-                   <button onClick={() => handleAdjustBalance('winning', true)} className="bg-white/10 hover:bg-emerald-500/20 p-2 rounded-lg text-emerald-400 transition-colors"><Zap size={14} fill="currentColor" /></button>
+                   <button onClick={() => handleAdjustBalance('winning', true)} className="bg-white/10 hover:bg-emerald-500/20 p-2 rounded-lg text-emerald-600 transition-colors"><Zap size={14} fill="currentColor" /></button>
                    <button onClick={() => handleAdjustBalance('winning', false)} className="bg-white/10 hover:bg-red-500/20 p-2 rounded-lg text-red-400 transition-colors"><X size={14} /></button>
                 </div>
              </div>
@@ -391,7 +391,7 @@ const AdminUserDetails = () => {
                    <p className="text-xl font-black text-blue-400 italic">₹ {(user.bonusBalance || 0).toLocaleString()}</p>
                 </div>
                 <div className="flex gap-2">
-                   <button onClick={() => handleAdjustBalance('bonus', true)} className="bg-white/10 hover:bg-emerald-500/20 p-2 rounded-lg text-emerald-400 transition-colors"><Zap size={14} fill="currentColor" /></button>
+                   <button onClick={() => handleAdjustBalance('bonus', true)} className="bg-white/10 hover:bg-emerald-500/20 p-2 rounded-lg text-emerald-600 transition-colors"><Zap size={14} fill="currentColor" /></button>
                    <button onClick={() => handleAdjustBalance('bonus', false)} className="bg-white/10 hover:bg-red-500/20 p-2 rounded-lg text-red-400 transition-colors"><X size={14} /></button>
                 </div>
              </div>
@@ -449,7 +449,7 @@ const AdminUserDetails = () => {
                   exit={{ opacity: 0, y: -10 }}
                   className="absolute -top-4 right-4 bg-gray-900 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl shadow-xl flex items-center gap-2 z-10"
                 >
-                  <CheckCircle2 size={14} className="text-emerald-400" /> Copied Successfully
+                  <CheckCircle2 size={14} className="text-emerald-600" /> Copied Successfully
                 </motion.div>
               )}
             </AnimatePresence>

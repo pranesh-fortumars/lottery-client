@@ -125,7 +125,7 @@ const UserTransactions = () => {
         );
       default:
         return (
-          <span className="flex items-center gap-1 bg-amber-50 text-amber-600 border border-amber-200 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm animate-pulse">
+          <span className="flex items-center gap-1 bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-sm animate-pulse">
             <Clock size={12} /> Pending
           </span>
         );

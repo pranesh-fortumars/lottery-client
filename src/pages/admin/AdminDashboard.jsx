@@ -268,7 +268,7 @@ const AdminDashboard = () => {
               {[
                 { user: 'Admin System', action: 'FIREBASE SYNC ACTIVE', time: 'Just Now', color: 'text-primary-hover' },
                 { user: 'Security Module', action: 'DATABASE COMPRESSION: 0%', time: 'Stable', color: 'text-blue-400' },
-                { user: 'Traffic Monitor', action: 'GATEWAY STATUS: OPTIMAL', time: 'Active', color: 'text-emerald-400' },
+                { user: 'Traffic Monitor', action: 'GATEWAY STATUS: OPTIMAL', time: 'Active', color: 'text-emerald-600' },
               ].map((log, idx) => (
                 <div key={idx} className="flex gap-4 items-start border-l-2 border-white/10 pl-5 relative">
                    <div className="absolute left-[-5px] top-1.5 w-2 h-2 bg-primary-hover rounded-full shadow-[0_0_10px_rgba(244,36,100,0.8)]"></div>

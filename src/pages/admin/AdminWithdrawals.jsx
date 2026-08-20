@@ -164,7 +164,7 @@ const AdminWithdrawals = () => {
       {activeTab === 'pending' ? (
         pendingReqs.length === 0 ? (
            <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-900 shadow-inner">
-              <BadgeCheck className="mx-auto text-emerald-400 mb-4 opacity-50" size={48} />
+              <BadgeCheck className="mx-auto text-emerald-600 mb-4 opacity-50" size={48} />
               <p className="text-[12px] font-black uppercase tracking-widest text-gray-400 italic">No Pending Requests</p>
            </div>
         ) : (
@@ -193,7 +193,7 @@ const AdminWithdrawals = () => {
                       <ArrowUpRight size={32} />
                    </div>
                    <div>
-                     <p className="text-[8px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-0.5">Account Holder Name</p>
+                     <p className="text-[8px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-0.5">Account Holder Name</p>
                      <p className="text-xs font-black text-white tracking-tight italic select-all">{req.accountHolderName || req.userName}</p>
                    </div>
                    <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/10">
@@ -207,7 +207,7 @@ const AdminWithdrawals = () => {
                      </div>
                    </div>
                    <div className="pt-2 border-t border-white/10">
-                     <p className="text-[8px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-0.5">Target UPI ID</p>
+                     <p className="text-[8px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-0.5">Target UPI ID</p>
                      <p className="text-xs font-black text-white tracking-tight italic select-all">{req.upiId}</p>
                    </div>
                 </div>
@@ -281,7 +281,7 @@ const AdminWithdrawals = () => {
                         <ArrowUpRight size={32} />
                      </div>
                      <div>
-                       <p className="text-[8px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-0.5">Account Holder Name</p>
+                       <p className="text-[8px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-0.5">Account Holder Name</p>
                        <p className="text-xs font-black text-white tracking-tight italic select-all">{req.accountHolderName || req.userName}</p>
                      </div>
                      <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/10">
@@ -296,7 +296,7 @@ const AdminWithdrawals = () => {
                      </div>
                      <div className="pt-2 border-t border-white/10 flex justify-between items-center">
                        <div>
-                         <p className="text-[8px] font-black text-emerald-400 uppercase tracking-[0.2em] mb-0.5">Target UPI ID</p>
+                         <p className="text-[8px] font-black text-emerald-600 uppercase tracking-[0.2em] mb-0.5">Target UPI ID</p>
                          <p className="text-xs font-black text-white tracking-tight italic select-all">{req.upiId}</p>
                        </div>
                        <div className="text-right">

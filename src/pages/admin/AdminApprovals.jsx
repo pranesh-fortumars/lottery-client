@@ -186,7 +186,7 @@ const AdminApprovals = () => {
       {activeTab === 'pending' ? (
         pendingTxs.length === 0 ? (
            <div className="bg-gray-50 rounded-[2rem] p-12 text-center border border-gray-900 shadow-inner">
-              <BadgeCheck className="mx-auto text-emerald-400 mb-4 opacity-50" size={48} />
+              <BadgeCheck className="mx-auto text-emerald-600 mb-4 opacity-50" size={48} />
               <p className="text-[12px] font-black uppercase tracking-widest text-gray-400 italic">No Pending Transactions</p>
            </div>
         ) : (

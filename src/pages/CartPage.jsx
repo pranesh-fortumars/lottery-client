@@ -281,7 +281,7 @@ const CartPage = () => {
                 </div>
              </div>
              <div className="flex flex-col items-end">
-                <span className={`text-[9px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider ${totalUsableBalance >= cartTotal ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>
+                <span className={`text-[9px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider ${totalUsableBalance >= cartTotal ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-amber-50 text-amber-800 border border-amber-100'}`}>
                   {totalUsableBalance >= cartTotal ? 'Sufficient' : 'Low Balance'}
                 </span>
              </div>

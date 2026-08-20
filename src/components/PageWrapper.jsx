@@ -226,13 +226,13 @@ export const Header = ({ title, showBack = false }) => {
                         }}
                         className="p-4 rounded-xl border bg-white border-amber-200 shadow-sm cursor-pointer hover:bg-amber-50 transition-all flex gap-3 items-start"
                       >
-                        <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-amber-100 text-amber-700">
+                        <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-amber-100 text-amber-900">
                           {a.source === 'withdrawal' ? <Wallet size={18} /> : <ShoppingCart size={18} />}
                         </div>
                         <div className="flex-grow">
                           <h4 className="text-[13px] font-bold text-black mb-1 flex items-center justify-between">
                             {a.title}
-                            <span className="bg-amber-100 text-amber-700 text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">ACTION</span>
+                            <span className="bg-amber-100 text-amber-900 text-[9px] px-1.5 py-0.5 rounded uppercase font-bold">ACTION</span>
                           </h4>
                           <p className="text-[11px] font-medium text-slate-500 leading-relaxed">{a.message}</p>
                           <span className="text-[9px] font-bold text-slate-400 mt-2 block">

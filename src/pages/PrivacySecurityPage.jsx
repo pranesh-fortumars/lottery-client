@@ -66,12 +66,12 @@ const PrivacySecurityPage = () => {
           <div className="bg-slate-900 rounded-3xl p-6 text-white shadow-sm relative overflow-hidden group mb-6">
              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
              <div className="relative z-10 flex gap-4 items-center">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10 text-emerald-400">
+                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10 text-emerald-600">
                    <Shield size={28} />
                 </div>
                 <div>
                    <h2 className="text-xl font-bold tracking-tight uppercase leading-none">Security Status</h2>
-                   <p className="text-emerald-400 text-[10px] font-bold uppercase tracking-widest mt-1">Good - Protected</p>
+                   <p className="text-emerald-600 text-[10px] font-bold uppercase tracking-widest mt-1">Good - Protected</p>
                 </div>
              </div>
           </div>

@@ -129,15 +129,15 @@ const WithdrawPage = () => {
         {!isProfileComplete && (
           <div className="w-full max-w-sm bg-amber-50 border border-amber-200 p-5 rounded-2xl mb-6 flex flex-col items-center text-center gap-3 shadow-sm animate-pulse">
             <AlertCircle className="text-amber-500" size={28} />
-            <p className="text-xs font-bold text-amber-700 uppercase tracking-tight">
+            <p className="text-xs font-bold text-amber-900 uppercase tracking-tight">
               Verification Required
             </p>
-            <p className="text-[10px] font-medium text-amber-600 leading-relaxed">
+            <p className="text-[10px] font-medium text-amber-800 leading-relaxed">
               You must complete your mandatory banking & UPI payout details before requesting a withdrawal.
             </p>
             <button 
               onClick={() => navigate('/settings/personal-info')}
-              className="w-full bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-sm active:scale-95 transition-all mt-1"
+              className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-sm active:scale-95 transition-all mt-1"
             >
               Complete Verification Now
             </button>
@@ -181,8 +181,8 @@ const WithdrawPage = () => {
            <div className="bg-amber-50 p-5 rounded-2xl border border-amber-100 flex items-start gap-4">
               <AlertTriangle className="text-amber-500 shrink-0" size={20} />
               <div>
-                 <p className="text-[9px] text-amber-700 font-bold uppercase tracking-widest mb-1">Standard Restriction</p>
-                 <p className="text-[10px] text-amber-600/80 font-medium leading-relaxed">
+                 <p className="text-[9px] text-amber-900 font-bold uppercase tracking-widest mb-1">Standard Restriction</p>
+                 <p className="text-[10px] text-amber-800/80 font-medium leading-relaxed">
                     Deposited funds are reserved for ticket purchases only. You can only request payouts for winnings earned from lottery results.
                  </p>
               </div>

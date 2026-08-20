@@ -119,10 +119,10 @@ const PersonalInfoPage = () => {
 
           {!isComplete && (
             <div className="bg-amber-50 border border-amber-200 p-4 rounded-2xl flex items-start gap-3 shadow-sm animate-pulse">
-               <AlertCircle className="text-amber-600 shrink-0 mt-0.5" size={20} />
+               <AlertCircle className="text-amber-800 shrink-0 mt-0.5" size={20} />
                <div>
-                  <p className="text-xs font-bold text-amber-700 uppercase tracking-tight">Mandatory Requirement</p>
-                  <p className="text-[10px] text-amber-600 font-medium mt-0.5 leading-relaxed">
+                  <p className="text-xs font-bold text-amber-900 uppercase tracking-tight">Mandatory Requirement</p>
+                  <p className="text-[10px] text-amber-800 font-medium mt-0.5 leading-relaxed">
                      You must complete your banking and UPI payout details below before you are allowed to purchase lottery tickets.
                   </p>
                </div>

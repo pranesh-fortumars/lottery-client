@@ -237,7 +237,7 @@ const MyTickets = () => {
                                           <td className="py-2 px-1 text-right align-middle">
                                              <div className="flex flex-col items-end justify-center leading-none">
                                                 {isWin ? (
-                                                   <p className="text-[11px] font-black text-emerald-400 font-condensed italic">₹{String(t.prize || "0").replace(/[^\d]/g, '')}</p>
+                                                   <p className="text-[11px] font-black text-emerald-600 font-condensed italic">₹{String(t.prize || "0").replace(/[^\d]/g, '')}</p>
                                                 ) : (
                                                    <span className="text-[6px] font-black text-gray-600 uppercase tracking-widest italic">{t.status || 'Active'}</span>
                                                 )}

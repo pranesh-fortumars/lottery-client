@@ -103,10 +103,10 @@ const AdminGuide = () => {
         
         {/* Important Notice */}
         <div className="bg-amber-50 border border-amber-200 rounded-[2rem] p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-           <Info className="text-amber-600 shrink-0" size={28} />
+           <Info className="text-amber-800 shrink-0" size={28} />
            <div>
               <h4 className="text-amber-800 font-bold text-sm">Need Help?</h4>
-              <p className="text-amber-700/80 text-xs mt-1 leading-relaxed">
+              <p className="text-amber-900/80 text-xs mt-1 leading-relaxed">
                 If you encounter any critical issues not covered in this guide, please check the system logs in your database or contact your technical administrator for assistance. Always ensure you are logged in with the correct role (Admin vs Super Admin) to see your specific tools.
               </p>
            </div>
