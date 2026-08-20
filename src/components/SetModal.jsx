@@ -3,7 +3,7 @@ import { X, Layers, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialStartNum, purchaseTitle }) => {
   const [startNum, setStartNum] = useState('');
-  const [count, setCount] = useState('');
+  const [endNum, setEndNum] = useState('');
   const [qty, setQty] = useState('1');
   const [error, setError] = useState('');
   const [preview, setPreview] = useState([]);
@@ -16,7 +16,7 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
 
   useEffect(() => {
     if (isOpen) {
-      setCount('');
+      setEndNum('');
       setQty('1');
       setError('');
       setPreview([]);
@@ -27,7 +27,7 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
     setError('');
     setPreview([]);
 
-    if (!startNum || !count || !qty) {
+    if (!startNum || !endNum || !qty) {
        setError('Please fill in all fields.');
        return false;
     }
@@ -38,18 +38,20 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
     }
 
     const startInt = parseInt(startNum, 10);
-    const countInt = parseInt(count, 10);
+    const endInt = parseInt(endNum, 10);
     const qtyInt = parseInt(qty, 10);
 
-    if (isNaN(startInt) || isNaN(countInt) || isNaN(qtyInt)) {
+    if (isNaN(startInt) || isNaN(endInt) || isNaN(qtyInt)) {
        setError('Please enter valid numbers.');
        return false;
     }
 
-    if (countInt <= 0) {
-       setError('Next sequence count must be at least 1.');
+    if (endInt < startInt) {
+       setError('End number must be greater than or equal to Start.');
        return false;
     }
+    
+    const countInt = endInt - startInt + 1;
 
     if (qtyInt <= 0) {
        setError('Quantity per ticket must be at least 1.');
@@ -83,13 +85,13 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
   };
 
   useEffect(() => {
-    if (startNum && count && qty) {
+    if (startNum && endNum && qty) {
       validateAndPreview();
     } else {
       setPreview([]);
       setError('');
     }
-  }, [startNum, count, qty]);
+  }, [startNum, endNum, qty]);
 
   const handleConfirm = () => {
     if (validateAndPreview() && preview.length > 0) {
@@ -137,15 +139,16 @@ const SetModal = ({ isOpen, onClose, onConfirm, digits, price, theme, initialSta
              </div>
              
              <div>
-                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">Next N Numbers</label>
+                <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest block mb-1">End Number</label>
                 <input 
                   type="text" 
                   inputMode="numeric"
                   pattern="[0-9]*"
-                  value={count}
-                  onChange={(e) => setCount(e.target.value.replace(/\D/g, ''))}
+                  maxLength={digits}
+                  value={endNum}
+                  onChange={(e) => setEndNum(e.target.value.replace(/\D/g, ''))}
                   className={`w-full border-2 rounded-xl text-lg font-black tracking-widest p-3 outline-none transition-colors ${theme.ring ? theme.ring : 'focus:border-slate-800'} border-slate-200`}
-                  placeholder="e.g. 10"
+                  placeholder={'0'.repeat(digits)}
                 />
              </div>
 
