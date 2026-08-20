@@ -143,21 +143,21 @@ const ProfilePage = () => {
                  </div>
 
                   {/* Bottom Split: Deposited vs Winnings vs Bonus */}
-                  <div className="relative grid grid-cols-3 divide-x divide-gray-200/50 bg-gray-50/50 backdrop-blur-sm">
+                  <div className="relative grid grid-cols-3 divide-x divide-gray-200 bg-gray-50/50 backdrop-blur-sm border-t border-gray-200">
                      <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-gray-100/50 transition-colors" onClick={() => navigate('/topup')}>
                         <p className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-1">Deposit</p>
                         <p className="text-sm font-black text-gray-900 italic">₹ {user?.depositedBalance?.toLocaleString() || '0'}</p>
-                        <span className="mt-1.5 text-[6px] font-black bg-gray-200/50 text-gray-600 px-2 py-0.5 rounded-full uppercase tracking-widest border border-gray-300/50">Purchase</span>
+                        <span className="mt-1.5 text-[6px] font-black bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full uppercase tracking-widest border border-gray-300">Purchase</span>
                      </div>
                      <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-emerald-50/50 transition-colors" onClick={() => navigate('/withdraw')}>
                         <p className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-1">Winning</p>
                         <p className="text-sm font-black text-emerald-600 italic">₹ {user?.winningBalance?.toLocaleString() || '0'}</p>
-                        <span className="mt-1.5 text-[6px] font-black bg-emerald-100/50 text-emerald-700 px-2 py-0.5 rounded-full uppercase tracking-widest border border-emerald-200/50">Payout</span>
+                        <span className="mt-1.5 text-[6px] font-black bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full uppercase tracking-widest border border-emerald-300">Payout</span>
                      </div>
                      <div className="p-4 flex flex-col items-center text-center group cursor-pointer hover:bg-blue-50/50 transition-colors">
                         <p className="text-[8px] font-black text-gray-500 uppercase tracking-widest mb-1">Bonus</p>
                         <p className="text-sm font-black text-blue-600 italic">₹ {user?.bonusBalance?.toLocaleString() || '0'}</p>
-                        <span className="mt-1.5 text-[6px] font-black bg-blue-100/50 text-blue-700 px-2 py-0.5 rounded-full uppercase tracking-widest border border-blue-200/50">Tickets Only</span>
+                        <span className="mt-1.5 text-[6px] font-black bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full uppercase tracking-widest border border-blue-300">Tickets Only</span>
                      </div>
                   </div>
                </div>
