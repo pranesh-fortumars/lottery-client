@@ -117,8 +117,17 @@ const AdminLoginHistory = () => {
                          {getDeviceIcon(session.deviceName || '')}
                       </div>
                       <div>
-                         <h4 className="font-black text-gray-900 text-sm tracking-tight uppercase">{session.userName || 'Unknown'}</h4>
-                         <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1">{session.deviceName || 'Unknown Device'}</p>
+                         <div className="flex items-center gap-2">
+                            <h4 className="font-black text-gray-900 text-sm tracking-tight uppercase">{session.userName || 'Unknown'}</h4>
+                            {(session.userRole === 'admin' || session.userRole === 'super_admin') && (
+                               <span className="bg-red-50 text-red-600 border border-red-200 text-[8px] px-1.5 py-0.5 rounded font-black uppercase tracking-widest shadow-sm">ADMIN</span>
+                            )}
+                         </div>
+                         <div className="flex items-center gap-2 mt-1 text-[9px] text-gray-500 font-bold uppercase tracking-widest">
+                            <span className="text-gray-600">{session.userMobile || session.userEmail || 'No contact info'}</span>
+                            <span className="text-gray-300">•</span>
+                            <span className="text-blue-500">{session.deviceName || 'Unknown Device'}</span>
+                         </div>
                       </div>
                    </div>
                    <div className="text-right">

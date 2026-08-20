@@ -129,11 +129,14 @@ export const AuthProvider = ({ children }) => {
     return 'Unknown Device';
   };
 
-  const logSession = async (uid, name) => {
+  const logSession = async (uid, userData) => {
     try {
       await addDoc(collection(db, 'login_sessions'), {
         userId: uid,
-        userName: name || 'Unknown',
+        userName: userData?.name || 'Unknown',
+        userMobile: userData?.mobile || '',
+        userEmail: userData?.email || '',
+        userRole: userData?.role || 'user',
         deviceName: getDeviceName(),
         userAgent: navigator.userAgent,
         timestamp: serverTimestamp()
@@ -310,7 +313,12 @@ export const AuthProvider = ({ children }) => {
               status: 'Active',
               createdAt: new Date().toISOString()
            });
-           await logSession(userCredential.user.uid, isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'));
+           await logSession(userCredential.user.uid, { 
+             name: isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'),
+             mobile: isSuperAdmin ? '7604871241' : (isDefaultAdmin ? '0000000000' : '9999999999'),
+             email: loginEmail,
+             role: (isDefaultAdmin || isSuperAdmin) ? 'admin' : 'user'
+           });
            return { success: true };
         }
 
@@ -324,7 +332,7 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: "This account has been deleted. Please contact support." };
       }
 
-      await logSession(userCredential.user.uid, sessionUserData.name || 'User');
+      await logSession(userCredential.user.uid, sessionUserData);
       return { success: true };
     } catch (error) {
       // Special Auto-Provisioning for Default Mock Accounts
@@ -348,7 +356,12 @@ export const AuthProvider = ({ children }) => {
               status: 'Active',
               createdAt: new Date().toISOString()
             });
-            await logSession(firebaseUser.uid, isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'));
+            await logSession(firebaseUser.uid, {
+              name: isSuperAdmin ? 'Core Admin' : (isDefaultAdmin ? 'Super Admin' : 'Test User'),
+              mobile: isSuperAdmin ? '7604871241' : (isDefaultAdmin ? '0000000000' : '9999999999'),
+              email: loginEmail,
+              role: (isDefaultAdmin || isSuperAdmin) ? 'admin' : 'user'
+            });
             return { success: true };
           } catch (signupError) {
             if (signupError.code !== 'auth/email-already-in-use') {
