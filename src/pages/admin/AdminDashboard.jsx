@@ -16,7 +16,7 @@ import {
   BookOpen,
   Key
 } from 'lucide-react';
-import { subscribeToUsers, subscribeToResults, subscribeToTickets } from '../../services/firebaseService';
+import { subscribeToUsers, subscribeToResults, subscribeToTickets, subscribeToPendingTransactions, subscribeToWithdrawals } from '../../services/firebaseService';
 import PullToRefresh from '../../components/PullToRefresh';
 import { APP_VERSION, BUILD_VERSION } from '../../config';
 import { useAuth } from '../../context/AuthContext';
@@ -32,6 +32,17 @@ const AdminDashboard = () => {
     { label: 'Login History', value: 'Logs', icon: Key, change: '0%', bg: 'bg-purple-600', text: 'text-white', iconBg: 'bg-purple-500', subText: 'text-purple-200', link: '/admin/login-history' },
   ]);
 
+  const [todayFinancials, setTodayFinancials] = useState({
+    sales: 0,
+    winnings: 0,
+    gameProfit: 0,
+    gameLoss: 0,
+    deposits: 0,
+    withdrawals: 0,
+    cashProfit: 0,
+    cashLoss: 0
+  });
+
   const { user } = useAuth();
   const [recentDraws, setRecentDraws] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,6 +51,8 @@ const AdminDashboard = () => {
     let unsubscribeResults;
     let unsubscribeUsers;
     let unsubscribeTickets;
+    let unsubscribeTransactions;
+    let unsubscribeWithdrawals;
 
     const calculateStats = (usersData, ticketsData) => {
       const now = new Date();
@@ -64,8 +77,65 @@ const AdminDashboard = () => {
 
     let latestUsers = [];
     let latestTickets = [];
+    let latestTransactions = [];
+    let latestWithdrawals = [];
     let usersLoaded = false;
     let ticketsLoaded = false;
+    let transactionsLoaded = false;
+    let withdrawalsLoaded = false;
+
+    const calculateTodayFinancials = () => {
+      const now = new Date();
+      const todayStr = now.toLocaleDateString();
+
+      // 1. Sales (Tickets purchased today)
+      const todaySales = latestTickets.reduce((sum, t) => {
+        if (!t.timestamp || t.timestamp.toDate().toLocaleDateString() !== todayStr) return sum;
+        return sum + (parseFloat(t.price || 0) * (t.qty || 1));
+      }, 0);
+
+      // 2. Winnings (Tickets won today)
+      const todayWinnings = latestTickets.reduce((sum, t) => {
+        if (t.status !== 'won') return sum;
+        // Check if the result announcement happened today (winAmount populated today)
+        // For simplicity, we check if ticket was purchased today, or if we can track result timestamp.
+        // Assuming tickets have a resultTimestamp or we just check if it was won for today's draw.
+        // Usually won tickets for today's draws have a drawTime that falls today. We'll check timestamp for now.
+        if (!t.timestamp || t.timestamp.toDate().toLocaleDateString() !== todayStr) return sum;
+        return sum + parseFloat(t.winAmount || 0);
+      }, 0);
+
+      const gameProfit = todaySales > todayWinnings ? todaySales - todayWinnings : 0;
+      const gameLoss = todayWinnings > todaySales ? todayWinnings - todaySales : 0;
+
+      // 3. Deposits (Approved today)
+      const todayDeposits = latestTransactions.reduce((sum, tx) => {
+        if (tx.status !== 'approved') return sum;
+        if (!tx.timestamp || tx.timestamp.toDate().toLocaleDateString() !== todayStr) return sum;
+        return sum + parseFloat(tx.amount || 0);
+      }, 0);
+
+      // 4. Withdrawals (Approved today)
+      const todayWithdrawals = latestWithdrawals.reduce((sum, w) => {
+        if (w.status !== 'approved') return sum;
+        if (!w.timestamp || w.timestamp.toDate().toLocaleDateString() !== todayStr) return sum;
+        return sum + parseFloat(w.amount || 0);
+      }, 0);
+
+      const cashProfit = todayDeposits > todayWithdrawals ? todayDeposits - todayWithdrawals : 0;
+      const cashLoss = todayWithdrawals > todayDeposits ? todayWithdrawals - todayDeposits : 0;
+
+      setTodayFinancials({
+        sales: todaySales,
+        winnings: todayWinnings,
+        gameProfit,
+        gameLoss,
+        deposits: todayDeposits,
+        withdrawals: todayWithdrawals,
+        cashProfit,
+        cashLoss
+      });
+    };
 
     try {
       unsubscribeUsers = subscribeToUsers((users) => {
@@ -78,6 +148,19 @@ const AdminDashboard = () => {
         latestTickets = tickets;
         ticketsLoaded = true;
         if (usersLoaded && ticketsLoaded) calculateStats(latestUsers, latestTickets);
+        if (ticketsLoaded) calculateTodayFinancials();
+      });
+
+      unsubscribeTransactions = subscribeToPendingTransactions((txs) => {
+        latestTransactions = txs;
+        transactionsLoaded = true;
+        if (transactionsLoaded) calculateTodayFinancials();
+      });
+
+      unsubscribeWithdrawals = subscribeToWithdrawals((withdrawals) => {
+        latestWithdrawals = withdrawals;
+        withdrawalsLoaded = true;
+        if (withdrawalsLoaded) calculateTodayFinancials();
       });
 
       unsubscribeResults = subscribeToResults((results) => {
@@ -93,6 +176,8 @@ const AdminDashboard = () => {
       if (unsubscribeResults) unsubscribeResults();
       if (unsubscribeUsers) unsubscribeUsers();
       if (unsubscribeTickets) unsubscribeTickets();
+      if (unsubscribeTransactions) unsubscribeTransactions();
+      if (unsubscribeWithdrawals) unsubscribeWithdrawals();
     };
   }, []);
 
@@ -147,6 +232,52 @@ const AdminDashboard = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Today's Financial Overview Grid */}
+      <div className="mt-8 border-[1.5px] border-slate-200 rounded-[2.5rem] p-5 bg-white shadow-xl relative overflow-hidden">
+         <div className="flex items-center gap-2 mb-5 px-1">
+            <Landmark size={20} className="text-slate-800" />
+            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tighter italic">Today's Financials</h2>
+         </div>
+         
+         <div className="grid grid-cols-2 gap-3">
+            {/* Game Metrics */}
+            <div className="bg-indigo-50 rounded-2xl p-4 flex flex-col justify-between border border-indigo-100">
+               <p className="text-[8px] font-black text-indigo-500 uppercase tracking-widest mb-1">Total Sales</p>
+               <p className="text-xl font-black text-indigo-700 italic">₹ {todayFinancials.sales.toLocaleString()}</p>
+            </div>
+            <div className="bg-emerald-50 rounded-2xl p-4 flex flex-col justify-between border border-emerald-100">
+               <p className="text-[8px] font-black text-emerald-500 uppercase tracking-widest mb-1">Total Winnings</p>
+               <p className="text-xl font-black text-emerald-700 italic">₹ {todayFinancials.winnings.toLocaleString()}</p>
+            </div>
+            <div className="bg-teal-50 rounded-2xl p-4 flex flex-col justify-between border border-teal-100">
+               <p className="text-[8px] font-black text-teal-500 uppercase tracking-widest mb-1">Game Profit</p>
+               <p className="text-xl font-black text-teal-700 italic">₹ {todayFinancials.gameProfit.toLocaleString()}</p>
+            </div>
+            <div className="bg-rose-50 rounded-2xl p-4 flex flex-col justify-between border border-rose-100">
+               <p className="text-[8px] font-black text-rose-500 uppercase tracking-widest mb-1">Game Loss</p>
+               <p className="text-xl font-black text-rose-700 italic">₹ {todayFinancials.gameLoss.toLocaleString()}</p>
+            </div>
+
+            {/* Cash Flow Metrics */}
+            <div className="bg-blue-50 rounded-2xl p-4 flex flex-col justify-between border border-blue-100">
+               <p className="text-[8px] font-black text-blue-500 uppercase tracking-widest mb-1">Total Deposits</p>
+               <p className="text-xl font-black text-blue-700 italic">₹ {todayFinancials.deposits.toLocaleString()}</p>
+            </div>
+            <div className="bg-orange-50 rounded-2xl p-4 flex flex-col justify-between border border-orange-100">
+               <p className="text-[8px] font-black text-orange-500 uppercase tracking-widest mb-1">Total Withdrawals</p>
+               <p className="text-xl font-black text-orange-700 italic">₹ {todayFinancials.withdrawals.toLocaleString()}</p>
+            </div>
+            <div className="bg-fuchsia-50 rounded-2xl p-4 flex flex-col justify-between border border-fuchsia-100">
+               <p className="text-[8px] font-black text-fuchsia-500 uppercase tracking-widest mb-1">Cash Flow Profit</p>
+               <p className="text-xl font-black text-fuchsia-700 italic">₹ {todayFinancials.cashProfit.toLocaleString()}</p>
+            </div>
+            <div className="bg-red-50 rounded-2xl p-4 flex flex-col justify-between border border-red-100">
+               <p className="text-[8px] font-black text-red-500 uppercase tracking-widest mb-1">Cash Flow Loss</p>
+               <p className="text-xl font-black text-red-700 italic">₹ {todayFinancials.cashLoss.toLocaleString()}</p>
+            </div>
+         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 mt-4">

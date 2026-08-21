@@ -132,3 +132,21 @@ export const subscribeToAppSettings = (callback) => {
 export const updateAppSettings = async (settings) => {
   await setDoc(doc(db, 'settings', 'app'), settings, { merge: true });
 };
+
+// --- Financial Flow ---
+
+export const subscribeToPendingTransactions = (callback) => {
+  const q = query(collection(db, 'pending_transactions'), orderBy('timestamp', 'desc'));
+  return onSnapshot(q, (snapshot) => {
+    const transactions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    callback(transactions);
+  });
+};
+
+export const subscribeToWithdrawals = (callback) => {
+  const q = query(collection(db, 'withdrawals'), orderBy('timestamp', 'desc'));
+  return onSnapshot(q, (snapshot) => {
+    const withdrawals = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    callback(withdrawals);
+  });
+};
