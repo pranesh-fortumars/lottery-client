@@ -42,6 +42,7 @@ import AdminTodayTickets from './pages/admin/AdminTodayTickets';
 import AdminRevenue from './pages/admin/AdminRevenue';
 import AdminActiveSessions from './pages/admin/AdminActiveSessions';
 import AdminLoginHistory from './pages/admin/AdminLoginHistory';
+import AdminFinancials from './pages/admin/AdminFinancials';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { PaymentProvider } from './context/PaymentContext';
@@ -145,6 +146,7 @@ const AnimatedRoutes = () => {
           <Route path="/admin/revenue" element={<ProtectedRoute role="admin"><AdminLayout><AdminRevenue /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/active-sessions" element={<ProtectedRoute role="admin"><AdminLayout><AdminActiveSessions /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/login-history" element={<ProtectedRoute role="admin"><AdminLayout><AdminLoginHistory /></AdminLayout></ProtectedRoute>} />
+          <Route path="/admin/financials" element={<ProtectedRoute role="admin"><AdminLayout><AdminFinancials /></AdminLayout></ProtectedRoute>} />
           
           <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
