@@ -67,7 +67,8 @@ const AdminAnnouncements = () => {
   const [monitorSearch, setMonitorSearch] = useState('');
   const [monitorTier, setMonitorTier] = useState('ALL');
   const [monitorDate, setMonitorDate] = useState(new Date().toISOString().split('T')[0]);
-  const [showFullInventory, setShowFullInventory] = useState(false);
+  const [showHighFrequency, setShowHighFrequency] = useState(true);
+  const [showDetailedInventory, setShowDetailedInventory] = useState(true);
 
   const boardOptions = {
     '1D': ['A', 'B', 'C'],
@@ -696,10 +697,30 @@ const AdminAnnouncements = () => {
                           </div>
                        )}
                     </div>
+
+                    {/* Toggle Controls for Sections */}
+                    <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-900 items-center justify-end">
+                       <label className="flex items-center gap-2 cursor-pointer group">
+                          <div className="relative">
+                             <input type="checkbox" className="sr-only" checked={showHighFrequency} onChange={() => setShowHighFrequency(!showHighFrequency)} />
+                             <div className={`block w-10 h-6 rounded-full transition-colors ${showHighFrequency ? 'bg-red-500' : 'bg-gray-300'}`}></div>
+                             <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showHighFrequency ? 'translate-x-4' : 'translate-x-0'}`}></div>
+                          </div>
+                          <span className="text-[10px] font-black uppercase text-gray-500 group-hover:text-gray-900 transition-colors">High Frequency</span>
+                       </label>
+                       <label className="flex items-center gap-2 cursor-pointer group">
+                          <div className="relative">
+                             <input type="checkbox" className="sr-only" checked={showDetailedInventory} onChange={() => setShowDetailedInventory(!showDetailedInventory)} />
+                             <div className={`block w-10 h-6 rounded-full transition-colors ${showDetailedInventory ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
+                             <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showDetailedInventory ? 'translate-x-4' : 'translate-x-0'}`}></div>
+                          </div>
+                          <span className="text-[10px] font-black uppercase text-gray-500 group-hover:text-gray-900 transition-colors">Detailed Inventory</span>
+                       </label>
+                    </div>
                  </div>
 
                  {/* High-Frequency Analytics Table (Support 3D & 4D) */}
-                 {(monitorType === '3D' || monitorType === '4D') && (
+                 {(monitorType === '3D' || monitorType === '4D') && showHighFrequency && (
                    <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-8 animate-in slide-in-from-left duration-700">
                      <div className="p-6 border-b border-gray-800 bg-red-50/30 flex items-center justify-between">
                         <div className="flex items-center gap-4">
@@ -770,40 +791,31 @@ const AdminAnnouncements = () => {
                      </div>
                    </div>
                  )}
-
-                {/* Detailed Monitoring Table */}
-                 <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-12">
-                    <div className="p-6 border-b border-gray-800 flex flex-col sm:flex-row items-center justify-between bg-gray-50/50 gap-4">
-                       <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white shadow-lg"><BarChart3 size={20} /></div>
-                          <div>
-                             <h5 className="text-[14px] font-black uppercase tracking-widest italic leading-tight">{monitorType} - {monitorBoard} Inventory</h5>
-                             <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Real-time Stock Monitor</p>
+                    {/* Detailed Monitoring Table */}
+                  {showDetailedInventory && (
+                  <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-12 animate-in slide-in-from-bottom duration-700">
+                     <div className="p-6 border-b border-gray-800 flex flex-col sm:flex-row items-center justify-between bg-gray-50/50 gap-4">
+                        <div className="flex items-center gap-4">
+                           <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white shadow-lg"><BarChart3 size={20} /></div>
+                           <div>
+                              <h5 className="text-[14px] font-black uppercase tracking-widest italic leading-tight">{monitorType} - {monitorBoard} Inventory</h5>
+                              <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Real-time Stock Monitor</p>
+                           </div>
+                        </div>
+                        <div className="flex gap-8">
+                          <div className="text-right">
+                             <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Total</p>
+                             <p className="text-lg font-black font-condensed italic text-gray-950 tabular-nums">{getNumberRange().length}</p>
                           </div>
-                       </div>
-                       <div className="flex flex-wrap items-center gap-6">
-                         <div className="flex gap-8">
-                           <div className="text-right">
-                              <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Total</p>
-                              <p className="text-lg font-black font-condensed italic text-gray-950 tabular-nums">{getNumberRange().length}</p>
-                           </div>
-                           <div className="text-right border-l border-gray-800 pl-8">
-                              <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Active</p>
-                              <p className="text-lg font-black font-condensed italic text-red-600 tabular-nums">{getNumberRange().filter(n => (dynamicAnalyticFeed[showDetailSlot]?.dataStore?.[monitorType]?.[monitorBoard]?.[n] || 0) > 0).length}</p>
-                           </div>
-                         </div>
-                         <button 
-                           onClick={() => setShowFullInventory(!showFullInventory)} 
-                           className="px-4 py-2 bg-gray-900 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#1d4ed8] transition-colors whitespace-nowrap shadow-sm"
-                         >
-                           {showFullInventory ? 'Hide Full Inventory' : 'View Full Inventory'}
-                         </button>
-                       </div>
-                    </div>
+                          <div className="text-right border-l border-gray-800 pl-8">
+                             <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Active</p>
+                             <p className="text-lg font-black font-condensed italic text-red-600 tabular-nums">{getNumberRange().filter(n => (dynamicAnalyticFeed[showDetailSlot]?.dataStore?.[monitorType]?.[monitorBoard]?.[n] || 0) > 0).length}</p>
+                          </div>
+                        </div>
+                     </div>
 
-                    {showFullInventory && (
-                       <div className="overflow-x-auto">
-                      <table className="w-full text-left border-collapse border-2 border-[#1d4ed8]">
+                     <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse border-2 border-[#1d4ed8]">
                          <thead className="bg-gray-100">
                             <tr>
                                <th className="px-6 py-4 text-[11px] font-black uppercase text-gray-600 tracking-widest border-2 border-[#1d4ed8] w-1/2"># Combination</th>
@@ -851,10 +863,10 @@ const AdminAnnouncements = () => {
                             })}
                          </tbody>
                       </table>
-                   </div>
-                    )}
+                    </div>
                  </div>
-                <div className="h-20"></div> {/* Bottom Spacing for mobile overflow */}
+                 )}
+                 <div className="h-20"></div> {/* Bottom Spacing for mobile overflow */}
              </div>
            )}
         </div>
