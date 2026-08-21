@@ -33,7 +33,7 @@ import { useCart } from '../../context/CartContext';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { motion, AnimatePresence } from 'framer-motion';
-import { doc, getDoc, collection, query, where, getDocs, orderBy, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, orderBy, updateDoc, deleteDoc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useAuth } from '../../context/AuthContext';
 import PullToRefresh from '../../components/PullToRefresh';
@@ -221,9 +221,9 @@ const AdminUserDetails = () => {
     }
   };
 
-  const handleDeleteUser = async () => {
+  const handleArchiveUser = async () => {
     if (!checkSuperAdminPrivilege()) return;
-    if (!window.confirm("CRITICAL WARNING: This will permanently delete this user's access while archiving their records. Proceed?")) return;
+    if (!window.confirm("WARNING: This will archive this user. They will no longer be able to log in, but their data will be kept. Proceed?")) return;
 
     try {
       await updateDoc(doc(db, 'users', userId), { 
@@ -232,11 +232,58 @@ const AdminUserDetails = () => {
         active: false,
         deletedAt: new Date().toISOString()
       });
-      alert("User account has been successfully deleted and archived.");
+      alert("User account has been successfully archived.");
+    } catch (error) {
+      console.error("Error archiving user:", error);
+      alert("Failed to archive user profile.");
+    }
+  };
+
+  const handleRestoreUser = async () => {
+    if (!checkSuperAdminPrivilege()) return;
+    if (!window.confirm("Are you sure you want to restore this user? They will regain full access to their account.")) return;
+
+    try {
+      await updateDoc(doc(db, 'users', userId), { 
+        status: 'Active',
+        isDeleted: false,
+        active: true,
+        restoredAt: new Date().toISOString()
+      });
+      alert("User account has been successfully restored.");
+    } catch (error) {
+      console.error("Error restoring user:", error);
+      alert("Failed to restore user profile.");
+    }
+  };
+
+  const handlePermanentDelete = async () => {
+    if (!checkSuperAdminPrivilege()) return;
+    const confirmation = window.prompt("CRITICAL WARNING: This will PERMANENTLY ERASE the user's active profile and move their data to an archived backup. This action cannot be undone. Type 'DELETE' to confirm.");
+    if (confirmation !== 'DELETE') {
+      alert("Permanent deletion cancelled.");
+      return;
+    }
+
+    try {
+      const userRef = doc(db, 'users', userId);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const archivedData = {
+          ...userSnap.data(),
+          archivedReason: 'Admin Permanent Delete',
+          archivedAt: new Date().toISOString()
+        };
+        await setDoc(doc(db, 'archived_users', userId), archivedData);
+      }
+      
+      await deleteDoc(userRef);
+      
+      alert("User has been permanently deleted and their profile data has been securely archived.");
       navigate('/admin/users');
     } catch (error) {
-      console.error("Error deleting user:", error);
-      alert("Failed to delete user profile.");
+      console.error("Error permanently deleting user:", error);
+      alert("Failed to permanently delete user.");
     }
   };
 
@@ -564,12 +611,29 @@ const AdminUserDetails = () => {
            <Key size={16} /> Request Password Reset
          </button>
          
-         <button 
-           onClick={handleDeleteUser}
-           className="w-full bg-red-600/10 border-2 border-red-600/20 text-red-600 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-red-600 hover:text-white transition-all active:scale-95 shadow-lg"
-         >
-           Purge Profile Identity
-         </button>
+         <div className="grid grid-cols-2 gap-3">
+           {(user.status === 'Deleted' || user.isDeleted || user.active === false) ? (
+             <button 
+               onClick={handleRestoreUser}
+               className="w-full bg-emerald-600/10 border-2 border-emerald-600/20 text-emerald-600 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-emerald-600 hover:text-white transition-all active:scale-95 shadow-lg"
+             >
+               Restore Profile
+             </button>
+           ) : (
+             <button 
+               onClick={handleArchiveUser}
+               className="w-full bg-orange-600/10 border-2 border-orange-600/20 text-orange-600 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-orange-600 hover:text-white transition-all active:scale-95 shadow-lg"
+             >
+               Archive Profile
+             </button>
+           )}
+           <button 
+             onClick={handlePermanentDelete}
+             className="w-full bg-red-600/10 border-2 border-red-600/20 text-red-600 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-red-600 hover:text-white transition-all active:scale-95 shadow-lg"
+           >
+             Permanent Delete
+           </button>
+         </div>
       </div>
       </>
       ) : (
