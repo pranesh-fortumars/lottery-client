@@ -4,8 +4,13 @@ import { Landmark, ArrowLeft, Loader2 } from 'lucide-react';
 import { 
   subscribeToTickets, 
   subscribeToPendingTransactions, 
-  subscribeToWithdrawals 
+  subscribeToWithdrawals,
+  subscribeToUsers
 } from '../../services/firebaseService';
+import { 
+  LineChart, Line, AreaChart, Area, BarChart, Bar, 
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend 
+} from 'recharts';
 
 const AdminFinancials = () => {
   const navigate = useNavigate();
@@ -22,17 +27,22 @@ const AdminFinancials = () => {
     cashLoss: 0
   });
 
+  const [chartData, setChartData] = useState([]);
+
   useEffect(() => {
     let unsubscribeTickets;
     let unsubscribeTransactions;
     let unsubscribeWithdrawals;
+    let unsubscribeUsers;
 
     let latestTickets = [];
     let latestTransactions = [];
     let latestWithdrawals = [];
+    let latestUsers = [];
     let ticketsLoaded = false;
     let transactionsLoaded = false;
     let withdrawalsLoaded = false;
+    let usersLoaded = false;
 
     const calculateTodayFinancials = () => {
       const now = new Date();
@@ -81,31 +91,91 @@ const AdminFinancials = () => {
         cashProfit,
         cashLoss
       });
+    };
+
+    const calculateTimeSeriesData = () => {
+      const days = 7;
+      const data = [];
+      const now = new Date();
+      now.setHours(0,0,0,0); // start of today
+
+      for (let i = days - 1; i >= 0; i--) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        const dateStr = d.toLocaleDateString();
+        const shortDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+        // Sales for this day
+        const daySales = latestTickets.reduce((sum, t) => {
+           if (!t.timestamp || t.timestamp.toDate().toLocaleDateString() !== dateStr) return sum;
+           return sum + (parseFloat(t.price || 0) * (t.qty || 1));
+        }, 0);
+
+        // Winnings for this day
+        const dayWinnings = latestTickets.reduce((sum, t) => {
+           if (t.status !== 'won') return sum;
+           if (!t.timestamp || t.timestamp.toDate().toLocaleDateString() !== dateStr) return sum;
+           return sum + parseFloat(t.winAmount || 0);
+        }, 0);
+
+        const dayProfit = daySales > dayWinnings ? daySales - dayWinnings : 0;
+        const dayLoss = dayWinnings > daySales ? dayWinnings - daySales : 0;
+
+        // New Users for this day
+        const newUsers = latestUsers.reduce((count, u) => {
+           if (!u.createdAt || u.createdAt.toDate().toLocaleDateString() !== dateStr) return count;
+           return count + 1;
+        }, 0);
+
+        data.push({
+          date: shortDate,
+          sales: daySales,
+          winnings: dayWinnings,
+          profit: dayProfit,
+          loss: dayLoss,
+          newUsers: newUsers
+        });
+      }
+      setChartData(data);
       setLoading(false);
+    };
+
+    const processAllData = () => {
+      if (ticketsLoaded && transactionsLoaded && withdrawalsLoaded && usersLoaded) {
+        calculateTodayFinancials();
+        calculateTimeSeriesData();
+      }
     };
 
     unsubscribeTickets = subscribeToTickets((tickets) => {
       latestTickets = tickets;
       ticketsLoaded = true;
-      calculateTodayFinancials();
+      processAllData();
     });
 
     unsubscribeTransactions = subscribeToPendingTransactions((txs) => {
       latestTransactions = txs;
       transactionsLoaded = true;
-      calculateTodayFinancials();
+      processAllData();
     });
 
     unsubscribeWithdrawals = subscribeToWithdrawals((withdrawals) => {
       latestWithdrawals = withdrawals;
       withdrawalsLoaded = true;
-      calculateTodayFinancials();
+      processAllData();
+    });
+
+    unsubscribeUsers = subscribeToUsers((users) => {
+      latestUsers = users;
+      usersLoaded = true;
+      processAllData();
     });
 
     return () => {
       if (unsubscribeTickets) unsubscribeTickets();
       if (unsubscribeTransactions) unsubscribeTransactions();
       if (unsubscribeWithdrawals) unsubscribeWithdrawals();
+      if (unsubscribeUsers) unsubscribeUsers();
     };
   }, []);
 
@@ -179,6 +249,91 @@ const AdminFinancials = () => {
                   <p className="text-2xl sm:text-3xl font-black text-red-700 italic">₹ {todayFinancials.cashLoss.toLocaleString()}</p>
                </div>
             </div>
+          </div>
+        )}
+
+        {/* Charts Section */}
+        {!loading && chartData.length > 0 && (
+          <div className="space-y-6 mt-6">
+            
+            {/* Sales Analysis Chart */}
+            <div className="bg-white rounded-3xl shadow-xl p-6 border-[1.5px] border-slate-200">
+               <div className="mb-6">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">Sales Analysis</h3>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">7-Day Ticket Volume</p>
+               </div>
+               <div className="h-64 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                      <XAxis dataKey="date" tick={{fontSize: 10, fontWeight: 700, fill: '#64748b'}} axisLine={false} tickLine={false} />
+                      <YAxis tick={{fontSize: 10, fontWeight: 700, fill: '#64748b'}} axisLine={false} tickLine={false} tickFormatter={(val) => `₹${val}`} />
+                      <Tooltip 
+                        contentStyle={{ borderRadius: '1rem', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                        itemStyle={{ fontWeight: 900, fontSize: '12px' }}
+                        labelStyle={{ fontWeight: 900, fontSize: '10px', color: '#64748b', textTransform: 'uppercase' }}
+                      />
+                      <Line type="monotone" dataKey="sales" name="Sales" stroke="#6366f1" strokeWidth={4} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+               </div>
+            </div>
+
+            {/* Profit & Loss Chart */}
+            <div className="bg-white rounded-3xl shadow-xl p-6 border-[1.5px] border-slate-200">
+               <div className="mb-6">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">Profit & Loss Analysis</h3>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">7-Day Game Margins</p>
+               </div>
+               <div className="h-64 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                      <XAxis dataKey="date" tick={{fontSize: 10, fontWeight: 700, fill: '#64748b'}} axisLine={false} tickLine={false} />
+                      <YAxis tick={{fontSize: 10, fontWeight: 700, fill: '#64748b'}} axisLine={false} tickLine={false} tickFormatter={(val) => `₹${val}`} />
+                      <Tooltip 
+                        cursor={{fill: '#f8fafc'}}
+                        contentStyle={{ borderRadius: '1rem', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                        itemStyle={{ fontWeight: 900, fontSize: '12px' }}
+                        labelStyle={{ fontWeight: 900, fontSize: '10px', color: '#64748b', textTransform: 'uppercase' }}
+                      />
+                      <Legend iconType="circle" wrapperStyle={{ fontSize: '10px', fontWeight: 700, paddingTop: '10px' }} />
+                      <Bar dataKey="profit" name="Profit" fill="#14b8a6" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                      <Bar dataKey="loss" name="Loss" fill="#f43f5e" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                    </BarChart>
+                  </ResponsiveContainer>
+               </div>
+            </div>
+
+            {/* User Growth Chart */}
+            <div className="bg-white rounded-3xl shadow-xl p-6 border-[1.5px] border-slate-200">
+               <div className="mb-6">
+                  <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">User Growth</h3>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">7-Day Registrations</p>
+               </div>
+               <div className="h-64 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                      <defs>
+                        <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                      <XAxis dataKey="date" tick={{fontSize: 10, fontWeight: 700, fill: '#64748b'}} axisLine={false} tickLine={false} />
+                      <YAxis tick={{fontSize: 10, fontWeight: 700, fill: '#64748b'}} axisLine={false} tickLine={false} />
+                      <Tooltip 
+                        contentStyle={{ borderRadius: '1rem', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                        itemStyle={{ fontWeight: 900, fontSize: '12px' }}
+                        labelStyle={{ fontWeight: 900, fontSize: '10px', color: '#64748b', textTransform: 'uppercase' }}
+                      />
+                      <Area type="monotone" dataKey="newUsers" name="New Users" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorUsers)" activeDot={{ r: 6 }} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+               </div>
+            </div>
+            
           </div>
         )}
       </div>
