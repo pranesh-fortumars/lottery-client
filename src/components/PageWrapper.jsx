@@ -304,7 +304,7 @@ export const BottomNav = () => {
   return (
     <div className="w-full bg-white border-t border-slate-400 pointer-events-auto shrink-0 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 relative">
       <div className="bg-slate-100 text-black py-1.5 text-center font-black text-[10px] tracking-widest border-b border-slate-500 uppercase">
-        {isAdmin ? 'Admin Dashboard' : appSettings.brandName}
+        {isAdmin ? (user?.isSuperAdmin || user?.role === 'super_admin' ? 'Super Admin Dashboard' : 'Admin Dashboard') : appSettings.brandName}
       </div>
 
       <nav className="flex justify-around items-center py-3 px-2 bg-white pb-safe">
