@@ -67,6 +67,7 @@ const AdminAnnouncements = () => {
   const [monitorSearch, setMonitorSearch] = useState('');
   const [monitorTier, setMonitorTier] = useState('ALL');
   const [monitorDate, setMonitorDate] = useState(new Date().toISOString().split('T')[0]);
+  const [showFullInventory, setShowFullInventory] = useState(false);
 
   const boardOptions = {
     '1D': ['A', 'B', 'C'],
@@ -771,28 +772,37 @@ const AdminAnnouncements = () => {
                  )}
 
                 {/* Detailed Monitoring Table */}
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-12">
-                   <div className="p-6 border-b border-gray-800 flex flex-col sm:flex-row items-center justify-between bg-gray-50/50 gap-4">
-                      <div className="flex items-center gap-4">
-                         <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white shadow-lg"><BarChart3 size={20} /></div>
-                         <div>
-                            <h5 className="text-[14px] font-black uppercase tracking-widest italic leading-tight">{monitorType} - {monitorBoard} Inventory</h5>
-                            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Real-time Stock Monitor</p>
+                 <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-12">
+                    <div className="p-6 border-b border-gray-800 flex flex-col sm:flex-row items-center justify-between bg-gray-50/50 gap-4">
+                       <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-white shadow-lg"><BarChart3 size={20} /></div>
+                          <div>
+                             <h5 className="text-[14px] font-black uppercase tracking-widest italic leading-tight">{monitorType} - {monitorBoard} Inventory</h5>
+                             <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Real-time Stock Monitor</p>
+                          </div>
+                       </div>
+                       <div className="flex flex-wrap items-center gap-6">
+                         <div className="flex gap-8">
+                           <div className="text-right">
+                              <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Total</p>
+                              <p className="text-lg font-black font-condensed italic text-gray-950 tabular-nums">{getNumberRange().length}</p>
+                           </div>
+                           <div className="text-right border-l border-gray-800 pl-8">
+                              <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Active</p>
+                              <p className="text-lg font-black font-condensed italic text-red-600 tabular-nums">{getNumberRange().filter(n => (dynamicAnalyticFeed[showDetailSlot]?.dataStore?.[monitorType]?.[monitorBoard]?.[n] || 0) > 0).length}</p>
+                           </div>
                          </div>
-                      </div>
-                      <div className="flex gap-8">
-                        <div className="text-right">
-                           <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Total</p>
-                           <p className="text-lg font-black font-condensed italic text-gray-950 tabular-nums">{getNumberRange().length}</p>
-                        </div>
-                        <div className="text-right border-l border-gray-800 pl-8">
-                           <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Active</p>
-                           <p className="text-lg font-black font-condensed italic text-red-600 tabular-nums">{getNumberRange().filter(n => (dynamicAnalyticFeed[showDetailSlot]?.dataStore?.[monitorType]?.[monitorBoard]?.[n] || 0) > 0).length}</p>
-                        </div>
-                      </div>
-                   </div>
+                         <button 
+                           onClick={() => setShowFullInventory(!showFullInventory)} 
+                           className="px-4 py-2 bg-gray-900 text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#1d4ed8] transition-colors whitespace-nowrap shadow-sm"
+                         >
+                           {showFullInventory ? 'Hide Full Inventory' : 'View Full Inventory'}
+                         </button>
+                       </div>
+                    </div>
 
-                   <div className="overflow-x-auto">
+                    {showFullInventory && (
+                       <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse border-2 border-[#1d4ed8]">
                          <thead className="bg-gray-100">
                             <tr>
@@ -842,7 +852,8 @@ const AdminAnnouncements = () => {
                          </tbody>
                       </table>
                    </div>
-                </div>
+                    )}
+                 </div>
                 <div className="h-20"></div> {/* Bottom Spacing for mobile overflow */}
              </div>
            )}
