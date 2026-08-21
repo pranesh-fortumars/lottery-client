@@ -38,11 +38,13 @@ import {
   Hash,
   Save
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { MARKET_GROUPS, getBrandBySlot, isSlotClosed } from '../../constants/lotteryConfig';
 
 const AdminAnnouncements = () => {
-  const { purchasedTickets, addResult, declaredResults, prizeScheme, updateScheme, appSettings } = useCart();
+  const { user } = useAuth();
+  const { purchasedTickets, addResult, declaredResults, prizeScheme, updateScheme, appSettings, updateAppSettings } = useCart();
   const [activeTab, setActiveTab] = useState('dispatch'); 
   
   // Workflow Navigation State
@@ -67,8 +69,10 @@ const AdminAnnouncements = () => {
   const [monitorSearch, setMonitorSearch] = useState('');
   const [monitorTier, setMonitorTier] = useState('ALL');
   const [monitorDate, setMonitorDate] = useState(new Date().toISOString().split('T')[0]);
-  const [showHighFrequency, setShowHighFrequency] = useState(true);
-  const [showDetailedInventory, setShowDetailedInventory] = useState(true);
+
+  // Read toggle states globally from appSettings
+  const showHighFrequency = appSettings?.showHighFrequency !== false;
+  const showDetailedInventory = appSettings?.showDetailedInventory !== false;
 
   const boardOptions = {
     '1D': ['A', 'B', 'C'],
@@ -698,11 +702,12 @@ const AdminAnnouncements = () => {
                        )}
                     </div>
 
-                    {/* Toggle Controls for Sections */}
+                    {/* Toggle Controls for Sections (SUPER ADMIN ONLY) */}
+                    {user?.role === 'super_admin' && (
                     <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-900 items-center justify-end">
                        <label className="flex items-center gap-2 cursor-pointer group">
                           <div className="relative">
-                             <input type="checkbox" className="sr-only" checked={showHighFrequency} onChange={() => setShowHighFrequency(!showHighFrequency)} />
+                             <input type="checkbox" className="sr-only" checked={showHighFrequency} onChange={() => updateAppSettings({ showHighFrequency: !showHighFrequency })} />
                              <div className={`block w-10 h-6 rounded-full transition-colors ${showHighFrequency ? 'bg-red-500' : 'bg-gray-300'}`}></div>
                              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showHighFrequency ? 'translate-x-4' : 'translate-x-0'}`}></div>
                           </div>
@@ -710,13 +715,14 @@ const AdminAnnouncements = () => {
                        </label>
                        <label className="flex items-center gap-2 cursor-pointer group">
                           <div className="relative">
-                             <input type="checkbox" className="sr-only" checked={showDetailedInventory} onChange={() => setShowDetailedInventory(!showDetailedInventory)} />
+                             <input type="checkbox" className="sr-only" checked={showDetailedInventory} onChange={() => updateAppSettings({ showDetailedInventory: !showDetailedInventory })} />
                              <div className={`block w-10 h-6 rounded-full transition-colors ${showDetailedInventory ? 'bg-blue-600' : 'bg-gray-300'}`}></div>
                              <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showDetailedInventory ? 'translate-x-4' : 'translate-x-0'}`}></div>
                           </div>
                           <span className="text-[10px] font-black uppercase text-gray-500 group-hover:text-gray-900 transition-colors">Detailed Inventory</span>
                        </label>
                     </div>
+                    )}
                  </div>
 
                  {/* High-Frequency Analytics Table (Support 3D & 4D) */}
