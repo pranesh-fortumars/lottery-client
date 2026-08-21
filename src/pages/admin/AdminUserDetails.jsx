@@ -204,7 +204,6 @@ const AdminUserDetails = () => {
 
     try {
       await updateDoc(doc(db, 'users', userId), { status: newStatus });
-      setUser(prev => ({ ...prev, status: newStatus }));
       alert(`User identity has been set to ${newStatus}.`);
     } catch (error) {
       console.error("Error toggling block status:", error);
@@ -243,11 +242,6 @@ const AdminUserDetails = () => {
         [field]: (user[field] || 0) + finalVal,
         balance: (user.balance || 0) + finalVal
       });
-      setUser(prev => ({
-        ...prev,
-        [field]: (prev[field] || 0) + finalVal,
-        balance: (prev.balance || 0) + finalVal
-      }));
       alert(`Balance synchronized! ${isAddition ? 'Added' : 'Subtracted'} ₹${val} to ${type}.`);
     } catch (error) {
       alert("Failed to adjust balance: " + error.message);
@@ -259,7 +253,6 @@ const AdminUserDetails = () => {
     setUpdating(true);
     try {
       await updateDoc(doc(db, 'users', userId), editData);
-      setUser(prev => ({ ...prev, ...editData }));
       setShowEditModal(false);
       alert("Profile updated successfully!");
     } catch (error) {
