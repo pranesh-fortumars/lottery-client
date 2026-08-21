@@ -30,7 +30,10 @@ const AdminDashboard = () => {
     { label: 'Revenue (Today)', value: '₹0', icon: Wallet, change: '0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/revenue' },
     { label: 'Active Sessions', value: '0', icon: TrendingUp, change: '0%', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/active-sessions' },
     { label: 'Login History', value: 'Logs', icon: Key, change: '0%', bg: 'bg-purple-600', text: 'text-white', iconBg: 'bg-purple-500', subText: 'text-purple-200', link: '/admin/login-history' },
+    { label: 'Financial Overview', value: 'Today', icon: Landmark, change: 'LIVE', bg: 'bg-indigo-600', text: 'text-white', iconBg: 'bg-indigo-500', subText: 'text-indigo-200', action: 'modal' },
   ]);
+
+  const [showFinanceModal, setShowFinanceModal] = useState(false);
 
   const [todayFinancials, setTodayFinancials] = useState({
     sales: 0,
@@ -71,6 +74,7 @@ const AdminDashboard = () => {
         { label: 'Revenue (Lifetime)', value: `₹${totalRevenue.toLocaleString()}`, icon: Wallet, change: '+0%', bg: 'bg-amber-500', text: 'text-white', iconBg: 'bg-amber-400', subText: 'text-amber-100', link: '/admin/revenue' },
         { label: 'Active Sessions', value: 'Live', icon: TrendingUp, change: 'Stable', bg: 'bg-rose-600', text: 'text-white', iconBg: 'bg-rose-500', subText: 'text-rose-200', link: '/admin/active-sessions' },
         { label: 'Login History', value: 'Logs', icon: Key, change: '0%', bg: 'bg-purple-600', text: 'text-white', iconBg: 'bg-purple-500', subText: 'text-purple-200', link: '/admin/login-history' },
+        { label: 'Financial Overview', value: 'Today', icon: Landmark, change: 'LIVE', bg: 'bg-indigo-600', text: 'text-white', iconBg: 'bg-indigo-500', subText: 'text-indigo-200', action: 'modal' },
       ]);
       setLoading(false);
     };
@@ -214,8 +218,8 @@ const AdminDashboard = () => {
         {stats.map((stat, idx) => (
           <div 
             key={idx} 
-            onClick={() => stat.link && navigate(stat.link)}
-            className={`${stat.bg} rounded-3xl p-4 sm:p-5 shadow-lg relative overflow-hidden flex flex-col justify-between ${stat.link ? 'cursor-pointer hover:opacity-90 active:scale-95 transition-all' : ''}`}
+            onClick={() => stat.link ? navigate(stat.link) : stat.action === 'modal' ? setShowFinanceModal(true) : null}
+            className={`${stat.bg} rounded-3xl p-4 sm:p-5 shadow-lg relative overflow-hidden flex flex-col justify-between ${stat.link || stat.action ? 'cursor-pointer hover:opacity-90 active:scale-95 transition-all' : ''}`}
           >
             <div className="flex items-center gap-2 mb-3">
                <div className={`w-10 h-10 ${stat.iconBg} rounded-2xl flex items-center justify-center shrink-0 shadow-inner`}>
@@ -234,51 +238,71 @@ const AdminDashboard = () => {
         ))}
       </div>
 
-      {/* Today's Financial Overview Grid */}
-      <div className="mt-8 border-[1.5px] border-slate-200 rounded-[2.5rem] p-5 bg-white shadow-xl relative overflow-hidden">
-         <div className="flex items-center gap-2 mb-5 px-1">
-            <Landmark size={20} className="text-slate-800" />
-            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tighter italic">Today's Financials</h2>
-         </div>
-         
-         <div className="grid grid-cols-2 gap-3">
-            {/* Game Metrics */}
-            <div className="bg-indigo-50 rounded-2xl p-4 flex flex-col justify-between border border-indigo-100">
-               <p className="text-[8px] font-black text-indigo-500 uppercase tracking-widest mb-1">Total Sales</p>
-               <p className="text-xl font-black text-indigo-700 italic">₹ {todayFinancials.sales.toLocaleString()}</p>
+      {/* Financial Overview Modal */}
+      {showFinanceModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setShowFinanceModal(false)}></div>
+          
+          <div className="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl relative z-10 border border-white/20 animate-in fade-in zoom-in duration-200">
+            <div className="p-5 flex flex-col items-center border-b border-slate-100">
+              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-3">
+                <Landmark size={24} />
+              </div>
+              <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter italic text-center leading-none">Today's Financials</h3>
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-2">Real-Time Core Metrics</p>
             </div>
-            <div className="bg-emerald-50 rounded-2xl p-4 flex flex-col justify-between border border-emerald-100">
-               <p className="text-[8px] font-black text-emerald-500 uppercase tracking-widest mb-1">Total Winnings</p>
-               <p className="text-xl font-black text-emerald-700 italic">₹ {todayFinancials.winnings.toLocaleString()}</p>
-            </div>
-            <div className="bg-teal-50 rounded-2xl p-4 flex flex-col justify-between border border-teal-100">
-               <p className="text-[8px] font-black text-teal-500 uppercase tracking-widest mb-1">Game Profit</p>
-               <p className="text-xl font-black text-teal-700 italic">₹ {todayFinancials.gameProfit.toLocaleString()}</p>
-            </div>
-            <div className="bg-rose-50 rounded-2xl p-4 flex flex-col justify-between border border-rose-100">
-               <p className="text-[8px] font-black text-rose-500 uppercase tracking-widest mb-1">Game Loss</p>
-               <p className="text-xl font-black text-rose-700 italic">₹ {todayFinancials.gameLoss.toLocaleString()}</p>
+            
+            <div className="p-4 max-h-[60vh] overflow-y-auto">
+               <div className="grid grid-cols-2 gap-3">
+                  {/* Game Metrics */}
+                  <div className="bg-indigo-50 rounded-2xl p-4 flex flex-col justify-between border border-indigo-100">
+                     <p className="text-[8px] font-black text-indigo-500 uppercase tracking-widest mb-1">Total Sales</p>
+                     <p className="text-xl font-black text-indigo-700 italic">₹ {todayFinancials.sales.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-emerald-50 rounded-2xl p-4 flex flex-col justify-between border border-emerald-100">
+                     <p className="text-[8px] font-black text-emerald-500 uppercase tracking-widest mb-1">Total Winnings</p>
+                     <p className="text-xl font-black text-emerald-700 italic">₹ {todayFinancials.winnings.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-teal-50 rounded-2xl p-4 flex flex-col justify-between border border-teal-100">
+                     <p className="text-[8px] font-black text-teal-500 uppercase tracking-widest mb-1">Game Profit</p>
+                     <p className="text-xl font-black text-teal-700 italic">₹ {todayFinancials.gameProfit.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-rose-50 rounded-2xl p-4 flex flex-col justify-between border border-rose-100">
+                     <p className="text-[8px] font-black text-rose-500 uppercase tracking-widest mb-1">Game Loss</p>
+                     <p className="text-xl font-black text-rose-700 italic">₹ {todayFinancials.gameLoss.toLocaleString()}</p>
+                  </div>
+
+                  {/* Cash Flow Metrics */}
+                  <div className="bg-blue-50 rounded-2xl p-4 flex flex-col justify-between border border-blue-100">
+                     <p className="text-[8px] font-black text-blue-500 uppercase tracking-widest mb-1">Total Deposits</p>
+                     <p className="text-xl font-black text-blue-700 italic">₹ {todayFinancials.deposits.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-orange-50 rounded-2xl p-4 flex flex-col justify-between border border-orange-100">
+                     <p className="text-[8px] font-black text-orange-500 uppercase tracking-widest mb-1">Total Withdrawals</p>
+                     <p className="text-xl font-black text-orange-700 italic">₹ {todayFinancials.withdrawals.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-fuchsia-50 rounded-2xl p-4 flex flex-col justify-between border border-fuchsia-100">
+                     <p className="text-[8px] font-black text-fuchsia-500 uppercase tracking-widest mb-1">Cash Profit</p>
+                     <p className="text-xl font-black text-fuchsia-700 italic">₹ {todayFinancials.cashProfit.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-red-50 rounded-2xl p-4 flex flex-col justify-between border border-red-100">
+                     <p className="text-[8px] font-black text-red-500 uppercase tracking-widest mb-1">Cash Loss</p>
+                     <p className="text-xl font-black text-red-700 italic">₹ {todayFinancials.cashLoss.toLocaleString()}</p>
+                  </div>
+               </div>
             </div>
 
-            {/* Cash Flow Metrics */}
-            <div className="bg-blue-50 rounded-2xl p-4 flex flex-col justify-between border border-blue-100">
-               <p className="text-[8px] font-black text-blue-500 uppercase tracking-widest mb-1">Total Deposits</p>
-               <p className="text-xl font-black text-blue-700 italic">₹ {todayFinancials.deposits.toLocaleString()}</p>
+            <div className="p-4 border-t border-slate-100 bg-slate-50">
+              <button 
+                onClick={() => setShowFinanceModal(false)}
+                className="w-full bg-slate-800 text-white p-4 rounded-xl font-black text-xs uppercase tracking-widest active:scale-95 transition-all"
+              >
+                Close Metrics
+              </button>
             </div>
-            <div className="bg-orange-50 rounded-2xl p-4 flex flex-col justify-between border border-orange-100">
-               <p className="text-[8px] font-black text-orange-500 uppercase tracking-widest mb-1">Total Withdrawals</p>
-               <p className="text-xl font-black text-orange-700 italic">₹ {todayFinancials.withdrawals.toLocaleString()}</p>
-            </div>
-            <div className="bg-fuchsia-50 rounded-2xl p-4 flex flex-col justify-between border border-fuchsia-100">
-               <p className="text-[8px] font-black text-fuchsia-500 uppercase tracking-widest mb-1">Cash Flow Profit</p>
-               <p className="text-xl font-black text-fuchsia-700 italic">₹ {todayFinancials.cashProfit.toLocaleString()}</p>
-            </div>
-            <div className="bg-red-50 rounded-2xl p-4 flex flex-col justify-between border border-red-100">
-               <p className="text-[8px] font-black text-red-500 uppercase tracking-widest mb-1">Cash Flow Loss</p>
-               <p className="text-xl font-black text-red-700 italic">₹ {todayFinancials.cashLoss.toLocaleString()}</p>
-            </div>
-         </div>
-      </div>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-4 mt-4">
          <button 
