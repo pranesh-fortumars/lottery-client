@@ -470,7 +470,8 @@ export const CartProvider = ({ children }) => {
     
     // If not prepaid, check balance
     if (!isPrepaid && totalAvailable < totalCost) {
-      alert("Insufficient Balance!");
+      alert("Insufficient Balance! Redirecting to Wallet Recharge...");
+      window.location.href = '/topup';
       return;
     }
 
