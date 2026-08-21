@@ -703,7 +703,7 @@ const AdminAnnouncements = () => {
                     </div>
 
                     {/* Toggle Controls for Sections (SUPER ADMIN ONLY) */}
-                    {user?.role === 'super_admin' && (
+                    {(user?.isSuperAdmin || user?.role === 'super_admin') && (
                     <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-900 items-center justify-end">
                        <label className="flex items-center gap-2 cursor-pointer group">
                           <div className="relative">
