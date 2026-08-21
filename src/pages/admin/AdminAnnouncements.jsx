@@ -798,7 +798,7 @@ const AdminAnnouncements = () => {
                    </div>
                  )}
                     {/* Detailed Monitoring Table */}
-                  {showDetailedInventory && (
+                  {(showDetailedInventory || monitorType === '1D' || monitorType === '2D') && (
                   <div className="bg-white rounded-2xl shadow-xl border border-gray-800 overflow-hidden mb-12 animate-in slide-in-from-bottom duration-700">
                      <div className="p-6 border-b border-gray-800 flex flex-col sm:flex-row items-center justify-between bg-gray-50/50 gap-4">
                         <div className="flex items-center gap-4">
