@@ -681,10 +681,10 @@ const AdminUserDetails = () => {
                                              <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-base font-black font-condensed italic text-gray-950 tracking-normal leading-none text-center">
                                                 {t.num}
                                              </td>
-                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[11px] font-black font-condensed italic text-[#1d4ed8] leading-none text-center">
+                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-sm font-black font-condensed italic text-[#1d4ed8] leading-none text-center">
                                                 {t.qty}
                                              </td>
-                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[7px] font-bold text-gray-500 italic leading-none text-center">
+                                             <td className="py-1.5 px-0 border-r-2 border-b-2 border-[#1d4ed8] text-[10px] font-black text-gray-800 italic leading-none text-center">
                                                 {t.price}
                                              </td>
                                              <td className="py-1.5 px-0.5 border-b-2 border-[#1d4ed8] text-right align-middle">

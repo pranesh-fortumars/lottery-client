@@ -261,9 +261,9 @@ const OrderDetails = () => {
                                 </React.Fragment>
                              ))}
                           </div>
-                          <div className="flex-1 text-center">
-                             <p className="text-[11px] sm:text-xs font-bold text-gray-700">₹{tCost.toFixed(2)}*{t.qty}</p>
-                          </div>
+                           <div className="flex-1 text-center">
+                              <p className="text-[13px] sm:text-[14px] font-black text-gray-900">₹{tCost.toFixed(2)}*{t.qty}</p>
+                           </div>
                           <div className="flex-1 text-right">
                              {isPending ? (
                                 <div className="flex flex-col items-end">

@@ -228,10 +228,10 @@ const MyTickets = () => {
                                           <td className="py-2 px-0 border-r border-gray-800 text-base font-black font-condensed italic text-white tracking-normal leading-none text-center">
                                              {t.num}
                                           </td>
-                                          <td className="py-2 px-0 border-r border-gray-800 text-[11px] font-black font-condensed italic text-primary leading-none text-center">
+                                          <td className="py-2 px-0 border-r border-gray-800 text-sm font-black font-condensed italic text-primary leading-none text-center">
                                              {t.qty}
                                           </td>
-                                          <td className="py-2 px-0 border-r border-gray-800 text-[7px] font-bold text-gray-500 italic leading-none text-center">
+                                          <td className="py-2 px-0 border-r border-gray-800 text-[10px] font-black text-gray-300 italic leading-none text-center">
                                              {t.price}
                                           </td>
                                           <td className="py-2 px-1 text-right align-middle">
