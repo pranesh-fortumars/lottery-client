@@ -275,16 +275,18 @@ const AdminAnnouncements = () => {
     <div className="space-y-8 p-4 pb-24 h-full bg-[#f8fbff] overflow-y-auto scrollbar-hide">
       
       {/* Navigation */}
-      <div className="flex bg-white rounded-2xl p-2 shadow-sm border border-gray-900 sticky top-0 z-[100]">
-        {[
-          { id: 'dispatch', label: 'Dispatch', icon: Zap },
-          { id: 'analysis', label: 'Monitor', icon: TrendingUp },
-          { id: 'history', label: 'History', icon: History }
-        ].map(tab => (
-          <button key={tab.id} onClick={() => { setActiveTab(tab.id); setShowDetailSlot(null); }} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-[#1d4ed8] text-white shadow-lg shadow-red-500/20' : 'text-gray-400 hover:bg-gray-50'}`}>
-            <tab.icon size={16} /> {tab.label}
-          </button>
-        ))}
+      <div className="sticky top-0 z-[100] bg-[#f8fbff] pt-4 pb-4 -mt-4 -mx-4 px-4 mb-4">
+        <div className="flex bg-white rounded-2xl p-2 shadow-sm border border-gray-900">
+          {[
+            { id: 'dispatch', label: 'Dispatch', icon: Zap },
+            { id: 'analysis', label: 'Monitor', icon: TrendingUp },
+            { id: 'history', label: 'History', icon: History }
+          ].map(tab => (
+            <button key={tab.id} onClick={() => { setActiveTab(tab.id); setShowDetailSlot(null); }} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-[#1d4ed8] text-white shadow-lg shadow-red-500/20' : 'text-gray-400 hover:bg-gray-50'}`}>
+              <tab.icon size={16} /> {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {activeTab === 'dispatch' && (
@@ -627,7 +629,7 @@ const AdminAnnouncements = () => {
                 </div>
 
                  {/* Refined Filter Bar */}
-                 <div className="bg-white rounded-[2rem] p-4 sm:p-5 shadow-xl border border-gray-900 space-y-4 sticky top-2 z-[90]">
+                 <div className="bg-white rounded-[2rem] p-4 sm:p-5 shadow-xl border border-gray-900 space-y-4">
                     {/* Primary Row: Type & Search */}
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
                        <div className="flex gap-1.5 p-1 bg-gray-50 rounded-2xl border border-gray-900">
