@@ -262,7 +262,7 @@ const OrderDetails = () => {
                              ))}
                           </div>
                            <div className="flex-1 text-center">
-                              <p className="text-[13px] sm:text-[14px] font-black text-gray-900">₹{tCost.toFixed(2)}*{t.qty}</p>
+                              <p className="text-[15px] sm:text-base font-black text-gray-950">₹{tCost.toFixed(2)}*{t.qty}</p>
                            </div>
                           <div className="flex-1 text-right">
                              {isPending ? (
