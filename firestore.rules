@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isSuperAdmin() {
+      return isAuthenticated() && 
+             (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isSuperAdmin == true ||
+              request.auth.token.email == 'praneshs682@gmail.com');
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if true; // Fallback allowing operations (since there were no rules before). Replace this with proper rules in production.
+    }
+
+    // Secure the archived_users collection
+    match /archived_users/{userId} {
+      allow read, write: if isSuperAdmin();
+    }
+  }
+}

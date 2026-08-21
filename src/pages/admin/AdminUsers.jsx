@@ -122,6 +122,13 @@ const AdminUsers = () => {
           </button>
           
           <button 
+            onClick={() => navigate('/admin/recover-users')}
+            className="flex-[0.5] h-15 bg-white border border-red-200 rounded-2xl font-black text-[10px] text-red-500 uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all"
+          >
+            <ShieldCheck size={16} /> Recover
+          </button>
+
+          <button 
             onClick={() => setShowAddForm(true)}
             className="flex-1 h-15 bg-gray-900 rounded-2xl font-black text-[10px] text-white uppercase tracking-widest flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all shadow-black/10"
           >

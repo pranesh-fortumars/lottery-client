@@ -32,6 +32,7 @@ import AdminAnnouncements from './pages/admin/AdminAnnouncements';
 import AdminControl from './pages/admin/AdminControl';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminUserDetails from './pages/admin/AdminUserDetails';
+import AdminRecoverUsers from './pages/admin/AdminRecoverUsers';
 import AdminReports from './pages/admin/AdminReports';
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminApprovals from './pages/admin/AdminApprovals';
@@ -136,6 +137,7 @@ const AnimatedRoutes = () => {
           <Route path="/admin/control" element={<ProtectedRoute role="admin"><AdminLayout><AdminControl /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/users" element={<ProtectedRoute role="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/users/:userId" element={<ProtectedRoute role="admin"><AdminLayout><AdminUserDetails /></AdminLayout></ProtectedRoute>} />
+          <Route path="/admin/recover-users" element={<ProtectedRoute role="admin"><AdminLayout><AdminRecoverUsers /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/reports" element={<ProtectedRoute role="admin"><AdminLayout><AdminReports /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/settings" element={<ProtectedRoute role="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>} />
           <Route path="/admin/approvals" element={<ProtectedRoute role="admin"><AdminLayout><AdminApprovals /></AdminLayout></ProtectedRoute>} />

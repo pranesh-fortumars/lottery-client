@@ -33,7 +33,7 @@ import { useCart } from '../../context/CartContext';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { motion, AnimatePresence } from 'framer-motion';
-import { doc, getDoc, collection, query, where, getDocs, orderBy, updateDoc, deleteDoc, onSnapshot, setDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, orderBy, updateDoc, deleteDoc, onSnapshot, setDoc, writeBatch } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useAuth } from '../../context/AuthContext';
 import PullToRefresh from '../../components/PullToRefresh';
@@ -265,25 +265,72 @@ const AdminUserDetails = () => {
       return;
     }
 
+    setLoading(true);
     try {
       const userRef = doc(db, 'users', userId);
       const userSnap = await getDoc(userRef);
-      if (userSnap.exists()) {
-        const archivedData = {
-          ...userSnap.data(),
-          archivedReason: 'Admin Permanent Delete',
-          archivedAt: new Date().toISOString()
-        };
-        await setDoc(doc(db, 'archived_users', userId), archivedData);
+      if (!userSnap.exists()) {
+        alert("User does not exist.");
+        setLoading(false);
+        return;
       }
-      
-      await deleteDoc(userRef);
-      
-      alert("User has been permanently deleted and their profile data has been securely archived.");
+
+      // Gather all related documents
+      const queries = [
+        { name: 'tickets', q: query(collection(db, 'tickets'), where('userId', '==', userId)) },
+        { name: 'pending_transactions', q: query(collection(db, 'pending_transactions'), where('userId', '==', userId)) },
+        { name: 'withdrawals', q: query(collection(db, 'withdrawals'), where('userId', '==', userId)) },
+        { name: 'notifications', q: query(collection(db, 'notifications'), where('userId', '==', userId)) },
+      ];
+
+      const backupData = {
+        profile: userSnap.data(),
+        tickets: [],
+        pending_transactions: [],
+        withdrawals: [],
+        notifications: [],
+        archivedReason: 'Admin Permanent Delete',
+        archivedAt: new Date().toISOString()
+      };
+
+      const docsToDelete = [userRef];
+
+      for (const { name, q } of queries) {
+        const snap = await getDocs(q);
+        snap.forEach(docSnap => {
+          backupData[name].push({ id: docSnap.id, ...docSnap.data() });
+          docsToDelete.push(docSnap.ref);
+        });
+      }
+
+      // Query login_sessions which uses 'uid' instead of 'userId'
+      const loginQ = query(collection(db, 'login_sessions'), where('uid', '==', userId));
+      const loginSnap = await getDocs(loginQ);
+      backupData.login_sessions = [];
+      loginSnap.forEach(docSnap => {
+         backupData.login_sessions.push({ id: docSnap.id, ...docSnap.data() });
+         docsToDelete.push(docSnap.ref);
+      });
+
+      // Step 1: Write the complete backup object to archived_users
+      await setDoc(doc(db, 'archived_users', userId), backupData);
+
+      // Step 2: Delete everything in chunks of 450 to avoid Firestore limits
+      const chunkSize = 450;
+      for (let i = 0; i < docsToDelete.length; i += chunkSize) {
+        const chunk = docsToDelete.slice(i, i + chunkSize);
+        const batch = writeBatch(db);
+        chunk.forEach(ref => batch.delete(ref));
+        await batch.commit();
+      }
+
+      alert("User has been permanently deleted and their complete data has been securely archived.");
       navigate('/admin/users');
     } catch (error) {
       console.error("Error permanently deleting user:", error);
       alert("Failed to permanently delete user.");
+    } finally {
+      setLoading(false);
     }
   };
 
