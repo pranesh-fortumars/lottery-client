@@ -35,11 +35,13 @@ import { auth } from '../../firebase';
 import { motion, AnimatePresence } from 'framer-motion';
 import { doc, getDoc, collection, query, where, getDocs, orderBy, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { useAuth } from '../../context/AuthContext';
 import PullToRefresh from '../../components/PullToRefresh';
 
 const AdminUserDetails = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
+  const { user: currentUser } = useAuth();
   const [user, setUser] = useState(null);
   const [activity, setActivity] = useState([]);
   const [stats, setStats] = useState({ tickets: 0, won: 0 });
@@ -197,8 +199,16 @@ const AdminUserDetails = () => {
 
   const resultCount = useMemo(() => transactionGroups.length, [transactionGroups]);
 
+  const checkSuperAdminPrivilege = () => {
+    if ((user?.isSuperAdmin || user?.role === 'super_admin') && !currentUser?.isSuperAdmin && currentUser?.role !== 'super_admin') {
+      alert("SECURITY BLOCK: Standard Admins cannot modify or delete a Super Admin account.");
+      return false;
+    }
+    return true;
+  };
+
   const handleToggleBlock = async () => {
-    if (!user) return;
+    if (!user || !checkSuperAdminPrivilege()) return;
     const newStatus = user.status === 'Blocked' ? 'Active' : 'Blocked';
     if (!window.confirm(`Are you sure you want to ${newStatus === 'Blocked' ? 'BLOCK' : 'UNBLOCK'} this user?`)) return;
 
@@ -212,6 +222,7 @@ const AdminUserDetails = () => {
   };
 
   const handleDeleteUser = async () => {
+    if (!checkSuperAdminPrivilege()) return;
     if (!window.confirm("CRITICAL WARNING: This will permanently delete this user's access while archiving their records. Proceed?")) return;
 
     try {
@@ -230,6 +241,7 @@ const AdminUserDetails = () => {
   };
 
   const handleAdjustBalance = async (type, isAddition) => {
+    if (!checkSuperAdminPrivilege()) return;
     const amount = window.prompt(`Enter amount to ${isAddition ? 'ADD' : 'SUBTRACT'} ${type === 'deposited' ? 'Deposited Chips' : type === 'winning' ? 'Winning Credits' : 'Bonus Chips'}:`);
     const val = parseFloat(amount);
     if (isNaN(val) || val <= 0) return;
@@ -250,6 +262,7 @@ const AdminUserDetails = () => {
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
+    if (!checkSuperAdminPrivilege()) return;
     setUpdating(true);
     try {
       await updateDoc(doc(db, 'users', userId), editData);
